@@ -1,0 +1,431 @@
+# Repository catalog for the Soul Agent Platform.
+#
+# One entry per repository that builds, specifies, verifies or operates the
+# platform. Each entry is a charter: one purpose, what it owns, what it must
+# not own, the trust domain its code runs in, and the seams (registry/seams.yaml)
+# it provides or consumes. docs/03-architecture/repository-catalog.md is
+# generated from this file.
+#
+# disposition is the proposal in PDR-0002 (Proposed, 2026-11-07). Nothing in
+# another repository changes until the owner accepts it; the platform repo
+# only records the target.
+#
+# Admission rule (PDR-0002): a new repository needs an entry here, merged
+# first, that names at least one admission criterion and at least one seam.
+#
+# Facts were read on 2026-11-07 from local clones and the GitHub API.
+
+layers:
+  - id: definition
+    name: Product definition
+  - id: contracts
+    name: Contracts and verification
+  - id: host
+    name: Host and remote services
+  - id: soul
+    name: Inside the Soul
+  - id: owner
+    name: Owner products (proprietary, on top of the platform)
+  - id: adjacent
+    name: Adjacent tools (outside the product boundary)
+
+admission-criteria:
+  C1: Runs in a distinct trust domain or as a distinct security principal.
+  C2: Released on its own cadence behind a versioned contract registered as a seam.
+  C3: Separation of duties (for example an independent reviewer merges).
+  C4: Needs different visibility or licensing (private fleet state, public spec).
+
+# Licensing (owner direction 2026-11-07, PDR-0002). Platform repositories
+# (every layer except owner and adjacent) are MIT-licensed and intended to be
+# public. Owner products (layer owner) are proprietary. managed-machine-config
+# holds the owner's fleet data, not platform code, and stays private.
+licensing:
+  platform: MIT
+  owner-products: proprietary
+  exceptions:
+    - repo: managed-machine-config
+      reason: Owner fleet data, not platform code.
+
+repos:
+  - name: agent-bot-platform
+    org: true-line
+    visibility: private
+    layer: definition
+    status: active
+    purpose: The product's single source of truth for intent, cross-repo design, quality bar and delivery control.
+    owns:
+      - Vision, scope, requirements (R, QA) and traceability
+      - Architecture, trust domains, repository catalog and seams
+      - Platform decision records (PDR) and the cross-repo ADR index
+      - Security, privacy, intelligence and verification strategy
+      - Release criteria, stage gates, roadmap, risks, drift register
+      - Frozen source papers (S, X)
+    must-not-own:
+      - Machine-readable schemas, fixtures, error codes (soul-contracts)
+      - Executable tests (soul-conformance)
+      - Implementation specs and repo-local ADRs (component repos)
+      - Engineering process and SOPs (qwts/qwts-agent-sop)
+    consumes: [conformance-report]
+    criteria: [C3, C4]
+    disposition: keep
+
+  - name: soul-contracts
+    org: true-line
+    visibility: public
+    layer: contracts
+    status: skeleton
+    work-packages: [WP1]
+    purpose: Versioned machine-readable contracts every component builds against.
+    owns:
+      - JSON Schemas per contract family (hq/v1, task/v1, wire/v1, ...)
+      - Canonicalization vectors and positive/negative fixtures
+      - Error registry (codes added here before any implementation emits them)
+    must-not-own:
+      - Requirement wording, glossary, traceability matrix, papers (move to the platform under PDR-0001)
+    provides: [error-registry, fixtures]
+    criteria: [C2, C4]
+    disposition: keep
+    follow-up: Replace traceability/ and glossary/ with links to the platform at a pinned commit; fix R9 (DRIFT-001).
+
+  - name: soul-conformance
+    org: true-line
+    visibility: public
+    layer: contracts
+    status: skeleton
+    work-packages: [WP7]
+    purpose: Executable proof that implementations meet the platform's T-series specifications.
+    owns:
+      - T01-T30 suites, hostile-member suite, simulators, hello.soul
+      - Eval harness and release conformance reports
+    must-not-own:
+      - What a test must prove (registry/tests.yaml in the platform)
+    provides: [conformance-report]
+    consumes: [fixtures, hq-v1, task-v1, wire-v1, soul-package-format, error-registry]
+    criteria: [C3]
+    disposition: keep
+
+  - name: agent-bot
+    org: true-line
+    visibility: private
+    layer: host
+    status: active
+    component: Identity service
+    trust-domain: Owner-operated remote service; trusted for credential custody and issuance only
+    work-packages: [WP2]
+    purpose: The owner's remote identity service and web console at agents.true-line.ai.
+    owns:
+      - Key custody, enrollment, device-bound short-lived credential minting, issuance records
+      - Catalog signing key and admin catalog publish
+      - Web console and its MCP tools
+    must-not-own:
+      - Lifecycle or any control path to a host (R2)
+    provides: [identity-service-api, catalog-signing, mcp-tools]
+    criteria: [C1]
+    disposition: keep
+    follow-up: Absorb the web console UI from agent-command-center; absorb agent-github-identity scope.
+
+  - name: agent-bot-daemon
+    org: true-line
+    visibility: public
+    layer: host
+    status: planning
+    component: HQ (with broker host)
+    trust-domain: Trusted local host service, outside every Soul
+    work-packages: [WP2, WP4, WP6]
+    purpose: HQ, the one local authority that admits Souls, enforces grants and hosts the broker.
+    owns:
+      - hq/v1 owner and member API, admission, grants, leases, epochs
+      - Action ledger, task authority, budgets, reconciliation, approvals
+      - Plugin host for identity, comms and soul-runtime plugins; HQ CLI
+      - Device key and short-lived credentials held in memory
+    must-not-own:
+      - Long-lived signing keys (identity service)
+      - Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox)
+      - Wire framing or task state library code (agent-comms)
+    provides: [hq-v1, hq-plugin-contract, task-v1]
+    consumes: [identity-service-api, catalog-signing, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]
+    criteria: [C1]
+    disposition: keep
+    follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architecture, decisions D1-D4) into the platform; add AGENTS.md with the governed block.
+
+  - name: agent-bot-machine
+    org: true-line
+    visibility: public
+    layer: host
+    status: active
+    component: Secure executor and machine manager
+    trust-domain: Host admin account sandbox (brew admin, never root)
+    purpose: The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ.
+    owns:
+      - Self-tapped Homebrew formula, machine bootstrap, catalog installs
+      - Host-side credentials and signed policy in the admin sandbox (agent-bot-daemon D4)
+      - Owner-presence verification of Secure Enclave signatures (agent-bot-daemon D4)
+      - The signed local channel endpoint and signed receipts
+    must-not-own:
+      - HQ authority (S7 made it HQ; agent-bot-daemon D1 moved HQ to agent-bot-daemon, see DRIFT-002)
+    provides: [daemon-machine-channel]
+    consumes: [catalog-signing]
+    criteria: [C1]
+    disposition: keep
+    follow-up: README still introduces it as managed-machine.
+
+  - name: managed-machine-config
+    org: qwts
+    visibility: private
+    layer: host
+    status: active
+    component: Machine desired state
+    purpose: Private fleet state, app catalog inputs and host isolation profiles consumed by agent-bot-machine.
+    owns:
+      - Dotfiles, catalog inputs, versioned fleet state
+      - Linux and macOS member-isolation profiles (S7 section 3.10)
+    must-not-own:
+      - Secrets or grants
+    consumes: [daemon-machine-channel]
+    criteria: [C4]
+    disposition: keep
+    follow-up: Transfer to true-line alongside agent-bot-machine.
+
+  - name: agent-machine-configurations
+    org: qwts
+    visibility: public
+    layer: host
+    status: empty
+    purpose: No content; created 2026-10-30 with no commits.
+    criteria: []
+    disposition: archive
+    rationale: Duplicates managed-machine-config's purpose with no content.
+
+  - name: agent-comms
+    org: qwts
+    visibility: public
+    layer: host
+    status: active
+    component: Broker, relay and comms client
+    trust-domain: Broker mode runs inside HQ's trust domain; client mode inside the Soul (untrusted for authority); relay mode untrusted for content
+    work-packages: [WP4]
+    purpose: One wire for every tier, with durable mailbox, deduplication and relay mode.
+    owns:
+      - Wire framing, sealing profile, mailbox, outbox, deduplication store interface
+      - Task state machine library (decides nothing about authority)
+      - Relay mode, A2A and MCP gateways
+    must-not-own:
+      - Authority decisions or keys (HQ); authoritative task state (HQ's store)
+    provides: [wire-v1, a2a-gateway]
+    consumes: [task-v1, hq-plugin-contract, error-registry, fixtures]
+    criteria: [C1, C2]
+    disposition: keep
+    follow-up: Transfer to true-line; load soul-contracts fixtures; reconcile its wire and task docs (DRIFT-004).
+
+  - name: agent-bot-identity
+    org: qwts
+    visibility: public
+    layer: soul
+    status: active
+    component: Identity CLI inside each Soul (today also daemon, soul runtime, comms client)
+    trust-domain: Inside the Soul; untrusted for authority
+    work-packages: [WP3]
+    purpose: The agent's identity toolset, giving each harness its own GitHub App identity and failing closed.
+    owns:
+      - agent-bot CLI, git and harness hooks, fail-closed gh
+      - GitHub App attribution and commit trailers
+    must-not-own:
+      - HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183)
+      - Soul runtime entry point (move to the Soul runtime repo)
+    provides: [identity-cli]
+    consumes: [hq-plugin-contract, identity-service-api, fixtures]
+    criteria: [C2]
+    disposition: keep-and-split
+    follow-up: Transfer to true-line; supersede agent-bot-identity ADR-0332 (DRIFT-003); retire docs/identity-contract.md in favor of the platform glossary.
+
+  - name: agent-bot-souls
+    org: true-line
+    visibility: public
+    layer: soul
+    status: empty
+    component: Soul runtime (proposed)
+    trust-domain: Inside the Soul; untrusted for authority
+    work-packages: [WP3, WP5]
+    purpose: Proposed home of the Soul runtime, the entry point that supervises members and runs the recovery ladder.
+    owns:
+      - agent-bot soul run / soul chat, ACP server and client
+      - Member supervision, cooperative scheduling, recovery ladder
+      - Typed notes, dream runs and candidate staging
+    must-not-own:
+      - Keys or grant decisions
+    provides: [acp-front-door]
+    consumes: [hq-v1, wire-v1, soul-package-format, render-plugin-api, task-v1, hq-plugin-contract, harness-adapter, error-registry, identity-cli]
+    criteria: [C2]
+    disposition: designate
+    rationale: >-
+      agent-bot-daemon's plan names a soul-runtime repository that does not
+      exist; this empty repository takes that role instead of a new one. The
+      name stays (owner, 2026-11-07): platform repositories are namespaced
+      agent-bot- and soul- so they are easy to find as a set.
+
+  - name: soul-package
+    org: true-line
+    visibility: public
+    layer: soul
+    status: skeleton
+    work-packages: [WP5]
+    purpose: The .soul format library, covering manifest, digests, import validation, deterministic render and transfer.
+    owns:
+      - Package layout and data classes (S4), manifest digests
+      - Import validation that HQ runs before any untrusted execution (T16)
+      - soul build renderer and the render-plugin API
+    must-not-own:
+      - Runtime behavior of a Soul
+    provides: [soul-package-format, render-plugin-api]
+    criteria: [C1, C2]
+    disposition: keep
+    rationale: Its validator executes inside HQ's trust domain, so it cannot live in a Soul-side repository.
+
+  - name: soul-adapters
+    org: true-line
+    visibility: public
+    layer: soul
+    status: skeleton
+    work-packages: [WP3]
+    purpose: Per-harness ACP adapters, render plugins and signed qualification manifests.
+    owns:
+      - One package per harness, each with a signed qualification.json per version
+    must-not-own:
+      - Dependencies on runtime internals (contracts and soul-package only)
+    provides: [harness-adapter]
+    consumes: [render-plugin-api, acp-front-door]
+    criteria: [C2]
+    disposition: keep
+    rationale: >-
+      Kept separate (C2). Adapters follow each harness vendor's release cycle
+      and are qualified one by one, while the Soul runtime stays free of
+      vendor names, as S1 requires. Third parties can add an adapter without
+      touching the runtime.
+    follow-up: Move the harness-adapter contract into soul-contracts so the seam is versioned rather than repo-local.
+
+  - name: geniusbar
+    org: true-line
+    visibility: private
+    layer: owner
+    status: active
+    component: Owner front end (renamed DudlesBar in its ADR-0417)
+    trust-domain: Owner's authenticated session on the host; enforces nothing
+    work-packages: [WP6]
+    purpose: The owner's macOS menubar for enrolling Souls, viewing tasks and approving actions.
+    owns:
+      - Menubar UI, enrollment flow, approval and receipt views
+    must-not-own:
+      - Any authority; it is a client of HQ only
+    consumes: [hq-v1]
+    criteria: [C1, C4]
+    disposition: keep
+    follow-up: >-
+      Switch backend from the agent-bot daemon to hq/v1. GeniusBar is a code
+      name only (owner, 2026-11-07); choose a product name before any public
+      release (DRIFT-006, RISK-010). Proprietary, outside the MIT platform.
+
+  - name: geniusbar-connector
+    org: true-line
+    visibility: private
+    layer: owner
+    status: prototype
+    purpose: Lovable prototype of a GitHub API connector for GeniusBar.
+    criteria: []
+    disposition: archive
+    rationale: Prototype with no seam of its own; GitHub access belongs to the identity service.
+
+  - name: agent-command-center
+    org: true-line
+    visibility: private
+    layer: owner
+    status: prototype
+    purpose: Lovable redesign of the agent-bot web console; its README plans a new agent-bot-ui repository.
+    criteria: []
+    disposition: merge-into-agent-bot
+    rationale: >-
+      The web console belongs to the identity service, which already has a
+      web/ directory. Creating agent-bot-ui would add a repository with no
+      distinct trust domain or seam.
+
+  - name: agent-github-identity
+    org: true-line
+    visibility: private
+    layer: host
+    status: design
+    purpose: GitHub MCP tools that act as a configured agent GitHub App.
+    criteria: []
+    disposition: merge-into-agent-bot
+    rationale: >-
+      Third home for GitHub App identity (with agent-bot and
+      agent-bot-identity). The identity service already holds the App keys
+      and serves MCP tools.
+
+  - name: agent-watchtower
+    org: true-line
+    visibility: private
+    layer: owner
+    status: active
+    purpose: Standalone security product on top of the platform that watches Souls through hq/v1 and reports; it holds no control authority.
+    consumes: [hq-v1]
+    criteria: [C1, C4]
+    disposition: keep
+    rationale: >-
+      Owner direction 2026-11-07: a standalone security product, not part of
+      the platform. It consumes hq/v1 read-only and cannot be a second HQ.
+    follow-up: Drop the "headquarters" claim, its own control plane and its approvals (agent-watchtower ADR-0012; DRIFT-005).
+
+  - name: embedded-skills
+    org: qwts
+    visibility: public
+    layer: adjacent
+    status: active
+    purpose: Skills delivered through a PATH-shadow shim ("<cli> skills"), per S9.
+    provides: [skills-contract]
+    criteria: [C2]
+    disposition: adjacent
+    rationale: Candidate delivery mechanism for Soul primitives; record the seam before the runtime depends on it.
+
+  - name: agent-fleet
+    org: qwts
+    visibility: public
+    layer: adjacent
+    status: active
+    purpose: Read-only status of a fleet of agent hosts over SSH.
+    criteria: []
+    disposition: adjacent
+    rationale: Overlaps agent-bot-machine fleet enrollment and qwts-agent-inventory; fold into agent-bot-machine when HQ diagnostics exist.
+
+  - name: agent-space
+    org: qwts
+    visibility: private
+    layer: adjacent
+    status: active
+    purpose: Backup of agent memory and configuration.
+    criteria: []
+    disposition: adjacent
+    rationale: Superseded by Soul transfer and backup (S4, soul-package) once those exist.
+
+  - name: engineering-relay
+    org: true-line
+    visibility: private
+    layer: adjacent
+    status: active
+    purpose: Engineering reference library (23 guides) and a workflow runner for agents.
+    criteria: []
+    disposition: adjacent
+    rationale: Process layer. Overlaps the SDLC guides in qwts-agent-sop (DRIFT-008); the platform links to one process source only.
+
+# Org-level governance the platform links to and never copies.
+governance:
+  - name: qwts-agent-sop
+    org: qwts
+    role: SOPs, agent conventions, SDLC guides, ENG decision series
+  - name: qwts-agent-org
+    org: qwts
+    role: Repository and agent manifests (org.json, governance/repos.json)
+  - name: trueline-agent-ci
+    org: true-line
+    role: Shared CI composite actions for true-line
+  - name: trueline-agent-docs-gov
+    org: true-line
+    role: Documentation gate (mirror of qwts-agent-docs-gov at 67db7dc)

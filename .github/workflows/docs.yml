@@ -1,0 +1,41 @@
+name: docs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  platform:
+    name: registries, drift gate, privacy, site build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install pinned tooling
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --disable-pip-version-check -q -r requirements.txt
+      - name: Drift gate, generated pages, privacy check
+        env:
+          # Owner-private names, stored as a repository secret so they never
+          # appear in the repository itself. Unset: names are not checked.
+          PLATFORM_PRIVATE_TERMS: ${{ secrets.PLATFORM_PRIVATE_TERMS }}
+        run: .venv/bin/python tools/check_platform.py
+      - name: Site builds in strict mode
+        run: .venv/bin/mkdocs build --strict
+
+  docs-governance:
+    name: org docs-gov gate
+    # The pinned commit is written twice on purpose: a called workflow cannot
+    # read its own commit, so tooling-ref names the revision the checks run at.
+    uses: true-line/trueline-agent-docs-gov/.github/workflows/docs-governance.yml@67db7dc9c20bc29222fb605b7ff9432fd58a2a3f
+    with:
+      tooling-ref: 67db7dc9c20bc29222fb605b7ff9432fd58a2a3f

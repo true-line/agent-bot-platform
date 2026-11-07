@@ -1,0 +1,47 @@
+title: "[Decision] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This discussion's number becomes the PDR number (PDR-NNNN, zero-padded).
+        Open it only for a decision above any single repository. A decision
+        inside one repository is that repository's ADR; raise it there.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: The decision to make, as one question with a yes/no or pick-one answer.
+    validations:
+      required: true
+  - type: checkboxes
+    id: platform-test
+    attributes:
+      label: Why this is a platform decision
+      description: Tick every one that applies. If none apply, close this and open an ADR in the repository it affects.
+      options:
+        - label: It binds two or more repositories
+        - label: It changes a seam (a contract between repositories)
+        - label: It changes a requirement, the scope or the quality bar
+        - label: It changes the trust model
+        - label: It changes the repository topology (create, merge, split, archive, rename)
+  - type: textarea
+    id: affects
+    attributes:
+      label: Affected repositories, seams and requirements
+      description: Use names from registry/repos.yaml and seams.yaml, and R or QA IDs.
+      placeholder: "Repositories: agent-bot-daemon, agent-comms\nSeams: task-v1\nRequirements: R5"
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options and trade-offs
+      description: At least two options, including doing nothing. Cite sources by ID (S6 §4, DRIFT-003).
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Recommendation
+      description: Which option, and the consequence each affected repository must act on.

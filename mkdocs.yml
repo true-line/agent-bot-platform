@@ -1,0 +1,137 @@
+site_name: Soul Agent Platform
+site_description: >-
+  Product source of truth for the Soul Agent Platform: requirements,
+  architecture, decisions, security and privacy, verification, release and
+  operations, plus the frozen source papers.
+docs_dir: docs
+strict: true
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+    - search.suggest
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  admonition: {}
+  tables: {}
+  toc:
+    permalink: true
+  pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Governance:
+      - 00-governance/README.md
+      - 00-governance/authority-and-ownership.md
+      - 00-governance/document-control.md
+      - 00-governance/change-control.md
+      - 00-governance/component-repo-contract.md
+      - 00-governance/identifiers.md
+      - 00-governance/drift-register.md
+  - Concept:
+      - 01-concept/README.md
+      - 01-concept/vision.md
+      - 01-concept/scope.md
+  - Requirements:
+      - 02-requirements/README.md
+      - 02-requirements/product-requirements.md
+      - 02-requirements/quality-attributes.md
+      - 02-requirements/traceability-matrix.md
+  - Architecture:
+      - 03-architecture/README.md
+      - 03-architecture/overview.md
+      - 03-architecture/repository-catalog.md
+      - 03-architecture/seams.md
+      - 03-architecture/trust-domains-and-profiles.md
+      - 03-architecture/lifecycle.md
+      - 03-architecture/federation.md
+      - Interfaces:
+          - 03-architecture/interfaces/hq-v1.md
+          - 03-architecture/interfaces/wire-v1.md
+          - 03-architecture/interfaces/task-state-machine.md
+          - 03-architecture/interfaces/error-registry.md
+          - 03-architecture/interfaces/package-format.md
+  - Decisions:
+      - 04-decisions/README.md
+      - 04-decisions/PDR-0001-platform-repository-is-the-product-source-of-truth.md
+      - 04-decisions/PDR-0002-repository-topology-and-admission.md
+      - 04-decisions/decision-log.md
+      - 04-decisions/cross-repo-adr-index.md
+  - Security and privacy:
+      - 05-security-privacy/README.md
+      - 05-security-privacy/threat-model.md
+      - 05-security-privacy/key-boundaries.md
+      - 05-security-privacy/data-flow-and-retention.md
+  - Intelligence:
+      - 06-intelligence/README.md
+  - Verification:
+      - 07-verification/README.md
+      - 07-verification/test-strategy.md
+      - 07-verification/conformance-catalog.md
+  - Release:
+      - 08-release/README.md
+      - 08-release/versioning.md
+      - 08-release/release-conformance-report.md
+  - Operations:
+      - 09-operations/README.md
+      - 09-operations/support.md
+      - Runbooks:
+          - 09-operations/runbooks/reconcile-unknown-outcome.md
+          - 09-operations/runbooks/harness-crash-loop.md
+          - 09-operations/runbooks/hq-restart.md
+  - Program:
+      - 10-program/README.md
+      - 10-program/roadmap.md
+      - 10-program/risk-register.md
+  - User guide:
+      - user-guide/README.md
+      - Tutorials:
+          - user-guide/tutorials/quickstart.md
+          - user-guide/tutorials/first-pilot-task.md
+      - Operator how-to:
+          - user-guide/how-to/credentials.md
+          - user-guide/how-to/grants-and-approvals.md
+          - user-guide/how-to/budgets-and-costs.md
+          - user-guide/how-to/pause-revoke-cancel.md
+          - user-guide/how-to/dreams-and-evals.md
+          - user-guide/how-to/rollback.md
+          - user-guide/how-to/backup-restore-transfer.md
+          - user-guide/how-to/diagnostics.md
+      - Adapter developers:
+          - user-guide/adapters/adapter-qualification.md
+          - user-guide/adapters/render-plugins.md
+      - Reference:
+          - user-guide/reference/cli.md
+  - Glossary: glossary.md
+  - Papers:
+      - papers/soul-platform-draft-0.4.md
+      - papers/agent-bot-north-star.md
+      - papers/agent-communications-outline-0.2.md
+      - papers/soul-agent-system-architecture.md
+      - papers/native-shareable-soul-packages-0.3-overview.md
+      - papers/agent-identity-delegated-authority-draft-0.1.md
+      - papers/repository-plan-2026-10-24.md
+      - papers/operator-questions-2026-10-29.md
+      - papers/skills-as-help-0.1.md
+      - papers/agent-watchtower-whitepaper.md
+  - Archive:
+      - archive/soul-platform-draft-0.3.md
+      - archive/soul-platform-draft-0.2.md
+      - archive/operator-questions-2026-10-24.md

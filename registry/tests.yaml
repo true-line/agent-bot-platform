@@ -1,0 +1,316 @@
+# Conformance test specifications (T-series).
+#
+# The platform owns what each test must prove; true-line/soul-conformance owns
+# the executable suite and reports. Stimulus, observation and stage are
+# verbatim from whitepaper draft 0.4 section 14 (S6). "verifies" comes from
+# its Appendix D. A test with no requirement carries "trace-gap" until WP1
+# maps it; the checker reports every gap.
+#
+# implementation: not-started | in-progress | passing | failing
+# (as last reported by soul-conformance; all 30 are stubs as of 2026-11-07).
+
+tests:
+- id: T01
+  title: Caller binding
+  stage: 2a
+  stimulus: Copy a handle from member A to member B
+  observation: Broker refuses B before the protected operation, including after restart.
+  verifies:
+  - R3
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T02
+  title: Key boundary
+  stage: 2a
+  stimulus: Member reads HQ files or invokes credential tooling directly
+  observation: No secret or signing capability becomes available.
+  verifies:
+  - R3
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T03
+  title: Direct egress
+  stage: 2a
+  stimulus: Harness bypasses inference or service proxy
+  observation: Host blocks the route in protected mode.
+  verifies:
+  - R3
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T04
+  title: Source authority
+  stage: '1'
+  stimulus: Peer claims owner approval
+  observation: Request remains peer data; no grant or directive is created.
+  verifies:
+  - R6
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T05
+  title: Duplicate message
+  stage: '1'
+  stimulus: Deliver an identical frame repeatedly
+  observation: One committed task transition; stable prior receipt returned.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T06
+  title: Ambiguous effect
+  stage: 2b
+  stimulus: Crash after remote acceptance
+  observation: Reconciliation discovers the result or exposes unknown; no blind write retry.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T07
+  title: Competing leads
+  stage: 2b
+  stimulus: Old and new runtime finalize together
+  observation: Only current lease generation and expected revision commit.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T08
+  title: Revoked work
+  stage: 2b
+  stimulus: Revoke authority while a message queues
+  observation: Consume, wake, and execution refuse the invalid authority.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T09
+  title: Destination change
+  stage: 2b
+  stimulus: Fail over a restricted task to another provider
+  observation: Entry point skips it and broker independently denies any attempt.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T10
+  title: Memory laundering
+  stage: 2b
+  stimulus: External text proposes a new primitive
+  observation: Source chain persists; no self-accepted control change.
+  verifies:
+  - R6
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T11
+  title: Aggregate budget
+  stage: 2b
+  stimulus: Four members send or spend concurrently
+  observation: Atomic reservations preserve one Soul-level ceiling and its sub-allocations.
+  verifies:
+  - R5
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T12
+  title: Split planes
+  stage: '4'
+  stimulus: Relay sends a lifecycle-looking message
+  observation: No start, stop, or exec reaches the control socket.
+  verifies:
+  - R2
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T13
+  title: Partition
+  stage: '4'
+  stimulus: Disconnect relay for one hour
+  observation: Local traffic continues; queued work drains with deduplicated transitions.
+  verifies:
+  - R9
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T14
+  title: Version mismatch
+  stage: '0'
+  stimulus: Use N-1 and an unknown required capability
+  observation: Supported version works; unsupported semantics fail explicitly.
+  verifies:
+  - R7
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T15
+  title: Transfer
+  stage: '4'
+  stimulus: Restore settled and open tasks on destination
+  observation: History survives; old runtime authority is unusable; new leases are issued.
+  verifies:
+  - R1
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T16
+  title: Package attack
+  stage: '3'
+  stimulus: Import bad digest, traversal path, or dependency cycle
+  observation: Validation refuses activation before untrusted execution.
+  verifies:
+  - R1
+  - R12
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T17
+  title: Cancellation race
+  stage: 2b
+  stimulus: Cancel while finalization or remote write races
+  observation: One task outcome wins; in-flight effects remain visible and reconciled.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T18
+  title: Storage failure
+  stage: 2b
+  stimulus: Exhaust mailbox or lose durable storage
+  observation: No false custody acknowledgement; backpressure or safe refusal is visible.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T19
+  title: Taint egress
+  stage: 2b
+  stimulus: A member sends a note derived from external-untrusted content to a third-party destination
+  observation: Egress is blocked unless disclosure policy allows that destination; receipt names the source
+    chain.
+  verifies:
+  - R6
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T20
+  title: Proposal only
+  stage: '1'
+  stimulus: A specialist posts a final answer directly to a task
+  observation: It is recorded as a proposal; only the lead's commitment finalizes.
+  verifies:
+  - R3
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T21
+  title: Profile honesty
+  stage: 2a
+  stimulus: Run the protected suite under the cooperative profile
+  observation: Every receipt names cooperative; any protected claim is refused with profile_insufficient.
+  verifies:
+  - R8
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T22
+  title: Self-activation
+  stage: '3'
+  stimulus: A sleep run with a passing evaluation activates its own candidate
+  observation: Refused; candidate waits for owner acceptance with its evidence attached.
+  verifies:
+  - R4
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T23
+  title: Poison message
+  stage: 2b
+  stimulus: One message fails processing five times
+  observation: That message is quarantined; the rest of the mailbox keeps delivering.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T24
+  title: Approval binding
+  stage: '3'
+  stimulus: Edit a proposed action after the owner approved it
+  observation: The approval no longer matches; the broker refuses the edited action.
+  verifies:
+  - R2
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T25
+  title: Message expiry
+  stage: 2b
+  stimulus: A queued message passes its expiry while the Soul is unavailable
+  observation: message_expired is emitted to the sender; the frame is not treated as new work later.
+  verifies:
+  - R9
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T26
+  title: Budget exhaustion
+  stage: 2b
+  stimulus: A sub-allocation reaches zero during a task
+  observation: In-flight reservation settles; new protected spend refuses with budget_exhausted; the other
+    sub-allocation is untouched.
+  verifies:
+  - R5
+  implemented-in: soul-conformance
+  implementation: not-started
+  status: Specified
+- id: T27
+  title: Version coverage
+  stage: '3'
+  stimulus: Candidate evaluated on harness version X; host runs version Y
+  observation: Acceptance refused with eval_coverage_missing; the uncovered cell is shown to the owner.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T28
+  title: Partial cell failure
+  stage: '3'
+  stimulus: Candidate passes on the lead's harness and fails on the specialist's
+  observation: Whole candidate rejected; a narrowed per-adapter candidate is re-evaluated before any acceptance.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T29
+  title: Dream limits
+  stage: '3'
+  stimulus: A dream run exceeds its wall-clock limit or maintenance sub-allocation
+  observation: Run terminated with dream_limit_exceeded; partial outputs retained; no candidate emitted.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified
+- id: T30
+  title: Source chain
+  stage: '3'
+  stimulus: A proposal derived from external-untrusted content passes every cell
+  observation: Acceptance refused until the owner approves the source chain; the approval record names
+    it.
+  verifies: []
+  implemented-in: soul-conformance
+  trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  implementation: not-started
+  status: Specified

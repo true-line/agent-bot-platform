@@ -1,0 +1,166 @@
+# Source documents (S-series) and external references (X-series).
+#
+# Original files are held privately by the owner, outside this repository:
+# they carry personal names and document metadata, and this repository will
+# be public. `original` names the file and `sha256` pins it, so the owner can
+# prove a conversion came from a specific original (set PLATFORM_SOURCES_DIR
+# and run tools/check_platform.py). The Markdown conversion under docs/papers/
+# or docs/archive/ is the in-repo record; personal names in it are replaced by
+# "True Line AI". `converted_sha256` pins that conversion, so a frozen paper
+# cannot change without a registry change. Content moves out of a source into
+# a controlled record and is cited back to the source ID.
+
+sources:
+- id: S1
+  title: Agent Bot north star
+  author: True Line AI
+  date: '2026-10-24'
+  kind: vision
+  original: s1-agent-bot-north-star.docx
+  converted: docs/papers/agent-bot-north-star.md
+  converted_sha256: a9af9bdb7f4826ad33514cafd4f26ff7d10fc25d5a87ebf3736cfccb86c9924e
+  note: Vision, invariants, decisions D1-D4 and assumptions A2-A4 (cite as S1 D1).
+  sha256: d68e7384295464cb4dc2a8fd04b2eb60a7451dc255f00a817be8584d4320281e
+- id: S2
+  title: 'Agent Communications and Trustworthy Coordination: proposed outline'
+  author: True Line AI
+  date: '2026-10-24'
+  version: '0.2'
+  kind: outline
+  original: s2-agent-communications-outline-0.2.docx
+  converted: docs/papers/agent-communications-outline-0.2.md
+  converted_sha256: 49136a9b81520afaf27175ca178a19f89aa88dc7194de7b8550eb21ca8302acf
+  sha256: 656d53c76962c87b2fa37c60aee58a1b0683d23049c02dbd133c0fdffadd7066
+- id: S3
+  title: Soul Agent System Architecture
+  author: True Line AI
+  date: '2026-10-24'
+  version: '0.2'
+  kind: architecture
+  original: s3-soul-agent-system-architecture.docx
+  converted: docs/papers/soul-agent-system-architecture.md
+  converted_sha256: 536cbd2232bd3a51cf0fd583d0964d682833a1a5793f10b33812f3c02574dd29
+  sha256: 4b713821e0f1826b3884f4afc5e2b181f6389f9e1234b50caf572d795c1f04a8
+- id: S4
+  title: Native Shareable Soul Packages (overview)
+  author: True Line AI
+  date: '2026-10-20'
+  version: '0.3'
+  kind: paper
+  doi: 10.5281/zenodo.23547566
+  original: s4-native-shareable-soul-packages-0.3-overview.pdf
+  converted: docs/papers/native-shareable-soul-packages-0.3-overview.md
+  converted_sha256: d53b3996f5d4a8c06a942893aedbf54d318c1c8a3d4e3e4dcfae8f83b088d305
+  note: Owns package layout, data classes, content-addressed manifest, transfer profiles.
+  sha256: 56e8e8a67229639b07a4d98f25a8d78c98d0cc25a89023cbd41cfac69c6032f0
+- id: S5
+  title: Agent Identity and Delegated Authority
+  author: True Line AI
+  date: '2026-10-20'
+  version: '0.1'
+  kind: paper
+  original: s5-agent-identity-delegated-authority-0.1.pdf
+  converted: docs/papers/agent-identity-delegated-authority-draft-0.1.md
+  converted_sha256: 2892305abec6d9086652348ac0c51bd4ea3a470de8371fb4b123e3bd3eca576d
+  note: Owns identity, grants, attribution and receipts.
+  sha256: 0f6990b67220b850cda7c02233343a2a190ac9266a8a2bfe93baf7e0c064096b
+- id: S6
+  title: Soul Agent Platform whitepaper
+  author: True Line AI
+  date: '2026-10-27'
+  version: '0.4'
+  kind: specification
+  original: soul-platform-draft-0.4.docx
+  converted: docs/papers/soul-platform-draft-0.4.md
+  converted_sha256: 93fa130943b58a5b1573dc4ba1fc63c29170e004b8f036c390cd9ca347f6f901
+  note: 'Consolidated product specification: R1-R12, T01-T30, WP1-WP7, stages 0-4. Inputs S1-S5.'
+  superseded_versions:
+  - version: '0.3'
+    date: '2026-10-24'
+    original: soul-platform-draft-0.3.docx
+    converted: docs/archive/soul-platform-draft-0.3.md
+    converted_sha256: 873f0bc8c117b913fda2cb449ba10467a183efdbf1bb71b85b15552c68d29802
+    sha256: a6d02d0eeddc87d005428f195b3bc5e1ceefe3890366c6f34d0754d48c74d798
+  - version: '0.2'
+    date: '2026-10-24'
+    original: soul-platform-draft-0.2.docx
+    converted: docs/archive/soul-platform-draft-0.2.md
+    converted_sha256: 3816cb716df819ca355cebdf20e2b7fa2df83beeafd1a747b7732c7188f02be6
+    sha256: 22d0338dd08b5c959081a94aa9f3fa65f441d507bb7f7efb75d1401b1531e051
+  sha256: 6e8b85af5aea5454314b7563fef83d50b5582f2b6bd9bd2a8a9bd64cdedd3030
+- id: S7
+  title: Soul Agent Platform repository implementation plan
+  author: True Line AI
+  date: '2026-10-24'
+  kind: plan
+  original: repository-plan-2026-10-24.docx
+  converted: docs/papers/repository-plan-2026-10-24.md
+  converted_sha256: 505f10b32ae92bc204e1bfdf5b737b316dbb7f710c81a85cd50aa41b7163e095
+  note: Companion to draft 0.3. Its repository map predates agent-bot-daemon and is superseded by registry/repos.yaml
+    once PDR-0002 is accepted.
+  sha256: 43dc9f0967ae52e2222dd53bc62457497989b51f0d803448bcb14e38a67cbf1e
+- id: S8
+  title: Soul Agent Platform operator questions
+  author: True Line AI
+  date: '2026-10-29'
+  kind: owner-q-and-a
+  original: operator-questions-2026-10-29.docx
+  converted: docs/papers/operator-questions-2026-10-29.md
+  converted_sha256: cee00ea5e34468f21825076c0b21e2900faeee56dfc229b07058fdf0b6886789
+  superseded_versions:
+  - version: '2026-10-24'
+    original: operator-questions-2026-10-24.docx
+    converted: docs/archive/operator-questions-2026-10-24.md
+    converted_sha256: c2076952f371aa6df1e746aedc299626f57fb28012cbc8292cb216d5e03bc0a6
+    sha256: 4fa0c16b6ba9fe9274f44f93246f1d6c998bad13c3582a93a4f0de2f54ae6719
+  sha256: 278e11dbb1001554020fb823c678b7c08ec67b439908bc1c5fd6e09334906c16
+- id: S9
+  title: Skills as help
+  version: '0.1'
+  kind: paper
+  original: skills-as-help-0.1.pdf
+  converted: docs/papers/skills-as-help-0.1.md
+  converted_sha256: f71c474cb8e54f6942b2c1943727ec467b99bd77e0342372eb54595b5fbb8a35
+  note: Basis of qwts/embedded-skills.
+  sha256: fb71060f60ceada4199ef12a3a5123c3e0b5bfe24ed8d484033fbbeb7e628aaf
+- id: S10
+  title: Agent Watchtower whitepaper
+  kind: paper
+  original: agent-watchtower-whitepaper.pdf
+  converted: docs/papers/agent-watchtower-whitepaper.md
+  converted_sha256: 1a9a6101cf107ddda58a06ae4bb556d06a94229b581a7ba49cb693d7a2472ba7
+  note: Product vision of true-line/agent-watchtower; scope conflict DRIFT-005.
+  sha256: b0ba1fdb7cec8e8367bfaa2f4fcc39caa58f5b183ee7fb2f129fe8365d72bd52
+external:
+- id: X1
+  title: Agent Client Protocol v1
+  url: https://agentclientprotocol.com/protocol/v1/overview
+  was: R1 in S6
+- id: X2
+  title: Model Context Protocol, specification 2026-07-28
+  url: https://modelcontextprotocol.io/specification/2026-07-28
+  was: R2 in S6
+- id: X3
+  title: Agent2Agent Protocol
+  url: https://a2a-protocol.org/latest/specification/
+  was: R3 in S6
+- id: X4
+  title: RFC 8785 JSON Canonicalization Scheme
+  url: https://www.rfc-editor.org/rfc/rfc8785
+  was: R4 in S6
+- id: X5
+  title: RFC 9180 Hybrid Public Key Encryption
+  url: https://www.rfc-editor.org/rfc/rfc9180.html
+  was: R5 in S6
+- id: X6
+  title: Harness2 research implementation
+  url: https://github.com/google-research/harness2
+  was: R6 in S6
+- id: X7
+  title: Agent Trajectory Interchange Format v1.7
+  url: https://docs.harborframework.com/agents/atif
+  was: R7 in S6
+- id: X8
+  title: OpenTelemetry GenAI semantic conventions
+  url: https://github.com/open-telemetry/semantic-conventions-genai
+  was: R8 in S6
