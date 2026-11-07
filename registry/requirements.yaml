@@ -1,0 +1,179 @@
+# Product requirements for the Soul Agent Platform (R-series).
+#
+# Source of truth for requirement wording, status and verification links.
+# docs/02-requirements/product-requirements.md and the traceability matrix
+# are generated from this file by tools/gen_docs.py; edit here, never there.
+#
+# Statements are carried verbatim from whitepaper draft 0.4 section 2 (S6);
+# traceability from its Appendix D. status: Proposed until PDR-0001 is
+# accepted, then Approved. "pillars" is the platform's quality-goal
+# classification (security, privacy, intelligence, accuracy, extensibility,
+# reliability, operability, portability) and is itself Proposed.
+
+requirements:
+- id: R1
+  title: Stable identity
+  statement: A Soul has one stable public identity. Members, installations, runtimes, sessions, and revisions
+    remain separately attributable.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §3, 5, 11
+  verified-by:
+  - T15
+  - T16
+  first-gate: '3'
+  pillars:
+  - accuracy
+  - security
+- id: R2
+  title: Control stays local
+  statement: Only local HQ controls lifecycle and protected operations on its host. Relays deliver messages
+    and presence; they do not obtain an execution channel. The owner's administrative channel also terminates
+    at local HQ.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §3, 4 (administration), 5, 6
+  verified-by:
+  - T12
+  - T24
+  first-gate: 3 (T24), 4 (T12)
+  pillars:
+  - security
+- id: R3
+  title: Authority outside the model
+  statement: A task's authority is enforced outside the trust domain of the model and its tools. Credentials
+    and signing keys stay there.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §4, 7, Appendix A
+  verified-by:
+  - T01
+  - T02
+  - T03
+  - T20
+  first-gate: 1 (T20), 2a
+  pillars:
+  - security
+- id: R4
+  title: Owner assigns roles; evaluations advise
+  statement: The owner chooses role assignments and approved data destinations. Evaluations inform those
+    choices and do not grant permission.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §9, 10
+  verified-by:
+  - T22
+  first-gate: '3'
+  pillars:
+  - intelligence
+  - privacy
+  - security
+- id: R5
+  title: One ceiling, sub-allocations
+  statement: One Soul has one aggregate communication and spending ceiling with named sub-allocations.
+    Nested members do not multiply it.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §8, 15
+  verified-by:
+  - T11
+  - T26
+  first-gate: 2b
+  pillars:
+  - security
+  - operability
+- id: R6
+  title: External material is data
+  statement: External material remains data. Its claimed instructions cannot become owner directives through
+    summarization, delegation, or sleep.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §4, 6 (wake), 10
+  verified-by:
+  - T04
+  - T10
+  - T19
+  first-gate: 1 (T04), 2b
+  pillars:
+  - security
+  - intelligence
+- id: R7
+  title: Contracts first; N and N-1
+  statement: Cross-component behavior is specified and tested before implementations depend on it. The
+    wire supports the current and previous supported major contract versions, with explicit capability
+    negotiation.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §6, 12, Appendix A
+  verified-by:
+  - T14
+  first-gate: '0'
+  pillars:
+  - extensibility
+- id: R8
+  title: Honest profiles
+  statement: Every operating profile reports its actual enforcement guarantees. Missing protection produces
+    a refusal or an explicit weaker profile, never a silent downgrade.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §4, 7 (receipts), 8
+  verified-by:
+  - T21
+  first-gate: 2a
+  pillars:
+  - security
+  - accuracy
+- id: R9
+  title: Uplinks optional
+  statement: Every tier keeps working without its upstream. Local conversations, local tasks, and permitted
+    local operations continue during a relay outage; messages queue store-and-forward. During an identity-service
+    outage, only protected external effects that need a newly minted credential wait.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §6, 9
+  verified-by:
+  - T13
+  - T25
+  first-gate: 2b (T25), 4 (T13)
+  pillars:
+  - reliability
+  drift:
+  - DRIFT-001
+- id: R10
+  title: Vendor-neutral contracts
+  statement: No contract names a model, provider, or harness vendor. Vendor names appear only in configuration,
+    adapter manifests, and evaluation records.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §12, 13 (pilot configuration)
+  verified-by: []
+  verified-by-other: Schema review in WP1; no vendor token in any fixture
+  first-gate: '0'
+  pillars:
+  - extensibility
+- id: R11
+  title: One harness to the user
+  statement: 'A Soul looks like one harness to its user: terminal chat and an ACP agent server in front;
+    the members behind them are invisible except through the audit trail.'
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §3, 8
+  verified-by: []
+  verified-by-other: 'Pilot rubric: tasks completed through terminal chat and ACP only'
+  first-gate: '3'
+  pillars:
+  - operability
+- id: R12
+  title: Vendored and pinned, declared exceptions
+  statement: A Soul vendors and pins everything it runs on except the declared OS baseline and declared
+    host toolchains, which are checked at activation and reported when missing.
+  status: Proposed
+  source: S6 §2 (draft 0.4)
+  specified-in: S6 §11
+  verified-by:
+  - T16
+  verified-by-other: clean-host activation reports missing toolchains
+  first-gate: '3'
+  pillars:
+  - portability
+  - security

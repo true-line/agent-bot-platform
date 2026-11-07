@@ -1,0 +1,86 @@
+---
+Status: Proposed
+Doc-Type: governance
+Owner: platform-maintainer
+Last-Reviewed: 2026-11-07
+---
+
+# Drift register
+
+Known places where two sources of truth disagree. An agent that meets one of these does not pick a side: it follows the resolution path or raises a Decisions discussion. Entries are never deleted; a resolved entry records what removed the conflict. All entries were found by the 2026-11-07 survey.
+
+## DRIFT-001 R9 has two wordings
+
+- **Open.** soul-contracts `traceability/REQUIREMENTS.md` carries R9 from draft 0.3. Draft 0.4 (S6) adds: "During an identity-service outage, only protected external effects that need a newly minted credential wait."
+- **Resolution.** The platform registry holds the 0.4 wording. soul-contracts replaces `traceability/` and `glossary/` with links to the platform (PDR-0001).
+
+## DRIFT-002 Which repository is HQ
+
+- **Open.** S1 D2, S6 section 3 and S7 make managed-machine (now agent-bot-machine) the HQ daemon. agent-bot-daemon's README and plan, and the current [architecture diagram](../03-architecture/overview.md), put HQ in agent-bot-daemon with agent-bot-machine as a secure executor that is never root.
+- **Resolution.** PDR-0002 proposes agent-bot-daemon as HQ. On acceptance, S1 D2 is recorded as superseded in the [decision log](../04-decisions/decision-log.md).
+
+## DRIFT-003 Which account the daemon runs in
+
+- **Open.** agent-bot-identity ADR-0332 (Accepted) runs one daemon per OS user in the Souls' own account. S6 section 4 and agent-bot-daemon D1 run HQ in a separate account. agent-bot-identity ADR-1183 does not supersede agent-bot-identity ADR-0332.
+- **Resolution.** A new agent-bot-identity ADR supersedes agent-bot-identity ADR-0332 and cites the accepted platform position.
+
+## DRIFT-004 Wire and task contracts exist twice
+
+- **Open.** agent-comms ships NDJSON wire v1 (`lib/wire.mjs`) and a task state table (its `tasks.md` doc) that do not reference soul-contracts. S6 sections 6 and 7 specify `wire/v1` and `task/v1` with nine HQ-authoritative states and comms as a mirror.
+- **Resolution.** Seams `wire-v1` and `task-v1` move into soul-contracts schemas; agent-comms loads its fixtures (Stage 0 exit).
+
+## DRIFT-005 Two products called headquarters
+
+- **Open.** agent-watchtower calls itself "agent coordination headquarters" with its own control plane and approvals (agent-watchtower ADR-0012). S6 defines HQ as the single local authority; S7 scopes the watcher to observability.
+- **Decided 2026-11-07, open until the repository changes.** The owner made agent-watchtower a standalone security product on top of the platform (PDR-0002). It consumes `hq-v1` read-only and holds no control authority.
+- **Resolution.** agent-watchtower drops the "headquarters" claim, its own control plane and its approvals, superseding agent-watchtower ADR-0012.
+
+## DRIFT-006 GeniusBar or DudlesBar
+
+- **Open.** S6, S7 and these docs say GeniusBar. The geniusbar repository renamed the product DudlesBar (geniusbar ADR-0417).
+- **Decided 2026-11-07, name still open.** GeniusBar is the code name; DudlesBar is not adopted. A product name is chosen before any public release, because "Genius Bar" is an Apple service name (RISK-010).
+- **Resolution.** The owner picks the product name; the glossary records it with GeniusBar as the former code name, and the geniusbar repository supersedes geniusbar ADR-0417.
+
+## DRIFT-007 Two Soul package layouts
+
+- **Open.** agent-bot-identity's `soul-package.md` doc defines formats 1 and 2 (`soul.json`, `AGENTS.md`, `skills/`). S6 section 11 and agent-bot-daemon plan section 5 define the `Contents/` layout with `SoulInfo.json` and `SoulLock.json`.
+- **Resolution.** The `soul-package-format` seam in soul-package is the single home; identity documents formats 1 and 2 as legacy import paths only.
+
+## DRIFT-008 More than one engineering process source
+
+- **Open.** Process guidance exists in qwts/qwts-agent-sop (22 SDLC guides), true-line/engineering-relay (23 guides) and qwts/qwts-agent-sdlc. agent-watchtower's governed block points to qwts/playbook-engineering; agent-bot-identity's AGENTS.md links both qwts/agent-sop and qwts/qwts-agent-sop.
+- **Resolution.** The platform links one process source through its governed block. Choosing between the others is an org decision, outside this repository.
+
+## DRIFT-009 "Soul" and "principal" mean different things
+
+- **Open.** The soul-contracts glossary defines a Soul as a persistent multi-member agent and a principal as a human or organization. agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning.
+- **Resolution.** The platform [glossary](../glossary.md) is the single home after PDR-0001; agent-comms records the older meaning as superseded.
+
+## DRIFT-010 Short labels collide
+
+- **Open.** S6 labels its external references `R1` to `R8`, beside its requirements R1 to R12. agent-bot-daemon's plan labels its decisions `D1` to `D4` and its risks `R1` to `R10`, colliding with the north star's decisions (S1 D1 to S1 D4) and with the requirements.
+- **Resolution.** Platform side resolved by [identifiers](identifiers.md) (X-series, qualified labels, RISK-series). agent-bot-daemon renames its risks when its plan moves here.
+
+## DRIFT-011 The split decisions are recorded three times
+
+- **Open.** The daemon, identity, comms and soul-runtime split appears in agent-bot-identity ADR-1183, agent-bot-daemon plan section 10.1 and ENG-0111.
+- **Resolution.** The cross-repo part becomes one PDR; the other records cite it.
+
+## DRIFT-012 The identity service has two addresses
+
+- **Open.** S6 and the architecture name `agents.true-line.ai`; agent-bot's README and agent-bot-daemon's plan also use `agent-bot-gold.vercel.app`.
+- **Resolution.** Owner states which is canonical; the other is recorded as a deployment alias in agent-bot.
+
+## DRIFT-013 Planned repository names do not exist
+
+- **Open.** agent-bot-daemon's plan names `agent-bot-soul`, `agent-bot-soul-runtime` and `agent-bot-comms`; the repositories are agent-bot-souls (empty) and agent-comms. Its README links `qwts/agent-bot-daemon#1` although the repository is in true-line.
+- **Resolution.** PDR-0002 fixes the names in `registry/repos.yaml`; agent-bot-daemon's plan links there.
+
+## DRIFT-014 Diagram provenance was swapped
+
+- **Resolved 2026-11-07.** The soul-docs portal labeled the current diagram as the old privileged-daemon sketch and the reverse. The migration renamed them: `assets/architecture.mmd` is current and `assets/architecture-superseded-privileged-machine.mmd` is the older sketch.
+
+## DRIFT-015 Draft 0.4.1 is cited but missing
+
+- **Open.** agent-bot-daemon's plan says the draft 0.4 component table was revised in a draft 0.4.1. No 0.4.1 file is in this repository, and S6 pins draft 0.4 by SHA-256, so the two may describe different component boundaries.
+- **Resolution.** The owner supplies draft 0.4.1 and it is registered as the current version of S6 with 0.4 as superseded, or agent-bot-daemon's plan stops citing it.

@@ -1,0 +1,159 @@
+# Seams: the interfaces between repositories.
+#
+# A seam is the only legitimate coupling between two repositories. Each seam
+# has exactly one provider, a contract home, and a contract status. A seam
+# whose contract lives only in a provider's prose ("plan" or "repo-local") is
+# where drift starts; the checker lists them. docs/03-architecture/seams.md is
+# generated from this file.
+#
+# contract-status:
+#   none        no written contract
+#   plan        described in a plan or paper only
+#   repo-local  specified in the provider repository, not in soul-contracts
+#   partial     some records exist in soul-contracts
+#   complete    every record has a schema and fixtures in soul-contracts
+#   external    governed by an external specification (X-series)
+
+seams:
+  - id: hq-v1
+    name: HQ control and owner API (Hello, Admit, Equip, Ready, Lease, lifecycle, approvals)
+    provider: agent-bot-daemon
+    consumers: [agent-bot-souls, geniusbar, agent-watchtower, soul-conformance]
+    contract-home: soul-contracts schemas/hq/v1
+    contract-status: partial
+    requirements: [R2, R3, R7, R8]
+    note: Hello and admission result exist; the other S6 Appendix A records are not started.
+
+  - id: task-v1
+    name: Task commitment request, task record and nine-state machine
+    provider: agent-bot-daemon
+    consumers: [agent-comms, agent-bot-souls, soul-conformance]
+    contract-home: soul-contracts schemas/task/v1
+    contract-status: plan
+    requirements: [R3, R5]
+    drift: [DRIFT-004]
+
+  - id: wire-v1
+    name: Broker and relay frame (outer frame plus sealed envelope)
+    provider: agent-comms
+    consumers: [agent-bot-daemon, agent-bot-souls, soul-conformance]
+    contract-home: soul-contracts schemas/wire/v1
+    contract-status: plan
+    requirements: [R2, R7, R9]
+    drift: [DRIFT-004]
+    note: agent-comms ships its own NDJSON wire v1 (lib/wire.mjs) that does not reference soul-contracts.
+
+  - id: identity-service-api
+    name: Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1)
+    provider: agent-bot
+    consumers: [agent-bot-daemon, agent-bot-identity]
+    contract-home: agent-bot docs/api.md
+    contract-status: repo-local
+    requirements: [R3, R9]
+    note: Credential issuance record is listed in S6 Appendix A but has no schema yet.
+
+  - id: catalog-signing
+    name: Signed admin catalog of approved apps and configurations
+    provider: agent-bot
+    consumers: [agent-bot-daemon, agent-bot-machine]
+    contract-home: agent-bot
+    contract-status: repo-local
+
+  - id: daemon-machine-channel
+    name: Signed local channel from HQ to the secure executor, with signed receipts
+    provider: agent-bot-machine
+    consumers: [agent-bot-daemon, managed-machine-config]
+    contract-home: agent-bot-machine
+    contract-status: repo-local
+
+  - id: hq-plugin-contract
+    name: Manifest, registration, host services and lifecycle for HQ plugins
+    provider: agent-bot-daemon
+    consumers: [agent-bot-identity, agent-comms, agent-bot-souls]
+    contract-home: agent-bot-daemon docs/daemon-plugin-split.md section 4
+    contract-status: plan
+
+  - id: soul-package-format
+    name: .soul layout, data classes, manifest digests, import validation
+    provider: soul-package
+    consumers: [agent-bot-daemon, agent-bot-souls, soul-conformance]
+    contract-home: soul-package spec/LAYOUT.md
+    contract-status: repo-local
+    requirements: [R1, R12]
+    drift: [DRIFT-007]
+
+  - id: render-plugin-api
+    name: Deterministic render of canonical primitives into each adapter's native configuration
+    provider: soul-package
+    consumers: [soul-adapters, agent-bot-souls]
+    contract-home: soul-package spec/RENDER-PLUGIN.md
+    contract-status: repo-local
+    requirements: [R10]
+
+  - id: acp-front-door
+    name: The Soul's terminal chat and ACP agent server; ACP client to members
+    provider: agent-bot-souls
+    consumers: [soul-adapters]
+    contract-home: X1 (Agent Client Protocol v1)
+    contract-status: external
+    requirements: [R11]
+
+  - id: harness-adapter
+    name: Per-harness adapter package and signed qualification manifest
+    provider: soul-adapters
+    consumers: [agent-bot-souls, agent-bot-daemon]
+    contract-home: soul-adapters docs/QUALIFICATION.md
+    contract-status: repo-local
+    requirements: [R8, R10]
+
+  - id: error-registry
+    name: Typed error codes with description and retryable flag
+    provider: soul-contracts
+    consumers: [agent-bot-daemon, agent-comms, agent-bot-souls, soul-conformance]
+    contract-home: soul-contracts errors/registry.json
+    contract-status: partial
+    note: 24 codes exist with empty descriptions and retryable null.
+
+  - id: fixtures
+    name: Shared positive and negative fixtures and canonicalization vectors
+    provider: soul-contracts
+    consumers: [soul-conformance, agent-comms, agent-bot-identity]
+    contract-home: soul-contracts fixtures/
+    contract-status: partial
+    requirements: [R7]
+
+  - id: conformance-report
+    name: Release conformance report (revision, policy digest, versions, profile, host, adapters)
+    provider: soul-conformance
+    consumers: [agent-bot-platform]
+    contract-home: agent-bot-platform docs/08-release/release-conformance-report.md
+    contract-status: plan
+
+  - id: identity-cli
+    name: The agent-bot CLI surface used by a Soul's members
+    provider: agent-bot-identity
+    consumers: [agent-bot-souls]
+    contract-home: agent-bot-identity README
+    contract-status: repo-local
+
+  - id: a2a-gateway
+    name: Agent2Agent gateway at the edge, preserving provenance
+    provider: agent-comms
+    consumers: []
+    contract-home: X3 (Agent2Agent Protocol)
+    contract-status: external
+
+  - id: mcp-tools
+    name: MCP tools served by the identity service
+    provider: agent-bot
+    consumers: []
+    contract-home: X2 (Model Context Protocol)
+    contract-status: external
+
+  - id: skills-contract
+    name: The "<cli> skills" discovery contract
+    provider: embedded-skills
+    consumers: []
+    contract-home: embedded-skills docs/
+    contract-status: repo-local
+    note: Adjacent; no platform consumer yet.

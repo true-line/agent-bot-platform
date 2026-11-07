@@ -1,0 +1,40 @@
+---
+Status: Proposed
+Doc-Type: governance
+Owner: platform-maintainer
+Last-Reviewed: 2026-11-07
+Decided-By: PDR-0001
+---
+
+# Component repository contract
+
+What every repository in the [repository catalog](../03-architecture/repository-catalog.md) does so its agents build against the platform instead of beside it. The contract is deliberately small: a pointer, a pin and a few prohibitions.
+
+## Platform block in AGENTS.md
+
+Each component's AGENTS.md carries this block next to the org's governed discovery block. The pin is a full commit SHA; the tag is for people.
+
+```markdown
+<!-- platform:agent-bot-platform:start -->
+Platform: true-line/agent-bot-platform at baseline/1 (commit <sha>).
+This repository's charter, seams and requirements are in the platform's
+registry/repos.yaml entry for <repo-name>. Read the platform's AGENTS.md
+before changing a seam or anything a requirement covers.
+<!-- platform:agent-bot-platform:end -->
+```
+
+## What a component keeps
+
+- Its implementation design, build and module documentation.
+- Its own ADRs, numbered by its own issues, citing the PDR when one applies.
+- Its changelog, CI and repository-specific test plans, which cite T-series IDs when they implement a platform test.
+
+## What a component must not keep
+
+- A copy of a platform requirement, term definition, architecture description or cross-repo decision. Link to the platform at the pinned commit instead.
+- A schema or error code that belongs in soul-contracts.
+- A decision that binds another repository. Raise a Decisions discussion in the platform instead.
+
+## Adopting the contract
+
+Adoption happens one repository at a time, by PR in that repository, after PDR-0001 is accepted. The repository catalog's `follow-up` field lists what each repository needs to move or delete. The drift register tracks every copy that remains until then.

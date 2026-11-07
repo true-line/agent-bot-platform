@@ -1,0 +1,104 @@
+# Identifier namespaces for the Soul Agent Platform.
+#
+# Every identifier an agent may cite in platform docs is declared here, with
+# one meaning and one owning registry. tools/check_platform.py fails when a
+# controlled doc uses an undeclared ID, a retired alias, or an ID that does
+# not resolve. Papers and archive (Doc-Type paper/archive) are exempt: they
+# are frozen provenance and keep their original spelling.
+
+namespaces:
+  - prefix: R
+    pattern: '^R([1-9][0-9]*)$'
+    meaning: Product requirement (normative, human language).
+    registry: registry/requirements.yaml
+    allocation: Next integer, in the PR that adds the requirement. Never reused.
+    origin: Whitepaper draft 0.4 section 2 (S6).
+
+  - prefix: QA
+    pattern: '^QA-(SEC|PRV|INT|ACC|EXT|REL|OPS|POR)-[0-9]{2}$'
+    meaning: Quality-attribute requirement, grouped by pillar.
+    registry: registry/requirements.yaml
+    allocation: Next two-digit number within the pillar. Reserved; none allocated yet.
+
+  - prefix: T
+    pattern: '^T([0-9]{2})$'
+    meaning: Conformance test specification. Implemented in soul-conformance.
+    registry: registry/tests.yaml
+    allocation: Next two-digit number. Never reused.
+    origin: Whitepaper draft 0.4 section 14 (S6).
+
+  - prefix: PDR
+    pattern: '^PDR-([0-9]{4})$'
+    meaning: Platform decision record, a decision that binds more than one repository.
+    registry: docs/04-decisions/
+    allocation: >-
+      The number is the issue number of the decision issue in
+      true-line/agent-bot-platform. GitHub allocates it atomically, so two
+      agents can never mint the same number.
+
+  - prefix: WP
+    pattern: '^WP([1-7])$'
+    meaning: Work package from whitepaper draft 0.4 section 13.
+    registry: registry/repos.yaml
+    allocation: Closed set WP1 to WP7. A new package needs a PDR.
+
+  - prefix: Stage
+    pattern: '^Stage (0|1|2a|2b|3|4)$'
+    meaning: Delivery stage with exit evidence, whitepaper draft 0.4 section 13.
+    registry: registry/tests.yaml
+    allocation: Closed set.
+
+  - prefix: S
+    pattern: '^S([1-9][0-9]*)$'
+    meaning: Source document (paper, plan, owner Q&A).
+    registry: registry/sources.yaml
+    allocation: Next integer. S1 to S5 keep the numbering draft 0.4 gave them.
+
+  - prefix: X
+    pattern: '^X([1-9][0-9]*)$'
+    meaning: External standard or specification.
+    registry: registry/sources.yaml
+    allocation: Next integer. Replaces the R1 to R8 reference labels in draft 0.4.
+
+  - prefix: DRIFT
+    pattern: '^DRIFT-([0-9]{3})$'
+    meaning: A recorded conflict between two sources of truth, open until resolved.
+    registry: docs/00-governance/drift-register.md
+    allocation: Next three-digit number.
+
+  - prefix: RISK
+    pattern: '^RISK-([0-9]{3})$'
+    meaning: Program or product risk.
+    registry: docs/10-program/risk-register.md
+    allocation: Next three-digit number. Never reused; a closed risk keeps its row.
+
+# IDs owned elsewhere. Cite them qualified with the owning repository so an
+# agent never has to guess which series a number belongs to.
+foreign:
+  - prefix: ENG
+    owner: qwts/qwts-agent-sop
+    meaning: Org-wide engineering decision. Cite as ENG-NNNN (globally unique).
+  - prefix: ADR
+    owner: each component repository
+    meaning: >-
+      Repository-local decision. Numbers repeat across repositories, so a
+      platform doc must cite it qualified: "agent-comms ADR-0028".
+  - prefix: error code
+    owner: true-line/soul-contracts errors/registry.json
+    meaning: snake_case error identifiers such as profile_insufficient.
+
+# Earlier documents reused short labels for unrelated things. These are
+# retired in controlled docs; the right-hand side is what to write instead.
+retired:
+  - label: 'R1-R8 (references in draft 0.4)'
+    use: X1-X8
+    reason: Collided with requirements R1-R12 in the same paper.
+  - label: 'D1-D4 (north star decisions)'
+    use: 'S1 D1 to S1 D4 when quoting; the PDR that adopts it once accepted'
+    reason: agent-bot-daemon reuses D1-D4 for different decisions.
+  - label: 'A2-A4 (north star working assumptions)'
+    use: 'S1 A2 to S1 A4 when quoting'
+    reason: Unqualified letters are ambiguous across documents.
+  - label: 'D1-D4, Q1-Q8, R1-R10 (agent-bot-daemon daemon-plugin-split)'
+    use: 'agent-bot-daemon D4 (qualified); risks move to RISK-NNN'
+    reason: Daemon risks R1-R10 collide with requirements R1-R12.

@@ -1,0 +1,33 @@
+flowchart TB
+  subgraph Remote["agent-bot: control plane (agents.true-line.ai)"]
+    ID["Identity service<br/>App keys, enrollment, minting"]
+    WEB["Web console"]
+    CAT["Admin catalog<br/>approved apps + configs"]
+  end
+
+  subgraph Machine["Machine"]
+    USER["Owner (terminal)"]
+    AGENT["Agents (terminal)"]
+    CLI["agent-bot-cli<br/>thin client / shim"]
+    subgraph Daemon["agent-daemon (user process)"]
+      AI["agent-identity"]
+      AS["agent-soul"]
+      AC["agent-comms"]
+    end
+    subgraph Priv["agent-machine (privileged daemon)"]
+      HQ["HQ: supervision, grants, enforcement"]
+      INST["Installer<br/>catalog apps + configs only"]
+    end
+    Soul["Soul<br/>lead + specialists + sessions"]
+  end
+
+  USER --> CLI
+  AGENT --> CLI
+  CLI -- "local socket" --> Daemon
+  Daemon -- "privileged socket<br/>(request from catalog)" --> Priv
+  AI <-- "enroll + mint" --> ID
+  WEB --- ID
+  CAT -- "signed catalog" --> INST
+  HQ -- "supervises" --> Soul
+  AS -- "packages, sessions" --> Soul
+  AC <-- "messages" --> Soul
