@@ -13,8 +13,8 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 
 | PDR | Title | Status |
 |---|---|---|
-| [PDR-0001](PDR-0001-platform-repository-is-the-product-source-of-truth.md) | The platform repository is the product source of truth | Proposed |
-| [PDR-0002](PDR-0002-repository-topology-and-admission.md) | Repository topology and admission | Proposed |
+| [PDR-0001](PDR-0001-platform-repository-is-the-product-source-of-truth.md) | The platform repository is the product source of truth | Accepted 2026-11-07 |
+| [PDR-0002](PDR-0002-repository-topology-and-admission.md) | Repository topology and admission | Accepted 2026-11-07 |
 
 ## How a decision is made
 

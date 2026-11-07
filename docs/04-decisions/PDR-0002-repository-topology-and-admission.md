@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-07
 Date: 2026-11-07
+Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/2
 Affects-Repos: [agent-bot-platform, agent-bot, agent-bot-daemon, agent-bot-machine, managed-machine-config, agent-machine-configurations, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar, geniusbar-connector, agent-command-center, agent-github-identity, agent-watchtower]
 Affects: [topology, hq-v1, governance]
@@ -50,13 +51,23 @@ The platform's code and plans are spread across two GitHub accounts, true-line a
 
 ## Owner direction, 2026-11-07
 
-The owner answered the four questions this record first left open. The record stays Proposed until it is accepted in its discussion.
+The owner answered the four questions this record first left open. The acceptance includes these answers.
 
 - **agent-watchtower** is a standalone security product on top of the platform. It consumes `hq-v1` read-only and holds no control authority (DRIFT-005).
 - **agent-bot-souls** keeps its name, under the naming rule in decision 5.
 - **soul-adapters** stays separate, as recommended. Adapters follow each harness vendor's release cycle and are qualified one by one. Keeping them out of the Soul runtime keeps vendor names out of it, and lets third parties add an adapter without touching it. Its contract moves into soul-contracts.
 - **GeniusBar** is a code name. DudlesBar is not adopted, and a product name is chosen before any public release (DRIFT-006, RISK-010).
 - **Licensing** is MIT for the platform, as decision 6 records.
+
+## Acceptance
+
+The owner accepted the recommendation as written on 2026-11-07, in the marked answer to [discussion #2](https://github.com/true-line/agent-bot-platform/discussions/2), including the owner direction above. The answer sets limits on carrying it out:
+
+- It does not authorize a new paid service, new credentials or an immediate public release.
+- Transfers, merges, archives and Homebrew tap moves happen only when they break no install.
+- Anything that would become public passes the privacy check on its whole history first.
+
+Each change lands by PR in the repository it changes, and each of those PRs cites this record.
 
 ## Alternatives considered
 

@@ -27,6 +27,7 @@ Which conformance tests prove each requirement, at which stage, and which tests 
 | R10 Vendor-neutral contracts | none | none | Schema review in WP1; no vendor token in any fixture |
 | R11 One harness to the user | none | none | Pilot rubric: tasks completed through terminal chat and ACP only |
 | R12 Vendored and pinned, declared exceptions | T16 | 3 | clean-host activation reports missing toolchains |
+| QA-A11Y-01 Accessible interfaces | none | none | not yet assigned; WP7 proposes the method |
 
 ## Trace gaps
 

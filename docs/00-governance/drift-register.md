@@ -16,13 +16,14 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-002 Which repository is HQ
 
-- **Open.** S1 D2, S6 section 3 and S7 make managed-machine (now agent-bot-machine) the HQ daemon. agent-bot-daemon's README and plan, and the current [architecture diagram](../03-architecture/overview.md), put HQ in agent-bot-daemon with agent-bot-machine as a secure executor that is never root.
-- **Resolution.** PDR-0002 proposes agent-bot-daemon as HQ. On acceptance, S1 D2 is recorded as superseded in the [decision log](../04-decisions/decision-log.md).
+- **Conflict.** S1 D2, S6 section 3 and S7 make managed-machine (now agent-bot-machine) the HQ daemon. agent-bot-daemon's README and plan, and the current [architecture diagram](../03-architecture/overview.md), put HQ in agent-bot-daemon with agent-bot-machine as a secure executor that is never root.
+- **Resolved 2026-11-07.** PDR-0002, accepted in its discussion, makes agent-bot-daemon HQ, and the [decision log](../04-decisions/decision-log.md) records S1 D2 as superseded. agent-bot-machine ADR-0001 already keeps HQ in agent-bot-daemon. S1, S6 and S7 stay frozen and are read with PDR-0002.
 
 ## DRIFT-003 Which account the daemon runs in
 
 - **Open.** agent-bot-identity ADR-0332 (Accepted) runs one daemon per OS user in the Souls' own account. S6 section 4 and agent-bot-daemon D1 run HQ in a separate account. agent-bot-identity ADR-1183 does not supersede agent-bot-identity ADR-0332.
-- **Resolution.** A new agent-bot-identity ADR supersedes agent-bot-identity ADR-0332 and cites the accepted platform position.
+- **Decided 2026-11-07, open until the repository changes.** agent-bot-daemon D6 runs HQ in its own OS account, separate from the members and from agent-bot-machine's admin sandbox. That is the platform position.
+- **Resolution.** A new agent-bot-identity ADR supersedes agent-bot-identity ADR-0332 and cites agent-bot-daemon D6.
 
 ## DRIFT-004 Wire and task contracts exist twice
 

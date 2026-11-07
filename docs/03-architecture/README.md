@@ -12,7 +12,7 @@ How the platform is divided into trust domains, repositories and contracts. The 
 | Page | Contents |
 |---|---|
 | [Overview](overview.md) | Two planes, components on one machine, dependency direction, the enforcement point |
-| [Repository catalog](repository-catalog.md) | Every repository with its charter, admission criteria and proposed disposition |
+| [Repository catalog](repository-catalog.md) | Every repository with its charter, admission criteria and decided disposition |
 | [Seams](seams.md) | Every contract between repositories, its provider, consumers, home and status |
 | [Trust domains and profiles](trust-domains-and-profiles.md) | Protected and cooperative profiles; where host-side secrets live |
 | [Lifecycle](lifecycle.md) | Admission, sleep, upgrade and recovery of a Soul |

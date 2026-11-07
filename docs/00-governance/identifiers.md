@@ -16,9 +16,9 @@ Every identifier a platform document may cite, its single meaning, and the regis
 | Prefix | Meaning | Resolves in | Allocation |
 |---|---|---|---|
 | R | Product requirement (normative, human language). | `registry/requirements.yaml` | Next integer, in the PR that adds the requirement. Never reused. |
-| QA | Quality-attribute requirement, grouped by pillar. | `registry/requirements.yaml` | Next two-digit number within the pillar. Reserved; none allocated yet. |
+| QA | Quality-attribute requirement, grouped by pillar. ACC is accuracy and A11Y is accessibility. | `registry/requirements.yaml` | Next two-digit number within the pillar. QA-A11Y-01 was the first, with PDR-0001. |
 | T | Conformance test specification. Implemented in soul-conformance. | `registry/tests.yaml` | Next two-digit number. Never reused. |
-| PDR | Platform decision record, a decision that binds more than one repository. | `docs/04-decisions/` | The number is the issue number of the decision issue in true-line/agent-bot-platform. GitHub allocates it atomically, so two agents can never mint the same number. |
+| PDR | Platform decision record, a decision that binds more than one repository. | `docs/04-decisions/` | The number is the number of the decision's discussion in the Decisions category of true-line/agent-bot-platform. GitHub numbers issues, PRs and discussions from one sequence, so two agents can never mint the same number. |
 | WP | Work package from whitepaper draft 0.4 section 13. | `registry/repos.yaml` | Closed set WP1 to WP7. A new package needs a PDR. |
 | Stage | Delivery stage with exit evidence, whitepaper draft 0.4 section 13. | `registry/tests.yaml` | Closed set. |
 | S | Source document (paper, plan, owner Q&A). | `registry/sources.yaml` | Next integer. S1 to S5 keep the numbering draft 0.4 gave them. |

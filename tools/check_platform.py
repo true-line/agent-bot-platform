@@ -76,6 +76,7 @@ ID_PATTERNS = {
     "S": re.compile(r"(?<![\w.§-])S(\d{1,2})(?![\w-])"),
     "X": re.compile(r"(?<![\w-])X(\d{1,2})(?![\w-])"),
     "DRIFT": re.compile(r"(?<![\w-])DRIFT-(\d{3})(?![\w-])"),
+    "QA": re.compile(r"(?<![\w-])QA-([A-Z0-9]{3,4}-\d{2})(?![\w-])"),
 }
 ADR = re.compile(r"(?:([\w.-]+)(?:/|\s+|#))?ADR-\d{4}")
 LEGACY_DECISION = re.compile(r"(?<![\w.-])([DA])([1-9])(?![\w-])")
@@ -165,7 +166,8 @@ def nav_pages(nav):
 
 
 def build_index():
-    req = load("requirements.yaml")["requirements"]
+    reqs = load("requirements.yaml")
+    req, qa = reqs["requirements"], reqs.get("quality-attributes") or []
     tests = load("tests.yaml")["tests"]
     src = load("sources.yaml")
     repos = load("repos.yaml")
@@ -181,8 +183,10 @@ def build_index():
         else:
             pdrs[m.group(1)] = p
     return {
-        "req": req, "tests": tests, "src": src, "repos": repos, "seams": seams,
+        "req": req, "qa": qa, "tests": tests, "src": src, "repos": repos, "seams": seams,
+        "ids": load("ids.yaml"),
         "R": {r["id"][1:] for r in req},
+        "QA": {q["id"][3:] for q in qa},
         "T": {t["id"][1:] for t in tests},
         "PDR": set(pdrs), "pdr_files": pdrs,
         "WP": {str(i) for i in range(1, 8)},
@@ -265,7 +269,7 @@ def check_document(path, idx, nav):
         for kind, pat in ID_PATTERNS.items():
             for m in pat.finditer(line):
                 if m.group(1) not in idx[kind]:
-                    err(where, f"{kind}{'-' if kind in ('PDR', 'DRIFT') else ''}{m.group(1)} does not resolve in its registry")
+                    err(where, f"{kind}{'-' if kind in ('PDR', 'DRIFT', 'QA') else ''}{m.group(1)} does not resolve in its registry")
         for m in ADR.finditer(line):
             qual = (m.group(1) or "").split("/")[-1]
             if qual not in idx["repo_names"]:
@@ -277,7 +281,16 @@ def check_document(path, idx, nav):
 
 
 def check_registries(idx):
-    req, tests = idx["req"], idx["tests"]
+    tests = idx["tests"]
+    qa_ns = next(n for n in idx["ids"]["namespaces"] if n["prefix"] == "QA")
+    for q in idx["qa"]:
+        where = f"registry/requirements.yaml:{q.get('id')}"
+        if not re.fullmatch(qa_ns["pattern"], str(q.get("id", ""))):
+            err(where, f"QA id must match {qa_ns['pattern']} (registry/ids.yaml)")
+        for key in ("title", "statement", "status", "source", "specified-in", "first-gate"):
+            if not q.get(key):
+                err(where, f"missing {key}")
+    req = idx["req"] + idx["qa"]
     rid = [r["id"] for r in req]
     tid = [t["id"] for t in tests]
     for name, seq in (("requirement", rid), ("test", tid)):
@@ -388,7 +401,7 @@ def check_registries(idx):
                 err(rel, f"Affects-Repos names unknown repository {r!r}")
         seam_ids = {s["id"] for s in idx["seams"]}
         bad = [a for a in affects if not (a in seam_ids or a in PDR_AFFECTS_TERMS
-               or re.fullmatch(r"R\d+|QA-[A-Z]{3}-\d{2}", str(a)))]
+               or re.fullmatch(r"R\d+|QA-[A-Z0-9]{3,4}-\d{2}", str(a)))]
         if bad:
             err(rel, f"Affects items must be seam ids, R/QA ids or one of {sorted(PDR_AFFECTS_TERMS)}; got {bad}")
         if len(affects_repos) < 2 and not affects:

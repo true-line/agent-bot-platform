@@ -8,7 +8,7 @@ Sources: S6; S1; S5; S8
 
 # Glossary
 
-This page is the single home for platform vocabulary (PDR-0001, proposed). A component repository links here instead of defining a term again; a schema field name in soul-contracts takes its meaning from this page. The Where column cites the source a definition came from.
+This page is the single home for platform vocabulary (PDR-0001). A component repository links here instead of defining a term again; a schema field name in soul-contracts takes its meaning from this page. The Where column cites the source a definition came from.
 
 Two terms are in conflict and stay marked until the owner decides: **Soul** and **principal** (DRIFT-009), and **GeniusBar**, which is a code name until the owner picks a product name (DRIFT-006).
 

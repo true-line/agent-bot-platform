@@ -5,17 +5,22 @@
 # are generated from this file by tools/gen_docs.py; edit here, never there.
 #
 # Statements are carried verbatim from whitepaper draft 0.4 section 2 (S6);
-# traceability from its Appendix D. status: Proposed until PDR-0001 is
-# accepted, then Approved. "pillars" is the platform's quality-goal
-# classification (security, privacy, intelligence, accuracy, extensibility,
-# reliability, operability, portability) and is itself Proposed.
+# traceability from its Appendix D. R1 to R12 were approved with PDR-0001
+# (accepted 2026-11-07, discussion #1); a change to one needs a PR the owner
+# approves. "pillars" is the platform's quality-goal classification
+# (security, privacy, intelligence, accuracy, extensibility, reliability,
+# operability, portability, accessibility) and is itself Proposed.
+#
+# quality-attributes holds the QA series (registry/ids.yaml): requirements
+# on how well the platform does something rather than what it does. They use
+# the same fields as the R series.
 
 requirements:
 - id: R1
   title: Stable identity
   statement: A Soul has one stable public identity. Members, installations, runtimes, sessions, and revisions
     remain separately attributable.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §3, 5, 11
   verified-by:
@@ -30,7 +35,7 @@ requirements:
   statement: Only local HQ controls lifecycle and protected operations on its host. Relays deliver messages
     and presence; they do not obtain an execution channel. The owner's administrative channel also terminates
     at local HQ.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §3, 4 (administration), 5, 6
   verified-by:
@@ -43,7 +48,7 @@ requirements:
   title: Authority outside the model
   statement: A task's authority is enforced outside the trust domain of the model and its tools. Credentials
     and signing keys stay there.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §4, 7, Appendix A
   verified-by:
@@ -58,7 +63,7 @@ requirements:
   title: Owner assigns roles; evaluations advise
   statement: The owner chooses role assignments and approved data destinations. Evaluations inform those
     choices and do not grant permission.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §9, 10
   verified-by:
@@ -72,7 +77,7 @@ requirements:
   title: One ceiling, sub-allocations
   statement: One Soul has one aggregate communication and spending ceiling with named sub-allocations.
     Nested members do not multiply it.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §8, 15
   verified-by:
@@ -86,7 +91,7 @@ requirements:
   title: External material is data
   statement: External material remains data. Its claimed instructions cannot become owner directives through
     summarization, delegation, or sleep.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §4, 6 (wake), 10
   verified-by:
@@ -102,7 +107,7 @@ requirements:
   statement: Cross-component behavior is specified and tested before implementations depend on it. The
     wire supports the current and previous supported major contract versions, with explicit capability
     negotiation.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §6, 12, Appendix A
   verified-by:
@@ -114,7 +119,7 @@ requirements:
   title: Honest profiles
   statement: Every operating profile reports its actual enforcement guarantees. Missing protection produces
     a refusal or an explicit weaker profile, never a silent downgrade.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §4, 7 (receipts), 8
   verified-by:
@@ -128,7 +133,7 @@ requirements:
   statement: Every tier keeps working without its upstream. Local conversations, local tasks, and permitted
     local operations continue during a relay outage; messages queue store-and-forward. During an identity-service
     outage, only protected external effects that need a newly minted credential wait.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §6, 9
   verified-by:
@@ -143,7 +148,7 @@ requirements:
   title: Vendor-neutral contracts
   statement: No contract names a model, provider, or harness vendor. Vendor names appear only in configuration,
     adapter manifests, and evaluation records.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §12, 13 (pilot configuration)
   verified-by: []
@@ -155,7 +160,7 @@ requirements:
   title: One harness to the user
   statement: 'A Soul looks like one harness to its user: terminal chat and an ACP agent server in front;
     the members behind them are invisible except through the audit trail.'
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §3, 8
   verified-by: []
@@ -167,7 +172,7 @@ requirements:
   title: Vendored and pinned, declared exceptions
   statement: A Soul vendors and pins everything it runs on except the declared OS baseline and declared
     host toolchains, which are checked at activation and reported when missing.
-  status: Proposed
+  status: Approved
   source: S6 §2 (draft 0.4)
   specified-in: S6 §11
   verified-by:
@@ -177,3 +182,16 @@ requirements:
   pillars:
   - portability
   - security
+
+quality-attributes:
+- id: QA-A11Y-01
+  title: Accessible interfaces
+  statement: Every user interface the platform ships meets WCAG 2.2 level AA.
+  status: Approved
+  source: 'PDR-0001 acceptance (discussion #1); agent-bot-daemon plan section 7.1 already sets this level for the browser console'
+  specified-in: Not yet specified. Which interfaces are in scope and how each is checked are open.
+  verified-by: []
+  verified-by-other: not yet assigned; WP7 proposes the method
+  first-gate: First release that ships a user interface
+  pillars:
+  - accessibility
