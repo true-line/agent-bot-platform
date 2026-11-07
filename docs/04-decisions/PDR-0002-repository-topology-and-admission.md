@@ -6,17 +6,17 @@ Last-Reviewed: 2026-11-07
 Date: 2026-11-07
 Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/2
-Affects-Repos: [agent-bot-platform, agent-bot, agent-bot-daemon, agent-bot-machine, managed-machine-config, agent-machine-configurations, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar, geniusbar-connector, agent-command-center, agent-github-identity, agent-watchtower]
+Affects-Repos: [agent-bot-platform, agent-bot, agent-bot-daemon, agent-bot-machine, managed-machine-config, agent-machine-configurations, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar, agent-github-identity, agent-watchtower]
 Affects: [topology, hq-v1, governance]
 ---
 
 # PDR-0002 Repository topology and admission
 
-The platform's repositories follow trust domains and seams, not features. A repository exists only when it meets an admission criterion and owns a seam. This record applies that rule to the 22 repositories in scope today and sets the rule for every new one.
+The platform's repositories follow trust domains and seams, not features. A repository exists only when it meets an admission criterion and owns a seam. This record applies that rule to the 20 repositories in scope today and sets the rule for every new one.
 
 ## Context
 
-The platform's code and plans are spread across two GitHub accounts, true-line and qwts. Several repositories overlap. GitHub App identity has three homes, the web console has two with a third planned, and two products call themselves headquarters. Two repositories are empty, and the daemon's plan names repositories that do not exist. Whitepaper draft 0.4 already states the principle: repositories follow trust-domain and contract boundaries, and dependencies point toward the contract repositories. Nothing enforces it.
+The platform's code and plans are spread across two GitHub accounts, true-line and qwts. Several repositories overlap. GitHub App identity has three homes, a second web-console repository is planned, and two products call themselves headquarters. Two repositories are empty, and the daemon's plan names repositories that do not exist. Whitepaper draft 0.4 already states the principle: repositories follow trust-domain and contract boundaries, and dependencies point toward the contract repositories. Nothing enforces it.
 
 ## Decision
 
@@ -34,8 +34,8 @@ The platform's code and plans are spread across two GitHub accounts, true-line a
    - **Keep as owner products:** geniusbar and agent-watchtower. They sit on top of the platform and are not part of it.
    - **Keep and split:** agent-bot-identity. The HQ half moves to agent-bot-daemon and the Soul runtime moves out; the identity CLI and hooks stay.
    - **Designate:** agent-bot-souls becomes the Soul runtime home that the daemon's plan calls soul-runtime, instead of creating a new repository.
-   - **Merge into agent-bot:** agent-command-center (the web console UI) and agent-github-identity (GitHub App MCP tools). The planned agent-bot-ui is not created.
-   - **Archive:** agent-machine-configurations (empty) and geniusbar-connector (prototype).
+   - **Merge into agent-bot:** agent-github-identity (GitHub App MCP tools). The web console stays in agent-bot, and the planned agent-bot-ui is not created.
+   - **Archive:** agent-machine-configurations (empty).
    - **Adjacent, outside the product:** embedded-skills, agent-fleet, agent-space and engineering-relay. They are listed so agents know they exist and are not platform components.
 5. **Names.** Platform repositories are namespaced `agent-bot-` or `soul-` so they are easy to find as a set. A new platform repository takes one of those prefixes. Existing names outside them, such as agent-comms, are not renamed by this record.
 6. **Licensing.** Platform repositories are MIT-licensed and intended to be public. Owner products (geniusbar, agent-watchtower) are proprietary. managed-machine-config holds the owner's fleet data rather than platform code and stays private. A repository becomes public only after the privacy check passes on its whole history.
@@ -43,7 +43,7 @@ The platform's code and plans are spread across two GitHub accounts, true-line a
 
 ## Consequences
 
-- The 22 repositories in scope settle into 12 platform repositories, 2 owner products, 4 adjacent tools and 4 merged or archived. One planned repository (agent-bot-ui) is never created.
+- The 20 repositories in scope settle into 12 platform repositories, 2 owner products, 4 adjacent tools and 2 merged or archived. One planned repository (agent-bot-ui) is never created.
 - Each surviving repository has one sentence of purpose, so an agent can tell where a change belongs before writing it.
 - Seams whose contracts exist only as plans or repo-local prose become visible and are ranked for promotion into soul-contracts.
 - Merges and transfers cost real work: GitHub redirects, Homebrew taps, CI pins and the governed blocks in each moved repository.
@@ -68,6 +68,10 @@ The owner accepted the recommendation as written on 2026-11-07, in the marked an
 - Anything that would become public passes the privacy check on its whole history first.
 
 Each change lands by PR in the repository it changes, and each of those PRs cites this record.
+
+## Amendment, 2026-11-07
+
+After acceptance, the owner took two design workspaces out of this record's scope. They are maintained outside the platform, so no platform record lists them or sets a disposition for them, and the counts above exclude them. The rest of the decision is unchanged.
 
 ## Alternatives considered
 

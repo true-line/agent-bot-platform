@@ -123,7 +123,7 @@ repos:
     provides: [identity-service-api, catalog-signing, mcp-tools]
     criteria: [C1]
     disposition: keep
-    follow-up: Absorb the web console UI from agent-command-center; absorb agent-github-identity scope.
+    follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), evaluating its durable write receipts for the GitHub write tools.
 
   - name: agent-bot-daemon
     org: true-line
@@ -191,8 +191,8 @@ repos:
     org: qwts
     visibility: public
     layer: host
-    status: empty
-    purpose: No content; created 2026-10-30 with no commits.
+    status: removed
+    purpose: No content; created 2026-10-30 with no commits. No longer on GitHub as of 2026-11-07.
     criteria: []
     disposition: archive
     rationale: Duplicates managed-machine-config's purpose with no content.
@@ -325,34 +325,11 @@ repos:
       name only (owner, 2026-11-07); choose a product name before any public
       release (DRIFT-006, RISK-010). Proprietary, outside the MIT platform.
 
-  - name: geniusbar-connector
-    org: true-line
-    visibility: private
-    layer: owner
-    status: prototype
-    purpose: Lovable prototype of a GitHub API connector for GeniusBar.
-    criteria: []
-    disposition: archive
-    rationale: Prototype with no seam of its own; GitHub access belongs to the identity service.
-
-  - name: agent-command-center
-    org: true-line
-    visibility: private
-    layer: owner
-    status: prototype
-    purpose: Lovable redesign of the agent-bot web console; its README plans a new agent-bot-ui repository.
-    criteria: []
-    disposition: merge-into-agent-bot
-    rationale: >-
-      The web console belongs to the identity service, which already has a
-      web/ directory. Creating agent-bot-ui would add a repository with no
-      distinct trust domain or seam.
-
   - name: agent-github-identity
     org: true-line
     visibility: private
     layer: host
-    status: design
+    status: archived
     purpose: GitHub MCP tools that act as a configured agent GitHub App.
     criteria: []
     disposition: merge-into-agent-bot
