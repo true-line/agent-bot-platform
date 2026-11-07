@@ -22,6 +22,13 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Runtime** | A launched process executing a member; fresh credentials on replacement | S5 |
 | **Session** | A bounded interaction context, one per context/conversation | S8 |
 | **Definition revision** | An immutable revision of the Soul's definition; sleep/upgrade produce new ones; ID never changes | S1 D3, S1 D4 |
+| **Principal** | A human or organization that can own or delegate authority, independent of any agent | S6 §3; in conflict, DRIFT-009 |
+| **Owner** | The principal whose host account installed HQ and who configures a Soul's authority | S6 §3 |
+| **Life** | A Soul's selected durable state: knowledge, dream inputs, comms mirror, member homes and workspaces; it moves with the Soul and is distinct from the definition | S6 §3 |
+| **Lead** | The one member that plans, routes work and may finalize task decisions | S6 §3 |
+| **Specialist** | A member that returns proposals and evidence to the lead | S6 §3 |
+| **Enrollment** | One-time registration of a Soul, node or relay with an owner-confirmed challenge; lasts until revoked | S6 §3 |
+| **Admission (clock-in)** | Per-start verification of a Soul and its runtimes by local HQ | S6 §3 |
 
 ## Authority and enforcement
 
@@ -35,6 +42,8 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Managed Soul** | Harnesses launched and run by its soul package | S8 |
 | **Unmanaged Soul** | Harness owned by an app the platform doesn't run (IDE, web chat) | S8 |
 | **Grant** | Standing authority: action/resource selectors, destinations, data restrictions, expiry, ceiling | S6 App. A |
+| **Grant handle** | A broker-generated opaque reference to a grant, bound to the admitted caller and never chosen by the caller; lasts one runtime admission | S6 §3 |
+| **Credential reference** | An opaque pointer to a short-lived credential HQ obtains from the identity service, never the secret itself | S6 §3 |
 | **Approval** | Owner confirmation bound to a record digest; single-action or bounded class | S6 §8, T24 |
 | **Dream grant** | Time, cost share, cell cap, destinations, executor for a dream run | S6 App. A |
 
@@ -46,6 +55,8 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Receipt** | Broker-issued record: task, caller (member+runtime), destination, adapter route, settled cost | S6 §7 |
 | **Outcome unknown** | Terminal ambiguity; reconcile via broker lookup, never blind replay | S6 §7, T06 |
 | **Wake class** | Delivery scheduling class on the wire frame | S6 §6 |
+| **Directive** | A task offer from HQ backed by authenticated local authority; peer text cannot acquire the kind | S6 §3, T04 |
+| **Query** | A member's question to HQ, answered with a decision record | S6 §3 |
 | **Send reservation** | Outbox reservation; settles on retry or cancel | S6 §8 |
 
 ## Memory and improvement
@@ -57,3 +68,5 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Candidate (revision)** | Proposed definition/primitive change with per-cell eval matrix; partial acceptance disallowed | S6 §10, T28 |
 | **Guardrail** | A check whose failure must never be accepted; violation disables a route | S6 §9 |
 | **Primitive** | A reusable skill/behavior improvement rendered per adapter | S6 §10 |
+| **Render** | The deterministic build step that turns primitives into each adapter's native configuration, per revision and adapter version | S6 §3 |
+| **Eval cell** | One role on one harness version and one provider within an evaluation plan | S6 §3 |
