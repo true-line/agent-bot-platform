@@ -80,7 +80,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Resolved 2026-11-07.** The soul-docs portal labeled the current diagram as the old privileged-daemon sketch and the reverse. The migration renamed them: `assets/architecture.mmd` is current and `assets/architecture-superseded-privileged-machine.mmd` is the older sketch.
 
-## DRIFT-015 Draft 0.4.1 is cited but missing
+## DRIFT-015 Draft 0.4.1 is cited but does not exist
 
-- **Open.** agent-bot-daemon's plan says the draft 0.4 component table was revised in a draft 0.4.1. No 0.4.1 file is in this repository, and S6 pins draft 0.4 by SHA-256, so the two may describe different component boundaries.
-- **Resolution.** The owner supplies draft 0.4.1 and it is registered as the current version of S6 with 0.4 as superseded, or agent-bot-daemon's plan stops citing it.
+- **Resolved 2026-11-07.** agent-bot-daemon's plan (section 10.1) and the soul-contracts glossary say a draft 0.4.1 changed S6's component table and Appendix C to name agent-bot-daemon as HQ instead of managed-machine. No 0.4.1 file exists: every copy of the whitepaper found is byte-identical to the S6 draft 0.4 pin. The one change it was meant to carry is recorded in PDR-0002 (decision 3) and the repository catalog.
+- **Follow-up.** S6 stays draft 0.4. When agent-bot-daemon and soul-contracts adopt the platform block, both cite PDR-0002 instead of draft 0.4.1.
