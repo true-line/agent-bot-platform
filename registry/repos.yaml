@@ -50,7 +50,7 @@ licensing:
 repos:
   - name: agent-bot-platform
     org: true-line
-    visibility: private
+    visibility: public
     layer: definition
     status: active
     purpose: The product's single source of truth for intent, cross-repo design, quality bar and delivery control.
