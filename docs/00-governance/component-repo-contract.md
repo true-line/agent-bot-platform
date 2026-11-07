@@ -3,7 +3,7 @@ Status: Accepted
 Doc-Type: governance
 Owner: platform-maintainer
 Last-Reviewed: 2026-11-07
-Decided-By: PDR-0001
+Decided-By: PDR-0001, PDR-0020
 ---
 
 # Component repository contract
@@ -12,7 +12,7 @@ What every repository in the [repository catalog](../03-architecture/repository-
 
 ## Platform block in AGENTS.md
 
-Each component's AGENTS.md carries this block next to the org's governed discovery block. It names the repository, never a commit: agents read the platform at `main`, so the rules they build against are always current ([PDR-0001](../04-decisions/PDR-0001-platform-repository-is-the-product-source-of-truth.md), amended).
+Each component's AGENTS.md carries this block next to the org's governed discovery block. It names the repository, never a commit: agents read the platform at `main`, so the rules they build against are always current ([PDR-0020](../04-decisions/PDR-0020-components-read-the-platform-at-main.md)).
 
 ```markdown
 <!-- platform:agent-bot-platform:start -->
@@ -23,6 +23,13 @@ at the start of every task, and before changing a seam or anything a
 requirement covers.
 <!-- platform:agent-bot-platform:end -->
 ```
+
+## Checking against the platform
+
+- A check that depends on the platform fetches its `main` fresh on every run and fails when a cited ID or linked path is missing there, or when it cannot reach the platform. It never skips.
+- CI logs the platform commit SHA it fetched. The SHA is evidence of what was checked, never the rules to build against.
+- A CI failure caused by a platform change on `main` is a real signal, not a flaky runner. Fix it; never bypass-merge it.
+- Reading `main` surfaces Proposed pages and PDRs. They guide work; only Accepted ones bind it.
 
 ## What a component keeps
 

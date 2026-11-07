@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: report
 Owner: verification-lead
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-07
 Scope: T01–T30 conformance suite + release reports
 ---
 
@@ -43,6 +43,7 @@ A release report contains:
 5. Diagnostics bundle sample + redaction proof (§12)
 6. Open `[UNSPECIFIED]` items promoted or retired this release
 7. Known-limitation list (see [support](../09-operations/support.md#known-limitation-disclosures))
+8. The platform commit SHA the evidence was checked against: the `main` commit each conformance run fetched ([PDR-0020](../04-decisions/PDR-0020-components-read-the-platform-at-main.md))
 
 ## Where the report lives
 

@@ -14,4 +14,4 @@ How platform, protocol, schema and adapter versions move together, and what evid
 | [Versioning](versioning.md) | Version policy for platform, protocol, schema and adapters |
 | [Release conformance report](release-conformance-report.md) | The T01 to T30 evidence a release publishes |
 
-A release records the platform commit its conformance evidence was checked against, as evidence. Components never pin a platform commit; they read the platform at `main`, as the [component repository contract](../00-governance/component-repo-contract.md) describes.
+Every release conformance report records the platform commit SHA its evidence was checked against ([PDR-0020](../04-decisions/PDR-0020-components-read-the-platform-at-main.md)). That SHA is evidence. Components never pin a platform commit; they read the platform at `main`, as the [component repository contract](../00-governance/component-repo-contract.md) describes.

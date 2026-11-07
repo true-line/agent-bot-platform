@@ -3,7 +3,7 @@ Status: Accepted
 Doc-Type: governance
 Owner: product-owner
 Last-Reviewed: 2026-11-07
-Decided-By: PDR-0001
+Decided-By: PDR-0001, PDR-0020
 ---
 
 # Change control
@@ -41,10 +41,11 @@ A contract change follows the same order: the PDR or requirement changes here, t
 
 ## Reading the platform
 
-Component repositories read the platform at `main` ([discussion #20](https://github.com/true-line/agent-bot-platform/discussions/20)). Building against stale rules costs more than a rule changing mid-task. An agent reads the platform at the start of every task, and its PR's CI checks against `main` again before merge.
+Component repositories read the platform at `main` ([PDR-0020](../04-decisions/PDR-0020-components-read-the-platform-at-main.md)). Building against stale rules costs more than a rule changing mid-task. An agent reads the platform at the start of every task, and its PR's CI checks against `main` again before merge.
 
 - Each component's AGENTS.md carries a platform block that names no commit. See [component repository contract](component-repo-contract.md).
-- A component's CI that depends on the platform fetches `main` and fails, never skips, when a cited ID or linked path is missing.
+- A component's CI that depends on the platform fetches `main` and fails, never skips, when a cited ID or linked path is missing. It logs the platform commit SHA it fetched.
+- A component CI failure caused by a platform change on `main` is a real signal. It is fixed, never bypass-merged.
 - A platform PR that retires a page, ID, requirement or seam a component relies on opens an issue in each affected repository and links it from the PR. R and T IDs are never reused and source papers are frozen, so most platform changes cannot break a component.
 - A commit SHA may record what was checked, as in a release conformance report or a CI log. It is never the context an agent builds against. The `baseline/1` to `baseline/3` tags remain as history.
 
