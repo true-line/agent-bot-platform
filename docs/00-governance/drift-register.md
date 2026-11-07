@@ -69,8 +69,9 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-012 The identity service has two addresses
 
-- **Open.** S6 and the architecture name `agents.true-line.ai`; agent-bot's README and agent-bot-daemon's plan also use `agent-bot-gold.vercel.app`.
-- **Resolution.** Owner states which is canonical; the other is recorded as a deployment alias in agent-bot.
+- **Open.** S6 and the architecture name `agents.true-line.ai`. agent-bot's README and code comments, agent-bot-daemon's plan and agent-bot-identity's server-mode documentation and tests also use `agent-bot-gold.vercel.app`.
+- **Decided 2026-11-07, open until the repositories change.** The owner made `agents.true-line.ai` the canonical address. `agent-bot-gold.vercel.app` is a deployment alias: it keeps serving existing clients, and agent-bot already treats it as a legacy host. Documents name only the canonical address.
+- **Resolution.** agent-bot records the alias, and agent-bot, agent-bot-daemon and agent-bot-identity replace it in their documents. Their adoption issues carry the item: true-line/agent-bot#154, true-line/agent-bot-daemon#79 and qwts/agent-bot-identity#1378.
 
 ## DRIFT-013 Planned repository names do not exist
 
