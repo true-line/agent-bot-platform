@@ -29,16 +29,14 @@ Every repository that builds, specifies, verifies or operates the platform, with
 | true-line/agent-bot-daemon | Host and remote services | planning | Keep | HQ, the one local authority that admits Souls, enforces grants and hosts the broker. |
 | true-line/agent-bot-machine | Host and remote services | active | Keep | The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ. |
 | qwts/managed-machine-config | Host and remote services | active | Keep | Private fleet state, app catalog inputs and host isolation profiles consumed by agent-bot-machine. |
-| qwts/agent-machine-configurations | Host and remote services | empty | Archive | No content; created 2026-10-30 with no commits. |
+| qwts/agent-machine-configurations | Host and remote services | removed | Archive | No content; created 2026-10-30 with no commits. No longer on GitHub as of 2026-11-07. |
 | qwts/agent-comms | Host and remote services | active | Keep | One wire for every tier, with durable mailbox, deduplication and relay mode. |
 | qwts/agent-bot-identity | Inside the Soul | active | Keep and split | The agent's identity toolset, giving each harness its own GitHub App identity and failing closed. |
 | true-line/agent-bot-souls | Inside the Soul | empty | Designate a new role | Proposed home of the Soul runtime, the entry point that supervises members and runs the recovery ladder. |
 | true-line/soul-package | Inside the Soul | skeleton | Keep | The .soul format library, covering manifest, digests, import validation, deterministic render and transfer. |
 | true-line/soul-adapters | Inside the Soul | skeleton | Keep | Per-harness ACP adapters, render plugins and signed qualification manifests. |
 | true-line/geniusbar | Owner products (proprietary, on top of the platform) | active | Keep | The owner's macOS menubar for enrolling Souls, viewing tasks and approving actions. |
-| true-line/geniusbar-connector | Owner products (proprietary, on top of the platform) | prototype | Archive | Lovable prototype of a GitHub API connector for GeniusBar. |
-| true-line/agent-command-center | Owner products (proprietary, on top of the platform) | prototype | Merge into agent-bot | Lovable redesign of the agent-bot web console; its README plans a new agent-bot-ui repository. |
-| true-line/agent-github-identity | Host and remote services | design | Merge into agent-bot | GitHub MCP tools that act as a configured agent GitHub App. |
+| true-line/agent-github-identity | Host and remote services | archived | Merge into agent-bot | GitHub MCP tools that act as a configured agent GitHub App. |
 | true-line/agent-watchtower | Owner products (proprietary, on top of the platform) | active | Keep | Standalone security product on top of the platform that watches Souls through hq/v1 and reports; it holds no control authority. |
 | qwts/embedded-skills | Adjacent tools (outside the product boundary) | active | Adjacent, outside the product | Skills delivered through a PATH-shadow shim ("<cli> skills"), per S9. |
 | qwts/agent-fleet | Adjacent tools (outside the product boundary) | active | Adjacent, outside the product | Read-only status of a fleet of agent hosts over SSH. |
@@ -85,7 +83,7 @@ Owns: Key custody, enrollment, device-bound short-lived credential minting, issu
 
 Must not own: Lifecycle or any control path to a host (R2).
 
-Follow-up: Absorb the web console UI from agent-command-center; absorb agent-github-identity scope.
+Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), evaluating its durable write receipts for the GitHub write tools.
 
 ### agent-bot-daemon
 
@@ -182,8 +180,6 @@ Follow-up: Switch backend from the agent-bot daemon to hq/v1. GeniusBar is a cod
 | Repository | Disposition | Rationale |
 |---|---|---|
 | agent-machine-configurations | Archive | Duplicates managed-machine-config's purpose with no content. |
-| geniusbar-connector | Archive | Prototype with no seam of its own; GitHub access belongs to the identity service. |
-| agent-command-center | Merge into agent-bot | The web console belongs to the identity service, which already has a web/ directory. Creating agent-bot-ui would add a repository with no distinct trust domain or seam. |
 | agent-github-identity | Merge into agent-bot | Third home for GitHub App identity (with agent-bot and agent-bot-identity). The identity service already holds the App keys and serves MCP tools. |
 | agent-watchtower | Keep | Owner direction 2026-11-07: a standalone security product, not part of the platform. It consumes hq/v1 read-only and cannot be a second HQ. |
 | embedded-skills | Adjacent, outside the product | Candidate delivery mechanism for Soul primitives; record the seam before the runtime depends on it. |
