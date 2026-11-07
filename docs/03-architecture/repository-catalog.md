@@ -63,8 +63,6 @@ Owns: JSON Schemas per contract family (hq/v1, task/v1, wire/v1, ...); Canonical
 
 Must not own: Requirement wording, glossary, traceability matrix, papers (move to the platform under PDR-0001).
 
-Follow-up: Replace traceability/ and glossary/ with links to the platform at a pinned commit; fix R9 (DRIFT-001).
-
 ### soul-conformance
 
 Criteria: C3; work packages: WP7.
