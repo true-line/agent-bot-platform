@@ -80,7 +80,7 @@ Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §4, 7 (receipts),
 
 Every tier keeps working without its upstream. Local conversations, local tasks, and permitted local operations continue during a relay outage; messages queue store-and-forward. During an identity-service outage, only protected external effects that need a newly minted credential wait.
 
-Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §6, 9. Open drift: DRIFT-001.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §6, 9.
 
 ### R10 Vendor-neutral contracts
 

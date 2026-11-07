@@ -86,7 +86,6 @@ repos:
     provides: [error-registry, fixtures]
     criteria: [C2, C4]
     disposition: keep
-    follow-up: Replace traceability/ and glossary/ with links to the platform at a pinned commit; fix R9 (DRIFT-001).
 
   - name: soul-conformance
     org: true-line

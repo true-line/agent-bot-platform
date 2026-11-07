@@ -142,8 +142,6 @@ requirements:
   first-gate: 2b (T25), 4 (T13)
   pillars:
   - reliability
-  drift:
-  - DRIFT-001
 - id: R10
   title: Vendor-neutral contracts
   statement: No contract names a model, provider, or harness vendor. Vendor names appear only in configuration,

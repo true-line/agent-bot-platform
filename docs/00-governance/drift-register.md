@@ -11,8 +11,8 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-001 R9 has two wordings
 
-- **Open.** soul-contracts `traceability/REQUIREMENTS.md` carries R9 from draft 0.3. Draft 0.4 (S6) adds: "During an identity-service outage, only protected external effects that need a newly minted credential wait."
-- **Resolution.** The platform registry holds the 0.4 wording. soul-contracts replaces `traceability/` and `glossary/` with links to the platform (PDR-0001).
+- **Conflict.** soul-contracts `traceability/REQUIREMENTS.md` carried R9 from draft 0.3. Draft 0.4 (S6) adds: "During an identity-service outage, only protected external effects that need a newly minted credential wait."
+- **Resolved 2026-11-07.** [soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26) replaced `traceability/`, `glossary/` and `papers/` with links to the platform at baseline/3 (PDR-0001). The platform registry's 0.4 wording is the only R9.
 
 ## DRIFT-002 Which repository is HQ
 
@@ -54,7 +54,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-009 "Soul" and "principal" mean different things
 
-- **Open.** The soul-contracts glossary defines a Soul as a persistent multi-member agent and a principal as a human or organization. agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning.
+- **Open.** S6 section 3 defines a Soul as a persistent multi-member agent and a principal as a human or organization; the platform [glossary](../glossary.md) carries those definitions since soul-contracts moved its glossary there ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning.
 - **Resolution.** The platform [glossary](../glossary.md) is the single home after PDR-0001; agent-comms records the older meaning as superseded.
 
 ## DRIFT-010 Short labels collide
@@ -85,4 +85,4 @@ Known places where two sources of truth disagree. An agent that meets one of the
 ## DRIFT-015 Draft 0.4.1 is cited but does not exist
 
 - **Resolved 2026-11-07.** agent-bot-daemon's plan (section 10.1) and the soul-contracts glossary say a draft 0.4.1 changed S6's component table and Appendix C to name agent-bot-daemon as HQ instead of managed-machine. No 0.4.1 file exists: every copy of the whitepaper found is byte-identical to the S6 draft 0.4 pin. The one change it was meant to carry is recorded in PDR-0002 (decision 3) and the repository catalog.
-- **Follow-up.** S6 stays draft 0.4. When agent-bot-daemon and soul-contracts adopt the platform block, both cite PDR-0002 instead of draft 0.4.1.
+- **Follow-up.** S6 stays draft 0.4. soul-contracts dropped the claim when its glossary moved to the platform ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). When agent-bot-daemon adopts the platform block, it cites PDR-0002 instead of draft 0.4.1.
