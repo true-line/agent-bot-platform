@@ -12,14 +12,15 @@ What every repository in the [repository catalog](../03-architecture/repository-
 
 ## Platform block in AGENTS.md
 
-Each component's AGENTS.md carries this block next to the org's governed discovery block. The pin is a full commit SHA; the tag is for people.
+Each component's AGENTS.md carries this block next to the org's governed discovery block. It names the repository, never a commit: agents read the platform at `main`, so the rules they build against are always current ([PDR-0001](../04-decisions/PDR-0001-platform-repository-is-the-product-source-of-truth.md), amended).
 
 ```markdown
 <!-- platform:agent-bot-platform:start -->
-Platform: true-line/agent-bot-platform at baseline/1 (commit <sha>).
+Platform: true-line/agent-bot-platform, read at main.
 This repository's charter, seams and requirements are in the platform's
 registry/repos.yaml entry for <repo-name>. Read the platform's AGENTS.md
-before changing a seam or anything a requirement covers.
+at the start of every task, and before changing a seam or anything a
+requirement covers.
 <!-- platform:agent-bot-platform:end -->
 ```
 
@@ -31,7 +32,8 @@ before changing a seam or anything a requirement covers.
 
 ## What a component must not keep
 
-- A copy of a platform requirement, term definition, architecture description or cross-repo decision. Link to the platform at the pinned commit instead.
+- A copy of a platform requirement, term definition, architecture description or cross-repo decision. Link to the platform at `main` instead.
+- A pinned platform commit, a lock file or a cached copy of a platform registry. Checks that depend on the platform fetch its `main` and fail, never skip, when they cannot reach it or when a cited ID or linked path is missing there.
 - A schema or error code that belongs in soul-contracts.
 - A decision that binds another repository. Raise a Decisions discussion in the platform instead.
 

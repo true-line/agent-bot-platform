@@ -14,4 +14,4 @@ How platform, protocol, schema and adapter versions move together, and what evid
 | [Versioning](versioning.md) | Version policy for platform, protocol, schema and adapters |
 | [Release conformance report](release-conformance-report.md) | The T01 to T30 evidence a release publishes |
 
-A platform baseline is a tag on this repository (`baseline/N`) that pins requirement, seam and test versions together. Each component records the baseline it builds against, as the [component repository contract](../00-governance/component-repo-contract.md) describes.
+A release records the platform commit its conformance evidence was checked against, as evidence. Components never pin a platform commit; they read the platform at `main`, as the [component repository contract](../00-governance/component-repo-contract.md) describes.

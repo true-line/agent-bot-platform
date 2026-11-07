@@ -55,4 +55,4 @@ Code shows what a component currently does. It never defines what the platform i
 
 ## Moving a fact
 
-A fact that lives in the wrong place moves in two steps. First the platform gains the controlled record, citing its source. Then the old location is replaced by a link at a pinned platform commit, in a PR to that repository. Until the second step lands, the drift register records both copies.
+A fact that lives in the wrong place moves in two steps. First the platform gains the controlled record, citing its source. Then the old location is replaced by a link to the platform at `main`, in a PR to that repository. Until the second step lands, the drift register records both copies.
