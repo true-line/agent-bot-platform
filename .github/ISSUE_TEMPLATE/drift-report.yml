@@ -1,0 +1,26 @@
+name: Drift report
+description: Two sources of truth disagree. Records the conflict; does not choose a winner.
+title: "[Drift] "
+labels: [drift]
+body:
+  - type: textarea
+    id: sources
+    attributes:
+      label: The two sources
+      description: Each source with its location, such as "S6 §7" or "agent-comms docs, tasks.md", and what each says.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: What breaks if an agent follows the wrong one
+    validations:
+      required: true
+  - type: textarea
+    id: resolution
+    attributes:
+      label: Proposed resolution
+      description: Which record should become the single home, and whether the choice needs a Decisions discussion.
+  - type: markdown
+    attributes:
+      value: The PR that resolves this adds or updates a DRIFT-NNN entry in docs/00-governance/drift-register.md.

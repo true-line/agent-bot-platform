@@ -1,0 +1,11 @@
+# Local tooling and build output
+.venv/
+site/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Personal, legal and identity records never live in this repository, not
+# even ignored. This entry is a backstop; tools/check_platform.py --privacy
+# also fails on them by path and content.
+.local/

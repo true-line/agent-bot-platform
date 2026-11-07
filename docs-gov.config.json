@@ -1,0 +1,71 @@
+{
+  "include": [
+    "docs/**/*.md",
+    "README.md",
+    "AGENTS.md",
+    "CONTRIBUTING.md"
+  ],
+  "exclude": [
+    "docs/papers/**",
+    "docs/archive/**"
+  ],
+  "indexes": [
+    "README.md",
+    "docs/index.md"
+  ],
+  "tokenBudgets": {
+    "perDoc": 2600,
+    "bankSlack": 0.25,
+    "overrides": [
+      {
+        "path": "docs/03-architecture/repository-catalog.md",
+        "budget": 3300,
+        "reason": "Generated from registry/repos.yaml: one row and one charter per repository, which is the contract agents read before creating or changing a repository. Splitting would separate a charter from the catalog. It shrinks as PDR-0002's merges and archives land; the next breach should be re-examined, not reflexively raised."
+      }
+    ],
+    "contextSets": []
+  },
+  "structure": {
+    "maxHeadingDepth": 4,
+    "summaryWithinTokens": 250,
+    "requiredFields": [
+      {
+        "glob": "docs/04-decisions/PDR-*.md",
+        "fields": [
+          {
+            "name": "Status",
+            "pattern": "^(Proposed|Accepted|Superseded|Retired)$"
+          },
+          {
+            "name": "Date",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          {
+            "name": "Discussion",
+            "pattern": "^https://github\\.com/true-line/agent-bot-platform/discussions/\\d+$"
+          }
+        ]
+      }
+    ]
+  },
+  "antiPatterns": {
+    "positionalReferences": true,
+    "unresolvedPlaceholders": true,
+    "duplicateParagraphs": {
+      "minLength": 160,
+      "allow": []
+    },
+    "terminology": []
+  },
+  "integrity": {
+    "links": true,
+    "orphans": true,
+    "stalePaths": {
+      "roots": [
+        "docs",
+        "tools",
+        "registry"
+      ]
+    }
+  }
+}

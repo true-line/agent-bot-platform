@@ -1,0 +1,10 @@
+# Every change to the platform record needs the owner's review: these files
+# bind every component repository.
+*                 @qwts
+
+# Normative inputs. A change here changes what other repositories must do.
+/registry/        @qwts
+/docs/04-decisions/ @qwts
+/docs/00-governance/ @qwts
+/tools/           @qwts
+/.github/         @qwts
