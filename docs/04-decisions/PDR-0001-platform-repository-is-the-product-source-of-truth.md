@@ -25,7 +25,7 @@ The org's governance does not define a home for decisions that bind several prod
 1. **This repository owns** the vision and scope, product requirements and quality attributes, the traceability matrix, what each conformance test must prove, the architecture and trust model, the repository catalog and seams, platform decision records, the security, privacy, intelligence and verification strategy, release criteria, the roadmap and risks, the glossary and the frozen source papers. The [ownership table](../00-governance/authority-and-ownership.md) is the authoritative list.
 2. **This repository stays small.** It accepts only what holds across repositories. A decision or page that would change exactly one repository belongs in that repository.
 3. **soul-contracts narrows** to machine-readable contracts: schemas, canonicalization vectors, fixtures and the error registry. Its `traceability/`, `glossary/` and `papers/` become links to this repository.
-4. **Component repositories link, never copy.** Each carries a platform block in its AGENTS.md pinned to a baseline commit, under the [component repository contract](../00-governance/component-repo-contract.md).
+4. **Component repositories link, never copy.** Each carries a platform block in its AGENTS.md pinned to a baseline commit, under the [component repository contract](../00-governance/component-repo-contract.md). *Amended by [PDR-0020](PDR-0020-components-read-the-platform-at-main.md): components read the platform at `main`.*
 5. **Decisions** that meet the [platform test](../00-governance/change-control.md) are raised in the Decisions discussion category and recorded as PDRs numbered by their discussion.
 6. **Registries are the source** for requirements, tests, repositories, seams, sources and identifiers. Pages generated from them are never edited by hand. `tools/check_platform.py` and `mkdocs build --strict` gate every change.
 7. **Process stays in the SOP.** This repository links qwts/qwts-agent-sop through the governed block and records only its own deltas.
@@ -43,9 +43,13 @@ The owner accepted the recommendation as written on 2026-11-07, in the marked an
 - Agents in any repository have one place to check before acting, and conflicts surface as drift entries instead of diverging silently.
 - Requirement wording changes in one PR, and the generated traceability matrix changes with it.
 - Every component repository needs a one-time PR to add the platform block and delete or link its copies. Until then the drift register carries the duplicates.
-- soul-contracts loses scope it was created with; its CI must check that schemas cite requirement IDs that exist at the pinned platform commit.
+- soul-contracts loses scope it was created with; its CI must check that schemas cite requirement IDs that exist at the pinned platform commit. *Amended by [PDR-0020](PDR-0020-components-read-the-platform-at-main.md): on the platform's `main`.*
 - One more repository to keep current. The generator and the checker exist so that cost stays in tooling, not review time.
 - The owner's acceptance becomes a bottleneck for normative changes. That is deliberate: Proposed pages still guide work, but only Accepted ones bind it.
+
+## Amendment, 2026-11-07
+
+[PDR-0020](PDR-0020-components-read-the-platform-at-main.md), accepted in [discussion #20](https://github.com/true-line/agent-bot-platform/discussions/20), replaces the pin in decision 4. Components read the platform at `main`, and their checks fail loudly when that context goes invalid. The rest of this record is unchanged.
 
 ## Alternatives considered
 
