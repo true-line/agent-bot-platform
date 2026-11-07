@@ -1,5 +1,5 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: governance
 Owner: platform-maintainer
 Last-Reviewed: 2026-11-07
@@ -37,4 +37,4 @@ before changing a seam or anything a requirement covers.
 
 ## Adopting the contract
 
-Adoption happens one repository at a time, by PR in that repository, after PDR-0001 is accepted. The repository catalog's `follow-up` field lists what each repository needs to move or delete. The drift register tracks every copy that remains until then.
+Adoption happens one repository at a time, by PR in that repository. PDR-0001 was accepted on 2026-11-07, so adoption can start. The repository catalog's `follow-up` field lists what each repository needs to move or delete. The drift register tracks every copy that remains until then.

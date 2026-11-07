@@ -6,9 +6,10 @@
 # it provides or consumes. docs/03-architecture/repository-catalog.md is
 # generated from this file.
 #
-# disposition is the proposal in PDR-0002 (Proposed, 2026-11-07). Nothing in
-# another repository changes until the owner accepts it; the platform repo
-# only records the target.
+# disposition was decided by PDR-0002 (accepted 2026-11-07, discussion #2).
+# Each repository changes through its own PR. Transfers, merges, archives and
+# Homebrew tap moves happen only when they break no install, and a repository
+# goes public only after its whole history passes the privacy check.
 #
 # Admission rule (PDR-0002): a new repository needs an entry here, merged
 # first, that names at least one admission criterion and at least one seam.

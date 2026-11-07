@@ -1,12 +1,13 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-07
 Date: 2026-11-07
+Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/1
 Affects-Repos: [agent-bot-platform, soul-contracts, soul-conformance, agent-bot, agent-bot-daemon, agent-bot-machine, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar]
-Affects: [governance, scope]
+Affects: [governance, scope, QA-A11Y-01]
 ---
 
 # PDR-0001 The platform repository is the product source of truth
@@ -28,6 +29,14 @@ The org's governance does not define a home for decisions that bind several prod
 5. **Decisions** that meet the [platform test](../00-governance/change-control.md) are raised in the Decisions discussion category and recorded as PDRs numbered by their discussion.
 6. **Registries are the source** for requirements, tests, repositories, seams, sources and identifiers. Pages generated from them are never edited by hand. `tools/check_platform.py` and `mkdocs build --strict` gate every change.
 7. **Process stays in the SOP.** This repository links qwts/qwts-agent-sop through the governed block and records only its own deltas.
+
+## Acceptance
+
+The owner accepted the recommendation as written on 2026-11-07, in the marked answer to [discussion #1](https://github.com/true-line/agent-bot-platform/discussions/1). The answer adds three points:
+
+- **soul-contracts.** Decision 3 matches agent-bot-daemon D5, which already moved the WP1 schemas and fixtures into soul-contracts. Both records describe one scope, and the [decision log](decision-log.md) lists it.
+- **Requirements.** R1 to R12 are approved as worded in `registry/requirements.yaml`. A change to one is a PR the owner approves.
+- **Accessibility.** WCAG 2.2 level AA stays a platform quality requirement. It is recorded as QA-A11Y-01 with the other [quality attributes](../02-requirements/quality-attributes.md); its scope and verification method are still open.
 
 ## Consequences
 

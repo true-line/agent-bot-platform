@@ -15,10 +15,12 @@ namespaces:
     origin: Whitepaper draft 0.4 section 2 (S6).
 
   - prefix: QA
-    pattern: '^QA-(SEC|PRV|INT|ACC|EXT|REL|OPS|POR)-[0-9]{2}$'
-    meaning: Quality-attribute requirement, grouped by pillar.
+    pattern: '^QA-(SEC|PRV|INT|ACC|EXT|REL|OPS|POR|A11Y)-[0-9]{2}$'
+    meaning: >-
+      Quality-attribute requirement, grouped by pillar. ACC is accuracy and
+      A11Y is accessibility.
     registry: registry/requirements.yaml
-    allocation: Next two-digit number within the pillar. Reserved; none allocated yet.
+    allocation: Next two-digit number within the pillar. QA-A11Y-01 was the first, with PDR-0001.
 
   - prefix: T
     pattern: '^T([0-9]{2})$'
@@ -32,9 +34,10 @@ namespaces:
     meaning: Platform decision record, a decision that binds more than one repository.
     registry: docs/04-decisions/
     allocation: >-
-      The number is the issue number of the decision issue in
-      true-line/agent-bot-platform. GitHub allocates it atomically, so two
-      agents can never mint the same number.
+      The number is the number of the decision's discussion in the Decisions
+      category of true-line/agent-bot-platform. GitHub numbers issues, PRs
+      and discussions from one sequence, so two agents can never mint the
+      same number.
 
   - prefix: WP
     pattern: '^WP([1-7])$'

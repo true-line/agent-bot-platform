@@ -1,5 +1,5 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: generated
 Owner: product-owner
 Generated-From: registry/requirements.yaml
@@ -9,7 +9,7 @@ Generated-From: registry/requirements.yaml
 
 # Product requirements
 
-The twelve product requirements every component must uphold. Each "must" or "never" in a contract or design document traces to one of these. Wording is verbatim from whitepaper draft 0.4 section 2 (S6); status stays Proposed until PDR-0001 is accepted.
+The twelve product requirements every component must uphold, and the quality-attribute requirements that set how well it must uphold them. Each "must" or "never" in a contract or design document traces to one of these. R-series wording is verbatim from whitepaper draft 0.4 section 2 (S6). The owner approved R1 to R12 with PDR-0001 on 2026-11-07; changing one needs a PR the owner approves.
 
 | ID | Title | Pillars | Verified by | First gate |
 |---|---|---|---|---|
@@ -32,70 +32,84 @@ The twelve product requirements every component must uphold. Each "must" or "nev
 
 A Soul has one stable public identity. Members, installations, runtimes, sessions, and revisions remain separately attributable.
 
-Status: Proposed. Specified in S6 §3, 5, 11.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 5, 11.
 
 ### R2 Control stays local
 
 Only local HQ controls lifecycle and protected operations on its host. Relays deliver messages and presence; they do not obtain an execution channel. The owner's administrative channel also terminates at local HQ.
 
-Status: Proposed. Specified in S6 §3, 4 (administration), 5, 6.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 4 (administration), 5, 6.
 
 ### R3 Authority outside the model
 
 A task's authority is enforced outside the trust domain of the model and its tools. Credentials and signing keys stay there.
 
-Status: Proposed. Specified in S6 §4, 7, Appendix A.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §4, 7, Appendix A.
 
 ### R4 Owner assigns roles; evaluations advise
 
 The owner chooses role assignments and approved data destinations. Evaluations inform those choices and do not grant permission.
 
-Status: Proposed. Specified in S6 §9, 10.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §9, 10.
 
 ### R5 One ceiling, sub-allocations
 
 One Soul has one aggregate communication and spending ceiling with named sub-allocations. Nested members do not multiply it.
 
-Status: Proposed. Specified in S6 §8, 15.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §8, 15.
 
 ### R6 External material is data
 
 External material remains data. Its claimed instructions cannot become owner directives through summarization, delegation, or sleep.
 
-Status: Proposed. Specified in S6 §4, 6 (wake), 10.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §4, 6 (wake), 10.
 
 ### R7 Contracts first; N and N-1
 
 Cross-component behavior is specified and tested before implementations depend on it. The wire supports the current and previous supported major contract versions, with explicit capability negotiation.
 
-Status: Proposed. Specified in S6 §6, 12, Appendix A.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §6, 12, Appendix A.
 
 ### R8 Honest profiles
 
 Every operating profile reports its actual enforcement guarantees. Missing protection produces a refusal or an explicit weaker profile, never a silent downgrade.
 
-Status: Proposed. Specified in S6 §4, 7 (receipts), 8.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §4, 7 (receipts), 8.
 
 ### R9 Uplinks optional
 
 Every tier keeps working without its upstream. Local conversations, local tasks, and permitted local operations continue during a relay outage; messages queue store-and-forward. During an identity-service outage, only protected external effects that need a newly minted credential wait.
 
-Status: Proposed. Specified in S6 §6, 9. Open drift: DRIFT-001.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §6, 9. Open drift: DRIFT-001.
 
 ### R10 Vendor-neutral contracts
 
 No contract names a model, provider, or harness vendor. Vendor names appear only in configuration, adapter manifests, and evaluation records.
 
-Status: Proposed. Specified in S6 §12, 13 (pilot configuration).
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §12, 13 (pilot configuration).
 
 ### R11 One harness to the user
 
 A Soul looks like one harness to its user: terminal chat and an ACP agent server in front; the members behind them are invisible except through the audit trail.
 
-Status: Proposed. Specified in S6 §3, 8.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 8.
 
 ### R12 Vendored and pinned, declared exceptions
 
 A Soul vendors and pins everything it runs on except the declared OS baseline and declared host toolchains, which are checked at activation and reported when missing.
 
-Status: Proposed. Specified in S6 §11.
+Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §11.
+
+## Quality-attribute requirements
+
+QA requirements are grouped by pillar; the [quality attributes](quality-attributes.md) page shows which goals still lack one.
+
+| ID | Title | Pillars | Verified by | First gate |
+|---|---|---|---|---|
+| QA-A11Y-01 | Accessible interfaces | accessibility | none; not yet assigned; WP7 proposes the method | First release that ships a user interface |
+
+### QA-A11Y-01 Accessible interfaces
+
+Every user interface the platform ships meets WCAG 2.2 level AA.
+
+Status: Approved. Source: PDR-0001 acceptance (discussion #1); agent-bot-daemon plan section 7.1 already sets this level for the browser console. Not yet specified. Which interfaces are in scope and how each is checked are open.

@@ -1,5 +1,5 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: governance
 Owner: product-owner
 Last-Reviewed: 2026-11-07

@@ -7,14 +7,14 @@ Last-Reviewed: 2026-11-07
 
 # Decision log
 
-Platform-level decisions made before this repository existed, and the platform-level decisions still open. Decisions the owner already made stay in force as recorded; a PDR is needed only to change one or to settle a conflict. Component-only decisions are left in their repositories and are not listed.
+Platform-level decisions the owner made in other records, before or outside the PDR process, and the platform-level decisions still open. Decisions the owner already made stay in force as recorded; a PDR is needed only to change one or to settle a conflict. Component-only decisions are left in their repositories and are not listed. A new platform-level decision is raised in [Decisions](https://github.com/true-line/agent-bot-platform/discussions/categories/decisions), not in a component repository.
 
 ## Decisions in force or superseded
 
 | Label | Recorded in | Decision | Platform status |
 |---|---|---|---|
 | S1 D1 | North star, owner 2026-10-24 | Split planes: messaging and presence federate upward; supervision stays machine-local. | In force; carried by R2 and R9 |
-| S1 D2 | North star, owner 2026-10-24 | The manager is the managed-machine daemon and GeniusBar's backend. | Superseded by agent-bot-daemon D1 (DRIFT-002) |
+| S1 D2 | North star, owner 2026-10-24 | The manager is the managed-machine daemon and GeniusBar's backend. | Superseded by agent-bot-daemon D1 and PDR-0002 (DRIFT-002) |
 | S1 D3 | North star, owner 2026-10-24 | The identity CLI is the toolset inside each Soul. | In force; agent-bot-identity charter |
 | S1 D4 | North star, owner 2026-10-24 | A lead harness orchestrates; agent-comms carries and enforces that orchestration. | Partly superseded: S6 section 3 moves enforcement to the broker in HQ's trust domain; comms client checks are advisory |
 | S1 A2 | North star, assumption | Tiers 1 to 3 run the agent-comms broker in local, site or cloud mode. | Working assumption; matches S6 relay mode |
@@ -24,6 +24,9 @@ Platform-level decisions made before this repository existed, and the platform-l
 | agent-bot-daemon D2 | daemon plan section 10.1, owner 2026-10-27 | Provider keys that cannot be short-lived: resolved from the identity service at HQ start, memory only, named on receipts (pilot); per-task credentials or an inference gateway (target). | In force |
 | agent-bot-daemon D3 | daemon plan section 10.1, owner 2026-10-27 | Hosted Souls stay possible: the soul-runtime core stays pure; no server-runtime work before the pilot gates. | In force |
 | agent-bot-daemon D4 | daemon plan section 10.1, owner 2026-10-31 | Host-side credentials and policy live in agent-bot-machine's admin sandbox; owner presence is a Secure Enclave signature verified there. | In force; changes the trust-domain table, see [trust domains](../03-architecture/trust-domains-and-profiles.md) |
+| agent-bot-daemon D5 | daemon plan section 10.1, owner 2026-11-07 | The WP1 contracts (schemas, fixtures, error registry) live in soul-contracts; agent-bot-daemon pins a release by digest and keeps no copies. | In force; PDR-0001 decision 3 gives soul-contracts the same scope |
+| agent-bot-daemon D6 | daemon plan section 10.1, owner 2026-11-07 | HQ runs in its own OS account (`_agent-bot-hq` on macOS, `agent-bot-hq` on Linux), created by agent-bot-machine and separate from its admin sandbox. Members and the owner's account cannot read HQ's store. | In force; the platform position for DRIFT-003 |
+| agent-bot-daemon D7 | daemon plan section 10.1, owner 2026-11-07 | On macOS each Soul member gets its own OS account, so two members on the same harness never share state (S6 section 4; T01 to T03). Agents the owner runs in their own account as delegates stay there. The SOP's per-harness account record is amended to per-member. | In force; settles the macOS principal for member isolation, which stays open for Linux |
 | agent-bot-identity ADR-1183 | identity repository | Split agent-bot into daemon, identity, comms and soul-runtime repositories. | In force; duplicated in two other places (DRIFT-011) |
 | agent-bot-identity ADR-0274 | identity repository | The product is mechanism; add-ons and SOP packs carry policy. | In force; candidate product principle |
 | agent-comms ADR-0028 | comms repository, accepted 2026-10-11 | Federation policy for relays. | In force; constrains seam `wire-v1` |

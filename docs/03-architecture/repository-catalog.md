@@ -1,5 +1,5 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: generated
 Owner: product-owner
 Generated-From: registry/repos.yaml
@@ -9,7 +9,7 @@ Generated-From: registry/repos.yaml
 
 # Repository catalog
 
-Every repository that builds, specifies, verifies or operates the platform, with one purpose each and the disposition proposed in PDR-0002. A repository exists only when it meets an admission criterion and owns at least one seam; anything else is a directory in an existing repository.
+Every repository that builds, specifies, verifies or operates the platform, with one purpose each and the disposition decided in PDR-0002. A repository exists only when it meets an admission criterion and owns at least one seam; anything else is a directory in an existing repository.
 
 ## Admission criteria
 
@@ -177,7 +177,7 @@ Must not own: Any authority; it is a client of HQ only.
 
 Follow-up: Switch backend from the agent-bot daemon to hq/v1. GeniusBar is a code name only (owner, 2026-11-07); choose a product name before any public release (DRIFT-006, RISK-010). Proprietary, outside the MIT platform.
 
-## Repositories proposed for archive, merge or decision
+## Repositories to merge, archive or leave outside the product
 
 | Repository | Disposition | Rationale |
 |---|---|---|

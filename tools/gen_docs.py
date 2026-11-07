@@ -48,18 +48,9 @@ def ids(items):
 
 # ---------------------------------------------------------------- requirements
 
-def product_requirements(req):
-    out = [front("Proposed", "product-owner", "registry/requirements.yaml")]
-    out.append("# Product requirements\n")
-    out.append(
-        "The twelve product requirements every component must uphold. Each "
-        "\"must\" or \"never\" in a contract or design document traces to one "
-        "of these. Wording is verbatim from whitepaper draft 0.4 section 2 "
-        "(S6); status stays Proposed until PDR-0001 is accepted.\n"
-    )
-    out.append("| ID | Title | Pillars | Verified by | First gate |")
-    out.append("|---|---|---|---|---|")
-    for r in req:
+def requirement_table(items):
+    out = ["| ID | Title | Pillars | Verified by | First gate |", "|---|---|---|---|---|"]
+    for r in items:
         verified = ids(r.get("verified-by", []))
         if r.get("verified-by-other"):
             verified += "; " + r["verified-by-other"]
@@ -68,14 +59,49 @@ def product_requirements(req):
             f"| {cell(verified)} | {cell(r['first-gate'])} |"
         )
     out.append("")
-    out.append("## Statements\n")
-    for r in req:
+    return out
+
+
+def requirement_statements(items, level):
+    out = []
+    for r in items:
         drift = ""
         if r.get("drift"):
             drift = f" Open drift: {', '.join(r['drift'])}."
-        out.append(f"### {r['id']} {r['title']}\n")
+        specified = r["specified-in"].rstrip(".")
+        if not specified.startswith("Not yet"):
+            specified = "Specified in " + specified
+        out.append(f"{'#' * level} {r['id']} {r['title']}\n")
         out.append(f"{r['statement']}\n")
-        out.append(f"Status: {r['status']}. Specified in {r['specified-in']}.{drift}\n")
+        out.append(f"Status: {r['status']}. Source: {r['source']}. {specified}.{drift}\n")
+    return out
+
+
+def product_requirements(req, qa):
+    out = [front("Accepted", "product-owner", "registry/requirements.yaml")]
+    out.append("# Product requirements\n")
+    out.append(
+        "The twelve product requirements every component must uphold, and the "
+        "quality-attribute requirements that set how well it must uphold them. "
+        "Each \"must\" or \"never\" in a contract or design document traces to "
+        "one of these. R-series wording is verbatim from whitepaper draft 0.4 "
+        "section 2 (S6). The owner approved R1 to R12 with PDR-0001 on "
+        "2026-11-07; changing one needs a PR the owner approves.\n"
+    )
+    out.extend(requirement_table(req))
+    out.append("## Statements\n")
+    out.extend(requirement_statements(req, 3))
+    out.append("## Quality-attribute requirements\n")
+    if qa:
+        out.append(
+            "QA requirements are grouped by pillar; the "
+            "[quality attributes](quality-attributes.md) page shows which goals "
+            "still lack one.\n"
+        )
+        out.extend(requirement_table(qa))
+        out.extend(requirement_statements(qa, 3))
+    else:
+        out.append("None allocated.\n")
     return "\n".join(out)
 
 
@@ -159,11 +185,11 @@ DISPOSITION_TEXT = {
 def repository_catalog(data):
     layers = {l["id"]: l["name"] for l in data["layers"]}
     repos = data["repos"]
-    out = [front("Proposed", "product-owner", "registry/repos.yaml")]
+    out = [front("Accepted", "product-owner", "registry/repos.yaml")]
     out.append("# Repository catalog\n")
     out.append(
         "Every repository that builds, specifies, verifies or operates the "
-        "platform, with one purpose each and the disposition proposed in "
+        "platform, with one purpose each and the disposition decided in "
         "PDR-0002. A repository exists only when it meets an admission "
         "criterion and owns at least one seam; anything else is a directory "
         "in an existing repository.\n"
@@ -201,7 +227,7 @@ def repository_catalog(data):
                 out.append(f"Follow-up: {r['follow-up']}\n")
     rest = [r for r in repos if r.get("rationale") and not r.get("owns")]
     if rest:
-        out.append("## Repositories proposed for archive, merge or decision\n")
+        out.append("## Repositories to merge, archive or leave outside the product\n")
         out.append("| Repository | Disposition | Rationale |")
         out.append("|---|---|---|")
         for r in rest:
@@ -282,11 +308,12 @@ def identifiers_doc(data):
 
 
 def render_all():
-    req = load("requirements.yaml")["requirements"]
+    reqs = load("requirements.yaml")
+    req, qa = reqs["requirements"], reqs.get("quality-attributes", [])
     tests = load("tests.yaml")["tests"]
     pages = {
-        "docs/02-requirements/product-requirements.md": product_requirements(req),
-        "docs/02-requirements/traceability-matrix.md": traceability(req, tests),
+        "docs/02-requirements/product-requirements.md": product_requirements(req, qa),
+        "docs/02-requirements/traceability-matrix.md": traceability(req + qa, tests),
         "docs/07-verification/conformance-catalog.md": conformance_catalog(tests),
         "docs/03-architecture/repository-catalog.md": repository_catalog(load("repos.yaml")),
         "docs/03-architecture/seams.md": seams_doc(load("seams.yaml")),

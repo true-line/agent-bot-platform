@@ -1,5 +1,5 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: governance
 Owner: platform-maintainer
 Last-Reviewed: 2026-11-07
