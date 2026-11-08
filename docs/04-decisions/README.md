@@ -16,7 +16,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0001](PDR-0001-platform-repository-is-the-product-source-of-truth.md) | The platform repository is the product source of truth | Accepted 2026-11-07 |
 | [PDR-0002](PDR-0002-repository-topology-and-admission.md) | Repository topology and admission | Accepted 2026-11-07 |
 | [PDR-0020](PDR-0020-components-read-the-platform-at-main.md) | Components read the platform at main | Accepted 2026-11-07; amends PDR-0001 |
-| [PDR-0024](PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md) | agent-comms mirrors task-v1 and frames wire-v1 | Proposed |
+| [PDR-0024](PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md) | agent-comms mirrors task-v1 and frames wire-v1 | Accepted 2026-11-07 |
 
 ## How a decision is made
 
