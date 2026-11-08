@@ -237,7 +237,7 @@ repos:
     consumes: [hq-plugin-contract, identity-service-api, fixtures]
     criteria: [C2]
     disposition: keep-and-split
-    follow-up: Transfer to true-line; supersede agent-bot-identity ADR-0332 (DRIFT-003); retire docs/identity-contract.md in favor of the platform glossary.
+    follow-up: Transfer to true-line; retire docs/identity-contract.md in favor of the platform glossary.
 
   - name: agent-bot-souls
     org: true-line

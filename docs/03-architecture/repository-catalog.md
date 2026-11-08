@@ -133,7 +133,7 @@ Owns: agent-bot CLI, git and harness hooks, fail-closed gh; GitHub App attributi
 
 Must not own: HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027); Soul runtime entry point (move to the Soul runtime repo).
 
-Follow-up: Transfer to true-line; supersede agent-bot-identity ADR-0332 (DRIFT-003); retire docs/identity-contract.md in favor of the platform glossary.
+Follow-up: Transfer to true-line; retire docs/identity-contract.md in favor of the platform glossary.
 
 ### agent-bot-souls
 
