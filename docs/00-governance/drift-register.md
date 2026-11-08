@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-08
 ---
 
 # Drift register
@@ -23,7 +23,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Open.** agent-bot-identity ADR-0332 (Accepted) runs one daemon per OS user in the Souls' own account. S6 section 4 and agent-bot-daemon D1 run HQ in a separate account. agent-bot-identity ADR-1183 does not supersede agent-bot-identity ADR-0332.
 - **Decided 2026-11-07, open until the repository changes.** agent-bot-daemon D6 runs HQ in its own OS account, separate from the members and from agent-bot-machine's admin sandbox. That is the platform position.
-- **Resolution.** A new agent-bot-identity ADR supersedes agent-bot-identity ADR-0332 and cites agent-bot-daemon D6.
+- **Resolved 2026-11-08.** agent-bot-identity ADR-1381 ([qwts/agent-bot-identity#1382](https://github.com/qwts/agent-bot-identity/pull/1382)) supersedes agent-bot-identity ADR-0332 decision 2 and cites agent-bot-daemon D6. agent-bot-machine's plans add the HQ account ([agent-bot-machine#468](https://github.com/true-line/agent-bot-machine/pull/468)).
 
 ## DRIFT-004 Wire and task contracts exist twice
 

@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: index
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-08
 ---
 
 # Repository ADRs that constrain a seam
@@ -15,8 +15,9 @@ Repository ADRs live in the repository that made them. This index lists only the
 | agent-comms ADR-0005 | `a2a-gateway` | A2A at the broker edge; tasks link to invocations. |
 | agent-comms ADR-0028 | `wire-v1` | Broker federation only through explicitly enrolled remote hubs (owner-accepted 2026-10-11). |
 | agent-comms ADR-0059 | `wire-v1` | Host apps embed agent-comms through a contract and platform seams. |
-| agent-bot-identity ADR-1183 | topology | agent-bot splits into an HQ daemon and plugins (owner decision agent-bot-daemon D1). |
-| agent-bot-identity ADR-0332 | `hq-v1` | Souls are the agent's territory, one daemon in the Souls' account; in conflict with S6 (DRIFT-003). |
+| agent-bot-identity ADR-1183 | topology | agent-bot splits into an HQ daemon and plugins (owner decision agent-bot-daemon D1). Its identity-plugin bullet is superseded by agent-bot-identity ADR-1381. |
+| agent-bot-identity ADR-0332 | `hq-v1` | Souls are the agent's territory. Decision 2 (one daemon in the Souls' account) is superseded by agent-bot-identity ADR-1381. |
+| agent-bot-identity ADR-1381 | PDR-0027, `hq-plugin-contract` | HQ runs in its own account (agent-bot-daemon D6); HQ identity authority is HQ core, and agent-bot-identity's plugin registers member surfaces only. Resolves DRIFT-003. |
 
 ## Rules
 
