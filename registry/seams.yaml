@@ -27,12 +27,12 @@ seams:
   - id: task-v1
     name: Task commitment request, task record and nine-state machine
     provider: agent-bot-hq
-    consumers: [agent-comms, agent-bot-souls, soul-conformance]
+    consumers: [agent-bot-comms, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/task/v1
     contract-status: partial
     requirements: [R3, R5]
     drift: [DRIFT-004]
-    note: PDR-0024. agent-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
+    note: PDR-0024. agent-bot-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 
   - id: observation-v1
     name: HQ observation uplink (session presence, binding visibility, lifecycle events)
@@ -45,13 +45,13 @@ seams:
 
   - id: wire-v1
     name: Broker and relay frame (outer frame plus sealed envelope)
-    provider: agent-comms
+    provider: agent-bot-comms
     consumers: [agent-bot-hq, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/wire/v1
     contract-status: partial
     requirements: [R2, R7, R9]
     drift: [DRIFT-004]
-    note: PDR-0024. agent-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
+    note: PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
 
   - id: identity-service-api
     name: Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1)
@@ -79,7 +79,7 @@ seams:
   - id: hq-plugin-contract
     name: Manifest, registration, host services and lifecycle for HQ plugins
     provider: agent-bot-hq
-    consumers: [agent-bot-identity, agent-comms, agent-bot-souls]
+    consumers: [agent-bot-identity, agent-bot-comms, agent-bot-souls]
     contract-home: agent-bot-hq docs/daemon-plugin-split.md section 4
     contract-status: plan
     note: PDR-0027. HQ identity authority is built into agent-bot-hq, not a plugin; agent-bot-identity's plugin registers member surfaces only.
@@ -120,7 +120,7 @@ seams:
   - id: error-registry
     name: Typed error codes with description and retryable flag
     provider: soul-contracts
-    consumers: [agent-bot-hq, agent-comms, agent-bot-souls, soul-conformance]
+    consumers: [agent-bot-hq, agent-bot-comms, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts errors/registry.json
     contract-status: partial
     note: 24 codes exist with empty descriptions and retryable null.
@@ -128,7 +128,7 @@ seams:
   - id: fixtures
     name: Shared positive and negative fixtures and canonicalization vectors
     provider: soul-contracts
-    consumers: [soul-conformance, agent-comms, agent-bot-identity]
+    consumers: [soul-conformance, agent-bot-comms, agent-bot-identity]
     contract-home: soul-contracts fixtures/
     contract-status: partial
     requirements: [R7]
@@ -150,7 +150,7 @@ seams:
 
   - id: a2a-gateway
     name: Agent2Agent gateway at the edge, preserving provenance
-    provider: agent-comms
+    provider: agent-bot-comms
     consumers: []
     contract-home: X3 (Agent2Agent Protocol)
     contract-status: external

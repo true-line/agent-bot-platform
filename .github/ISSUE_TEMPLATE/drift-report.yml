@@ -7,7 +7,7 @@ body:
     id: sources
     attributes:
       label: The two sources
-      description: Each source with its location, such as "S6 §7" or "agent-comms docs, tasks.md", and what each says.
+      description: Each source with its location, such as "S6 §7" or "agent-bot-comms docs, tasks.md", and what each says.
     validations:
       required: true
   - type: textarea

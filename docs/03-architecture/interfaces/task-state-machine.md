@@ -45,7 +45,7 @@ on revision.
 
 ## Who runs the machine
 
-The state machine ships as a **library** in `qwts/agent-comms`; it exposes
+The state machine ships as a **library** in `true-line/agent-bot-comms`; it exposes
 checks, and **HQ calls them** — the library decides nothing about
 authority. The old "comms enforces orchestration" path is removed; client
 checks become advisory with the broker repeating them (Appendix B).

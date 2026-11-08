@@ -56,7 +56,7 @@ construction (§12).
 Support must state these up front, not on request:
 
 - Cooperative macOS containment is **reported, not enforced**
-- Federation relay runtime **not authorized yet** (agent-comms ADR-0028 accepted,
+- Federation relay runtime **not authorized yet** (agent-bot-comms ADR-0028 accepted,
   runtime pending)
 - Unmanaged Souls: **observability at best**; no general context
   feedback mechanism yet

@@ -14,7 +14,7 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 
 | Stage | Planning range | Deliverable | Exit evidence | State on 2026-11-08 |
 |---|---|---|---|---|
-| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress. Broker side met: agent-comms runs every wire/v1 and task/v1 fixture through its codecs ([agent-comms#301](https://github.com/qwts/agent-comms/pull/301), PDR-0024), and agent-bot-hq builds against the pinned soul-contracts v0.4.1 and refuses an unsupported version and an unknown required capability (T14, in its HQ admission and SDK wire tests). Runtime side not met: agent-bot-souls has no code yet. |
+| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress. Broker side met: agent-bot-comms runs every wire/v1 and task/v1 fixture through its codecs ([agent-bot-comms#301](https://github.com/true-line/agent-bot-comms/pull/301), PDR-0024), and agent-bot-hq builds against the pinned soul-contracts v0.4.1 and refuses an unsupported version and an unknown required capability (T14, in its HQ admission and SDK wire tests). Runtime side not met: agent-bot-souls has no code yet. |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | In progress: HQ admission and the task service are in agent-bot-hq (its plan §9 rows 12 and 13, with T04, T05 and T20 component tests); the entry point in agent-bot-souls (row 14) remains |
 | 2a Member isolation | Weeks 6 to 7 | Caller binding on the Linux reference host, per-member principals, egress block | Hostile-member suite passes under the protected label | Not started |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
@@ -28,7 +28,7 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 | WP1 Contracts | protocol-maintainer | Source audit | soul-contracts, agent-bot-platform |
 | WP2 HQ authority | security-implementer | WP1 | agent-bot-hq, agent-bot-machine, agent-bot |
 | WP3 Soul runtime | runtime-implementer | WP1 | agent-bot-souls, soul-adapters, agent-bot-identity |
-| WP4 Messaging and tasks | comms-implementer | WP1; integrates WP2 | agent-comms, agent-bot-hq |
+| WP4 Messaging and tasks | comms-implementer | WP1; integrates WP2 | agent-bot-comms, agent-bot-hq |
 | WP5 Memory and packages | portability-implementer | WP1, WP3, WP4 | soul-package, agent-bot-souls |
 | WP6 Owner interface | product-implementer | WP2, WP3, WP4 | geniusbar, agent-bot-hq (HQ CLI) |
 | WP7 Verification | verification-lead | Begins with WP1 | soul-conformance |

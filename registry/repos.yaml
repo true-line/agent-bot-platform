@@ -144,7 +144,7 @@ repos:
     must-not-own:
       - Long-lived signing keys (identity service)
       - Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox)
-      - Wire framing or task state library code (agent-comms)
+      - Wire framing or task state library code (agent-bot-comms)
     provides: [hq-v1, hq-plugin-contract, task-v1, observation-v1]
     consumes: [identity-service-api, catalog-signing, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]
     criteria: [C1]
@@ -199,8 +199,9 @@ repos:
     disposition: archive
     rationale: Duplicates managed-machine-config's purpose with no content.
 
-  - name: agent-comms
-    org: qwts
+  - name: agent-bot-comms
+    former-names: [agent-comms]
+    org: true-line
     visibility: public
     layer: host
     status: active
@@ -219,10 +220,10 @@ repos:
     consumes: [task-v1, hq-plugin-contract, error-registry, fixtures]
     criteria: [C1, C2]
     disposition: keep
-    follow-up: Transfer to true-line; add the task/v1 codec, the wire/v1 frame and their fixture tests, and cite the seams in its wire and task docs (PDR-0024, DRIFT-004).
+    follow-up: Add the task/v1 codec, the wire/v1 frame and their fixture tests, and cite the seams in its wire and task docs (PDR-0024, DRIFT-004).
 
   - name: agent-bot-identity
-    org: qwts
+    org: true-line
     visibility: public
     layer: soul
     status: active
@@ -241,7 +242,7 @@ repos:
     consumes: [hq-plugin-contract, identity-service-api, fixtures]
     criteria: [C2]
     disposition: keep-and-split
-    follow-up: Transfer to true-line; retire docs/identity-contract.md in favor of the platform glossary.
+    follow-up: Retire docs/identity-contract.md in favor of the platform glossary.
 
   - name: agent-bot-souls
     org: true-line

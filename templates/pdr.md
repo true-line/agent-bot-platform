@@ -20,7 +20,7 @@ Affects: [<seam id | R or QA id | topology | trust-model | scope | quality-bar |
 
 ## Context
 
-The problem, the forces, and the sources that disagree. Cite by ID (S6 §4, DRIFT-003, agent-comms ADR-0028).
+The problem, the forces, and the sources that disagree. Cite by ID (S6 §4, DRIFT-003, agent-bot-comms ADR-0028).
 
 ## Decision
 

@@ -276,7 +276,7 @@ def check_document(path, idx, nav):
         for m in ADR.finditer(line):
             qual = (m.group(1) or "").split("/")[-1]
             if qual not in idx["repo_names"] | idx["former_names"]:
-                err(where, f"{m.group(0).strip()!r}: cite a repo-local ADR with its repository, e.g. 'agent-comms ADR-0028'")
+                err(where, f"{m.group(0).strip()!r}: cite a repo-local ADR with its repository, e.g. 'agent-bot-comms ADR-0028'")
         for m in LEGACY_DECISION.finditer(line):
             before = line[: m.start()].rstrip()
             if not (before.endswith("S1") or any(before.endswith(n) for n in {"agent-bot-hq"} | idx["former_names"])):

@@ -41,7 +41,7 @@ references — never as secrets.**
 ## Relay and enrollment keys
 
 Per-relay keys, pinned peers, owner-verified out-of-band challenge
-(direction 5, agent-comms ADR-0028). Relays never hold Soul credentials; they route
+(direction 5, agent-bot-comms ADR-0028). Relays never hold Soul credentials; they route
 sealed outer frames ([federation](../03-architecture/federation.md)).
 
 ## Catalog signing

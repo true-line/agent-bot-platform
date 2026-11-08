@@ -85,7 +85,7 @@ foreign:
     owner: each component repository
     meaning: >-
       Repository-local decision. Numbers repeat across repositories, so a
-      platform doc must cite it qualified: "agent-comms ADR-0028".
+      platform doc must cite it qualified: "agent-bot-comms ADR-0028".
   - prefix: error code
     owner: true-line/soul-contracts errors/registry.json
     meaning: snake_case error identifiers such as profile_insufficient.

@@ -13,8 +13,8 @@ envelopes, plus the mailbox semantics around them.
 
 > **Normative source:** `true-line/soul-contracts` wire/v1 outer frame and
 > sealed envelope schemas (§6, Appendix A) with fixtures; existing
-> implementation in `qwts/agent-comms` (`lib/wire.mjs`,
-> `canonical-json.mjs`, durable mailbox per agent-comms ADR-0004).
+> implementation in `true-line/agent-bot-comms` (`lib/wire.mjs`,
+> `canonical-json.mjs`, durable mailbox per agent-bot-comms ADR-0004).
 
 ## Outer frame fields
 
@@ -40,7 +40,7 @@ delivery ([data flow](../../05-security-privacy/data-flow-and-retention.md#outbo
 
 ## Mailbox semantics
 
-- **Durable mailbox** with deduplication keyed by message ID (agent-comms ADR-0004)
+- **Durable mailbox** with deduplication keyed by message ID (agent-bot-comms ADR-0004)
 - **Wake classes** and the external-untrusted cold-start rule (§6)
 - **Send reservations** with retry reuse (§8)
 - **Poison quarantine**, expiry, backpressure (§6 defaults)
@@ -50,7 +50,7 @@ delivery ([data flow](../../05-security-privacy/data-flow-and-retention.md#outbo
 ## Gateways
 
 A2A and MCP gateways preserve provenance and apply admission policy (§12).
-A2A sits at the edge (agent-comms ADR-0005); host apps embed agent-comms (agent-comms ADR-0059).
+A2A sits at the edge (agent-bot-comms ADR-0005); host apps embed agent-bot-comms (agent-bot-comms ADR-0059).
 
 ## Stage 4 additions (planned)
 

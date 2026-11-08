@@ -17,7 +17,7 @@ Shared agent conventions, skills, SOPs and org-wide decisions are discovered fro
 
 - **One fact, one home.** Before writing a requirement, term, architecture statement or decision anywhere, find its home in the ownership table. Link to it; never restate it in a component repository.
 - **Registries first.** Requirements, tests, repositories, seams, sources and identifiers live in `registry/*.yaml`. Pages generated from them carry a do-not-edit banner. Change the registry, then run `.venv/bin/python tools/gen_docs.py`.
-- **IDs resolve or they do not exist.** Cite only IDs declared in [identifiers](docs/00-governance/identifiers.md). Cite a repository's own ADR with its repository name ("agent-comms ADR-0028"). Never mint an ID by hand: a PDR number is its Decisions discussion number.
+- **IDs resolve or they do not exist.** Cite only IDs declared in [identifiers](docs/00-governance/identifiers.md). Cite a repository's own ADR with its repository name ("agent-bot-comms ADR-0028"). Never mint an ID by hand: a PDR number is its Decisions discussion number.
 - **Conflicts stop work.** When two sources disagree, do not pick one. Add or update a DRIFT entry and raise a Decisions discussion if it needs a choice.
 - **No new repository without a charter.** A repository is created only after its entry in `registry/repos.yaml` merges here, under [PDR-0002](docs/04-decisions/PDR-0002-repository-topology-and-admission.md).
 - **Papers are frozen.** Files in `docs/papers/` and `docs/archive/` are provenance, pinned by hash in `registry/sources.yaml`; the original files stay with the owner, outside the repository. Promote their content into a controlled record and cite the source ID; do not edit them.

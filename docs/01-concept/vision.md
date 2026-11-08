@@ -25,8 +25,8 @@ addresses.**
 
 The plan extends specified, working pieces rather than replacing them:
 soul packages (`.soul` format 1/2 implemented), sleep/dream scheduler and
-journal (implemented), federation policy (agent-comms ADR-0028 accepted), the
-agent-comms wire and durable mailbox, and the HQ direction from the
+journal (implemented), federation policy (agent-bot-comms ADR-0028 accepted), the
+agent-bot-comms wire and durable mailbox, and the HQ direction from the
 whitepapers. State of each piece:
 [north star → Existing foundations](../papers/agent-bot-north-star.md#existing-foundations).
 

@@ -6,7 +6,7 @@ Last-Reviewed: 2026-11-07
 Date: 2026-11-07
 Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/2
-Affects-Repos: [agent-bot-platform, agent-bot, agent-bot-hq, agent-bot-machine, managed-machine-config, agent-machine-configurations, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar, agent-github-identity, agent-watchtower]
+Affects-Repos: [agent-bot-platform, agent-bot, agent-bot-hq, agent-bot-machine, managed-machine-config, agent-machine-configurations, agent-bot-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar, agent-github-identity, agent-watchtower]
 Affects: [topology, hq-v1, governance]
 ---
 

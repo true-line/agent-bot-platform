@@ -30,7 +30,7 @@ body:
     attributes:
       label: Affected repositories, seams and requirements
       description: Use names from registry/repos.yaml and seams.yaml, and R or QA IDs.
-      placeholder: "Repositories: agent-bot-hq, agent-comms\nSeams: task-v1\nRequirements: R5"
+      placeholder: "Repositories: agent-bot-hq, agent-bot-comms\nSeams: task-v1\nRequirements: R5"
     validations:
       required: true
   - type: textarea

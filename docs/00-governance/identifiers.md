@@ -31,7 +31,7 @@ Every identifier a platform document may cite, its single meaning, and the regis
 | Prefix | Owner | Rule |
 |---|---|---|
 | ENG | qwts/qwts-agent-sop | Org-wide engineering decision. Cite as ENG-NNNN (globally unique). |
-| ADR | each component repository | Repository-local decision. Numbers repeat across repositories, so a platform doc must cite it qualified: "agent-comms ADR-0028". |
+| ADR | each component repository | Repository-local decision. Numbers repeat across repositories, so a platform doc must cite it qualified: "agent-bot-comms ADR-0028". |
 | error code | true-line/soul-contracts errors/registry.json | snake_case error identifiers such as profile_insufficient. |
 
 ## Retired labels
