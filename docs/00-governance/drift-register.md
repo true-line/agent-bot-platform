@@ -86,3 +86,8 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Resolved 2026-11-07.** agent-bot-daemon's plan (section 10.1) and the soul-contracts glossary say a draft 0.4.1 changed S6's component table and Appendix C to name agent-bot-daemon as HQ instead of managed-machine. No 0.4.1 file exists: every copy of the whitepaper found is byte-identical to the S6 draft 0.4 pin. The one change it was meant to carry is recorded in PDR-0002 (decision 3) and the repository catalog.
 - **Follow-up.** S6 stays draft 0.4. soul-contracts dropped the claim when its glossary moved to the platform ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). When agent-bot-daemon adopts the platform block, it cites PDR-0002 instead of draft 0.4.1.
+
+## DRIFT-016 T14 sits in Stage 0 or in Stage 1
+
+- **Open.** S6 section 13 makes Stage 0's exit evidence "Shared positive and negative fixtures validate in both runtime and broker", and its test and traceability tables put T14 (version mismatch, R7) in stage 0. The [roadmap](../10-program/roadmap.md) follows S6 and names T14 as the Stage 0 exit. agent-bot-daemon's [migration plan, section 9](https://github.com/true-line/agent-bot-daemon/blob/main/docs/daemon-plugin-split.md#9-migration-plan) puts T14 in step 12, the HQ skeleton, which is in Stage 1: Stage 0 there can end with no component rejecting unknown required semantics.
+- **Resolution.** The owner decides which stage T14 belongs to. Either the daemon plan moves T14, or the fixture check that is possible in Stage 0, into its Stage 0 steps, or the roadmap and a PDR split the Stage 0 exit into fixture validation now and live T14 at the HQ skeleton. S6 stays frozen and is read with that decision.
