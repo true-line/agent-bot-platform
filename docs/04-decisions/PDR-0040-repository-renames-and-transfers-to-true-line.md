@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-08
 Date: 2026-11-08
+Accepted: 2026-11-08
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/40
 Affects-Repos: [agent-bot-hq, agent-bot-comms, agent-bot-identity, agent-bot-souls]
 Affects: [topology]
@@ -42,12 +43,12 @@ Under PDR-0037 the executables follow the repository names: `agent-bot-hq`, `age
 
 ## Acceptance
 
-The owner made the three moves on 2026-11-08 and listed them in a working session. The answer in [discussion #40](https://github.com/true-line/agent-bot-platform/discussions/40) is for the owner to mark.
+The owner made the three moves on 2026-11-08, listed them in a working session, and marked the answer in [discussion #40](https://github.com/true-line/agent-bot-platform/discussions/40) that day.
 
 ## Consequences
 
 - **agent-bot-hq:** its README, AGENTS.md and plan use the new name, and its executable is `agent-bot-hq`.
-- **agent-bot-comms:** its README, AGENTS.md, CI and docs-gov issue pattern use true-line/agent-bot-comms, and its executable becomes `agent-bot-comms`. Its LICENSE ("All rights reserved") still conflicts with the platform's MIT and needs the owner's decision.
+- **agent-bot-comms:** its README, AGENTS.md, CI and docs-gov issue pattern use true-line/agent-bot-comms, and its executable becomes `agent-bot-comms`. On 2026-11-08 the owner decided that every public agent-bot repository carries the platform's MIT license (copyright True Line AI LLC), which replaces its "All rights reserved" LICENSE.
 - **agent-bot-identity:** links use true-line/agent-bot-identity.
 - **Platform:** this PR covers the registry, the checker, the generated pages and current docs.
 
