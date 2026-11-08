@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: plan
 Owner: product-owner
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-08
 Sources: S6 §13; S7 §2
 ---
 
@@ -12,10 +12,10 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 
 ## Stages
 
-| Stage | Planning range | Deliverable | Exit evidence | State on 2026-11-07 |
+| Stage | Planning range | Deliverable | Exit evidence | State on 2026-11-08 |
 |---|---|---|---|---|
-| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress: soul-contracts v0.4.1 has schemas and fixtures for hq/v1, wire/v1, task/v1, records/v1 and the 27-code error registry; no component loads the fixtures yet (agent-comms under PDR-0024) |
-| 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Not started |
+| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress. Broker side met: agent-comms runs every wire/v1 and task/v1 fixture through its codecs ([agent-comms#301](https://github.com/qwts/agent-comms/pull/301), PDR-0024), and agent-bot-daemon builds against the pinned soul-contracts v0.4.1 and refuses an unsupported version and an unknown required capability (T14, in its HQ admission and SDK wire tests). Runtime side not met: agent-bot-souls has no code yet. |
+| 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | In progress: HQ admission and the task service are in agent-bot-daemon (its plan §9 rows 12 and 13, with T04, T05 and T20 component tests); the entry point in agent-bot-souls (row 14) remains |
 | 2a Member isolation | Weeks 6 to 7 | Caller binding on the Linux reference host, per-member principals, egress block | Hostile-member suite passes under the protected label | Not started |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
 | 3 Operator pilot | Weeks 10 to 12 | Minimal owner console and HQ CLI, enrollment, approvals, export and restore | Pilot targets met on the declared host | Not started |
