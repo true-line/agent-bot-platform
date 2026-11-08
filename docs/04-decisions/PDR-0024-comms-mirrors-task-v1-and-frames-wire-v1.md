@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-07
 Date: 2026-11-07
+Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/24
 Affects-Repos: [agent-comms, agent-bot-daemon, agent-bot-souls, soul-conformance, soul-contracts]
 Affects: [wire-v1, task-v1]
@@ -19,7 +20,7 @@ agent-comms meets the two seams as the registry already assigns them. It validat
 - agent-comms v0.5.5 describes different things (DRIFT-004):
   - Its task states are offered, accepted, working, input-required, completed, failed, rejected and canceled. `task/v1` has offered, accepted, running, waiting with a reason, reconciling, completed, failed, canceled and expired. `rejected` has no `task/v1` equivalent.
   - Its parties are `offerer` and `assignee`; `task/v1` names `requester` and `accountable_soul`. `task/v1` transitions also need `installation_epoch`, `lease_generation` and `operation_id`, which comms does not have.
-  - Its wire is op-based NDJSON request lines on a local socket (`lib/wire.mjs`). `wire/v1` is an outer routing frame with `destination_soul`, `destination_epoch`, `expires_at` and `wake_class`.
+  - Its wire is op-based NDJSON request lines on a local socket ([its local wire module](https://github.com/qwts/agent-comms/blob/main/lib/wire.mjs)). `wire/v1` is an outer routing frame with `destination_soul`, `destination_epoch`, `expires_at` and `wake_class`.
 - The [seam registry](../03-architecture/seams.md) already assigns ownership: agent-bot-daemon (HQ) provides `task-v1` and agent-comms consumes it; agent-comms provides `wire-v1`.
 
 ## Decision
@@ -37,7 +38,7 @@ The owner accepted option 1 on 2026-11-07, in the marked answer to [discussion #
 
 ## Consequences
 
-- **agent-comms:** one PR adds the `task/v1` codec, the `wire/v1` frame and the fixture tests, makes `docs/tasks.md` and `lib/wire.mjs` cite the seams, and records an ADR. Two task models coexist in agent-comms for a while. Nothing installed breaks (PDR-0002).
+- **agent-comms:** one PR adds the `task/v1` codec, the `wire/v1` frame and the fixture tests, makes [its task page](https://github.com/qwts/agent-comms/blob/main/docs/tasks.md) and [its local wire module](https://github.com/qwts/agent-comms/blob/main/lib/wire.mjs) cite the seams, and records an ADR. Two task models coexist in agent-comms for a while. Nothing installed breaks (PDR-0002).
 - **Platform:** the `wire-v1` and `task-v1` seam notes cite this record, and DRIFT-004's resolution follows it. DRIFT-004 is resolved when the agent-comms PR merges.
 - **soul-contracts:** no change.
 - **agent-bot-daemon, agent-bot-souls, soul-conformance:** no change now. They consume the same fixtures, so a frame or record agent-comms emits must pass them.
