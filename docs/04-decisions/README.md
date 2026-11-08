@@ -19,7 +19,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0023](PDR-0023-hq-observation-uplink-for-presence-bindings-and-events.md) | HQ observation uplink for presence, bindings and events | Accepted 2026-11-08 |
 | [PDR-0024](PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md) | agent-comms mirrors task-v1 and frames wire-v1 | Accepted 2026-11-07 |
 | [PDR-0027](PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md) | HQ identity authority lives in agent-bot-daemon | Accepted 2026-11-08 |
-| [PDR-0037](PDR-0037-separate-executables-behind-an-agent-bot-shim.md) | Separate executables behind an agent-bot shim | Proposed 2026-11-08 |
+| [PDR-0037](PDR-0037-agent-bot-executables-are-daemon-plugins-behind-a-shim.md) | agent-bot executables are daemon plugins behind a shim | Accepted 2026-11-08 |
 
 ## How a decision is made
 
