@@ -34,6 +34,15 @@ seams:
     drift: [DRIFT-004]
     note: PDR-0024. agent-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 
+  - id: observation-v1
+    name: HQ observation uplink (session presence, binding visibility, lifecycle events)
+    provider: agent-bot-daemon
+    consumers: [agent-bot]
+    contract-home: soul-contracts schemas/observation/v1
+    contract-status: none
+    requirements: [R1, R2, R9]
+    note: PDR-0023. HQ stays authoritative; agent-bot keeps an observational projection only, with no control or execution path.
+
   - id: wire-v1
     name: Broker and relay frame (outer frame plus sealed envelope)
     provider: agent-comms

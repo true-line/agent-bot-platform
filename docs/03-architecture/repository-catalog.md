@@ -77,7 +77,7 @@ Must not own: What a test must prove (registry/tests.yaml in the platform).
 
 Criteria: C1; trust domain: Owner-operated remote service; trusted for credential custody and issuance only; work packages: WP2.
 
-Owns: Key custody, enrollment, device-bound short-lived credential minting, issuance records; Catalog signing key and admin catalog publish; Web console and its MCP tools.
+Owns: Key custody, enrollment, device-bound short-lived credential minting, issuance records; Catalog signing key and admin catalog publish; Web console and its MCP tools; Read-only projection of HQ observations (PDR-0023).
 
 Must not own: Lifecycle or any control path to a host (R2).
 

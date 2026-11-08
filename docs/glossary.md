@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-08
 Sources: S6; S1; S5; S8
 ---
 
@@ -21,6 +21,8 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Installation** | One admitted placement of a Soul on a host; fenced by installation epoch | S6 §5, §7 |
 | **Runtime** | A launched process executing a member; fresh credentials on replacement | S5 |
 | **Session** | A bounded interaction context, one per context/conversation | S8 |
+| **Binding** | HQ's association of one session with one worktree, for the Soul the session acts for; ends on unbind, session end or revocation; not a grant | PDR-0023 |
+| **Presence** | HQ's observation that a session is live, from a named evidence source; distinct from daemon health, binding and model activity | PDR-0023 |
 | **Definition revision** | An immutable revision of the Soul's definition; sleep/upgrade produce new ones; ID never changes | S1 D3, S1 D4 |
 | **Principal** | A human or organization that can own or delegate authority, independent of any agent | S6 §3; in conflict, DRIFT-009 |
 | **Owner** | The principal whose host account installed HQ and who configures a Soul's authority | S6 §3 |

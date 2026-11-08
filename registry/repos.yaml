@@ -117,9 +117,11 @@ repos:
       - Key custody, enrollment, device-bound short-lived credential minting, issuance records
       - Catalog signing key and admin catalog publish
       - Web console and its MCP tools
+      - Read-only projection of HQ observations (PDR-0023)
     must-not-own:
       - Lifecycle or any control path to a host (R2)
     provides: [identity-service-api, catalog-signing, mcp-tools]
+    consumes: [observation-v1]
     criteria: [C1]
     disposition: keep
     follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), evaluating its durable write receipts for the GitHub write tools.
@@ -142,7 +144,7 @@ repos:
       - Long-lived signing keys (identity service)
       - Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox)
       - Wire framing or task state library code (agent-comms)
-    provides: [hq-v1, hq-plugin-contract, task-v1]
+    provides: [hq-v1, hq-plugin-contract, task-v1, observation-v1]
     consumes: [identity-service-api, catalog-signing, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]
     criteria: [C1]
     disposition: keep
