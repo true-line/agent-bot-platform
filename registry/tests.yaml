@@ -8,6 +8,10 @@
 #
 # implementation: not-started | in-progress | passing | failing
 # (as last reported by soul-conformance; all 30 are stubs as of 2026-11-07).
+#
+# component-tests (optional): tests in a component repository that already
+# exercise this observation. They are evidence for the stage, not a
+# soul-conformance result, and do not change "implementation".
 
 tests:
 - id: T01
@@ -48,6 +52,8 @@ tests:
   verifies:
   - R6
   implemented-in: soul-conformance
+  component-tests:
+  - agent-bot-daemon tests/hq-tasks.test.mjs (peer offer stays peer data)
   implementation: not-started
   status: Specified
 - id: T05
@@ -58,6 +64,8 @@ tests:
   verifies: []
   implemented-in: soul-conformance
   trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
+  component-tests:
+  - agent-bot-daemon tests/hq-tasks.test.mjs (operation key returns the stored receipt)
   implementation: not-started
   status: Specified
 - id: T06
@@ -148,6 +156,9 @@ tests:
   verifies:
   - R7
   implemented-in: soul-conformance
+  component-tests:
+  - agent-bot-daemon tests/hq-admission.test.mjs (unsupported version on Hello)
+  - agent-bot-daemon tests/sdk-wire.test.mjs (unknown required capability)
   implementation: not-started
   status: Specified
 - id: T15
@@ -210,6 +221,8 @@ tests:
   verifies:
   - R3
   implemented-in: soul-conformance
+  component-tests:
+  - agent-bot-daemon tests/hq-tasks.test.mjs (specialist proposals)
   implementation: not-started
   status: Specified
 - id: T21

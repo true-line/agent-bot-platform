@@ -143,6 +143,12 @@ def traceability(req, tests):
     return "\n".join(out)
 
 
+def impl(t):
+    # soul-conformance's status, plus component evidence where it exists.
+    comp = t.get("component-tests") or []
+    return t["implementation"] + (f"; component tests: {cell('; '.join(comp))}" if comp else "")
+
+
 def conformance_catalog(tests):
     order = ["0", "1", "2a", "2b", "3", "4"]
     out = [front("Proposed", "verification-lead", "registry/tests.yaml")]
@@ -163,7 +169,7 @@ def conformance_catalog(tests):
         for t in group:
             out.append(
                 f"| {t['id']} {cell(t['title'])} | {cell(t['stimulus'])} | {cell(t['observation'])} "
-                f"| {ids(t.get('verifies', []))} | {t['implementation']} |"
+                f"| {ids(t.get('verifies', []))} | {impl(t)} |"
             )
         out.append("")
     return "\n".join(out)
