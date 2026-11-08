@@ -6,7 +6,7 @@ Last-Reviewed: 2026-11-07
 Date: 2026-11-07
 Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/1
-Affects-Repos: [agent-bot-platform, soul-contracts, soul-conformance, agent-bot, agent-bot-daemon, agent-bot-machine, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar]
+Affects-Repos: [agent-bot-platform, soul-contracts, soul-conformance, agent-bot, agent-bot-hq, agent-bot-machine, agent-comms, agent-bot-identity, agent-bot-souls, soul-package, soul-adapters, geniusbar]
 Affects: [governance, scope, QA-A11Y-01]
 ---
 

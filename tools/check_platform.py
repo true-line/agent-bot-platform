@@ -194,6 +194,9 @@ def build_index():
         "X": {x["id"][1:] for x in src["external"]},
         "DRIFT": {d.split("-")[1] for d in drift_ids},
         "repo_names": {r["name"] for r in repos["repos"]} | {g["name"] for g in repos["governance"]},
+        # A renamed repository keeps its former names, so records written
+        # before the rename still cite it correctly (PDR-0040).
+        "former_names": {f for r in repos["repos"] for f in r.get("former-names", [])},
     }
 
 
@@ -272,12 +275,12 @@ def check_document(path, idx, nav):
                     err(where, f"{kind}{'-' if kind in ('PDR', 'DRIFT', 'QA') else ''}{m.group(1)} does not resolve in its registry")
         for m in ADR.finditer(line):
             qual = (m.group(1) or "").split("/")[-1]
-            if qual not in idx["repo_names"]:
+            if qual not in idx["repo_names"] | idx["former_names"]:
                 err(where, f"{m.group(0).strip()!r}: cite a repo-local ADR with its repository, e.g. 'agent-comms ADR-0028'")
         for m in LEGACY_DECISION.finditer(line):
             before = line[: m.start()].rstrip()
-            if not (before.endswith("S1") or before.endswith("agent-bot-daemon")):
-                err(where, f"{m.group(0)} is a retired label; qualify it ('S1 {m.group(0)}' or 'agent-bot-daemon {m.group(0)}')")
+            if not (before.endswith("S1") or any(before.endswith(n) for n in {"agent-bot-hq"} | idx["former_names"])):
+                err(where, f"{m.group(0)} is a retired label; qualify it ('S1 {m.group(0)}' or 'agent-bot-hq {m.group(0)}')")
 
 
 def check_registries(idx):

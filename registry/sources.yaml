@@ -96,7 +96,7 @@ sources:
   original: repository-plan-2026-10-24.docx
   converted: docs/papers/repository-plan-2026-10-24.md
   converted_sha256: 505f10b32ae92bc204e1bfdf5b737b316dbb7f710c81a85cd50aa41b7163e095
-  note: Companion to draft 0.3. Its repository map predates agent-bot-daemon and is superseded by registry/repos.yaml
+  note: Companion to draft 0.3. Its repository map predates agent-bot-hq and is superseded by registry/repos.yaml
     (PDR-0002, accepted 2026-11-07).
   sha256: 43dc9f0967ae52e2222dd53bc62457497989b51f0d803448bcb14e38a67cbf1e
 - id: S8

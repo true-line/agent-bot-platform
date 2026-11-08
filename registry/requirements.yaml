@@ -186,7 +186,7 @@ quality-attributes:
   title: Accessible interfaces
   statement: Every user interface the platform ships meets WCAG 2.2 level AA.
   status: Approved
-  source: 'PDR-0001 acceptance (discussion #1); agent-bot-daemon plan section 7.1 already sets this level for the browser console'
+  source: 'PDR-0001 acceptance (discussion #1); agent-bot-hq plan section 7.1 already sets this level for the browser console'
   specified-in: Not yet specified. Which interfaces are in scope and how each is checked are open.
   verified-by: []
   verified-by-other: not yet assigned; WP7 proposes the method

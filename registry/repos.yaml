@@ -126,7 +126,8 @@ repos:
     disposition: keep
     follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), evaluating its durable write receipts for the GitHub write tools.
 
-  - name: agent-bot-daemon
+  - name: agent-bot-hq
+    former-names: [agent-bot-daemon]
     org: true-line
     visibility: public
     layer: host
@@ -138,7 +139,7 @@ repos:
     owns:
       - hq/v1 owner and member API, admission, grants, leases, epochs
       - Action ledger, task authority, budgets, reconciliation, approvals
-      - Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-daemon executable; installed agent-bot-* packages are its plugins (PDR-0037)
+      - Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037)
       - Device key and short-lived credentials held in memory
     must-not-own:
       - Long-lived signing keys (identity service)
@@ -160,11 +161,11 @@ repos:
     purpose: The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ.
     owns:
       - Self-tapped Homebrew formula, machine bootstrap, catalog installs
-      - Host-side credentials and signed policy in the admin sandbox (agent-bot-daemon D4)
-      - Owner-presence verification of Secure Enclave signatures (agent-bot-daemon D4)
+      - Host-side credentials and signed policy in the admin sandbox (agent-bot-hq D4)
+      - Owner-presence verification of Secure Enclave signatures (agent-bot-hq D4)
       - The signed local channel endpoint and signed receipts
     must-not-own:
-      - HQ authority (S7 made it HQ; agent-bot-daemon D1 moved HQ to agent-bot-daemon, see DRIFT-002)
+      - HQ authority (S7 made it HQ; agent-bot-hq D1 moved HQ to agent-bot-hq, see DRIFT-002)
     provides: [daemon-machine-channel]
     consumes: [catalog-signing]
     criteria: [C1]
@@ -234,7 +235,7 @@ repos:
       - GitHub App attribution and commit trailers
       - Member surfaces it registers through hq-plugin-contract (MCP tools, CLI commands, hook handlers), each resolving to a broker query (PDR-0027)
     must-not-own:
-      - HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027)
+      - HQ authority, keyd, approvals, census (move to agent-bot-hq per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027)
       - Soul runtime entry point (move to the Soul runtime repo)
     provides: [identity-cli]
     consumes: [hq-plugin-contract, identity-service-api, fixtures]
@@ -262,7 +263,7 @@ repos:
     criteria: [C2]
     disposition: designate
     rationale: >-
-      agent-bot-daemon's plan names a soul-runtime repository that does not
+      agent-bot-hq's plan names a soul-runtime repository that does not
       exist; this empty repository takes that role instead of a new one. The
       name stays (owner, 2026-11-07): platform repositories are namespaced
       agent-bot- and soul- so they are easy to find as a set.

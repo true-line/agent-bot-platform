@@ -8,7 +8,7 @@ Verified-Against: S6 §5, §7, §12 (partly specified)
 
 # Runbook: HQ crash and restart
 
-Recover after the HQ process (agent-bot-daemon) stops, without losing task, lease or intent state and without replaying any external effect.
+Recover after the HQ process (agent-bot-hq) stops, without losing task, lease or intent state and without replaying any external effect.
 
 **Symptom:** HQ daemon down; Souls still running local read-only work;
 protected operations stalled.
@@ -29,7 +29,7 @@ Specified:
 1. Restart HQ under the OS supervisor.
 
 ```bash
-# the OS supervisor restarts HQ (agent-bot-daemon); unit name unspecified
+# the OS supervisor restarts HQ (agent-bot-hq); unit name unspecified
 hq doctor     # report leases, intents, unknown actions needing reconciliation
 ```
 

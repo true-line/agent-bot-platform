@@ -6,7 +6,7 @@ Last-Reviewed: 2026-11-07
 Date: 2026-11-07
 Accepted: 2026-11-07
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/24
-Affects-Repos: [agent-comms, agent-bot-daemon, agent-bot-souls, soul-conformance, soul-contracts]
+Affects-Repos: [agent-comms, agent-bot-hq, agent-bot-souls, soul-conformance, soul-contracts]
 Affects: [wire-v1, task-v1]
 ---
 

@@ -77,6 +77,7 @@ nav:
       - 04-decisions/PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md
       - 04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md
       - 04-decisions/PDR-0037-agent-bot-executables-are-daemon-plugins-behind-a-shim.md
+      - 04-decisions/PDR-0040-rename-agent-bot-daemon-to-agent-bot-hq.md
       - 04-decisions/decision-log.md
       - 04-decisions/cross-repo-adr-index.md
   - Security and privacy:

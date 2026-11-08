@@ -39,6 +39,6 @@ Every identifier a platform document may cite, its single meaning, and the regis
 | Label | Write instead | Why |
 |---|---|---|
 | R1-R8 (references in draft 0.4) | X1-X8 | Collided with requirements R1-R12 in the same paper. |
-| D1-D4 (north star decisions) | S1 D1 to S1 D4 when quoting; the PDR that adopts it once accepted | agent-bot-daemon reuses D1-D4 for different decisions. |
+| D1-D4 (north star decisions) | S1 D1 to S1 D4 when quoting; the PDR that adopts it once accepted | agent-bot-hq reuses D1-D4 for different decisions. |
 | A2-A4 (north star working assumptions) | S1 A2 to S1 A4 when quoting | Unqualified letters are ambiguous across documents. |
-| D1-D4, Q1-Q8, R1-R10 (agent-bot-daemon daemon-plugin-split) | agent-bot-daemon D4 (qualified); risks move to RISK-NNN | Daemon risks R1-R10 collide with requirements R1-R12. |
+| D1-D4, Q1-Q8, R1-R10 (agent-bot-hq daemon-plugin-split) | agent-bot-hq D4 (qualified); risks move to RISK-NNN | Daemon risks R1-R10 collide with requirements R1-R12. |

@@ -20,7 +20,7 @@ current source (`assets/architecture.mmd`); `assets/architecture.drawio`
 embeds the same graph, and [this PNG](assets/architecture.png) is its
 rendered export. `assets/architecture-superseded-privileged-machine.mmd` is
 the earlier privileged-machine sketch, kept for provenance (DRIFT-014).
-The diagram uses short labels: agent-daemon is agent-bot-daemon,
+The diagram uses short labels: agent-daemon is agent-bot-hq,
 agent-machine is agent-bot-machine, agent-soul is the Soul runtime
 (agent-bot-souls) and agent-identity is the in-Soul identity CLI.
 
@@ -76,11 +76,11 @@ flowchart TB
 
 Repositories follow **trust-domain and contract boundaries**, not
 features, and dependencies point only toward contract repositories. HQ is
-implemented in agent-bot-daemon (PDR-0002); the host admin sandbox is
+implemented in agent-bot-hq (PDR-0002); the host admin sandbox is
 agent-bot-machine.
 
 ```
-soul-contracts ← soul-package ← agent-comms ← agent-bot-daemon (HQ)
+soul-contracts ← soul-package ← agent-comms ← agent-bot-hq (HQ)
                                     ↑
 agent-bot-souls (Soul runtime: contracts, package, comms client, adapters)
 agent-bot-identity (contracts; identity-service API)

@@ -17,7 +17,7 @@
 seams:
   - id: hq-v1
     name: HQ control and owner API (Hello, Admit, Equip, Ready, Lease, lifecycle, approvals)
-    provider: agent-bot-daemon
+    provider: agent-bot-hq
     consumers: [agent-bot-souls, geniusbar, agent-watchtower, soul-conformance]
     contract-home: soul-contracts schemas/hq/v1
     contract-status: partial
@@ -26,7 +26,7 @@ seams:
 
   - id: task-v1
     name: Task commitment request, task record and nine-state machine
-    provider: agent-bot-daemon
+    provider: agent-bot-hq
     consumers: [agent-comms, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/task/v1
     contract-status: partial
@@ -36,7 +36,7 @@ seams:
 
   - id: observation-v1
     name: HQ observation uplink (session presence, binding visibility, lifecycle events)
-    provider: agent-bot-daemon
+    provider: agent-bot-hq
     consumers: [agent-bot]
     contract-home: soul-contracts schemas/observation/v1
     contract-status: none
@@ -46,7 +46,7 @@ seams:
   - id: wire-v1
     name: Broker and relay frame (outer frame plus sealed envelope)
     provider: agent-comms
-    consumers: [agent-bot-daemon, agent-bot-souls, soul-conformance]
+    consumers: [agent-bot-hq, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/wire/v1
     contract-status: partial
     requirements: [R2, R7, R9]
@@ -56,7 +56,7 @@ seams:
   - id: identity-service-api
     name: Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1)
     provider: agent-bot
-    consumers: [agent-bot-daemon, agent-bot-identity]
+    consumers: [agent-bot-hq, agent-bot-identity]
     contract-home: agent-bot docs/api.md
     contract-status: repo-local
     requirements: [R3, R9]
@@ -65,29 +65,29 @@ seams:
   - id: catalog-signing
     name: Signed admin catalog of approved apps and configurations
     provider: agent-bot
-    consumers: [agent-bot-daemon, agent-bot-machine]
+    consumers: [agent-bot-hq, agent-bot-machine]
     contract-home: agent-bot
     contract-status: repo-local
 
   - id: daemon-machine-channel
     name: Signed local channel from HQ to the secure executor, with signed receipts
     provider: agent-bot-machine
-    consumers: [agent-bot-daemon, managed-machine-config]
+    consumers: [agent-bot-hq, managed-machine-config]
     contract-home: agent-bot-machine
     contract-status: repo-local
 
   - id: hq-plugin-contract
     name: Manifest, registration, host services and lifecycle for HQ plugins
-    provider: agent-bot-daemon
+    provider: agent-bot-hq
     consumers: [agent-bot-identity, agent-comms, agent-bot-souls]
-    contract-home: agent-bot-daemon docs/daemon-plugin-split.md section 4
+    contract-home: agent-bot-hq docs/daemon-plugin-split.md section 4
     contract-status: plan
-    note: PDR-0027. HQ identity authority is built into agent-bot-daemon, not a plugin; agent-bot-identity's plugin registers member surfaces only.
+    note: PDR-0027. HQ identity authority is built into agent-bot-hq, not a plugin; agent-bot-identity's plugin registers member surfaces only.
 
   - id: soul-package-format
     name: .soul layout, data classes, manifest digests, import validation
     provider: soul-package
-    consumers: [agent-bot-daemon, agent-bot-souls, soul-conformance]
+    consumers: [agent-bot-hq, agent-bot-souls, soul-conformance]
     contract-home: soul-package spec/LAYOUT.md
     contract-status: repo-local
     requirements: [R1, R12]
@@ -112,7 +112,7 @@ seams:
   - id: harness-adapter
     name: Per-harness adapter package and signed qualification manifest
     provider: soul-adapters
-    consumers: [agent-bot-souls, agent-bot-daemon]
+    consumers: [agent-bot-souls, agent-bot-hq]
     contract-home: soul-adapters docs/QUALIFICATION.md
     contract-status: repo-local
     requirements: [R8, R10]
@@ -120,7 +120,7 @@ seams:
   - id: error-registry
     name: Typed error codes with description and retryable flag
     provider: soul-contracts
-    consumers: [agent-bot-daemon, agent-comms, agent-bot-souls, soul-conformance]
+    consumers: [agent-bot-hq, agent-comms, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts errors/registry.json
     contract-status: partial
     note: 24 codes exist with empty descriptions and retryable null.
@@ -146,7 +146,7 @@ seams:
     consumers: [agent-bot-souls]
     contract-home: agent-bot-identity README
     contract-status: repo-local
-    note: PDR-0037. agent-bot is a shim that runs agent-bot-<name>; with agent-bot-daemon installed it resolves names from the daemon's pinned plugins, never from PATH.
+    note: PDR-0037. agent-bot is a shim that runs agent-bot-<name>; with agent-bot-hq installed it resolves names from the daemon's pinned plugins, never from PATH.
 
   - id: a2a-gateway
     name: Agent2Agent gateway at the edge, preserving provenance

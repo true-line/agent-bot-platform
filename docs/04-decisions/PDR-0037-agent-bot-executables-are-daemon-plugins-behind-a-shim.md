@@ -6,7 +6,7 @@ Last-Reviewed: 2026-11-08
 Date: 2026-11-08
 Accepted: 2026-11-08
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/37
-Affects-Repos: [agent-bot-identity, agent-bot-daemon, agent-bot-souls, agent-comms]
+Affects-Repos: [agent-bot-identity, agent-bot-hq, agent-bot-souls, agent-comms]
 Affects: [identity-cli, hq-plugin-contract]
 ---
 
