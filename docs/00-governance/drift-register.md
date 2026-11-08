@@ -7,7 +7,7 @@ Last-Reviewed: 2026-11-07
 
 # Drift register
 
-Known places where two sources of truth disagree. An agent that meets one of these does not pick a side: it follows the resolution path or raises a Decisions discussion. Entries are never deleted; a resolved entry records what removed the conflict. All entries were found by the 2026-11-07 survey.
+Known places where two sources of truth disagree. An agent that meets one of these does not pick a side: it follows the resolution path or raises a Decisions discussion. Entries are never deleted; a resolved entry records what removed the conflict. DRIFT-001 to DRIFT-015 were found by the 2026-11-07 survey.
 
 ## DRIFT-001 R9 has two wordings
 
@@ -86,3 +86,13 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Resolved 2026-11-07.** agent-bot-daemon's plan (section 10.1) and the soul-contracts glossary say a draft 0.4.1 changed S6's component table and Appendix C to name agent-bot-daemon as HQ instead of managed-machine. No 0.4.1 file exists: every copy of the whitepaper found is byte-identical to the S6 draft 0.4 pin. The one change it was meant to carry is recorded in PDR-0002 (decision 3) and the repository catalog.
 - **Follow-up.** S6 stays draft 0.4. soul-contracts dropped the claim when its glossary moved to the platform ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). When agent-bot-daemon adopts the platform block, it cites PDR-0002 instead of draft 0.4.1.
+
+## DRIFT-016 The daemon plan gave HQ authority to other repositories
+
+- **Open.** Before its platform adoption ([agent-bot-daemon#79](https://github.com/true-line/agent-bot-daemon/issues/79)), agent-bot-daemon's plan (sections 3.1 and 9) assigned work against the catalog's charters:
+  - **agent-bot-identity** as the identity plugin inside HQ, holding the device signer, grants, caller-bound grant handles, approval records and credential references. The catalog places agent-bot-identity inside the Soul, untrusted for authority, and gives the device key, grants and approvals to agent-bot-daemon.
+  - **agent-comms** holding the task service in HQ's store, budgets and sub-allocations, and the action ledger behind the brokered adapters. The catalog gives task authority, the action ledger, budgets and reconciliation to agent-bot-daemon, and PDR-0024 makes agent-bot-daemon the `task-v1` provider.
+  - **One soul-runtime repository** holding the package format, validator, render and adapter manifests. The catalog gives these to soul-package and soul-adapters; agent-bot-souls keeps the entry point, supervision and dreams.
+  - **An SDK `wire/` folder** in agent-bot-daemon, beside the catalog's rule that agent-bot-daemon does not own wire framing. The folder holds shared codecs (binding proof, presence verifier, canonical JSON), not framing.
+- **Not settled by the catalog.** agent-bot-identity consumes `hq-plugin-contract` while its trust domain is inside the Soul. Whether it ships HQ-side plugin code, or only the member surfaces a plugin registers, is unspecified; raised in [discussion #27](https://github.com/true-line/agent-bot-platform/discussions/27).
+- **Resolution.** agent-bot-daemon's adoption PR makes its plan follow the catalog for the first three items and names its shared codecs as non-framing. The entry closes when that PR merges and discussion #27 is decided, with the catalog updated if the answer changes a charter.
