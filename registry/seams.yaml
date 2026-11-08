@@ -73,6 +73,7 @@ seams:
     consumers: [agent-bot-identity, agent-comms, agent-bot-souls]
     contract-home: agent-bot-daemon docs/daemon-plugin-split.md section 4
     contract-status: plan
+    note: PDR-0027. HQ identity authority is built into agent-bot-daemon, not a plugin; agent-bot-identity's plugin registers member surfaces only.
 
   - id: soul-package-format
     name: .soul layout, data classes, manifest digests, import validation

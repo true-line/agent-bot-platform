@@ -229,8 +229,9 @@ repos:
     owns:
       - agent-bot CLI, git and harness hooks, fail-closed gh
       - GitHub App attribution and commit trailers
+      - Member surfaces it registers through hq-plugin-contract (MCP tools, CLI commands, hook handlers), each resolving to a broker query (PDR-0027)
     must-not-own:
-      - HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183)
+      - HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027)
       - Soul runtime entry point (move to the Soul runtime repo)
     provides: [identity-cli]
     consumes: [hq-plugin-contract, identity-service-api, fixtures]
