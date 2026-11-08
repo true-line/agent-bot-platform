@@ -121,7 +121,7 @@ Owns: Wire framing, sealing profile, mailbox, outbox, deduplication store interf
 
 Must not own: Authority decisions or keys (HQ); authoritative task state (HQ's store).
 
-Follow-up: Transfer to true-line; load soul-contracts fixtures; reconcile its wire and task docs (DRIFT-004).
+Follow-up: Transfer to true-line; add the task/v1 codec, the wire/v1 frame and their fixture tests, and cite the seams in its wire and task docs (PDR-0024, DRIFT-004).
 
 ## Inside the Soul
 

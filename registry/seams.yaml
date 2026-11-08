@@ -22,26 +22,27 @@ seams:
     contract-home: soul-contracts schemas/hq/v1
     contract-status: partial
     requirements: [R2, R3, R7, R8]
-    note: Hello and admission result exist; the other S6 Appendix A records are not started.
+    note: soul-contracts v0.4.1 has Hello, admission result, equip, ready and lease renewal, lifecycle request and approval record, each with fixtures.
 
   - id: task-v1
     name: Task commitment request, task record and nine-state machine
     provider: agent-bot-daemon
     consumers: [agent-comms, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/task/v1
-    contract-status: plan
+    contract-status: partial
     requirements: [R3, R5]
     drift: [DRIFT-004]
+    note: PDR-0024. agent-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 
   - id: wire-v1
     name: Broker and relay frame (outer frame plus sealed envelope)
     provider: agent-comms
     consumers: [agent-bot-daemon, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/wire/v1
-    contract-status: plan
+    contract-status: partial
     requirements: [R2, R7, R9]
     drift: [DRIFT-004]
-    note: agent-comms ships its own NDJSON wire v1 (lib/wire.mjs) that does not reference soul-contracts.
+    note: PDR-0024. agent-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
 
   - id: identity-service-api
     name: Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1)

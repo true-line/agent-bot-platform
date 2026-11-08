@@ -215,7 +215,7 @@ repos:
     consumes: [task-v1, hq-plugin-contract, error-registry, fixtures]
     criteria: [C1, C2]
     disposition: keep
-    follow-up: Transfer to true-line; load soul-contracts fixtures; reconcile its wire and task docs (DRIFT-004).
+    follow-up: Transfer to true-line; add the task/v1 codec, the wire/v1 frame and their fixture tests, and cite the seams in its wire and task docs (PDR-0024, DRIFT-004).
 
   - name: agent-bot-identity
     org: qwts
