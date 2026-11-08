@@ -53,7 +53,7 @@ tests:
   - R6
   implemented-in: soul-conformance
   component-tests:
-  - agent-bot-daemon tests/hq-tasks.test.mjs (peer offer stays peer data)
+  - agent-bot-hq tests/hq-tasks.test.mjs (peer offer stays peer data)
   implementation: not-started
   status: Specified
 - id: T05
@@ -65,7 +65,7 @@ tests:
   implemented-in: soul-conformance
   trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
   component-tests:
-  - agent-bot-daemon tests/hq-tasks.test.mjs (operation key returns the stored receipt)
+  - agent-bot-hq tests/hq-tasks.test.mjs (operation key returns the stored receipt)
   implementation: not-started
   status: Specified
 - id: T06
@@ -157,8 +157,8 @@ tests:
   - R7
   implemented-in: soul-conformance
   component-tests:
-  - agent-bot-daemon tests/hq-admission.test.mjs (unsupported version on Hello)
-  - agent-bot-daemon tests/sdk-wire.test.mjs (unknown required capability)
+  - agent-bot-hq tests/hq-admission.test.mjs (unsupported version on Hello)
+  - agent-bot-hq tests/sdk-wire.test.mjs (unknown required capability)
   implementation: not-started
   status: Specified
 - id: T15
@@ -222,7 +222,7 @@ tests:
   - R3
   implemented-in: soul-conformance
   component-tests:
-  - agent-bot-daemon tests/hq-tasks.test.mjs (specialist proposals)
+  - agent-bot-hq tests/hq-tasks.test.mjs (specialist proposals)
   implementation: not-started
   status: Specified
 - id: T21

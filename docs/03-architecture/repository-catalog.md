@@ -26,12 +26,12 @@ Every repository that builds, specifies, verifies or operates the platform, with
 | true-line/soul-contracts | Contracts and verification | skeleton | Keep | Versioned machine-readable contracts every component builds against. |
 | true-line/soul-conformance | Contracts and verification | skeleton | Keep | Executable proof that implementations meet the platform's T-series specifications. |
 | true-line/agent-bot | Host and remote services | active | Keep | The owner's remote identity service and web console at agents.true-line.ai. |
-| true-line/agent-bot-daemon | Host and remote services | planning | Keep | HQ, the one local authority that admits Souls, enforces grants and hosts the broker. |
+| true-line/agent-bot-hq | Host and remote services | planning | Keep | HQ, the one local authority that admits Souls, enforces grants and hosts the broker. |
 | true-line/agent-bot-machine | Host and remote services | active | Keep | The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ. |
 | qwts/managed-machine-config | Host and remote services | active | Keep | Private fleet state, app catalog inputs and host isolation profiles consumed by agent-bot-machine. |
 | qwts/agent-machine-configurations | Host and remote services | removed | Archive | No content; created 2026-10-30 with no commits. No longer on GitHub as of 2026-11-07. |
-| qwts/agent-comms | Host and remote services | active | Keep | One wire for every tier, with durable mailbox, deduplication and relay mode. |
-| qwts/agent-bot-identity | Inside the Soul | active | Keep and split | The agent's identity toolset, giving each harness its own GitHub App identity and failing closed. |
+| true-line/agent-bot-comms | Host and remote services | active | Keep | One wire for every tier, with durable mailbox, deduplication and relay mode. |
+| true-line/agent-bot-identity | Inside the Soul | active | Keep and split | The agent's identity toolset, giving each harness its own GitHub App identity and failing closed. |
 | true-line/agent-bot-souls | Inside the Soul | empty | Designate a new role | Proposed home of the Soul runtime, the entry point that supervises members and runs the recovery ladder. |
 | true-line/soul-package | Inside the Soul | skeleton | Keep | The .soul format library, covering manifest, digests, import validation, deterministic render and transfer. |
 | true-line/soul-adapters | Inside the Soul | skeleton | Keep | Per-harness ACP adapters, render plugins and signed qualification manifests. |
@@ -83,13 +83,13 @@ Must not own: Lifecycle or any control path to a host (R2).
 
 Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), evaluating its durable write receipts for the GitHub write tools.
 
-### agent-bot-daemon
+### agent-bot-hq
 
 Criteria: C1; trust domain: Trusted local host service, outside every Soul; work packages: WP2, WP4, WP6.
 
-Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-daemon executable; installed agent-bot-* packages are its plugins (PDR-0037); Device key and short-lived credentials held in memory.
+Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037); Device key and short-lived credentials held in memory.
 
-Must not own: Long-lived signing keys (identity service); Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox); Wire framing or task state library code (agent-comms).
+Must not own: Long-lived signing keys (identity service); Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox); Wire framing or task state library code (agent-bot-comms).
 
 Follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architecture, decisions D1-D4) into the platform; add AGENTS.md with the governed block.
 
@@ -97,9 +97,9 @@ Follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architec
 
 Criteria: C1; trust domain: Host admin account sandbox (brew admin, never root).
 
-Owns: Self-tapped Homebrew formula, machine bootstrap, catalog installs; Host-side credentials and signed policy in the admin sandbox (agent-bot-daemon D4); Owner-presence verification of Secure Enclave signatures (agent-bot-daemon D4); The signed local channel endpoint and signed receipts.
+Owns: Self-tapped Homebrew formula, machine bootstrap, catalog installs; Host-side credentials and signed policy in the admin sandbox (agent-bot-hq D4); Owner-presence verification of Secure Enclave signatures (agent-bot-hq D4); The signed local channel endpoint and signed receipts.
 
-Must not own: HQ authority (S7 made it HQ; agent-bot-daemon D1 moved HQ to agent-bot-daemon, see DRIFT-002).
+Must not own: HQ authority (S7 made it HQ; agent-bot-hq D1 moved HQ to agent-bot-hq, see DRIFT-002).
 
 Follow-up: README still introduces it as managed-machine.
 
@@ -113,7 +113,7 @@ Must not own: Secrets or grants.
 
 Follow-up: Transfer to true-line alongside agent-bot-machine.
 
-### agent-comms
+### agent-bot-comms
 
 Criteria: C1, C2; trust domain: Broker mode runs inside HQ's trust domain; client mode inside the Soul (untrusted for authority); relay mode untrusted for content; work packages: WP4.
 
@@ -121,7 +121,7 @@ Owns: Wire framing, sealing profile, mailbox, outbox, deduplication store interf
 
 Must not own: Authority decisions or keys (HQ); authoritative task state (HQ's store).
 
-Follow-up: Transfer to true-line; add the task/v1 codec, the wire/v1 frame and their fixture tests, and cite the seams in its wire and task docs (PDR-0024, DRIFT-004).
+Follow-up: Add the task/v1 codec, the wire/v1 frame and their fixture tests, and cite the seams in its wire and task docs (PDR-0024, DRIFT-004).
 
 ## Inside the Soul
 
@@ -131,9 +131,9 @@ Criteria: C2; trust domain: Inside the Soul; untrusted for authority; work packa
 
 Owns: The agent-bot shim CLI and the agent-bot-identity executable, git and harness hooks, fail-closed gh (PDR-0037); GitHub App attribution and commit trailers; Member surfaces it registers through hq-plugin-contract (MCP tools, CLI commands, hook handlers), each resolving to a broker query (PDR-0027).
 
-Must not own: HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027); Soul runtime entry point (move to the Soul runtime repo).
+Must not own: HQ authority, keyd, approvals, census (move to agent-bot-hq per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027); Soul runtime entry point (move to the Soul runtime repo).
 
-Follow-up: Transfer to true-line; retire docs/identity-contract.md in favor of the platform glossary.
+Follow-up: Retire docs/identity-contract.md in favor of the platform glossary.
 
 ### agent-bot-souls
 

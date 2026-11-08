@@ -112,4 +112,4 @@ QA requirements are grouped by pillar; the [quality attributes](quality-attribut
 
 Every user interface the platform ships meets WCAG 2.2 level AA.
 
-Status: Approved. Source: PDR-0001 acceptance (discussion #1); agent-bot-daemon plan section 7.1 already sets this level for the browser console. Not yet specified. Which interfaces are in scope and how each is checked are open.
+Status: Approved. Source: PDR-0001 acceptance (discussion #1); agent-bot-hq plan section 7.1 already sets this level for the browser console. Not yet specified. Which interfaces are in scope and how each is checked are open.

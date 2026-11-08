@@ -11,13 +11,13 @@ Repository ADRs live in the repository that made them. This index lists only the
 
 | Repository ADR | Seam or PDR | Consequence for other repositories |
 |---|---|---|
-| agent-comms ADR-0004 | `wire-v1` | Durable mailbox delivery, and waking idle agents through the daemon planes. |
-| agent-comms ADR-0005 | `a2a-gateway` | A2A at the broker edge; tasks link to invocations. |
-| agent-comms ADR-0028 | `wire-v1` | Broker federation only through explicitly enrolled remote hubs (owner-accepted 2026-10-11). |
-| agent-comms ADR-0059 | `wire-v1` | Host apps embed agent-comms through a contract and platform seams. |
-| agent-bot-identity ADR-1183 | topology | agent-bot splits into an HQ daemon and plugins (owner decision agent-bot-daemon D1). Its identity-plugin bullet is superseded by agent-bot-identity ADR-1381. |
+| agent-bot-comms ADR-0004 | `wire-v1` | Durable mailbox delivery, and waking idle agents through the daemon planes. |
+| agent-bot-comms ADR-0005 | `a2a-gateway` | A2A at the broker edge; tasks link to invocations. |
+| agent-bot-comms ADR-0028 | `wire-v1` | Broker federation only through explicitly enrolled remote hubs (owner-accepted 2026-10-11). |
+| agent-bot-comms ADR-0059 | `wire-v1` | Host apps embed agent-bot-comms through a contract and platform seams. |
+| agent-bot-identity ADR-1183 | topology | agent-bot splits into an HQ daemon and plugins (owner decision agent-bot-hq D1). Its identity-plugin bullet is superseded by agent-bot-identity ADR-1381. |
 | agent-bot-identity ADR-0332 | `hq-v1` | Souls are the agent's territory. Decision 2 (one daemon in the Souls' account) is superseded by agent-bot-identity ADR-1381. |
-| agent-bot-identity ADR-1381 | PDR-0027, `hq-plugin-contract` | HQ runs in its own account (agent-bot-daemon D6); HQ identity authority is HQ core, and agent-bot-identity's plugin registers member surfaces only. Resolves DRIFT-003. |
+| agent-bot-identity ADR-1381 | PDR-0027, `hq-plugin-contract` | HQ runs in its own account (agent-bot-hq D6); HQ identity authority is HQ core, and agent-bot-identity's plugin registers member surfaces only. Resolves DRIFT-003. |
 
 ## Rules
 

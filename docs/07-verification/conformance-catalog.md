@@ -15,15 +15,15 @@ What each conformance test must prove, grouped by the stage whose exit it gates.
 
 | Test | Stimulus | Required observation | Verifies | Implementation |
 |---|---|---|---|---|
-| T14 Version mismatch | Use N-1 and an unknown required capability | Supported version works; unsupported semantics fail explicitly. | R7 | not-started; component tests: agent-bot-daemon tests/hq-admission.test.mjs (unsupported version on Hello); agent-bot-daemon tests/sdk-wire.test.mjs (unknown required capability) |
+| T14 Version mismatch | Use N-1 and an unknown required capability | Supported version works; unsupported semantics fail explicitly. | R7 | not-started; component tests: agent-bot-hq tests/hq-admission.test.mjs (unsupported version on Hello); agent-bot-hq tests/sdk-wire.test.mjs (unknown required capability) |
 
 ## Stage 1
 
 | Test | Stimulus | Required observation | Verifies | Implementation |
 |---|---|---|---|---|
-| T04 Source authority | Peer claims owner approval | Request remains peer data; no grant or directive is created. | R6 | not-started; component tests: agent-bot-daemon tests/hq-tasks.test.mjs (peer offer stays peer data) |
-| T05 Duplicate message | Deliver an identical frame repeatedly | One committed task transition; stable prior receipt returned. | none | not-started; component tests: agent-bot-daemon tests/hq-tasks.test.mjs (operation key returns the stored receipt) |
-| T20 Proposal only | A specialist posts a final answer directly to a task | It is recorded as a proposal; only the lead's commitment finalizes. | R3 | not-started; component tests: agent-bot-daemon tests/hq-tasks.test.mjs (specialist proposals) |
+| T04 Source authority | Peer claims owner approval | Request remains peer data; no grant or directive is created. | R6 | not-started; component tests: agent-bot-hq tests/hq-tasks.test.mjs (peer offer stays peer data) |
+| T05 Duplicate message | Deliver an identical frame repeatedly | One committed task transition; stable prior receipt returned. | none | not-started; component tests: agent-bot-hq tests/hq-tasks.test.mjs (operation key returns the stored receipt) |
+| T20 Proposal only | A specialist posts a final answer directly to a task | It is recorded as a proposal; only the lead's commitment finalizes. | R3 | not-started; component tests: agent-bot-hq tests/hq-tasks.test.mjs (specialist proposals) |
 
 ## Stage 2a
 

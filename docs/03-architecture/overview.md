@@ -20,7 +20,7 @@ current source (`assets/architecture.mmd`); `assets/architecture.drawio`
 embeds the same graph, and [this PNG](assets/architecture.png) is its
 rendered export. `assets/architecture-superseded-privileged-machine.mmd` is
 the earlier privileged-machine sketch, kept for provenance (DRIFT-014).
-The diagram uses short labels: agent-daemon is agent-bot-daemon,
+The diagram uses short labels: agent-daemon is agent-bot-hq,
 agent-machine is agent-bot-machine, agent-soul is the Soul runtime
 (agent-bot-souls) and agent-identity is the in-Soul identity CLI.
 
@@ -50,7 +50,7 @@ flowchart TB
       HQ["HQ: supervision, grants, enforcement"]
       AI["agent-identity"]
       AS["agent-soul"]
-      AC["agent-comms"]
+      AC["agent-bot-comms"]
       NOTE["Extensions can run independently,<br/>but normally run inside agent-daemon"]
     end
     subgraph Exec["agent-machine (secure executor, runs as brew admin, never root)"]
@@ -76,11 +76,11 @@ flowchart TB
 
 Repositories follow **trust-domain and contract boundaries**, not
 features, and dependencies point only toward contract repositories. HQ is
-implemented in agent-bot-daemon (PDR-0002); the host admin sandbox is
+implemented in agent-bot-hq (PDR-0002); the host admin sandbox is
 agent-bot-machine.
 
 ```
-soul-contracts ← soul-package ← agent-comms ← agent-bot-daemon (HQ)
+soul-contracts ← soul-package ← agent-bot-comms ← agent-bot-hq (HQ)
                                     ↑
 agent-bot-souls (Soul runtime: contracts, package, comms client, adapters)
 agent-bot-identity (contracts; identity-service API)
@@ -97,7 +97,7 @@ every contract between them with its home and status.
 
 A trusted supervisor admits runtimes; a broker mediates protected
 operations **outside the agent shell's trust domain** — that pair is HQ.
-agent-comms routes and coordinates but **never holds keys or enforces
+agent-bot-comms routes and coordinates but **never holds keys or enforces
 grants** (S1 D4). Where harness and agent shell share a
 trust domain, access enforcement must come from the host — or the Soul
 runs unenforced and *says so*.

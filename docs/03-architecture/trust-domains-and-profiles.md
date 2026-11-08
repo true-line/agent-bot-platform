@@ -3,7 +3,7 @@ Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
 Last-Reviewed: 2026-11-07
-Sources: S6 §4; S8; agent-bot-daemon D4
+Sources: S6 §4; S8; agent-bot-hq D4
 ---
 
 # Trust domains and enforcement profiles
@@ -24,7 +24,7 @@ reported, never silently downgraded.
 ## Where host-side secrets live
 
 HQ and the admin sandbox are separate trust domains on the same host
-(agent-bot-daemon D4). HQ (agent-bot-daemon) holds the device key and
+(agent-bot-hq D4). HQ (agent-bot-hq) holds the device key and
 short-lived credentials in memory only. The admin sandbox
 (agent-bot-machine) guards host-side credentials at rest and the signed
 policy HQ enforces, installs only signed catalog items, and verifies owner

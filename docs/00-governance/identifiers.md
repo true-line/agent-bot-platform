@@ -31,7 +31,7 @@ Every identifier a platform document may cite, its single meaning, and the regis
 | Prefix | Owner | Rule |
 |---|---|---|
 | ENG | qwts/qwts-agent-sop | Org-wide engineering decision. Cite as ENG-NNNN (globally unique). |
-| ADR | each component repository | Repository-local decision. Numbers repeat across repositories, so a platform doc must cite it qualified: "agent-comms ADR-0028". |
+| ADR | each component repository | Repository-local decision. Numbers repeat across repositories, so a platform doc must cite it qualified: "agent-bot-comms ADR-0028". |
 | error code | true-line/soul-contracts errors/registry.json | snake_case error identifiers such as profile_insufficient. |
 
 ## Retired labels
@@ -39,6 +39,6 @@ Every identifier a platform document may cite, its single meaning, and the regis
 | Label | Write instead | Why |
 |---|---|---|
 | R1-R8 (references in draft 0.4) | X1-X8 | Collided with requirements R1-R12 in the same paper. |
-| D1-D4 (north star decisions) | S1 D1 to S1 D4 when quoting; the PDR that adopts it once accepted | agent-bot-daemon reuses D1-D4 for different decisions. |
+| D1-D4 (north star decisions) | S1 D1 to S1 D4 when quoting; the PDR that adopts it once accepted | agent-bot-hq reuses D1-D4 for different decisions. |
 | A2-A4 (north star working assumptions) | S1 A2 to S1 A4 when quoting | Unqualified letters are ambiguous across documents. |
-| D1-D4, Q1-Q8, R1-R10 (agent-bot-daemon daemon-plugin-split) | agent-bot-daemon D4 (qualified); risks move to RISK-NNN | Daemon risks R1-R10 collide with requirements R1-R12. |
+| D1-D4, Q1-Q8, R1-R10 (agent-bot-hq daemon-plugin-split) | agent-bot-hq D4 (qualified); risks move to RISK-NNN | Daemon risks R1-R10 collide with requirements R1-R12. |

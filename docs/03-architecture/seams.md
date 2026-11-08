@@ -13,39 +13,39 @@ The interfaces between repositories and where each contract lives. A seam is the
 
 | Seam | Provider | Consumers | Contract home | Status |
 |---|---|---|---|---|
-| `hq-v1` HQ control and owner API (Hello, Admit, Equip, Ready, Lease, lifecycle, approvals) | agent-bot-daemon | agent-bot-souls, geniusbar, agent-watchtower, soul-conformance | soul-contracts schemas/hq/v1 | partial |
-| `task-v1` Task commitment request, task record and nine-state machine | agent-bot-daemon | agent-comms, agent-bot-souls, soul-conformance | soul-contracts schemas/task/v1 | partial |
-| `observation-v1` HQ observation uplink (session presence, binding visibility, lifecycle events) | agent-bot-daemon | agent-bot | soul-contracts schemas/observation/v1 | none |
-| `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-comms | agent-bot-daemon, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | partial |
-| `identity-service-api` Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1) | agent-bot | agent-bot-daemon, agent-bot-identity | agent-bot docs/api.md | repo-local |
-| `catalog-signing` Signed admin catalog of approved apps and configurations | agent-bot | agent-bot-daemon, agent-bot-machine | agent-bot | repo-local |
-| `daemon-machine-channel` Signed local channel from HQ to the secure executor, with signed receipts | agent-bot-machine | agent-bot-daemon, managed-machine-config | agent-bot-machine | repo-local |
-| `hq-plugin-contract` Manifest, registration, host services and lifecycle for HQ plugins | agent-bot-daemon | agent-bot-identity, agent-comms, agent-bot-souls | agent-bot-daemon docs/daemon-plugin-split.md section 4 | plan |
-| `soul-package-format` .soul layout, data classes, manifest digests, import validation | soul-package | agent-bot-daemon, agent-bot-souls, soul-conformance | soul-package spec/LAYOUT.md | repo-local |
+| `hq-v1` HQ control and owner API (Hello, Admit, Equip, Ready, Lease, lifecycle, approvals) | agent-bot-hq | agent-bot-souls, geniusbar, agent-watchtower, soul-conformance | soul-contracts schemas/hq/v1 | partial |
+| `task-v1` Task commitment request, task record and nine-state machine | agent-bot-hq | agent-bot-comms, agent-bot-souls, soul-conformance | soul-contracts schemas/task/v1 | partial |
+| `observation-v1` HQ observation uplink (session presence, binding visibility, lifecycle events) | agent-bot-hq | agent-bot | soul-contracts schemas/observation/v1 | none |
+| `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-bot-comms | agent-bot-hq, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | partial |
+| `identity-service-api` Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1) | agent-bot | agent-bot-hq, agent-bot-identity | agent-bot docs/api.md | repo-local |
+| `catalog-signing` Signed admin catalog of approved apps and configurations | agent-bot | agent-bot-hq, agent-bot-machine | agent-bot | repo-local |
+| `daemon-machine-channel` Signed local channel from HQ to the secure executor, with signed receipts | agent-bot-machine | agent-bot-hq, managed-machine-config | agent-bot-machine | repo-local |
+| `hq-plugin-contract` Manifest, registration, host services and lifecycle for HQ plugins | agent-bot-hq | agent-bot-identity, agent-bot-comms, agent-bot-souls | agent-bot-hq docs/daemon-plugin-split.md section 4 | plan |
+| `soul-package-format` .soul layout, data classes, manifest digests, import validation | soul-package | agent-bot-hq, agent-bot-souls, soul-conformance | soul-package spec/LAYOUT.md | repo-local |
 | `render-plugin-api` Deterministic render of canonical primitives into each adapter's native configuration | soul-package | soul-adapters, agent-bot-souls | soul-package spec/RENDER-PLUGIN.md | repo-local |
 | `acp-front-door` The Soul's terminal chat and ACP agent server; ACP client to members | agent-bot-souls | soul-adapters | X1 (Agent Client Protocol v1) | external |
-| `harness-adapter` Per-harness adapter package and signed qualification manifest | soul-adapters | agent-bot-souls, agent-bot-daemon | soul-adapters docs/QUALIFICATION.md | repo-local |
-| `error-registry` Typed error codes with description and retryable flag | soul-contracts | agent-bot-daemon, agent-comms, agent-bot-souls, soul-conformance | soul-contracts errors/registry.json | partial |
-| `fixtures` Shared positive and negative fixtures and canonicalization vectors | soul-contracts | soul-conformance, agent-comms, agent-bot-identity | soul-contracts fixtures/ | partial |
+| `harness-adapter` Per-harness adapter package and signed qualification manifest | soul-adapters | agent-bot-souls, agent-bot-hq | soul-adapters docs/QUALIFICATION.md | repo-local |
+| `error-registry` Typed error codes with description and retryable flag | soul-contracts | agent-bot-hq, agent-bot-comms, agent-bot-souls, soul-conformance | soul-contracts errors/registry.json | partial |
+| `fixtures` Shared positive and negative fixtures and canonicalization vectors | soul-contracts | soul-conformance, agent-bot-comms, agent-bot-identity | soul-contracts fixtures/ | partial |
 | `conformance-report` Release conformance report (revision, policy digest, versions, profile, host, adapters) | soul-conformance | agent-bot-platform | agent-bot-platform docs/08-release/release-conformance-report.md | plan |
 | `identity-cli` The agent-bot shim and the agent-bot-identity commands used by a Soul's members | agent-bot-identity | agent-bot-souls | agent-bot-identity README | repo-local |
-| `a2a-gateway` Agent2Agent gateway at the edge, preserving provenance | agent-comms | none | X3 (Agent2Agent Protocol) | external |
+| `a2a-gateway` Agent2Agent gateway at the edge, preserving provenance | agent-bot-comms | none | X3 (Agent2Agent Protocol) | external |
 | `mcp-tools` MCP tools served by the identity service | agent-bot | none | X2 (Model Context Protocol) | external |
 | `skills-contract` The "<cli> skills" discovery contract | embedded-skills | none | embedded-skills docs/ | repo-local |
 
 ## Notes
 
 - `hq-v1`: requirements R2, R3, R7, R8; soul-contracts v0.4.1 has Hello, admission result, equip, ready and lease renewal, lifecycle request and approval record, each with fixtures.
-- `task-v1`: requirements R3, R5; drift DRIFT-004; PDR-0024. agent-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
+- `task-v1`: requirements R3, R5; drift DRIFT-004; PDR-0024. agent-bot-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 - `observation-v1`: requirements R1, R2, R9; PDR-0023. HQ stays authoritative; agent-bot keeps an observational projection only, with no control or execution path.
-- `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
+- `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
 - `identity-service-api`: requirements R3, R9; Credential issuance record is listed in S6 Appendix A but has no schema yet.
-- `hq-plugin-contract`: PDR-0027. HQ identity authority is built into agent-bot-daemon, not a plugin; agent-bot-identity's plugin registers member surfaces only.
+- `hq-plugin-contract`: PDR-0027. HQ identity authority is built into agent-bot-hq, not a plugin; agent-bot-identity's plugin registers member surfaces only.
 - `soul-package-format`: requirements R1, R12; drift DRIFT-007
 - `render-plugin-api`: requirements R10
 - `acp-front-door`: requirements R11
 - `harness-adapter`: requirements R8, R10
 - `error-registry`: 24 codes exist with empty descriptions and retryable null.
 - `fixtures`: requirements R7
-- `identity-cli`: PDR-0037. agent-bot is a shim that runs agent-bot-<name>; with agent-bot-daemon installed it resolves names from the daemon's pinned plugins, never from PATH.
+- `identity-cli`: PDR-0037. agent-bot is a shim that runs agent-bot-<name>; with agent-bot-hq installed it resolves names from the daemon's pinned plugins, never from PATH.
 - `skills-contract`: Adjacent; no platform consumer yet.

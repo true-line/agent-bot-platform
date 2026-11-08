@@ -16,9 +16,9 @@ honestly cannot, and which tests prove each control.
 | Domain | Members | Boundary |
 |---|---|---|
 | HQ | managed-machine daemon, key store, authority DB, broker | outside the agent shell — the enforcement point (§4) |
-| Soul shell | entry point, agent-comms client, notes | routes and coordinates; **never holds keys or enforces grants** |
+| Soul shell | entry point, agent-bot-comms client, notes | routes and coordinates; **never holds keys or enforces grants** |
 | Member (runtime) | one harness instance | protected profile: isolated principal + private state; cooperative profile: shares one domain with its peers |
-| Remote tiers | identity service, relays, web console | outer frames only; no launch/wake/owner/credential authority (agent-comms ADR-0028) |
+| Remote tiers | identity service, relays, web console | outer frames only; no launch/wake/owner/credential authority (agent-bot-comms ADR-0028) |
 
 ## Assets
 
