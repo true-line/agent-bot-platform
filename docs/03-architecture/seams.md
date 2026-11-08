@@ -14,8 +14,8 @@ The interfaces between repositories and where each contract lives. A seam is the
 | Seam | Provider | Consumers | Contract home | Status |
 |---|---|---|---|---|
 | `hq-v1` HQ control and owner API (Hello, Admit, Equip, Ready, Lease, lifecycle, approvals) | agent-bot-daemon | agent-bot-souls, geniusbar, agent-watchtower, soul-conformance | soul-contracts schemas/hq/v1 | partial |
-| `task-v1` Task commitment request, task record and nine-state machine | agent-bot-daemon | agent-comms, agent-bot-souls, soul-conformance | soul-contracts schemas/task/v1 | plan |
-| `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-comms | agent-bot-daemon, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | plan |
+| `task-v1` Task commitment request, task record and nine-state machine | agent-bot-daemon | agent-comms, agent-bot-souls, soul-conformance | soul-contracts schemas/task/v1 | partial |
+| `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-comms | agent-bot-daemon, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | partial |
 | `identity-service-api` Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1) | agent-bot | agent-bot-daemon, agent-bot-identity | agent-bot docs/api.md | repo-local |
 | `catalog-signing` Signed admin catalog of approved apps and configurations | agent-bot | agent-bot-daemon, agent-bot-machine | agent-bot | repo-local |
 | `daemon-machine-channel` Signed local channel from HQ to the secure executor, with signed receipts | agent-bot-machine | agent-bot-daemon, managed-machine-config | agent-bot-machine | repo-local |
@@ -34,9 +34,9 @@ The interfaces between repositories and where each contract lives. A seam is the
 
 ## Notes
 
-- `hq-v1`: requirements R2, R3, R7, R8; Hello and admission result exist; the other S6 Appendix A records are not started.
-- `task-v1`: requirements R3, R5; drift DRIFT-004
-- `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; agent-comms ships its own NDJSON wire v1 (lib/wire.mjs) that does not reference soul-contracts.
+- `hq-v1`: requirements R2, R3, R7, R8; soul-contracts v0.4.1 has Hello, admission result, equip, ready and lease renewal, lifecycle request and approval record, each with fixtures.
+- `task-v1`: requirements R3, R5; drift DRIFT-004; PDR-0024. agent-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
+- `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
 - `identity-service-api`: requirements R3, R9; Credential issuance record is listed in S6 Appendix A but has no schema yet.
 - `soul-package-format`: requirements R1, R12; drift DRIFT-007
 - `render-plugin-api`: requirements R10

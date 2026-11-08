@@ -28,7 +28,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 ## DRIFT-004 Wire and task contracts exist twice
 
 - **Open.** agent-comms ships NDJSON wire v1 (`lib/wire.mjs`) and a task state table (its `tasks.md` doc) that do not reference soul-contracts. S6 sections 6 and 7 specify `wire/v1` and `task/v1` with nine HQ-authoritative states and comms as a mirror.
-- **Resolution.** Seams `wire-v1` and `task-v1` move into soul-contracts schemas; agent-comms loads its fixtures (Stage 0 exit).
+- **Resolution.** [PDR-0024](../04-decisions/PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md): the schemas are in soul-contracts `wire/v1` and `task/v1`. agent-comms mirrors HQ's `task/v1` records through a codec, frames routed messages in `wire/v1` at its broker layer, and runs every fixture of both against them. Its v0.5.5 task workflow and local client protocol stay, documented as outside the seams. Resolved when that agent-comms PR merges.
 
 ## DRIFT-005 Two products called headquarters
 

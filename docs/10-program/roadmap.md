@@ -14,7 +14,7 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 
 | Stage | Planning range | Deliverable | Exit evidence | State on 2026-11-07 |
 |---|---|---|---|---|
-| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress: hq/v1 Hello and admission result only; error registry descriptions empty; no component loads the fixtures |
+| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress: soul-contracts v0.4.1 has schemas and fixtures for hq/v1, wire/v1, task/v1, records/v1 and the 27-code error registry; no component loads the fixtures yet (agent-comms under PDR-0024) |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Not started |
 | 2a Member isolation | Weeks 6 to 7 | Caller binding on the Linux reference host, per-member principals, egress block | Hostile-member suite passes under the protected label | Not started |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
