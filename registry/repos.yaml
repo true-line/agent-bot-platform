@@ -138,7 +138,7 @@ repos:
     owns:
       - hq/v1 owner and member API, admission, grants, leases, epochs
       - Action ledger, task authority, budgets, reconciliation, approvals
-      - Plugin host for identity, comms and soul-runtime plugins; HQ CLI
+      - Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable (PDR-0037)
       - Device key and short-lived credentials held in memory
     must-not-own:
       - Long-lived signing keys (identity service)
@@ -229,7 +229,7 @@ repos:
     work-packages: [WP3]
     purpose: The agent's identity toolset, giving each harness its own GitHub App identity and failing closed.
     owns:
-      - agent-bot CLI, git and harness hooks, fail-closed gh
+      - The agent-bot shim and the agent-bot-identity executable, git and harness hooks, fail-closed gh (PDR-0037)
       - GitHub App attribution and commit trailers
       - Member surfaces it registers through hq-plugin-contract (MCP tools, CLI commands, hook handlers), each resolving to a broker query (PDR-0027)
     must-not-own:
@@ -251,7 +251,7 @@ repos:
     work-packages: [WP3, WP5]
     purpose: Proposed home of the Soul runtime, the entry point that supervises members and runs the recovery ladder.
     owns:
-      - agent-bot soul run / soul chat, ACP server and client
+      - The agent-bot-soul executable (soul run / soul chat, reached as agent-bot soul, PDR-0037), ACP server and client
       - Member supervision, cooperative scheduling, recovery ladder
       - Typed notes, dream runs and candidate staging
     must-not-own:
