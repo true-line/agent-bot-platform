@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-08
 Date: 2026-11-08
+Accepted: 2026-11-08
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/37
 Affects-Repos: [agent-bot-identity, agent-bot-daemon, agent-bot-souls, agent-comms]
 Affects: [identity-cli, hq-plugin-contract]
@@ -27,7 +28,7 @@ Each component ships its own `agent-bot-*` executable. `agent-bot` is a light sh
    - `agent-bot-souls` comes from agent-bot-souls.
    - Each future component is `agent-bot-<name>`.
 
-   Each executable runs on its own, without the daemon.
+   Each executable runs on its own, without the daemon. A repository rename renames its executable by the same rule.
 2. **`agent-bot` is a shim CLI.** `agent-bot <name> …` execs `agent-bot-<name>` with the remaining arguments, inherits stdio, and returns its exit code. It has no options, no config and no authority of its own.
 3. **With agent-bot-daemon installed, every `agent-bot-*` package is a daemon plugin.**
    - It registers through `hq-plugin-contract`, in the trust domain its catalog entry gives it. Examples: comms registers its broker mode; identity registers member surfaces (PDR-0027); souls registers the Soul runtime's HQ side.
@@ -40,7 +41,7 @@ Each component ships its own `agent-bot-*` executable. `agent-bot` is a light sh
 
 ## Acceptance
 
-The owner gave this design on 2026-11-08, first in a working session and then in [discussion #37](https://github.com/true-line/agent-bot-platform/discussions/37).
+The owner gave this design on 2026-11-08 in a working session and marked the answer in [discussion #37](https://github.com/true-line/agent-bot-platform/discussions/37) that day.
 
 ## Consequences
 
