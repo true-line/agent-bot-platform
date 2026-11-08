@@ -89,10 +89,9 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-016 The daemon plan gave HQ authority to other repositories
 
-- **Open.** Before its platform adoption ([agent-bot-daemon#79](https://github.com/true-line/agent-bot-daemon/issues/79)), agent-bot-daemon's plan (sections 3.1 and 9) assigned work against the catalog's charters:
+- **Conflict.** Before its platform adoption ([agent-bot-daemon#79](https://github.com/true-line/agent-bot-daemon/issues/79)), agent-bot-daemon's plan (sections 3.1 and 9) assigned work against the catalog's charters:
   - **agent-bot-identity** as HQ's identity plugin, holding the device signer, grants, grant handles, approvals and credential references. The catalog puts agent-bot-identity inside the Soul and gives these to agent-bot-daemon.
   - **agent-comms** holding the task service, budgets and the action ledger. The catalog gives these to agent-bot-daemon, and PDR-0024 makes it the `task-v1` provider.
   - **One soul-runtime repository** holding the package format, validator, render and adapter manifests. The catalog gives these to soul-package and soul-adapters.
   - **An SDK `wire/` folder** in agent-bot-daemon, which does not own wire framing. The folder holds shared codecs (binding proof, presence verifier, canonical JSON), not framing.
-- **Not settled by the catalog.** Whether agent-bot-identity, which consumes `hq-plugin-contract` from inside the Soul, ships HQ-side plugin code or only member surfaces: [discussion #27](https://github.com/true-line/agent-bot-platform/discussions/27).
-- **Resolution.** agent-bot-daemon's adoption PR makes its plan follow the catalog for the first three items and names its codecs as non-framing. The entry closes when that PR merges and discussion #27 is decided.
+- **Resolved 2026-11-08.** [agent-bot-daemon#83](https://github.com/true-line/agent-bot-daemon/pull/83) made the plan follow the catalog and named the codecs non-framing. [PDR-0027](../04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md) answered discussion #27: HQ identity authority is built into agent-bot-daemon; agent-bot-identity's plugin registers member surfaces only.

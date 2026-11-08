@@ -38,6 +38,7 @@ The interfaces between repositories and where each contract lives. A seam is the
 - `task-v1`: requirements R3, R5; drift DRIFT-004; PDR-0024. agent-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 - `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
 - `identity-service-api`: requirements R3, R9; Credential issuance record is listed in S6 Appendix A but has no schema yet.
+- `hq-plugin-contract`: PDR-0027. HQ identity authority is built into agent-bot-daemon, not a plugin; agent-bot-identity's plugin registers member surfaces only.
 - `soul-package-format`: requirements R1, R12; drift DRIFT-007
 - `render-plugin-api`: requirements R10
 - `acp-front-door`: requirements R11
