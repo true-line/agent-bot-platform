@@ -28,7 +28,7 @@ The interfaces between repositories and where each contract lives. A seam is the
 | `error-registry` Typed error codes with description and retryable flag | soul-contracts | agent-bot-daemon, agent-comms, agent-bot-souls, soul-conformance | soul-contracts errors/registry.json | partial |
 | `fixtures` Shared positive and negative fixtures and canonicalization vectors | soul-contracts | soul-conformance, agent-comms, agent-bot-identity | soul-contracts fixtures/ | partial |
 | `conformance-report` Release conformance report (revision, policy digest, versions, profile, host, adapters) | soul-conformance | agent-bot-platform | agent-bot-platform docs/08-release/release-conformance-report.md | plan |
-| `identity-cli` The agent-bot CLI surface used by a Soul's members | agent-bot-identity | agent-bot-souls | agent-bot-identity README | repo-local |
+| `identity-cli` The agent-bot shim and the agent-bot-identity commands used by a Soul's members | agent-bot-identity | agent-bot-souls | agent-bot-identity README | repo-local |
 | `a2a-gateway` Agent2Agent gateway at the edge, preserving provenance | agent-comms | none | X3 (Agent2Agent Protocol) | external |
 | `mcp-tools` MCP tools served by the identity service | agent-bot | none | X2 (Model Context Protocol) | external |
 | `skills-contract` The "<cli> skills" discovery contract | embedded-skills | none | embedded-skills docs/ | repo-local |
@@ -47,4 +47,5 @@ The interfaces between repositories and where each contract lives. A seam is the
 - `harness-adapter`: requirements R8, R10
 - `error-registry`: 24 codes exist with empty descriptions and retryable null.
 - `fixtures`: requirements R7
+- `identity-cli`: PDR-0037. agent-bot is a shim with a fixed table (hq to agent-bot-hq, soul to agent-bot-soul, any other word to agent-bot-identity); it never runs agent-bot-<word> found on PATH.
 - `skills-contract`: Adjacent; no platform consumer yet.

@@ -141,11 +141,12 @@ seams:
     contract-status: plan
 
   - id: identity-cli
-    name: The agent-bot CLI surface used by a Soul's members
+    name: The agent-bot shim and the agent-bot-identity commands used by a Soul's members
     provider: agent-bot-identity
     consumers: [agent-bot-souls]
     contract-home: agent-bot-identity README
     contract-status: repo-local
+    note: PDR-0037. agent-bot is a shim with a fixed table (hq to agent-bot-hq, soul to agent-bot-soul, any other word to agent-bot-identity); it never runs agent-bot-<word> found on PATH.
 
   - id: a2a-gateway
     name: Agent2Agent gateway at the edge, preserving provenance
