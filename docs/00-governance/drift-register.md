@@ -21,9 +21,8 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-003 Which account the daemon runs in
 
-- **Open.** agent-bot-identity ADR-0332 (Accepted) runs one daemon per OS user in the Souls' own account. S6 section 4 and agent-bot-daemon D1 run HQ in a separate account. agent-bot-identity ADR-1183 does not supersede agent-bot-identity ADR-0332.
-- **Decided 2026-11-07, open until the repository changes.** agent-bot-daemon D6 runs HQ in its own OS account, separate from the members and from agent-bot-machine's admin sandbox. That is the platform position.
-- **Resolved 2026-11-08.** agent-bot-identity ADR-1381 ([qwts/agent-bot-identity#1382](https://github.com/qwts/agent-bot-identity/pull/1382)) supersedes agent-bot-identity ADR-0332 decision 2 and cites agent-bot-daemon D6. agent-bot-machine's plans add the HQ account ([agent-bot-machine#468](https://github.com/true-line/agent-bot-machine/pull/468)).
+- **Conflict.** agent-bot-identity ADR-0332 ran one daemon per OS user in the Souls' account. S6 section 4 and agent-bot-daemon D1 run HQ in a separate account.
+- **Resolved 2026-11-08.** agent-bot-daemon D6 puts HQ in its own OS account. agent-bot-identity ADR-1381 ([qwts/agent-bot-identity#1382](https://github.com/qwts/agent-bot-identity/pull/1382)) supersedes agent-bot-identity ADR-0332 decision 2 and cites agent-bot-daemon D6.
 
 ## DRIFT-004 Wire and task contracts exist twice
 
