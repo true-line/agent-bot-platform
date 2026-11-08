@@ -73,6 +73,7 @@ nav:
       - 04-decisions/PDR-0001-platform-repository-is-the-product-source-of-truth.md
       - 04-decisions/PDR-0002-repository-topology-and-admission.md
       - 04-decisions/PDR-0020-components-read-the-platform-at-main.md
+      - 04-decisions/PDR-0023-hq-observation-uplink-for-presence-bindings-and-events.md
       - 04-decisions/PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md
       - 04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md
       - 04-decisions/decision-log.md
