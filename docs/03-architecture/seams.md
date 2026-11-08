@@ -47,5 +47,5 @@ The interfaces between repositories and where each contract lives. A seam is the
 - `harness-adapter`: requirements R8, R10
 - `error-registry`: 24 codes exist with empty descriptions and retryable null.
 - `fixtures`: requirements R7
-- `identity-cli`: PDR-0037. agent-bot is a shim with a fixed table (hq to agent-bot-hq, soul to agent-bot-soul, any other word to agent-bot-identity); it never runs agent-bot-<word> found on PATH.
+- `identity-cli`: PDR-0037. agent-bot is a shim that runs agent-bot-<name>; with agent-bot-daemon installed it resolves names from the daemon's pinned plugins, never from PATH.
 - `skills-contract`: Adjacent; no platform consumer yet.

@@ -87,7 +87,7 @@ Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), e
 
 Criteria: C1; trust domain: Trusted local host service, outside every Soul; work packages: WP2, WP4, WP6.
 
-Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable (PDR-0037); Device key and short-lived credentials held in memory.
+Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-daemon executable; installed agent-bot-* packages are its plugins (PDR-0037); Device key and short-lived credentials held in memory.
 
 Must not own: Long-lived signing keys (identity service); Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox); Wire framing or task state library code (agent-comms).
 
@@ -117,7 +117,7 @@ Follow-up: Transfer to true-line alongside agent-bot-machine.
 
 Criteria: C1, C2; trust domain: Broker mode runs inside HQ's trust domain; client mode inside the Soul (untrusted for authority); relay mode untrusted for content; work packages: WP4.
 
-Owns: Wire framing, sealing profile, mailbox, outbox, deduplication store interface; Task state machine library (decides nothing about authority); Relay mode, A2A and MCP gateways.
+Owns: Wire framing, sealing profile, mailbox, outbox, deduplication store interface; Task state machine library (decides nothing about authority); Relay mode, A2A and MCP gateways; The agent-bot-comms executable; its broker mode is a daemon plugin (PDR-0037).
 
 Must not own: Authority decisions or keys (HQ); authoritative task state (HQ's store).
 
@@ -129,7 +129,7 @@ Follow-up: Transfer to true-line; add the task/v1 codec, the wire/v1 frame and t
 
 Criteria: C2; trust domain: Inside the Soul; untrusted for authority; work packages: WP3.
 
-Owns: The agent-bot shim and the agent-bot-identity executable, git and harness hooks, fail-closed gh (PDR-0037); GitHub App attribution and commit trailers; Member surfaces it registers through hq-plugin-contract (MCP tools, CLI commands, hook handlers), each resolving to a broker query (PDR-0027).
+Owns: The agent-bot shim CLI and the agent-bot-identity executable, git and harness hooks, fail-closed gh (PDR-0037); GitHub App attribution and commit trailers; Member surfaces it registers through hq-plugin-contract (MCP tools, CLI commands, hook handlers), each resolving to a broker query (PDR-0027).
 
 Must not own: HQ authority, keyd, approvals, census (move to agent-bot-daemon per agent-bot-identity ADR-1183; built into HQ, not a plugin, per PDR-0027); Soul runtime entry point (move to the Soul runtime repo).
 
@@ -139,7 +139,7 @@ Follow-up: Transfer to true-line; retire docs/identity-contract.md in favor of t
 
 Criteria: C2; trust domain: Inside the Soul; untrusted for authority; work packages: WP3, WP5.
 
-Owns: The agent-bot-soul executable (soul run / soul chat, reached as agent-bot soul, PDR-0037), ACP server and client; Member supervision, cooperative scheduling, recovery ladder; Typed notes, dream runs and candidate staging.
+Owns: The agent-bot-souls executable (soul run / soul chat, reached through the agent-bot shim, PDR-0037), ACP server and client; Member supervision, cooperative scheduling, recovery ladder; Typed notes, dream runs and candidate staging.
 
 Must not own: Keys or grant decisions.
 
