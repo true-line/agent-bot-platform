@@ -248,13 +248,13 @@ repos:
     org: true-line
     visibility: public
     layer: soul
-    status: empty
-    component: Soul runtime (proposed)
+    status: active
+    component: Soul runtime
     trust-domain: Inside the Soul; untrusted for authority
     work-packages: [WP3, WP5]
-    purpose: Proposed home of the Soul runtime, the entry point that supervises members and runs the recovery ladder.
+    purpose: Home of the Soul runtime, the entry point that supervises members and runs the recovery ladder.
     owns:
-      - The agent-bot-souls executable (soul run / soul chat, reached through the agent-bot shim, PDR-0037), ACP server and client
+      - The agent-bot-souls executable (run / chat, reached as agent-bot souls through the agent-bot shim, PDR-0037), ACP server and client
       - Member supervision, cooperative scheduling, recovery ladder
       - Typed notes, dream runs and candidate staging
     must-not-own:
