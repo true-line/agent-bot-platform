@@ -32,7 +32,7 @@ Every repository that builds, specifies, verifies or operates the platform, with
 | qwts/agent-machine-configurations | Host and remote services | removed | Archive | No content; created 2026-10-30 with no commits. No longer on GitHub as of 2026-11-07. |
 | true-line/agent-bot-comms | Host and remote services | active | Keep | One wire for every tier, with durable mailbox, deduplication and relay mode. |
 | true-line/agent-bot-identity | Inside the Soul | active | Keep and split | The agent's identity toolset, giving each harness its own GitHub App identity and failing closed. |
-| true-line/agent-bot-souls | Inside the Soul | empty | Designate a new role | Proposed home of the Soul runtime, the entry point that supervises members and runs the recovery ladder. |
+| true-line/agent-bot-souls | Inside the Soul | active | Designate a new role | Home of the Soul runtime, the entry point that supervises members and runs the recovery ladder. |
 | true-line/soul-package | Inside the Soul | skeleton | Keep | The .soul format library, covering manifest, digests, import validation, deterministic render and transfer. |
 | true-line/soul-adapters | Inside the Soul | skeleton | Keep | Per-harness ACP adapters, render plugins and signed qualification manifests. |
 | true-line/geniusbar | Owner products (proprietary, on top of the platform) | active | Keep | The owner's macOS menubar for enrolling Souls, viewing tasks and approving actions. |
@@ -139,7 +139,7 @@ Follow-up: Retire docs/identity-contract.md in favor of the platform glossary.
 
 Criteria: C2; trust domain: Inside the Soul; untrusted for authority; work packages: WP3, WP5.
 
-Owns: The agent-bot-souls executable (soul run / soul chat, reached through the agent-bot shim, PDR-0037), ACP server and client; Member supervision, cooperative scheduling, recovery ladder; Typed notes, dream runs and candidate staging.
+Owns: The agent-bot-souls executable (run / chat, reached as agent-bot souls through the agent-bot shim, PDR-0037), ACP server and client; Member supervision, cooperative scheduling, recovery ladder; Typed notes, dream runs and candidate staging.
 
 Must not own: Keys or grant decisions.
 
