@@ -25,7 +25,7 @@ Every repository that builds, specifies, verifies or operates the platform, with
 | true-line/agent-bot-platform | Product definition | active | Keep | The product's single source of truth for intent, cross-repo design, quality bar and delivery control. |
 | true-line/soul-contracts | Contracts and verification | skeleton | Keep | Versioned machine-readable contracts every component builds against. |
 | true-line/soul-conformance | Contracts and verification | skeleton | Keep | Executable proof that implementations meet the platform's T-series specifications. |
-| true-line/agent-bot | Host and remote services | active | Keep | The owner's remote identity service and web console at agents.true-line.ai. |
+| true-line/agent-bot | Host and remote services | active | Keep | Harbor, the owner's hosted identity service and web console at agents.true-line.ai. |
 | true-line/agent-bot-hq | Host and remote services | planning | Keep | HQ, the one local authority that admits Souls, enforces grants and hosts the broker. |
 | true-line/agent-bot-machine | Host and remote services | active | Keep | The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ. |
 | qwts/managed-machine-config | Host and remote services | active | Keep | Private fleet state, app catalog inputs and host isolation profiles consumed by agent-bot-machine. |
