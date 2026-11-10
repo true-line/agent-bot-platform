@@ -112,7 +112,7 @@ repos:
     component: Identity service
     trust-domain: Owner-operated remote service; trusted for credential custody and issuance only
     work-packages: [WP2]
-    purpose: The owner's remote identity service and web console at agents.true-line.ai.
+    purpose: Harbor, the owner's hosted identity service and web console at agents.true-line.ai.
     owns:
       - Key custody, enrollment, device-bound short-lived credential minting, issuance records
       - Catalog signing key and admin catalog publish
