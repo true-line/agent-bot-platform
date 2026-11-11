@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: security
 Owner: security-reviewer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-11
 Scope: Soul Agent Platform, draft 0.4 surface
 ---
 
@@ -18,7 +18,8 @@ honestly cannot, and which tests prove each control.
 | HQ | managed-machine daemon, key store, authority DB, broker | outside the agent shell — the enforcement point (§4) |
 | Soul shell | entry point, agent-bot-comms client, notes | routes and coordinates; **never holds keys or enforces grants** |
 | Member (runtime) | one harness instance | protected profile: isolated principal + private state; cooperative profile: shares one domain with its peers |
-| Remote tiers | identity service, relays, web console | outer frames only; no launch/wake/owner/credential authority (agent-bot-comms ADR-0028) |
+| Relays and remote Souls | relays, remote Souls | outer frames only; no launch/wake/owner/credential authority (agent-bot-comms ADR-0028) |
+| Harbor | identity service, web console, control signing key | credential custody and issuance. For a machine the owner has linked it decides policy and lifecycle over `control-v1` and HQ enforces; it never executes on a host and cannot add authority without the owner's device presence ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)) |
 
 ## Assets
 
@@ -29,6 +30,7 @@ honestly cannot, and which tests prove each control.
 | Member state (homes) | package `home/<member>/` | memory poisoning, cross-member reads on cooperative |
 | `.soul` package | portable | tampering → hostile instructions on import |
 | Wire messages | in transit | relay sees outer frame only; content sealed |
+| Harbor's control signing key | agent-bot key custody | attacker can stop, deny, revoke or operate inside signed policy on linked machines; cannot add authority |
 
 ## Threats and controls
 
@@ -46,6 +48,7 @@ honestly cannot, and which tests prove each control.
 | 10 | Unauthorized local control | HQ socket | access-controlled socket, owner-session stamping on every record | §4 |
 | 11 | Rogue installer item | agent-machine | signed catalog only; never root | architecture, catalog signing |
 | 12 | Candidate smuggling (eval bypass) | dreams | eval-coverage gate, guardrail disable, partial acceptance disallowed | T27, T28 |
+| 13 | Compromised Harbor or stolen control key | `control-v1` | an action that adds authority needs the owner's device presence, verified by HQ and agent-bot-machine; key pinned at link time; rotation and revocation need owner presence; link loss keeps the last signed policy | [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md); tests not yet specified |
 
 ## Residual risks (accepted, stated)
 
@@ -54,6 +57,7 @@ honestly cannot, and which tests prove each control.
 - **Relay metadata:** timing/size observable by relays (§6)
 - **Short-lived-token route:** provider key reaches harness in that
   exception; labeled in every receipt (§4)
+- **Linked machines:** a compromised Harbor can deny service to them (stop, revoke) until the owner unlinks at the machine
 - **Unmanaged Souls:** observability at best; no general context
   feedback mechanism yet (open problem, Oct 29)
 
