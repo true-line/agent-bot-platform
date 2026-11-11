@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: index
 Owner: product-owner
-Last-Reviewed: 2026-11-08
+Last-Reviewed: 2026-11-11
 ---
 
 # Decisions
@@ -21,6 +21,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0027](PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md) | HQ identity authority lives in agent-bot-daemon | Accepted 2026-11-08 |
 | [PDR-0037](PDR-0037-agent-bot-executables-are-daemon-plugins-behind-a-shim.md) | agent-bot executables are daemon plugins behind a shim | Accepted 2026-11-08 |
 | [PDR-0040](PDR-0040-repository-renames-and-transfers-to-true-line.md) | Repository renames and transfers to true-line | Accepted 2026-11-08 |
+| [PDR-0047](PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) | Harbor is the control plane of a linked machine; HQ alone stays a complete deployment | Proposed |
 
 ## How a decision is made
 
