@@ -45,6 +45,7 @@ nav:
       - 00-governance/component-repo-contract.md
       - 00-governance/identifiers.md
       - 00-governance/drift-register.md
+      - 00-governance/drift-register-resolved.md
   - Concept:
       - 01-concept/README.md
       - 01-concept/vision.md
