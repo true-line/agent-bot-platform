@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-10
+Last-Reviewed: 2026-11-11
 Sources: S6; S1; S5; S8
 ---
 
@@ -37,7 +37,7 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | Term | Definition | Where |
 |---|---|---|
 | **HQ** | The machine's headquarters: trusted supervisor + broker; the enforcement point outside the agent shell's trust domain | S6 §3, §4 |
-| **Harbor** | The hosted service at `agents.true-line.ai`: the owner's identity service and its web console, from the agent-bot repository. Full name Agent Bot Harbor. Distinct from HQ, which runs on the machine; Harbor never holds lifecycle or execution control over a host | Owner decision 2026-11-10; S6 §3 |
+| **Harbor** | The hosted service at `agents.true-line.ai`: the owner's identity service and its web console, from the agent-bot repository. Full name Agent Bot Harbor. Distinct from HQ, which runs on the machine. For a machine the owner has linked, Harbor decides policy and lifecycle and HQ enforces; Harbor never executes on a host | Owner decision 2026-11-10; PDR-0047 |
 | **Protected** | Routed through the broker with a receipt: inference, service calls, task commits, messages/wake, credential use, lifecycle | S6 §4, §6, §7 |
 | **Cooperative** | Inside a member's own trust domain: workspace edits, local shell, harness-internal tools — reported, not enforced | S6 §4 |
 | **Managed machine** | Enrolled with the owner's identity service; two-way connection | S8 |

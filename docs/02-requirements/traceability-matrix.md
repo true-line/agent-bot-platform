@@ -16,7 +16,7 @@ Which conformance tests prove each requirement, at which stage, and which tests 
 | Requirement | Tests | Stages | Other verification |
 |---|---|---|---|
 | R1 Stable identity | T15, T16 | 3, 4 |  |
-| R2 Control stays local | T12, T24 | 3, 4 |  |
+| R2 Execution stays local | T12, T24 | 3, 4 |  |
 | R3 Authority outside the model | T01, T02, T03, T20 | 1, 2a |  |
 | R4 Owner assigns roles; evaluations advise | T22 | 3 |  |
 | R5 One ceiling, sub-allocations | T11, T26 | 2b |  |

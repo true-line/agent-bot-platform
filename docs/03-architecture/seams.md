@@ -16,6 +16,7 @@ The interfaces between repositories and where each contract lives. A seam is the
 | `hq-v1` HQ control and owner API (Hello, Admit, Equip, Ready, Lease, lifecycle, approvals) | agent-bot-hq | agent-bot-souls, geniusbar, agent-watchtower, soul-conformance | soul-contracts schemas/hq/v1 | partial |
 | `task-v1` Task commitment request, task record and nine-state machine | agent-bot-hq | agent-bot-comms, agent-bot-souls, soul-conformance | soul-contracts schemas/task/v1 | partial |
 | `observation-v1` HQ observation uplink (session presence, binding visibility, lifecycle events) | agent-bot-hq | agent-bot | soul-contracts schemas/observation/v1 | none |
+| `control-v1` Harbor control of a linked machine (signed policy bundle, relayed owner request, key rotation and revocation) | agent-bot | agent-bot-hq, agent-bot-machine | soul-contracts schemas/control/v1 | none |
 | `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-bot-comms | agent-bot-hq, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | partial |
 | `identity-service-api` Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1) | agent-bot | agent-bot-hq, agent-bot-identity | agent-bot docs/api.md | repo-local |
 | `catalog-signing` Signed admin catalog of approved apps and configurations | agent-bot | agent-bot-hq, agent-bot-machine | agent-bot | repo-local |
@@ -38,6 +39,7 @@ The interfaces between repositories and where each contract lives. A seam is the
 - `hq-v1`: requirements R2, R3, R7, R8; soul-contracts v0.4.1 has Hello, admission result, equip, ready and lease renewal, lifecycle request and approval record, each with fixtures.
 - `task-v1`: requirements R3, R5; drift DRIFT-004; PDR-0024. agent-bot-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 - `observation-v1`: requirements R1, R2, R9; PDR-0023. HQ stays authoritative; agent-bot keeps an observational projection only, with no control or execution path.
+- `control-v1`: requirements R2, R9; PDR-0047. Harbor decides and HQ enforces; a record that adds authority carries the owner's device presence signature. Separate from observation-v1, which stays read-only. No implementation before the contract and its negative fixtures exist.
 - `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
 - `identity-service-api`: requirements R3, R9; Credential issuance record is listed in S6 Appendix A but has no schema yet.
 - `hq-plugin-contract`: PDR-0027. HQ identity authority is built into agent-bot-hq, not a plugin; agent-bot-identity's plugin registers member surfaces only.

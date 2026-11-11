@@ -43,6 +43,15 @@ seams:
     requirements: [R1, R2, R9]
     note: PDR-0023. HQ stays authoritative; agent-bot keeps an observational projection only, with no control or execution path.
 
+  - id: control-v1
+    name: Harbor control of a linked machine (signed policy bundle, relayed owner request, key rotation and revocation)
+    provider: agent-bot
+    consumers: [agent-bot-hq, agent-bot-machine]
+    contract-home: soul-contracts schemas/control/v1
+    contract-status: none
+    requirements: [R2, R9]
+    note: PDR-0047. Harbor decides and HQ enforces; a record that adds authority carries the owner's device presence signature. Separate from observation-v1, which stays read-only. No implementation before the contract and its negative fixtures exist.
+
   - id: wire-v1
     name: Broker and relay frame (outer frame plus sealed envelope)
     provider: agent-bot-comms

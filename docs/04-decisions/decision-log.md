@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-11
 ---
 
 # Decision log
@@ -13,7 +13,7 @@ Platform-level decisions the owner made in other records, before or outside the 
 
 | Label | Recorded in | Decision | Platform status |
 |---|---|---|---|
-| S1 D1 | North star, owner 2026-10-24 | Split planes: messaging and presence federate upward; supervision stays machine-local. | In force; carried by R2 and R9 |
+| S1 D1 | North star, owner 2026-10-24 | Split planes: messaging and presence federate upward; supervision stays machine-local. | In force for relays and execution; PDR-0047 lets Harbor decide for a linked machine; carried by R2 and R9 |
 | S1 D2 | North star, owner 2026-10-24 | The manager is the managed-machine daemon and GeniusBar's backend. | Superseded by agent-bot-daemon D1 and PDR-0002 (DRIFT-002) |
 | S1 D3 | North star, owner 2026-10-24 | The identity CLI is the toolset inside each Soul. | In force; agent-bot-identity charter |
 | S1 D4 | North star, owner 2026-10-24 | A lead harness orchestrates; agent-comms carries and enforces that orchestration. | Partly superseded: S6 section 3 moves enforcement to the broker in HQ's trust domain; comms client checks are advisory |
@@ -37,7 +37,7 @@ From whitepaper draft 0.4 section 16 (S6) and the repository plan's blocking dec
 
 | Decision | Proposed baseline in S6 | Needed by |
 |---|---|---|
-| Owner authentication | Installing host account over the access-controlled socket; remote only through an owner-opened tunnel | Stage 1 |
+| Owner authentication | Installing host account over the access-controlled socket; remote through an owner-opened tunnel, or on a linked machine through `control-v1` with owner presence (PDR-0047) | Stage 1 |
 | Authoritative task state | Task revisions, deduplication and action records in HQ's store; comms is a mirror | Stage 1 |
 | Member isolation | Separate protected runtime principals with private state per member; Linux first | Stage 2a |
 | Epoch semantics | Commit fence at the broker; routing hint in the frame; stale-epoch mail delivered | Stage 2b |
@@ -45,8 +45,9 @@ From whitepaper draft 0.4 section 16 (S6) and the repository plan's blocking dec
 | Primitive rendering | Canonical primitives with per-adapter overrides; digests in `SoulLock.json` | Stage 3 |
 | Candidate acceptance | Whole-candidate accept or reject per cell matrix; no partial acceptance in the MVP | Stage 3 |
 | Sleep acceptance | Owner reviews control-affecting candidates in the MVP | Stage 3 |
-| Notes durability | Durable batched dream inputs; scratch in tmp; no shutdown nap | Stage 3 |
 | Definition naming | `SoulInfo.json` and `SoulLock.json` | Stage 3 |
 | Federation cryptographic profile | Reviewed endpoint sealing and enrollment profile | Stage 4 |
 | Installation authority placement | Owner-operated installation authority before partitioned takeover | Stage 4 |
 | First protected platform | One Linux reference profile; macOS per-member accounts second | Stage 2a |
+
+Settled since this list was made: notes durability, by [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) on 2026-11-11.

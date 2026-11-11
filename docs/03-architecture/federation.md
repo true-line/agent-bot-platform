@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-11
 Sources: agent-bot-comms ADR-0028 (accepted 2026-10-11); S6 §3, §6; S1
 ---
 
@@ -32,11 +32,15 @@ ID, expiry, size, wake class. Content is sealed; timing and size remain
 observable ([wire/v1](interfaces/wire-v1.md#relay-visibility),
 [data flow](../05-security-privacy/data-flow-and-retention.md#outbound-flows)).
 
-## Remote tiers have no control authority
+## Relays and remote Souls have no control authority
 
 The federation contract (agent-bot-comms ADR-0028, accepted 2026-10-11) is explicit: a
 remote soul gets **no launch, cold-wake, owner, or credential
 authority**. Supervision runs only downward from the machine manager.
+Harbor's authority over a machine the owner has linked is a separate seam,
+`control-v1`, and never travels over a relay
+([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)).
+Federation itself stays off until its cryptographic profile is reviewed.
 
 ## Enrollment
 

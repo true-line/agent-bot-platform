@@ -25,7 +25,7 @@ Every repository that builds, specifies, verifies or operates the platform, with
 | true-line/agent-bot-platform | Product definition | active | Keep | The product's single source of truth for intent, cross-repo design, quality bar and delivery control. |
 | true-line/soul-contracts | Contracts and verification | skeleton | Keep | Versioned machine-readable contracts every component builds against. |
 | true-line/soul-conformance | Contracts and verification | skeleton | Keep | Executable proof that implementations meet the platform's T-series specifications. |
-| true-line/agent-bot | Host and remote services | active | Keep | Harbor, the owner's hosted identity service and web console at agents.true-line.ai. |
+| true-line/agent-bot | Host and remote services | active | Keep | Harbor, the owner's hosted identity service, web console and control plane for linked machines at agents.true-line.ai. |
 | true-line/agent-bot-hq | Host and remote services | planning | Keep | HQ, the one local authority that admits Souls, enforces grants and hosts the broker. |
 | true-line/agent-bot-machine | Host and remote services | active | Keep | The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ. |
 | qwts/managed-machine-config | Host and remote services | active | Keep | Private fleet state, app catalog inputs and host isolation profiles consumed by agent-bot-machine. |
@@ -75,11 +75,11 @@ Must not own: What a test must prove (registry/tests.yaml in the platform).
 
 ### agent-bot
 
-Criteria: C1; trust domain: Owner-operated remote service; trusted for credential custody and issuance only; work packages: WP2.
+Criteria: C1; trust domain: Owner-operated remote service; trusted for credential custody and issuance, and for policy and lifecycle decisions on machines the owner has linked (PDR-0047); never for execution; work packages: WP2.
 
-Owns: Key custody, enrollment, device-bound short-lived credential minting, issuance records; Catalog signing key and admin catalog publish; Web console and its MCP tools; Read-only projection of HQ observations (PDR-0023).
+Owns: Key custody, enrollment, device-bound short-lived credential minting, issuance records; Catalog signing key and admin catalog publish; Web console and its MCP tools; Read-only projection of HQ observations (PDR-0023); Policy and lifecycle decisions for linked machines, the control signing key and the relay of owner-signed requests (PDR-0047).
 
-Must not own: Lifecycle or any control path to a host (R2).
+Must not own: Execution on a host, or any record that adds authority without the owner's device presence (R2, PDR-0047).
 
 Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), evaluating its durable write receipts for the GitHub write tools.
 

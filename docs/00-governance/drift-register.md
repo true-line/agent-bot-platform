@@ -88,15 +88,10 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-017 Control authority when a machine links to Harbor
 
-- **Conflict.** On 2026-11-11 the owner directed that HQ alone is a complete, supported deployment that may never link to Harbor, and that when a machine does link, Harbor becomes its control plane: a more secure control plane plus agent federation. The controlled records say remote tiers never hold control:
-  - **R2** (Approved): "Only local HQ controls lifecycle and protected operations on its host", and the owner's administrative channel terminates at local HQ.
-  - **S6 §4**: remote administration never crosses a relay; the owner reaches `hq/v1` only through a tunnel the owner opens. The [decision log](../04-decisions/decision-log.md) carries the same baseline for the open "Owner authentication" decision.
-  - **[PDR-0023](../04-decisions/PDR-0023-hq-observation-uplink-for-presence-bindings-and-events.md)** and the `observation-v1` seam: Harbor keeps a read-only projection, and the uplink carries no control or execution path.
-  - The **agent-bot charter** in `registry/repos.yaml`: Harbor is trusted for credential custody and issuance only, and must not own lifecycle or any control path to a host.
-  - The [architecture overview](../03-architecture/overview.md) and [federation](../03-architecture/federation.md) pages: remote tiers hold no control authority. The overview's diagram already labels agent-bot "control plane" beside HQ's "local control plane", so the page disagrees with itself.
-- **Open.** No side is chosen here. R2 and PDR-0023 stay in force until a PDR is accepted. [Discussion #47](https://github.com/true-line/agent-bot-platform/discussions/47) asks the question, and [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) is Proposed.
+- **Resolved 2026-11-11.** [Full record](drift-register-resolved.md#drift-017-control-authority-when-a-machine-links-to-harbor).
 
 ## DRIFT-018 Two UI repositories have no charter
 
 - **Conflict.** true-line/agent-bot-hq-ui (the on-machine HQ interface) and true-line/agent-bot-harbor-ui (Harbor console designs, a remote view of one machine's settings in `daemon-ui/`, and MCP app resources in `mcp-apps/`) exist. Neither has an entry in `registry/repos.yaml`. [PDR-0002](../04-decisions/PDR-0002-repository-topology-and-admission.md) admits no repository without a charter, keeps the web console in agent-bot and says the planned agent-bot-ui is not created. agent-bot-harbor-ui's README still calls the product "Agent Command Center", not Harbor, and names agent-bot-ui as its destination.
-- **Open.** Discussion #47 and PDR-0047 also ask which plane each interface belongs to and whether these two repositories get charters or merge into agent-bot-hq and agent-bot.
+- **Decided 2026-11-11, open until the records change.** [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) keeps both repositories as design sources for agent-bot-hq and agent-bot.
+- **Resolution.** Both get charters in `registry/repos.yaml` before work lands there. agent-bot-harbor-ui names the product Harbor in its README and stops targeting agent-bot-ui.
