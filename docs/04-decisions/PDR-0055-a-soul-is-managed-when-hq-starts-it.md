@@ -23,14 +23,16 @@ A Soul that HQ starts is a managed Soul. A Soul that HQ does not start is an unm
   - "soul without an official HQ is unmanaged soul"; "by definition its unmanaged because it's not started by hq".
   - "hq start (managed) hq doesnt start (unmanaged)".
   - A Soul started from the command line with HQ running and a Soul run with no HQ are the same thing: unmanaged.
+  - The line between managed and unmanaged is deliberate: by design, IDEs and desktop environments cannot be managed.
   - The project is large, and some things will have gaps until they are filled.
 
 ## Decision
 
 1. **Managed Soul:** a Soul that HQ starts.
 2. **Unmanaged Soul:** a Soul that HQ does not start, however else it is started: from the command line, or by an app the platform doesn't run.
-3. **There are two cases, not three.** A Soul started from the command line is unmanaged whether or not HQ is running.
-4. **Not decided here.** The enforcement profile values `managed-protected` and `managed-cooperative`, and when HQ starts Souls, stay as they are until a later decision.
+3. **IDEs and desktop environments cannot be managed, by design.** The app owns the harness, so HQ cannot start it.
+4. **There are two cases, not three.** A Soul started from the command line is unmanaged whether or not HQ is running.
+5. **Not decided here.** The enforcement profile values `managed-protected` and `managed-cooperative`, and when HQ starts Souls, stay as they are until a later decision.
 
 ## Acceptance
 

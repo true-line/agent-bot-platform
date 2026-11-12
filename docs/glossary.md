@@ -45,7 +45,7 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Managed machine** | Enrolled with the owner's identity service; two-way connection | S8 |
 | **Unmanaged machine** | Agent runs with only MCP/limited tooling, no enrolled local server | S8 |
 | **Managed Soul** | A Soul that HQ starts | PDR-0055 |
-| **Unmanaged Soul** | A Soul that HQ does not start, however else it is started: from the command line, or by an app the platform doesn't run (IDE, web chat) | PDR-0055; S8 |
+| **Unmanaged Soul** | A Soul that HQ does not start, however else it is started: from the command line, or by an app the platform doesn't run (IDE, desktop app, web chat), which by design cannot be managed | PDR-0055; S8 |
 | **Grant** | Standing authority: action/resource selectors, destinations, data restrictions, expiry, ceiling | S6 App. A |
 | **Grant handle** | A broker-generated opaque reference to a grant, bound to the admitted caller and never chosen by the caller; lasts one runtime admission | S6 §3 |
 | **Credential reference** | An opaque pointer to a short-lived credential HQ obtains from the identity service, never the secret itself | S6 §3 |
