@@ -4,7 +4,8 @@
 # docs/02-requirements/product-requirements.md and the traceability matrix
 # are generated from this file by tools/gen_docs.py; edit here, never there.
 #
-# Statements are carried verbatim from whitepaper draft 0.4 section 2 (S6);
+# Statements are carried verbatim from whitepaper draft 0.4 section 2 (S6),
+# except where `source` names the PDR that reworded one;
 # traceability from its Appendix D. R1 to R12 were approved with PDR-0001
 # (accepted 2026-11-07, discussion #1); a change to one needs a PR the owner
 # approves. "pillars" is the platform's quality-goal classification
