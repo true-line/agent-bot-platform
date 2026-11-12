@@ -50,7 +50,7 @@ HQ with no Harbor link is a complete, supported deployment. When the owner links
 
 ## Acceptance
 
-The owner accepted option B on 2026-11-11 in the marked answer to [discussion #47](https://github.com/true-line/agent-bot-platform/discussions/47), with seven conditions. Points 4, 6, 9, 11, 12, 14 and 15 carry them, and point 13 records the key handling the answer asked this record to write down.
+Option B was accepted on the owner's behalf on 2026-11-11 in the marked answer to [discussion #47](https://github.com/true-line/agent-bot-platform/discussions/47), with seven conditions. An agent posted that answer for the owner; the owner confirms it by merging this record. Points 4, 6, 9, 11, 12, 14 and 15 carry them, and point 13 records the key handling the answer asked this record to write down.
 
 ## Consequences
 

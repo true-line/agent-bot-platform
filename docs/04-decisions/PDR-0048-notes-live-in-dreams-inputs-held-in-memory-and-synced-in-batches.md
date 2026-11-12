@@ -32,7 +32,7 @@ Ordinary notes live at `dreams/inputs/` inside the Soul. The working copy is hel
 
 ## Acceptance
 
-The owner accepted option B on 2026-11-11 in the marked answer to [discussion #48](https://github.com/true-line/agent-bot-platform/discussions/48), with four conditions: soul-contracts names the write-through kinds and tests show they survive a crash; clean stops flush; the mount stays under the Soul's access control and is torn down without a leftover copy; and batched sync keeps S6's forgetting rule. Points 2, 3, 4 and 6 carry them.
+Option B was accepted on the owner's behalf on 2026-11-11 in the marked answer to [discussion #48](https://github.com/true-line/agent-bot-platform/discussions/48). An agent posted that answer for the owner; the owner confirms it by merging this record. The answer has four conditions: soul-contracts names the write-through kinds and tests show they survive a crash; clean stops flush; the mount stays under the Soul's access control and is torn down without a leftover copy; and batched sync keeps S6's forgetting rule. Points 2, 3, 4 and 6 carry them.
 
 ## Consequences
 
