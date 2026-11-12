@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: interface
 Owner: portability-implementer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-12
 Normative-Source: true-line/soul-package (§11); overview paper v0.3
 ---
 
@@ -26,7 +26,7 @@ trees, transfer records.
 | `memorial/` | long-term memory | travels (life) |
 | `dreams/` | dream inputs, runs, evals, candidates | travels (life) |
 | `comms/` | mirror only — authority lives in HQ | travels (life, as mirror) |
-| `home/<member>/` | per-member state (state redirection target) | travels (life) |
+| `home/<member>/` | per-agent state (state redirection target); whether the path is renamed is unspecified (PDR-0053) | travels (life) |
 | `workspaces/` | mediated workspace views | travels (life) |
 | `cache/` | rebuildable | rebuilt |
 | `host/` | host-written state | recreated |

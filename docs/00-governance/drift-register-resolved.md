@@ -42,7 +42,7 @@ Full records of the [drift register](drift-register.md) entries that are resolve
   - **An SDK `wire/` folder** in agent-bot-daemon, which does not own wire framing. The folder holds shared codecs (binding proof, presence verifier, canonical JSON), not framing.
 - **Resolved 2026-11-08.** [agent-bot-daemon#83](https://github.com/true-line/agent-bot-daemon/pull/83) made the plan follow the catalog and named the codecs non-framing. [PDR-0027](../04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md) answered discussion #27: HQ identity authority is built into agent-bot-daemon; agent-bot-identity's plugin registers member surfaces only.
 
-## DRIFT-017 Control authority when a machine links to Harbor
+## DRIFT-019 Control authority when a machine links to Harbor
 
 - **Conflict.** On 2026-11-11 the owner directed that HQ alone is a complete, supported deployment that may never link to Harbor, and that when a machine does link, Harbor becomes its control plane: a more secure control plane plus agent federation. The controlled records say remote tiers never hold control:
   - **R2** (Approved): "Only local HQ controls lifecycle and protected operations on its host", and the owner's administrative channel terminates at local HQ.

@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-11
+Last-Reviewed: 2026-11-12
 ---
 
 # Drift register
@@ -50,7 +50,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-009 "Soul" and "principal" mean different things
 
-- **Open.** S6 section 3 defines a Soul as a persistent multi-member agent and a principal as a human or organization; the platform [glossary](../glossary.md) carries those definitions since soul-contracts moved its glossary there ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning.
+- **Open.** S6 section 3 defines a Soul as a persistent multi-member agent and a principal as a human or organization; the platform [glossary](../glossary.md) carries those definitions since soul-contracts moved its glossary there ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning. Since PDR-0053 the glossary defines a Soul as a package, not an agent.
 - **Resolution.** The platform [glossary](../glossary.md) is the single home after PDR-0001; agent-comms records the older meaning as superseded.
 
 ## DRIFT-010 Short labels collide
@@ -86,11 +86,16 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Resolved 2026-11-08.** [Full record](drift-register-resolved.md#drift-016-the-daemon-plan-gave-hq-authority-to-other-repositories).
 
-## DRIFT-017 Control authority when a machine links to Harbor
+## DRIFT-017 Component records still say "member"
 
-- **Resolved 2026-11-11.** [Full record](drift-register-resolved.md#drift-017-control-authority-when-a-machine-links-to-harbor).
+- **Open.** PDR-0053 retires "member" for what runs in a harness and makes the account unit one OS account per harness credential. soul-contracts prose and field descriptions, and agent-bot-comms, agent-bot-souls and agent-bot-machine prose, still say "member". agent-bot-hq D7 and its plan rows 16a to 16d give each member its own OS account and keep state in the member's home.
+- **Resolution.** Each repository corrects its prose to the [glossary](../glossary.md); contract field names such as `member_id` stay. agent-bot-hq replaces the account unit in agent-bot-hq D7 with PDR-0053's.
 
-## DRIFT-018 Two UI repositories have no charter
+## DRIFT-019 Control authority when a machine links to Harbor
+
+- **Resolved 2026-11-11.** [Full record](drift-register-resolved.md#drift-019-control-authority-when-a-machine-links-to-harbor).
+
+## DRIFT-020 Two UI repositories have no charter
 
 - **Conflict.** true-line/agent-bot-hq-ui (the on-machine HQ interface) and true-line/agent-bot-harbor-ui (Harbor console designs, a remote view of one machine's settings in `daemon-ui/`, and MCP app resources in `mcp-apps/`) exist. Neither has an entry in `registry/repos.yaml`. [PDR-0002](../04-decisions/PDR-0002-repository-topology-and-admission.md) admits no repository without a charter, keeps the web console in agent-bot and says the planned agent-bot-ui is not created. agent-bot-harbor-ui's README still calls the product "Agent Command Center", not Harbor, and names agent-bot-ui as its destination.
 - **Decided 2026-11-11, open until the records change.** [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) keeps both repositories as design sources for agent-bot-hq and agent-bot.

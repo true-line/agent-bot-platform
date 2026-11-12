@@ -81,6 +81,7 @@ nav:
       - 04-decisions/PDR-0040-repository-renames-and-transfers-to-true-line.md
       - 04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md
       - 04-decisions/PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md
+      - 04-decisions/PDR-0053-soul-life-and-agent-replace-member.md
       - 04-decisions/decision-log.md
       - 04-decisions/cross-repo-adr-index.md
   - Security and privacy:

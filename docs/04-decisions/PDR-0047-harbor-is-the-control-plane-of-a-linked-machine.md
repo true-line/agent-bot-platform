@@ -17,8 +17,8 @@ HQ with no Harbor link is a complete, supported deployment. When the owner links
 ## Context
 
 - R2 said only local HQ controls lifecycle and protected operations, and S6 §4 allows remote administration only through a tunnel the owner opens. PDR-0023 gave Harbor a read-only projection with no control path.
-- On 2026-11-11 the owner set a different direction (DRIFT-017): the local piece is open source and may never link to Harbor; Harbor is parity with local plus the wider machine network; once a machine links, Harbor is the control plane. Harbor and the local piece share one implementation, with Harbor's features added on top.
-- Two interface repositories existed without charters (DRIFT-018), and soul-contracts has no record for an owner session, device enrolment, a machine plan, or anything Harbor sends to HQ.
+- On 2026-11-11 the owner set a different direction (DRIFT-019): the local piece is open source and may never link to Harbor; Harbor is parity with local plus the wider machine network; once a machine links, Harbor is the control plane. Harbor and the local piece share one implementation, with Harbor's features added on top.
+- Two interface repositories existed without charters (DRIFT-020), and soul-contracts has no record for an owner session, device enrolment, a machine plan, or anything Harbor sends to HQ.
 
 ## Decision
 
@@ -28,7 +28,7 @@ HQ with no Harbor link is a complete, supported deployment. When the owner links
 4. **Three classes of action.**
    - *Reduce* (stop, deny, revoke, quarantine): a Harbor signature is enough.
    - *Operate inside policy* (start, restart or drain an admitted Soul; offer a task): a Harbor signature under the owner's link grant; HQ refuses anything the signed policy does not already allow.
-   - *Widen* (a policy write that adds authority, member or account creation, key or credential provisioning, installs, machine plans, link changes): the record carries the owner's device presence signature. Harbor relays it and cannot originate it. HQ and agent-bot-machine each verify it, whatever path it arrived on (agent-bot-hq D4).
+   - *Widen* (a policy write that adds authority, harness account creation, key or credential provisioning, installs, machine plans, link changes): the record carries the owner's device presence signature. Harbor relays it and cannot originate it. HQ and agent-bot-machine each verify it, whatever path it arrived on (agent-bot-hq D4).
 5. **Local override is deny-only while linked.** At the machine the owner can stop, deny, revoke and unlink. Granting beyond Harbor's policy needs an unlink first.
 6. **Link loss fails closed.** HQ keeps enforcing the last signed policy, accepts only reduce actions and never widens. Work that needs no new credential continues (R9). Whether a signed policy expires while the link is down is unspecified here and is settled in the `control/v1` contract.
 7. **Link and unlink happen at the machine.** Only the owner, with device presence, links or unlinks. Harbor cannot enrol a machine on its own or prevent an unlink. After an unlink the machine is local-only and holds its own policy and credentials.
@@ -54,7 +54,7 @@ The owner accepted option B on 2026-11-11 in the marked answer to [discussion #4
 
 ## Consequences
 
-- **agent-bot-platform.** Done with this record: R2 reworded, `control-v1` added, the agent-bot charter changed and the architecture pages updated, which resolves DRIFT-017. Still to do: the two interface charters, which close DRIFT-018 with agent-bot-harbor-ui's README change, and tests in `registry/tests.yaml` for points 4, 5, 6, 13 and 14.
+- **agent-bot-platform.** Done with this record: R2 reworded, `control-v1` added, the agent-bot charter changed and the architecture pages updated, which resolves DRIFT-019. Still to do: the two interface charters, which close DRIFT-020 with agent-bot-harbor-ui's README change, and tests in `registry/tests.yaml` for points 4, 5, 6, 13 and 14.
 - **agent-bot-hq.** Verify and enforce `control/v1` records; classify every owner API call as reduce, operate or widen; keep the last signed policy; link, unlink, key pinning and revocation behind owner presence.
 - **agent-bot (Harbor).** Author and sign policy; relay owner-signed requests unmodified; hold no code path that creates a widening record. Record the control key's custody and rotation schedule in its own ADR. Build fleet features over `hq/v1` records.
 - **agent-bot-machine.** Verify owner presence itself for every widening action; store the linked policy; on unlink, hold local policy and credentials again.
@@ -64,7 +64,7 @@ The owner accepted option B on 2026-11-11 in the marked answer to [discussion #4
 
 ## Alternatives considered
 
-- **Keep R2 as written.** Smallest attack surface, but no fleet control, and DRIFT-017 stays open.
+- **Keep R2 as written.** Smallest attack surface, but no fleet control, and DRIFT-019 stays open.
 - **Give Harbor an execution channel.** One Harbor compromise owns every linked machine.
 - **Two separate products.** Two implementations drift, and parity cannot be tested.
 - **Carry control on the observation uplink.** PDR-0023 rejected mixing monitoring with control; a separate seam keeps the projection provably read-only.

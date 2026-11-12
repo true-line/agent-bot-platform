@@ -41,7 +41,7 @@ Five identifiers, attributed separately (§1): **Soul**, **member**,
 **installation**, **runtime**, **session**. Census records all five; the
 Soul ID is stable across revisions, hosts, and harness swaps; a new Soul
 ID comes only from a template or a fork
-([glossary](../../glossary.md), [sessions](../lifecycle.md#souls-members-installations-runtimes-sessions)).
+([glossary](../../glossary.md), [sessions](../lifecycle.md#souls-agents-installations-runtimes-sessions)).
 
 ## Versioning
 

@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-11
+Last-Reviewed: 2026-11-12
 ---
 
 # Decision log
@@ -26,7 +26,7 @@ Platform-level decisions the owner made in other records, before or outside the 
 | agent-bot-daemon D4 | daemon plan section 10.1, owner 2026-10-31 | Host-side credentials and policy live in agent-bot-machine's admin sandbox; owner presence is a Secure Enclave signature verified there. | In force; changes the trust-domain table, see [trust domains](../03-architecture/trust-domains-and-profiles.md) |
 | agent-bot-daemon D5 | daemon plan section 10.1, owner 2026-11-07 | The WP1 contracts (schemas, fixtures, error registry) live in soul-contracts; agent-bot-daemon pins a release by digest and keeps no copies. | In force; PDR-0001 decision 3 gives soul-contracts the same scope |
 | agent-bot-daemon D6 | daemon plan section 10.1, owner 2026-11-07 | HQ runs in its own OS account (`_agent-bot-hq` on macOS, `agent-bot-hq` on Linux), created by agent-bot-machine and separate from its admin sandbox. Members and the owner's account cannot read HQ's store. | In force; DRIFT-003 resolved by agent-bot-identity ADR-1381 |
-| agent-bot-daemon D7 | daemon plan section 10.1, owner 2026-11-07 | On macOS each Soul member gets its own OS account, so two members on the same harness never share state (S6 section 4; T01 to T03). Agents the owner runs in their own account as delegates stay there. The SOP's per-harness account record is amended to per-member. | In force; settles the macOS principal for member isolation, which stays open for Linux |
+| agent-bot-daemon D7 | daemon plan section 10.1, owner 2026-11-07 | On macOS each Soul member gets its own OS account, so two members on the same harness never share state (S6 section 4; T01 to T03). Agents the owner runs in their own account as delegates stay there. The SOP's per-harness account record is amended to per-member. | Account unit superseded by PDR-0053: one OS account per harness credential, not per member (DRIFT-017). Isolation between agents stays open |
 | agent-bot-identity ADR-1183 | identity repository | Split agent-bot into daemon, identity, comms and soul-runtime repositories. | In force; duplicated in two other places (DRIFT-011) |
 | agent-bot-identity ADR-0274 | identity repository | The product is mechanism; add-ons and SOP packs carry policy. | In force; candidate product principle |
 | agent-comms ADR-0028 | comms repository, accepted 2026-10-11 | Federation policy for relays. | In force; constrains seam `wire-v1` |
