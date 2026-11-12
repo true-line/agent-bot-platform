@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: security
 Owner: security-reviewer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-11
 Scope: key material and credential flow
 ---
 
@@ -49,6 +49,15 @@ sealed outer frames ([federation](../03-architecture/federation.md)).
 The admin catalog is **signed on admin publish**; the installer accepts
 catalog items only, runs as brew admin, never root (architecture,
 [components diagram](../03-architecture/overview.md#components-today)).
+
+## Control signing
+
+On a machine the owner has linked, Harbor signs policy and lifecycle
+records with a control key of its own, separate from the catalog and
+credential-minting keys. HQ pins it at link time, and rotation and
+revocation need the owner's device presence. Its custody, rotation and
+revocation are decided in
+[PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md).
 
 ## What a reviewer should ask for
 

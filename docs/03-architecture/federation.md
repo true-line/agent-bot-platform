@@ -8,8 +8,8 @@ Sources: agent-bot-comms ADR-0028 (accepted 2026-10-11); S6 §3, §6; S1
 
 # Federation: site hubs, cloud hubs, relays
 
-How agents talk across machines and tiers — and why remote tiers hold no
-power over your machine.
+How agents talk across machines and tiers — and why relays and remote
+Souls hold no power over your machine.
 
 ## Who can talk to whom
 
