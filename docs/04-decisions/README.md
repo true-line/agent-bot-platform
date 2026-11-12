@@ -25,6 +25,8 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md) | A Soul is managed when HQ starts it | Accepted 2026-11-12 |
 | [PDR-0047](PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) | Harbor is the control plane of a linked machine; HQ alone stays a complete deployment | Proposed |
 | [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) | Notes live in dreams/inputs, held in memory and synced to the Soul in batches | Proposed |
+| [PDR-0047](PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) | Harbor is the control plane of a linked machine; HQ alone stays a complete deployment | Accepted 2026-11-11; rewords R2, amends PDR-0002 |
+| [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) | Notes live in dreams/inputs, held in memory and synced to the Soul in batches | Accepted 2026-11-11 |
 
 ## How a decision is made
 
