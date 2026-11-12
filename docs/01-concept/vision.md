@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: concept
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-11
 Sources: S1
 ---
 
@@ -19,7 +19,8 @@ addresses.**
 
 - Messaging and presence run **up** from the Soul to hubs.
 - Supervision runs **down** only, from the machine manager to harnesses.
-- Remote tiers never hold control authority.
+- Remote tiers never execute on a host. Harbor decides for a machine the owner has linked, and HQ enforces
+  ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)).
 
 ## Build on what exists
 

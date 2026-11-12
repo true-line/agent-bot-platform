@@ -21,11 +21,6 @@
         "path": "docs/03-architecture/repository-catalog.md",
         "budget": 3300,
         "reason": "Generated from registry/repos.yaml: one row and one charter per repository, which is the contract agents read before creating or changing a repository. Splitting would separate a charter from the catalog. It shrinks as PDR-0002's merges and archives land; the next breach should be re-examined, not reflexively raised."
-      },
-      {
-        "path": "docs/00-governance/drift-register.md",
-        "budget": 2900,
-        "reason": "Append-only: entries are never deleted, so the register grows with each recorded conflict, and tools/check_platform.py resolves DRIFT IDs from this one file, so it cannot be split without changing the checker. Raised for DRIFT-017 (PDR-0053); the next breach should be re-examined, not reflexively raised."
       }
     ],
     "contextSets": []

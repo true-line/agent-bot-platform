@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-11
 Sources: S3; S1; S6
 ---
 
@@ -29,8 +29,13 @@ agent-machine is agent-bot-machine, agent-soul is the Soul runtime
 - **Messaging and presence** run *up* — from the Soul to site and cloud
   hubs (relays see outer frames only).
 - **Supervision** runs *down* only — from the machine manager (HQ) to
-  harnesses. Remote tiers hold **no control authority**: no launch, no
-  cold-wake, no owner or credential authority.
+  harnesses. Relays and remote Souls hold **no control authority**: no
+  launch, no cold-wake, no owner or credential authority.
+- **Decision and execution are separate.** HQ alone is a complete
+  deployment. On a machine the owner has linked, Harbor decides policy and
+  lifecycle and HQ enforces; only HQ executes, and an action that adds
+  authority carries the owner's device presence signature
+  ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)).
 
 ## Components today
 

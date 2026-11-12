@@ -110,17 +110,18 @@ repos:
     layer: host
     status: active
     component: Identity service
-    trust-domain: Owner-operated remote service; trusted for credential custody and issuance only
+    trust-domain: Owner-operated remote service; trusted for credential custody and issuance, and for policy and lifecycle decisions on machines the owner has linked (PDR-0047); never for execution
     work-packages: [WP2]
-    purpose: Harbor, the owner's hosted identity service and web console at agents.true-line.ai.
+    purpose: Harbor, the owner's hosted identity service, web console and control plane for linked machines at agents.true-line.ai.
     owns:
       - Key custody, enrollment, device-bound short-lived credential minting, issuance records
       - Catalog signing key and admin catalog publish
       - Web console and its MCP tools
       - Read-only projection of HQ observations (PDR-0023)
+      - Policy and lifecycle decisions for linked machines, the control signing key and the relay of owner-signed requests (PDR-0047)
     must-not-own:
-      - Lifecycle or any control path to a host (R2)
-    provides: [identity-service-api, catalog-signing, mcp-tools]
+      - Execution on a host, or any record that adds authority without the owner's device presence (R2, PDR-0047)
+    provides: [identity-service-api, catalog-signing, mcp-tools, control-v1]
     consumes: [observation-v1]
     criteria: [C1]
     disposition: keep
@@ -146,7 +147,7 @@ repos:
       - Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox)
       - Wire framing or task state library code (agent-bot-comms)
     provides: [hq-v1, hq-plugin-contract, task-v1, observation-v1]
-    consumes: [identity-service-api, catalog-signing, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]
+    consumes: [identity-service-api, catalog-signing, control-v1, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]
     criteria: [C1]
     disposition: keep
     follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architecture, decisions D1-D4) into the platform; add AGENTS.md with the governed block.
@@ -167,7 +168,7 @@ repos:
     must-not-own:
       - HQ authority (S7 made it HQ; agent-bot-hq D1 moved HQ to agent-bot-hq, see DRIFT-002)
     provides: [daemon-machine-channel]
-    consumes: [catalog-signing]
+    consumes: [catalog-signing, control-v1]
     criteria: [C1]
     disposition: keep
     follow-up: README still introduces it as managed-machine.

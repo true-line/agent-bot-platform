@@ -9,12 +9,12 @@ Generated-From: registry/requirements.yaml
 
 # Product requirements
 
-The twelve product requirements every component must uphold, and the quality-attribute requirements that set how well it must uphold them. Each "must" or "never" in a contract or design document traces to one of these. R-series wording is verbatim from whitepaper draft 0.4 section 2 (S6). The owner approved R1 to R12 with PDR-0001 on 2026-11-07; changing one needs a PR the owner approves.
+The twelve product requirements every component must uphold, and the quality-attribute requirements that set how well it must uphold them. Each "must" or "never" in a contract or design document traces to one of these. R-series wording is verbatim from whitepaper draft 0.4 section 2 (S6), except where a requirement's Source line names the PDR that reworded it; the wording on this page is the normative one. The owner approved R1 to R12 with PDR-0001 on 2026-11-07; changing one needs a PR the owner approves.
 
 | ID | Title | Pillars | Verified by | First gate |
 |---|---|---|---|---|
 | R1 | Stable identity | accuracy, security | T15, T16 | 3 |
-| R2 | Control stays local | security | T12, T24 | 3 (T24), 4 (T12) |
+| R2 | Execution stays local | security | T12, T24 | 3 (T24), 4 (T12) |
 | R3 | Authority outside the model | security | T01, T02, T03, T20 | 1 (T20), 2a |
 | R4 | Owner assigns roles; evaluations advise | intelligence, privacy, security | T22 | 3 |
 | R5 | One ceiling, sub-allocations | security, operability | T11, T26 | 2b |
@@ -34,11 +34,11 @@ A Soul has one stable public identity. Members, installations, runtimes, session
 
 Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 5, 11.
 
-### R2 Control stays local
+### R2 Execution stays local
 
-Only local HQ controls lifecycle and protected operations on its host. Relays deliver messages and presence; they do not obtain an execution channel. The owner's administrative channel also terminates at local HQ.
+Only local HQ executes lifecycle and protected operations on its host. In a local-only deployment HQ also decides them. On a machine the owner has linked, Harbor decides and HQ enforces; an action that adds authority carries the owner's device presence signature, verified on the host. Relays deliver messages and presence; no remote tier obtains an execution channel.
 
-Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 4 (administration), 5, 6.
+Status: Approved. Source: S6 §2 (draft 0.4), reworded by PDR-0047. Specified in S6 §3, 4 (administration), 5, 6; PDR-0047.
 
 ### R3 Authority outside the model
 

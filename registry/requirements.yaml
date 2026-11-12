@@ -4,7 +4,8 @@
 # docs/02-requirements/product-requirements.md and the traceability matrix
 # are generated from this file by tools/gen_docs.py; edit here, never there.
 #
-# Statements are carried verbatim from whitepaper draft 0.4 section 2 (S6);
+# Statements are carried verbatim from whitepaper draft 0.4 section 2 (S6),
+# except where `source` names the PDR that reworded one;
 # traceability from its Appendix D. R1 to R12 were approved with PDR-0001
 # (accepted 2026-11-07, discussion #1); a change to one needs a PR the owner
 # approves. "pillars" is the platform's quality-goal classification
@@ -31,13 +32,14 @@ requirements:
   - accuracy
   - security
 - id: R2
-  title: Control stays local
-  statement: Only local HQ controls lifecycle and protected operations on its host. Relays deliver messages
-    and presence; they do not obtain an execution channel. The owner's administrative channel also terminates
-    at local HQ.
+  title: Execution stays local
+  statement: Only local HQ executes lifecycle and protected operations on its host. In a local-only deployment
+    HQ also decides them. On a machine the owner has linked, Harbor decides and HQ enforces; an action that
+    adds authority carries the owner's device presence signature, verified on the host. Relays deliver messages
+    and presence; no remote tier obtains an execution channel.
   status: Approved
-  source: S6 §2 (draft 0.4)
-  specified-in: S6 §3, 4 (administration), 5, 6
+  source: S6 §2 (draft 0.4), reworded by PDR-0047
+  specified-in: S6 §3, 4 (administration), 5, 6; PDR-0047
   verified-by:
   - T12
   - T24

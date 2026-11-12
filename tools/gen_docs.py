@@ -85,7 +85,8 @@ def product_requirements(req, qa):
         "quality-attribute requirements that set how well it must uphold them. "
         "Each \"must\" or \"never\" in a contract or design document traces to "
         "one of these. R-series wording is verbatim from whitepaper draft 0.4 "
-        "section 2 (S6). The owner approved R1 to R12 with PDR-0001 on "
+        "section 2 (S6), except where a requirement's Source line names the PDR "
+        "that reworded it; the wording on this page is the normative one. The owner approved R1 to R12 with PDR-0001 on "
         "2026-11-07; changing one needs a PR the owner approves.\n"
     )
     out.extend(requirement_table(req))

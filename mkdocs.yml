@@ -45,6 +45,7 @@ nav:
       - 00-governance/component-repo-contract.md
       - 00-governance/identifiers.md
       - 00-governance/drift-register.md
+      - 00-governance/drift-register-resolved.md
   - Concept:
       - 01-concept/README.md
       - 01-concept/vision.md
@@ -78,6 +79,8 @@ nav:
       - 04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md
       - 04-decisions/PDR-0037-agent-bot-executables-are-daemon-plugins-behind-a-shim.md
       - 04-decisions/PDR-0040-repository-renames-and-transfers-to-true-line.md
+      - 04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md
+      - 04-decisions/PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md
       - 04-decisions/PDR-0053-soul-life-and-agent-replace-member.md
       - 04-decisions/PDR-0055-a-soul-is-managed-when-hq-starts-it.md
       - 04-decisions/decision-log.md
