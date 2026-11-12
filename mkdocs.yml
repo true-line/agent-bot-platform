@@ -78,6 +78,7 @@ nav:
       - 04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md
       - 04-decisions/PDR-0037-agent-bot-executables-are-daemon-plugins-behind-a-shim.md
       - 04-decisions/PDR-0040-repository-renames-and-transfers-to-true-line.md
+      - 04-decisions/PDR-0053-soul-life-and-agent-replace-member.md
       - 04-decisions/decision-log.md
       - 04-decisions/cross-repo-adr-index.md
   - Security and privacy:

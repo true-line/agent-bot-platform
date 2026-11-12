@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-12
 Scope: support model, hosts, escalation
 ---
 
@@ -15,7 +15,7 @@ What support owes operators and what operators owe support.
 | Host | Profile | Status |
 |---|---|---|
 | Linux reference host | **protected** | MVP target (§13) |
-| macOS | **cooperative** | MVP target; per-member protected profile is Stage 4 |
+| macOS | **cooperative** | MVP target; protected profile is Stage 4, mechanism unspecified since PDR-0053 drops per-member accounts |
 | Windows | — | later (§16) |
 | Declared reference machine | — | latency targets (§14); [UNSPECIFIED] hardware spec for local models |
 
