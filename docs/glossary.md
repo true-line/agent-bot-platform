@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-10
+Last-Reviewed: 2026-11-12
 Sources: S6; S1; S5; S8
 ---
 
@@ -16,19 +16,21 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 
 | Term | Definition | Where |
 |---|---|---|
-| **Soul** | The smallest unit the network addresses; one stable ID across revisions, hosts, harnesses | S6 §1; S1 |
-| **Member** | A harness brain-region inside a Soul, with a Soul-qualified ID | S5 |
+| **Soul** | A package: a definition plus what its Life has captured. One stable ID. It runs by itself or, preferably, managed by HQ. A Soul is not an agent | PDR-0053; S6 §1; S1 |
+| **Member** | Retired by PDR-0053; write **agent**. It meant a harness brain-region inside a Soul, with a Soul-qualified ID. Contract field names keep it: `member_id` identifies an agent of a Soul | S5; PDR-0053 |
 | **Installation** | One admitted placement of a Soul on a host; fenced by installation epoch | S6 §5, §7 |
-| **Runtime** | A launched process executing a member; fresh credentials on replacement | S5 |
+| **Runtime** | A launched process executing an agent; fresh credentials on replacement | S5 |
 | **Session** | A bounded interaction context, one per context/conversation | S8 |
 | **Binding** | HQ's association of one session with one worktree, for the Soul the session acts for; ends on unbind, session end or revocation; not a grant | PDR-0023 |
 | **Presence** | HQ's observation that a session is live, from a named evidence source; distinct from daemon health, binding and model activity | PDR-0023 |
 | **Definition revision** | An immutable revision of the Soul's definition; sleep/upgrade produce new ones; ID never changes | S1 D3, S1 D4 |
 | **Principal** | A human or organization that can own or delegate authority, independent of any agent | S6 §3; in conflict, DRIFT-009 |
 | **Owner** | The principal whose host account installed HQ and who configures a Soul's authority | S6 §3 |
-| **Life** | A Soul's selected durable state: knowledge, dream inputs, comms mirror, member homes and workspaces; it moves with the Soul and is distinct from the definition | S6 §3 |
-| **Lead** | The one member that plans, routes work and may finalize task decisions | S6 §3 |
-| **Specialist** | A member that returns proposals and evidence to the lead | S6 §3 |
+| **Life** | A Soul running over time. It captures memories, experiences and new abilities. Its captured state is stored in the package and moves with the Soul | PDR-0053 |
+| **Lead** | The Life's brain: the one harness that orchestrates, routes work and finalizes decisions | PDR-0053 |
+| **Agent** | What runs in a harness inside a Life: a motor function, talent or trait of the Life. Not the equivalent of a person; the Life is. One Life has several | PDR-0053 |
+| **Harness** | The program an agent runs in. One credential and one OS account per harness credential | PDR-0053 |
+| **Specialist** | An agent that returns proposals and evidence to the lead | S6 §3 |
 | **Enrollment** | One-time registration of a Soul, node or relay with an owner-confirmed challenge; lasts until revoked | S6 §3 |
 | **Admission (clock-in)** | Per-start verification of a Soul and its runtimes by local HQ | S6 §3 |
 
@@ -39,7 +41,7 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **HQ** | The machine's headquarters: trusted supervisor + broker; the enforcement point outside the agent shell's trust domain | S6 §3, §4 |
 | **Harbor** | The hosted service at `agents.true-line.ai`: the owner's identity service and its web console, from the agent-bot repository. Full name Agent Bot Harbor. Distinct from HQ, which runs on the machine; Harbor never holds lifecycle or execution control over a host | Owner decision 2026-11-10; S6 §3 |
 | **Protected** | Routed through the broker with a receipt: inference, service calls, task commits, messages/wake, credential use, lifecycle | S6 §4, §6, §7 |
-| **Cooperative** | Inside a member's own trust domain: workspace edits, local shell, harness-internal tools — reported, not enforced | S6 §4 |
+| **Cooperative** | Inside an agent's own trust domain: workspace edits, local shell, harness-internal tools — reported, not enforced | S6 §4 |
 | **Managed machine** | Enrolled with the owner's identity service; two-way connection | S8 |
 | **Unmanaged machine** | Agent runs with only MCP/limited tooling, no enrolled local server | S8 |
 | **Managed Soul** | Harnesses launched and run by its soul package | S8 |
@@ -55,11 +57,11 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | Term | Definition | Where |
 |---|---|---|
 | **Task** | A unit of work with resource scope + exclusive write scope; nine-state machine | S6 §7 |
-| **Receipt** | Broker-issued record: task, caller (member+runtime), destination, adapter route, settled cost | S6 §7 |
+| **Receipt** | Broker-issued record: task, caller (agent+runtime), destination, adapter route, settled cost | S6 §7 |
 | **Outcome unknown** | Terminal ambiguity; reconcile via broker lookup, never blind replay | S6 §7, T06 |
 | **Wake class** | Delivery scheduling class on the wire frame | S6 §6 |
 | **Directive** | A task offer from HQ backed by authenticated local authority; peer text cannot acquire the kind | S6 §3, T04 |
-| **Query** | A member's question to HQ, answered with a decision record | S6 §3 |
+| **Query** | An agent's question to HQ, answered with a decision record | S6 §3 |
 | **Send reservation** | Outbox reservation; settles on retry or cancel | S6 §8 |
 
 ## Memory and improvement

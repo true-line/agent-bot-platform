@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-12
 Sources: S6 §5, §9; S1; Oct 29 vocabulary
 ---
 
@@ -20,8 +20,8 @@ are **one flow** (the clock-in flow):
 Hello → Admit → Equip → Brief → Ready → Lease
 ```
 
-- **Hello** announces Soul, member, installation, runtime, session
-  identities
+- **Hello** announces Soul, agent (`member_id`, PDR-0053), installation,
+  runtime, session identities
 - **Admit** validates and admits; the result names profile + definition
   digest
 - **Equip** returns **credential references** — never secrets
@@ -34,7 +34,7 @@ Hello → Admit → Equip → Brief → Ready → Lease
 Life transfer on a new host: **validate, restore, rebuild indexes,
 reconnect credentials, report gaps** (§11).
 
-## Souls, members, installations, runtimes, sessions
+## Souls, agents, installations, runtimes, sessions
 
 Five identifiers, attributed separately (§1). The Oct 29 vocabulary
 sharpened the everyday cases:

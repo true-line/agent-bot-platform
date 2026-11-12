@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-12
 Sources: S6 §4; S8; agent-bot-hq D4
 ---
 
@@ -37,17 +37,23 @@ records which repository owns each half.
 Under the protected profile (Linux reference host), every protected
 operation is brokered *and* containment is enforced:
 
-- HQ-controlled launch of every member runtime
+- HQ-controlled launch of every agent runtime
 - per-member principals
 - protected connection binding
 - caller-bound handles
 - private member state (state redirection into the member's home)
 
+PDR-0053 makes the OS account unit one account per harness credential,
+shared by the agents of every Soul that uses that harness, not one per
+member. How per-member principals and private state are provided under
+it, and whether a shared harness account can earn `protected`, are
+unspecified.
+
 Proven by the hostile-member suite: T01, T02, T03, T21 (Stage 2a exit).
 
 ## What "cooperative" honestly means
 
-On macOS today, members **share a trust domain**. Every feature still
+On macOS today, agents **share a trust domain**. Every feature still
 works — tasks, receipts, brokered inference, budgets, recovery — but a
 prompt-injected specialist could read the lead's files or reach a
 provider directly. Cooperative is *reported*: every receipt and the
@@ -62,11 +68,11 @@ console say "cooperative" (R8, T21), and any protected claim is refused.
 | Hostile-member containment | **assured** (enforced) | **not assured** |
 | Egress control | brokered | cooperative |
 | Label on receipts/console | `protected` | `cooperative` |
-| Planned protected candidate | shipped first | per-member profile is Stage 4 |
+| Planned protected candidate | shipped first | Stage 4; mechanism unspecified since PDR-0053 drops per-member accounts |
 
 ## Practical rules for operators
 
-1. Treat all members on a cooperative host as **one trust domain**.
+1. Treat all agents on a cooperative host as **one trust domain**.
 2. Give the Soul only credentials you would give its **least-trusted
    harness**.
 3. Use a Linux host or VM for protected work; receipts confirm the

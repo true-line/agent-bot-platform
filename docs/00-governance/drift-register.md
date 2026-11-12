@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-08
+Last-Reviewed: 2026-11-12
 ---
 
 # Drift register
@@ -53,7 +53,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-009 "Soul" and "principal" mean different things
 
-- **Open.** S6 section 3 defines a Soul as a persistent multi-member agent and a principal as a human or organization; the platform [glossary](../glossary.md) carries those definitions since soul-contracts moved its glossary there ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning.
+- **Open.** S6 section 3 defines a Soul as a persistent multi-member agent and a principal as a human or organization; the platform [glossary](../glossary.md) carries those definitions since soul-contracts moved its glossary there ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning. Since PDR-0053 the glossary defines a Soul as a package, not an agent.
 - **Resolution.** The platform [glossary](../glossary.md) is the single home after PDR-0001; agent-comms records the older meaning as superseded.
 
 ## DRIFT-010 Short labels collide
@@ -94,3 +94,8 @@ Known places where two sources of truth disagree. An agent that meets one of the
   - **One soul-runtime repository** holding the package format, validator, render and adapter manifests. The catalog gives these to soul-package and soul-adapters.
   - **An SDK `wire/` folder** in agent-bot-daemon, which does not own wire framing. The folder holds shared codecs (binding proof, presence verifier, canonical JSON), not framing.
 - **Resolved 2026-11-08.** [agent-bot-daemon#83](https://github.com/true-line/agent-bot-daemon/pull/83) made the plan follow the catalog and named the codecs non-framing. [PDR-0027](../04-decisions/PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md) answered discussion #27: HQ identity authority is built into agent-bot-daemon; agent-bot-identity's plugin registers member surfaces only.
+
+## DRIFT-017 Component records still say "member"
+
+- **Open.** PDR-0053 retires "member" for what runs in a harness and makes the account unit one OS account per harness credential. soul-contracts prose and field descriptions, and agent-bot-comms, agent-bot-souls and agent-bot-machine prose, still say "member". agent-bot-hq D7 and its plan rows 16a to 16d give each member its own OS account and keep state in the member's home.
+- **Resolution.** Each repository corrects its prose to the [glossary](../glossary.md); contract field names such as `member_id` stay. agent-bot-hq replaces the account unit in agent-bot-hq D7 with PDR-0053's.
