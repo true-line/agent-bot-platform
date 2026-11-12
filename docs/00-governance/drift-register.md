@@ -91,6 +91,11 @@ Known places where two sources of truth disagree. An agent that meets one of the
 - **Open.** PDR-0053 retires "member" for what runs in a harness and makes the account unit one OS account per harness credential. soul-contracts prose and field descriptions, and agent-bot-comms, agent-bot-souls and agent-bot-machine prose, still say "member". agent-bot-hq D7 and its plan rows 16a to 16d give each member its own OS account and keep state in the member's home.
 - **Resolution.** Each repository corrects its prose to the [glossary](../glossary.md); contract field names such as `member_id` stay. agent-bot-hq replaces the account unit in agent-bot-hq D7 with PDR-0053's.
 
+## DRIFT-018 Profile values say "managed" for Souls HQ does not start
+
+- **Open.** PDR-0055 defines a managed Soul as one HQ starts. soul-contracts' enforcement profile values `managed-protected` and `managed-cooperative` are reported for Souls started from the command line, and agent-bot-hq has no plan row for starting a Soul.
+- **Resolution.** Not decided. The values stay as released until soul-contracts changes them or HQ starts Souls.
+
 ## DRIFT-019 Control authority when a machine links to Harbor
 
 - **Resolved 2026-11-11.** [Full record](drift-register-resolved.md#drift-019-control-authority-when-a-machine-links-to-harbor).
