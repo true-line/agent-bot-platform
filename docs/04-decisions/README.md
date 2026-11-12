@@ -23,6 +23,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0040](PDR-0040-repository-renames-and-transfers-to-true-line.md) | Repository renames and transfers to true-line | Accepted 2026-11-08 |
 | [PDR-0053](PDR-0053-soul-life-and-agent-replace-member.md) | Soul, Life and agent replace member | Accepted 2026-11-12 |
 | [PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md) | A Soul is managed when HQ starts it | Accepted 2026-11-12 |
+| [PDR-0047](PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) | Harbor is the control plane of a linked machine; HQ alone stays a complete deployment | Proposed |
 
 ## How a decision is made
 
