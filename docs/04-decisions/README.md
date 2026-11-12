@@ -21,12 +21,10 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0027](PDR-0027-hq-identity-authority-lives-in-agent-bot-daemon.md) | HQ identity authority lives in agent-bot-daemon | Accepted 2026-11-08 |
 | [PDR-0037](PDR-0037-agent-bot-executables-are-daemon-plugins-behind-a-shim.md) | agent-bot executables are daemon plugins behind a shim | Accepted 2026-11-08 |
 | [PDR-0040](PDR-0040-repository-renames-and-transfers-to-true-line.md) | Repository renames and transfers to true-line | Accepted 2026-11-08 |
-| [PDR-0053](PDR-0053-soul-life-and-agent-replace-member.md) | Soul, Life and agent replace member | Accepted 2026-11-12 |
-| [PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md) | A Soul is managed when HQ starts it | Accepted 2026-11-12 |
-| [PDR-0047](PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) | Harbor is the control plane of a linked machine; HQ alone stays a complete deployment | Proposed |
-| [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) | Notes live in dreams/inputs, held in memory and synced to the Soul in batches | Proposed |
 | [PDR-0047](PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) | Harbor is the control plane of a linked machine; HQ alone stays a complete deployment | Accepted 2026-11-11; rewords R2, amends PDR-0002 |
 | [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) | Notes live in dreams/inputs, held in memory and synced to the Soul in batches | Accepted 2026-11-11 |
+| [PDR-0053](PDR-0053-soul-life-and-agent-replace-member.md) | Soul, Life and agent replace member | Accepted 2026-11-12 |
+| [PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md) | A Soul is managed when HQ starts it | Accepted 2026-11-12 |
 
 ## How a decision is made
 

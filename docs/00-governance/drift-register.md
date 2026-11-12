@@ -98,7 +98,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-019 Control authority when a machine links to Harbor
 
-- **Resolved 2026-11-11.** [Full record](drift-register-resolved.md#drift-017-control-authority-when-a-machine-links-to-harbor).
+- **Resolved 2026-11-11.** [Full record](drift-register-resolved.md#drift-019-control-authority-when-a-machine-links-to-harbor).
 
 ## DRIFT-020 Two UI repositories have no charter
 

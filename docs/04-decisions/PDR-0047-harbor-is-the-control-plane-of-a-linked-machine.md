@@ -28,7 +28,7 @@ HQ with no Harbor link is a complete, supported deployment. When the owner links
 4. **Three classes of action.**
    - *Reduce* (stop, deny, revoke, quarantine): a Harbor signature is enough.
    - *Operate inside policy* (start, restart or drain an admitted Soul; offer a task): a Harbor signature under the owner's link grant; HQ refuses anything the signed policy does not already allow.
-   - *Widen* (a policy write that adds authority, member or account creation, key or credential provisioning, installs, machine plans, link changes): the record carries the owner's device presence signature. Harbor relays it and cannot originate it. HQ and agent-bot-machine each verify it, whatever path it arrived on (agent-bot-hq D4).
+   - *Widen* (a policy write that adds authority, harness account creation, key or credential provisioning, installs, machine plans, link changes): the record carries the owner's device presence signature. Harbor relays it and cannot originate it. HQ and agent-bot-machine each verify it, whatever path it arrived on (agent-bot-hq D4).
 5. **Local override is deny-only while linked.** At the machine the owner can stop, deny, revoke and unlink. Granting beyond Harbor's policy needs an unlink first.
 6. **Link loss fails closed.** HQ keeps enforcing the last signed policy, accepts only reduce actions and never widens. Work that needs no new credential continues (R9). Whether a signed policy expires while the link is down is unspecified here and is settled in the `control/v1` contract.
 7. **Link and unlink happen at the machine.** Only the owner, with device presence, links or unlinks. Harbor cannot enrol a machine on its own or prevent an unlink. After an unlink the machine is local-only and holds its own policy and credentials.
