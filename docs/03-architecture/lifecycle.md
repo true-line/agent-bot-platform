@@ -42,9 +42,10 @@ sharpened the everyday cases:
 - A new conversation in a sessions-only app (Devin Desktop,
   gemini.google.com) is a **new session of the same Soul** — never a new
   Soul. New Soul IDs come only from templates or forks.
-- **Managed Soul**: the soul package launches and runs the harnesses.
-  **Unmanaged Soul**: an app the platform doesn't run owns the harness
-  (IDE, web chat). An unmanaged Soul can live on a managed machine
+- **Managed Soul**: HQ starts the Soul. **Unmanaged Soul**: HQ does not
+  start it; it is started from the command line, or an app the platform
+  doesn't run owns the harness (IDE, web chat) (PDR-0055). HQ does not
+  start Souls yet. An unmanaged Soul can live on a managed machine
   (Devin Desktop on an enrolled Mac).
 - Sessions are identified by **at least device + client app/profile** —
   two same-family apps on one machine (Devin Desktop + Devin CLI) would
