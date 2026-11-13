@@ -15,7 +15,7 @@ What each conformance test must prove, grouped by the stage whose exit it gates.
 
 | Test | Stimulus | Required observation | Verifies | Implementation |
 |---|---|---|---|---|
-| T14 Version mismatch | Use N-1 and an unknown required capability | Supported version works; unsupported semantics fail explicitly. | R7 | not-started; component tests: agent-bot-hq tests/hq-admission.test.mjs (unsupported version on Hello); agent-bot-hq tests/sdk-wire.test.mjs (unknown required capability) |
+| T14 Version mismatch | Use N-1 and an unknown required capability | Supported version works; unsupported semantics fail explicitly. | R7 | not-started; component tests: agent-bot-hq tests/hq-admission.test.mjs (unsupported version on Hello); agent-bot-hq tests/sdk-wire.test.mjs (unknown required capability); agent-bot-souls tests/contracts.test.mjs (shared fixture schema/parse verdicts, JCS, unsupported version and unknown required capability; PR 6); agent-bot-souls tests/contract-boundaries.test.mjs (real-HQ malformed reply and connection refusal; PR 6) |
 
 ## Stage 1
 

@@ -159,6 +159,8 @@ tests:
   component-tests:
   - agent-bot-hq tests/hq-admission.test.mjs (unsupported version on Hello)
   - agent-bot-hq tests/sdk-wire.test.mjs (unknown required capability)
+  - agent-bot-souls tests/contracts.test.mjs (shared fixture schema/parse verdicts, JCS, unsupported version and unknown required capability; PR 6)
+  - agent-bot-souls tests/contract-boundaries.test.mjs (real-HQ malformed reply and connection refusal; PR 6)
   implementation: not-started
   status: Specified
 - id: T15
