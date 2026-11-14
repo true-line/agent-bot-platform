@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-13
 Date: 2026-11-13
+Accepted: 2026-11-13
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/62
 Affects-Repos: [soul-contracts, agent-bot-hq, agent-bot-comms, agent-bot-identity]
 Affects: [hq-plugin-contract, identity-cli, identity-service-api, R3, R6, R7]
@@ -11,16 +12,16 @@ Affects: [hq-plugin-contract, identity-cli, identity-service-api, R3, R6, R7]
 
 # PDR-0062 HQ binds notice scope; the legacy alias consumes one
 
-The proposed HQ-backed notice contract preserves the legacy `take_inbox`
+The HQ-backed notice contract preserves the legacy `take_inbox`
 consume-one handoff using HQ's durable local mailbox, with a separate read-only
 `notices.peek` for new clients. HQ binds each caller's allowed notice scope;
 agent-facing requests never select a remote queue or bypass HQ to consume it.
 
-This record is **Proposed**. The owner selected Option A in the
+The owner selected Option A in the
 [originating issue comment](https://github.com/true-line/agent-bot-platform/issues/60#issuecomment-6860006254).
-That preference is the basis for this proposal, not a claim that an answer has
-been marked in [Discussion #62](https://github.com/true-line/agent-bot-platform/discussions/62)
-or that an Accepted PDR has merged.
+The [chosen answer in Discussion #62](https://github.com/true-line/agent-bot-platform/discussions/62#discussioncomment-19605555)
+and the approved acceptance PR record that choice under
+[change control](../00-governance/change-control.md).
 
 ## Context
 
@@ -47,7 +48,7 @@ or that an Accepted PDR has merged.
 
 ## Decision
 
-The following is the proposed cross-repository contract, pending acceptance:
+The following cross-repository contract applies:
 
 1. **Separate custody from caller handoff.** Ingestion remains upstream take,
    durable HQ transaction, then upstream acknowledgement, with notice-ID
@@ -89,20 +90,19 @@ The following is the proposed cross-repository contract, pending acceptance:
    for a migrated queue. The rollout must prevent or detect old competing
    consumers and state mixed-version limits; updating the new shim alone does
    not prove old consumers are disabled.
-7. **Keep each fact in its home.** This PDR is the proposed home of the shared
+7. **Keep each fact in its home.** This PDR is the single home of the shared
    scope and handoff choice. Shared request/reply/error records and fixtures
    belong in `soul-contracts` before consumers depend on them (R7). HQ owns
    scope and lifecycle enforcement; comms owns mailbox mechanics; identity owns
    the compatibility surface. No schema or released field changes are made by
-   this proposal, and no new error code is allocated here.
+   this record, and no new error code is allocated here.
 
 ## Consequences
 
-- **Platform:** acceptance records the chosen answer and an Accepted PDR under
-  [change control](../00-governance/change-control.md). Subsequent seam or
-  compatibility registry changes cite it and regenerate their pages. This
-  Proposed record changes no registry behavior, resolves no drift entry and
-  declares no Stage 0 exit. It does not change managed/unmanaged terminology
+- **Platform:** subsequent seam or compatibility registry changes cite this
+  decision and regenerate their pages. This record does not itself implement
+  schemas or runtime behavior, resolve a drift entry or declare a Stage 0 exit.
+  It does not change managed/unmanaged terminology
   or profiles ([PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md)).
 - **soul-contracts:** specify any required shared messages, scope fields and
   errors with positive and negative fixtures before component implementation.
@@ -118,7 +118,7 @@ The following is the proposed cross-repository contract, pending acceptance:
   the explicit legacy transition and mixed-version restrictions.
 
 [HQ #13](https://github.com/true-line/agent-bot-hq/issues/13) remains the alias
-acceptance tracker. After acceptance, each affected repository tracks its own
+acceptance tracker. Each affected repository tracks its own
 implementation slice. Before row 11 is called complete, component evidence must
 show:
 

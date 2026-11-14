@@ -25,7 +25,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) | Notes live in dreams/inputs, held in memory and synced to the Soul in batches | Accepted 2026-11-11 |
 | [PDR-0053](PDR-0053-soul-life-and-agent-replace-member.md) | Soul, Life and agent replace member | Accepted 2026-11-12 |
 | [PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md) | A Soul is managed when HQ starts it | Accepted 2026-11-12 |
-| [PDR-0062](PDR-0062-hq-notice-scope-and-legacy-consume-one.md) | HQ binds notice scope; the legacy alias consumes one | Proposed |
+| [PDR-0062](PDR-0062-hq-notice-scope-and-legacy-consume-one.md) | HQ binds notice scope; the legacy alias consumes one | Accepted 2026-11-13 |
 
 ## How a decision is made
 
