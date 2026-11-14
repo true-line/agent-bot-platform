@@ -83,6 +83,7 @@ nav:
       - 04-decisions/PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md
       - 04-decisions/PDR-0053-soul-life-and-agent-replace-member.md
       - 04-decisions/PDR-0055-a-soul-is-managed-when-hq-starts-it.md
+      - 04-decisions/PDR-0062-hq-notice-scope-and-legacy-consume-one.md
       - 04-decisions/decision-log.md
       - 04-decisions/cross-repo-adr-index.md
   - Security and privacy:
