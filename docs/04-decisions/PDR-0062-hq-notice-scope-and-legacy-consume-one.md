@@ -2,9 +2,9 @@
 Status: Accepted
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-13
+Last-Reviewed: 2026-11-14
 Date: 2026-11-13
-Accepted: 2026-11-13
+Accepted: 2026-11-14
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/62
 Affects-Repos: [soul-contracts, agent-bot-hq, agent-bot-comms, agent-bot-identity]
 Affects: [hq-plugin-contract, identity-cli, identity-service-api, R3, R6, R7]
