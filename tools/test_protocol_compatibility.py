@@ -32,7 +32,8 @@ class InventoryGateTests(unittest.TestCase):
 
     def test_unverifiable_or_redirected_evidence_refuses(self):
         for field, value in [("repository", "other/repo"), ("commit", "main"),
-                             ("sha256", ""), ("path", "../secret"), ("path", "/etc/passwd"),
+                             ("sha256", ""), ("path", ""), ("path", "."),
+                             ("path", "../secret"), ("path", "/etc/passwd"),
                              ("path", "sdk/file.mjs?ref=other"), ("path", "sdk/file.mjs#fragment"),
                              ("path", "sdk/%2e%2e/file.mjs"), ("path", "sdk/file name.mjs"),
                              ("path", "sdk/../file.mjs"), ("path", "sdk\\file.mjs")]:

@@ -50,7 +50,7 @@ def validate_inventory(data, decision_status, repositories):
                 findings.append(f"{family}: evidence repository is not in the platform catalog")
             if not re.fullmatch(r"[0-9a-f]{40}", source["commit"]) or not re.fullmatch(r"[0-9a-f]{64}", source["sha256"]):
                 findings.append(f"{family}: evidence needs a full commit and SHA-256")
-            if not re.fullmatch(r"[A-Za-z0-9._/-]+", source["path"]) or path.is_absolute() or ".." in path.parts or str(path) != source["path"]:
+            if not re.fullmatch(r"[A-Za-z0-9._/-]+", source["path"]) or not path.parts or path.is_absolute() or ".." in path.parts or str(path) != source["path"]:
                 findings.append(f"{family}: evidence path must be a canonical repository-relative file")
             key = (source["repository"], source["commit"], source["path"])
             if key in seen:
