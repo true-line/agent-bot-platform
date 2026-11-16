@@ -14,7 +14,7 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 
 | Stage | Planning range | Deliverable | Exit evidence | Recorded state |
 |---|---|---|---|---|
-| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress; reviewed 2026-11-16. Runtime and broker fixture component evidence has merged; signing-link and notice-alias acceptance are recorded for the declared one-host pilot. Independent T14 conformance evidence and owner stage-exit signoff remain pending; see [Stage 0 evidence and remaining work](#stage-0-evidence-and-remaining-work). |
+| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | In progress; reviewed 2026-11-16. Component, pilot and T14 evidence recorded; suite merge, report acceptance and owner exit pending. See [evidence and remaining work](#stage-0-evidence-and-remaining-work). |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Exit evidence produced on 2026-11-09; the owner confirms the exit. The agent-bot-souls entry point (agent-bot-hq plan §9 row 14, [agent-bot-souls#2](https://github.com/true-line/agent-bot-souls/pull/2)) runs a lead and a specialist on fake adapters against the real HQ, with agent-bot-comms's broker plugin serving the member socket (row 13b, [agent-bot-comms#307](https://github.com/true-line/agent-bot-comms/pull/307)). In its tests the owner offers a task on HQ's control socket ([agent-bot-hq#106](https://github.com/true-line/agent-bot-hq/pull/106)), the specialist's answer is recorded as a proposal, and the lead makes one final commitment. HQ admission and the task service are plan rows 12 and 13, with T04, T05 and T20 component tests. |
 | 2a Member isolation | Weeks 6 to 7 | Caller binding on the Linux reference host, per-member principals, egress block | Hostile-member suite passes under the protected label | Not started |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
@@ -23,11 +23,8 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 
 ## Stage 0 evidence and remaining work
 
-The initial 2026-11-13 review used platform `main` at
-`2b14c0719051d5a23859656c07e75fb028502200`; the 2026-11-16 update adds the
-bounded signing-link and notice-alias pilot acceptance below. These are component
-and pilot results, not an independent T14 `soul-conformance` result or an
-owner-confirmed stage exit. [The reconciliation issue](https://github.com/true-line/agent-bot-platform/issues/58)
+The 2026-11-13 baseline is platform `2b14c0719051d5a23859656c07e75fb028502200`.
+The 2026-11-16 pilot and T14 evidence have distinct scopes. [The reconciliation issue](https://github.com/true-line/agent-bot-platform/issues/58)
 records the earlier audit; [platform #66](https://github.com/true-line/agent-bot-platform/issues/66)
 tracks the remaining Stage 0 gate. Migration row numbers refer to the
 [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md#stage-0-contract-baseline-and-in-place-preparation-wp1).
@@ -61,19 +58,26 @@ The 2026-11-13 signed production token refusal remains historical evidence: at
 that time the service published no key validity/status metadata. HQ #122's
 closeout supplies the later reviewed trust, activation and rollback evidence.
 
-Independent T14 implementation is under review in canonical
-[soul-conformance PR #1](https://github.com/true-line/soul-conformance/pull/1),
-tracked by [issue #2](https://github.com/true-line/soul-conformance/issues/2);
-no passing independent T14 report is recorded here. The
-[conformance catalog](../07-verification/conformance-catalog.md) distinguishes
-component tests from executable-suite implementation status. Stage 0 remains
-in progress pending its conformance evidence and owner signoff.
-[Accepted PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md)
-and [DRIFT-021](../00-governance/drift-register.md#drift-021-t14-previous-major-and-profile-evidence)
-record the previous-supported-major and profile-evidence decision and its
-adoption gap. The accepted [compatibility inventory](https://github.com/true-line/agent-bot-platform/blob/main/registry/protocol-compatibility.json)
-must merge to platform main and be adopted by the independent suite. Overall
-T14 acceptance awaits its accepted report; owner Stage 0 signoff remains pending.
+### Independent T14 report; acceptance pending
+
+The [immutable report](https://github.com/true-line/soul-conformance/blob/29847d194d0b227b52942e7d265c177a919930e2/reports/T14/2026-11-16-accepted-platform-main.json)
+records `pass`: 16 checks, 119 fixtures; clean suite `585a57e`, publication
+`29847d1`, fresh platform `1500663`, verified inventory/source hashes (full pins linked). N-1 is
+explicitly not applicable, with zero executions, under
+[Accepted PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md).
+[CI 43956747109](https://github.com/true-line/soul-conformance/actions/runs/43956747109)
+passed 15 tests and qualification.
+
+Original v0.4.1 cohort (separate from HQ #13 pilot): real HQ admission
+sockets with fixture enrollment/clock/definitions and production runtime/broker
+codecs, without live wire transport. Observed `managed-cooperative` makes no
+protected-enforcement claim.
+
+Canonical [PR #1](https://github.com/true-line/soul-conformance/pull/1) remains
+unmerged and under review ([issue #2](https://github.com/true-line/soul-conformance/issues/2));
+the [catalog](../07-verification/conformance-catalog.md) stays in progress and
+[DRIFT-021](../00-governance/drift-register.md#drift-021-t14-previous-major-and-profile-evidence)
+open pending canonical adoption. Report acceptance and owner Stage 0 exit remain pending under platform #66.
 
 Merged work is counted only where its implementation survives. In particular,
 [agent-bot-identity#1418](https://github.com/true-line/agent-bot-identity/pull/1418)

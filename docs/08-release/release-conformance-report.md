@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: report
 Owner: verification-lead
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-16
 Scope: T01–T30 conformance suite + release reports
 ---
 
@@ -25,8 +25,8 @@ evaluations (which are per-Soul, ATIF-based, §9–§10).
 
 Plus: the hostile-member suite (its own category under the protected
 label), simulators, `hello.soul`, and the eval harness — all in
-`true-line/soul-conformance` (30 suite stubs scaffolded today;
-[repository plan](../papers/repository-plan-2026-10-24.md#1-repository-map)).
+`true-line/soul-conformance`; current implementation status is recorded in the
+[conformance catalog](../07-verification/conformance-catalog.md).
 
 ## Release report contents
 
@@ -48,7 +48,16 @@ A release report contains:
 ## Where the report lives
 
 Per release, in `true-line/soul-conformance/release-reports/`, linked
-from the release notes. This governance page links the latest.
+from the release notes. Suite evidence can be published separately before a
+release report is accepted.
+
+The [T14 report published on 2026-11-16](https://github.com/true-line/soul-conformance/blob/29847d194d0b227b52942e7d265c177a919930e2/reports/T14/2026-11-16-accepted-platform-main.json)
+passes for its declared v0.4.1 cooperative cohort against platform main
+`15006630fbdc8c0dd7f951b66c2b033304810fd9`. Its implementation is still under
+review in [soul-conformance PR #1](https://github.com/true-line/soul-conformance/pull/1).
+Publication and successful CI do not declare report acceptance or Stage 0 exit;
+the [roadmap](../10-program/roadmap.md#independent-t14-report-acceptance-pending)
+records the candidate boundaries and remaining owner signoff.
 
 ## Stage-exit docs gate
 
@@ -57,7 +66,7 @@ A stage is not exited until its docs land (see repository
 
 | Stage | Docs that must exist |
 |---|---|
-| 0 | error registry page regenerated; wire/hq protocol pages current |
+| 0 | [error registry page](../03-architecture/interfaces/error-registry.md) regenerated; [wire](../03-architecture/interfaces/wire-v1.md)/[HQ](../03-architecture/interfaces/hq-v1.md) protocol pages current |
 | 1 | quickstart runs green against hello.soul |
 | 2a | trust-domains page matches enforced reality |
 | 2b | adapter qualification + budgets pages current |

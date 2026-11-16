@@ -2,26 +2,33 @@
 Status: Draft
 Doc-Type: interface
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-16
 Normative-Source: true-line/soul-contracts (Appendix A schemas + fixtures)
 ---
 
 # Protocol reference: hq/v1
 
-The HQ control socket protocol: the owner-side control plane between HQ
-clients (CLI, GeniusBar, agent-watcher) and the local authority.
+The local HQ control and admission records connect owner clients and the Soul
+entry point to HQ's authority. This reference distinguishes released record
+shapes from the broader planned operation surface.
 
-> **Normative source:** schemas, fixtures, and the canonicalization vector
-> live in `true-line/soul-contracts`. This page summarizes; the repo wins
-> on conflict. Stage 0 shipped `hq/v1` Hello and the admission result with
-> fixtures and CI ([repository plan](../../papers/repository-plan-2026-10-24.md#1-repository-map)).
+> **Normative source for record bytes:** the released [hq/v1 schemas](https://github.com/true-line/soul-contracts/tree/b96239cc47571237f7064ddbcbd0edec8e365c6b/schemas/hq/v1)
+> and [fixtures](https://github.com/true-line/soul-contracts/tree/b96239cc47571237f7064ddbcbd0edec8e365c6b/fixtures).
+> Platform authority follows [authority and ownership](../../00-governance/authority-and-ownership.md);
+> a schema does not override an approved requirement. The bounded T14 report
+> tests the v0.4.1 cohort; the notice pilot uses v0.5.0 on HQ/MCP. Their
+> distinct evidence is recorded in the [roadmap](../../10-program/roadmap.md#stage-0-evidence-and-remaining-work).
 
 ## Operations
 
+This is the specified surface, not a claim that every operation is implemented
+or qualified by T14. Released schemas and component documentation determine
+which records and commands are available.
+
 | Operation | Direction | Purpose | Specified |
 |---|---|---|---|
-| Hello | client → HQ | handshake; carries Soul + member + installation + runtime + session identity | §5, Stage 0 |
-| Admission result | HQ → client | accept/refuse with typed code; names profile and definition digest | §5, §8 |
+| Hello | client → HQ | handshake; carries Soul/definition/installation identity, offered versions/capabilities and requested role assignments | §5, Stage 0 |
+| Admission result | HQ → client | successful admission names negotiated versions, profile and runtime; refusals use the separate typed-error record | §5, §8 |
 | Admit / Equip / Brief / Ready / Lease | HQ ↔ entry point | the admission sequence; Equip returns credential **references**, never secrets | §5 |
 | Grant add/revoke/list | owner → HQ | standing authority records | §8, Appendix A |
 | Directive (task offer) | owner → HQ | assign work outside a chat | §7 |
@@ -45,9 +52,16 @@ ID comes only from a template or a fork
 
 ## Versioning
 
-`hq/v1` is versioned in the frame; a version mismatch is refused with the
-typed code proven by **T14** (version mismatch) — the soul-contracts
-Stage 0 gate ([error registry](error-registry.md)).
+Hello identifies its record with `contract: "hq/v1"` and offers positive major
+versions in `supported_versions`; HQ returns `negotiated_versions`. No common
+required version produces `unsupported_version`. Unknown required capabilities
+produce `required_capability_missing` at the relevant receiving boundary; these
+are distinct [registered refusals](error-registry.md).
+
+[Accepted PDR-0075](../../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md)
+and its inventory govern current/previous-major T14 coverage. A package release
+number is not a protocol major, and a passing version check does not establish
+protected enforcement.
 
 ## What this protocol deliberately does not do
 
