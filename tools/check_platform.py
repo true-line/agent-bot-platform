@@ -37,6 +37,7 @@ and only get the document hygiene checks.
 """
 import datetime
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -49,6 +50,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 sys.path.insert(0, str(ROOT / "tools"))
 import gen_docs  # noqa: E402
+from protocol_compatibility import DECISION_PATH, validate_inventory  # noqa: E402
 
 DOC_TYPES = {
     "index", "governance", "concept", "requirements", "explanation", "interface",
@@ -419,6 +421,25 @@ def check_generated():
             err(rel, "out of date; run tools/gen_docs.py")
 
 
+def check_protocol_compatibility(idx):
+    rel = "registry/protocol-compatibility.json"
+    try:
+        def unique_fields(pairs):
+            result = {}
+            for key, value in pairs:
+                if key in result:
+                    raise ValueError(f"duplicate JSON field {key}")
+                result[key] = value
+            return result
+        data = json.loads((ROOT / rel).read_text(), object_pairs_hook=unique_fields)
+        meta, _, _ = split_front((ROOT / DECISION_PATH).read_text())
+        repositories = {f"{r['org']}/{r['name']}" for r in idx["repos"]["repos"]}
+        for finding in validate_inventory(data, (meta or {}).get("Status"), repositories):
+            err(rel, finding)
+    except (OSError, ValueError) as exc:
+        err(rel, f"cannot verify inventory or cited decision: {exc}")
+
+
 def committable_files():
     """Every file git would commit: tracked plus untracked-but-not-ignored."""
     try:
@@ -483,6 +504,7 @@ def main():
         if not (DOCS / page).exists():
             err("mkdocs.yml", f"nav entry {page} does not exist")
     check_registries(idx)
+    check_protocol_compatibility(idx)
     check_generated()
     check_privacy()
     for w in warnings:

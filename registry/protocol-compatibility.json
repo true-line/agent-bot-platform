@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "Accepted",
+  "decision": "PDR-0075",
+  "decision_path": "docs/04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md",
+  "protocols": {
+    "hq": {
+      "current_major": 1,
+      "previous_supported_major": null,
+      "first_supported_major": 1,
+      "evidence": [
+        {
+          "repository": "true-line/agent-bot-hq",
+          "commit": "e8c3da0f6856332c49c26b5f85708d7ade9b222e",
+          "path": "hq/admission.mjs",
+          "sha256": "9adf317c00113119e3909d065876b343399fb8efec0e1870f3cd07f30091dccc"
+        },
+        {
+          "repository": "true-line/agent-bot-hq",
+          "commit": "e8c3da0f6856332c49c26b5f85708d7ade9b222e",
+          "path": "sdk/wire/versions.mjs",
+          "sha256": "b5528e5e25ebe6f5ed13ca54360e4792e2d662ecf59e1161ae6a1475514f5704"
+        },
+        {
+          "repository": "true-line/soul-contracts",
+          "commit": "d9ca0731fbe7bbf7a29d066c8a23cd92717ee9bd",
+          "path": "schemas/hq/v1/hello.schema.json",
+          "sha256": "0b99c1db55735c47f9255d9489b59f0229bcf2a7a9f6fe41e9cf00e4dae356a7"
+        },
+        {
+          "repository": "true-line/soul-contracts",
+          "commit": "b96239cc47571237f7064ddbcbd0edec8e365c6b",
+          "path": "schemas/hq/v1/hello.schema.json",
+          "sha256": "0b99c1db55735c47f9255d9489b59f0229bcf2a7a9f6fe41e9cf00e4dae356a7"
+        }
+      ]
+    },
+    "wire": {
+      "current_major": 1,
+      "previous_supported_major": null,
+      "first_supported_major": 1,
+      "evidence": [
+        {
+          "repository": "true-line/agent-bot-hq",
+          "commit": "e8c3da0f6856332c49c26b5f85708d7ade9b222e",
+          "path": "hq/admission.mjs",
+          "sha256": "9adf317c00113119e3909d065876b343399fb8efec0e1870f3cd07f30091dccc"
+        },
+        {
+          "repository": "true-line/agent-bot-hq",
+          "commit": "e8c3da0f6856332c49c26b5f85708d7ade9b222e",
+          "path": "sdk/wire/versions.mjs",
+          "sha256": "b5528e5e25ebe6f5ed13ca54360e4792e2d662ecf59e1161ae6a1475514f5704"
+        },
+        {
+          "repository": "true-line/soul-contracts",
+          "commit": "d9ca0731fbe7bbf7a29d066c8a23cd92717ee9bd",
+          "path": "schemas/wire/v1/wire-frame.schema.json",
+          "sha256": "b4da419a962c4386a679c577ae7ff94c759aee5674b8f6bd246b009f7cabd0d6"
+        },
+        {
+          "repository": "true-line/soul-contracts",
+          "commit": "b96239cc47571237f7064ddbcbd0edec8e365c6b",
+          "path": "schemas/wire/v1/wire-frame.schema.json",
+          "sha256": "b4da419a962c4386a679c577ae7ff94c759aee5674b8f6bd246b009f7cabd0d6"
+        }
+      ]
+    }
+  }
+}
