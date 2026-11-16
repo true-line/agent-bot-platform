@@ -108,5 +108,5 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-021 T14 previous-major and profile evidence
 
-- **Open.** R7/T14 require supported-major interoperability and explicit semantic refusals. The first-major case lacks a reviewed inventory; conformance stubs allow unenforced cooperative checks to pass.
-- **Resolution proposed, not accepted.** [PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md) records the source conflict and proposed rule. T14 and Stage 0 remain blocked pending owner acceptance, adoption and independent evidence.
+- **Open pending adoption.** R7/T14 require supported-major interoperability and explicit semantic refusals; conformance stubs allow unenforced cooperative checks to pass.
+- **Decided 2026-11-16.** [PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md) and its compatibility inventory resolve the interpretation. This entry stays open until the suite adopts platform main and replaces the conflicting guidance. T14 evidence and owner Stage 0 signoff remain pending.

@@ -61,17 +61,19 @@ The 2026-11-13 signed production token refusal remains historical evidence: at
 that time the service published no key validity/status metadata. HQ #122's
 closeout supplies the later reviewed trust, activation and rollback evidence.
 
-Independent T14 implementation is underway in
-[soul-conformance #2](https://github.com/true-line/soul-conformance/issues/2);
+Independent T14 implementation is under review in canonical
+[soul-conformance PR #1](https://github.com/true-line/soul-conformance/pull/1),
+tracked by [issue #2](https://github.com/true-line/soul-conformance/issues/2);
 no passing independent T14 report is recorded here. The
 [conformance catalog](../07-verification/conformance-catalog.md) distinguishes
 component tests from executable-suite implementation status. Stage 0 remains
 in progress pending its conformance evidence and owner signoff.
-[Proposed PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md)
+[Accepted PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md)
 and [DRIFT-021](../00-governance/drift-register.md#drift-021-t14-previous-major-and-profile-evidence)
-track the previous-supported-major and profile-evidence decision. The proposal
-is not active policy; overall T14 acceptance and Stage 0 exit remain blocked
-pending owner acceptance and the required independent evidence.
+record the previous-supported-major and profile-evidence decision and its
+adoption gap. The accepted [compatibility inventory](https://github.com/true-line/agent-bot-platform/blob/main/registry/protocol-compatibility.json)
+must merge to platform main and be adopted by the independent suite. Overall
+T14 acceptance awaits its accepted report; owner Stage 0 signoff remains pending.
 
 Merged work is counted only where its implementation survives. In particular,
 [agent-bot-identity#1418](https://github.com/true-line/agent-bot-identity/pull/1418)

@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-16
 Date: 2026-11-16
+Accepted: 2026-11-16
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/75
 Affects-Repos: [soul-contracts, soul-conformance, agent-bot-hq, agent-bot-comms, agent-bot-souls]
 Affects: [hq-v1, wire-v1, conformance-report, R7, R8, quality-bar]
@@ -11,13 +12,14 @@ Affects: [hq-v1, wire-v1, conformance-report, R7, R8, quality-bar]
 
 # PDR-0075 T14 uses supported-major inventory and asserted profile evidence
 
-This proposal would make T14's previous-major coverage depend on an explicit,
-reviewed inventory of supported protocol majors, and count only semantic checks
-actually asserted under the reported enforcement profile. It is **not accepted**:
-[Discussion #75](https://github.com/true-line/agent-bot-platform/discussions/75)
-and [issue #74](https://github.com/true-line/agent-bot-platform/issues/74) track
-review. Overall T14 acceptance and Stage 0 exit remain blocked pending the
-owner's decision and the required evidence; this proposal grants no exception.
+T14's previous-major coverage depends on an explicit, reviewed inventory of
+supported protocol majors and counts only semantic checks actually asserted
+under the reported enforcement profile. The owner explicitly accepted this
+policy while reviewing [PR #76](https://github.com/true-line/agent-bot-platform/pull/76)
+in the current task on 2026-11-16. This records that instruction, not a GitHub
+review or a marked Discussion answer. [Discussion #75](https://github.com/true-line/agent-bot-platform/discussions/75)
+and [issue #74](https://github.com/true-line/agent-bot-platform/issues/74) retain
+the decision context. This acceptance does not declare T14 or Stage 0 complete.
 
 ## Context
 
@@ -37,17 +39,17 @@ owner's decision and the required evidence; this proposal grants no exception.
   fail explicitly. [R8](../02-requirements/product-requirements.md#r8-honest-profiles)
   also requires actual guarantees to be reported honestly.
 - [DRIFT-021](../00-governance/drift-register.md#drift-021-t14-previous-major-and-profile-evidence)
-  records the unresolved interpretation and component-stub conflict.
+  records the component-stub conflict pending adoption of this decision.
   [soul-conformance #2](https://github.com/true-line/soul-conformance/issues/2)
-  tracks the executable suite; passing component checks do not settle this
-  platform decision.
+  tracks the executable suite; passing component checks do not replace its
+  independent acceptance evidence.
 
 ## Decision
 
-The following rules are proposed, not active policy:
+The following rules govern T14 acceptance:
 
-1. **Inventory supported protocol majors explicitly.** A reviewed platform
-   registry would identify each tested protocol family, its current supported
+1. **Inventory supported protocol majors explicitly.** The reviewed [compatibility inventory](https://github.com/true-line/agent-bot-platform/blob/main/registry/protocol-compatibility.json)
+   identifies each tested protocol family, its current supported
    major, its previous supported major when one exists, and verifiable source
    evidence. A first-major family whose only supported major is 1 may record
    that no previous supported major exists only with reviewed evidence. A
@@ -81,25 +83,32 @@ The following rules are proposed, not active policy:
 
 ## Consequences
 
-- **Platform, after acceptance:** add the reviewed compatibility inventory in
-  `registry/`, reconcile T14 and related release guidance with this decision,
-  and regenerate affected pages. This proposal does not add that inventory or
-  change R7, T14's current registry status, or the Stage 0 gate.
+- **Platform:** `registry/protocol-compatibility.json` is the canonical inventory.
+  Schema version 1 records the accepted decision and its path, and `hq`/`wire`
+  protocol entries with current, first and previous supported majors. Each
+  evidence record names a repository, full source commit, path and SHA-256.
+  HQ's declared versions and support-window implementation, plus the v0.4.1
+  and v0.5.0 contract schemas, establish current/first major 1 with no previous
+  supported major for this inventory. `task/v1` is not an additional protocol
+  family in this T14 inventory. The checker validates its structure and accepted
+  decision; conformance consumers verify the cited source bytes and their
+  applicability to the tested versions. A changed support window requires a
+  reviewed inventory update, not reuse of this first-major finding.
 - **soul-contracts:** provide source evidence for supported protocol majors and
   their fixtures; package version changes do not invent another protocol major.
 - **soul-conformance:** replace the conflicting T14 stub guidance, verify the
   reviewed inventory and report asserted outcomes separately from blocked or
-  inapplicable coverage. Until acceptance and adoption, retain the overall
-  T14 result as blocked even if individual checks pass.
+  inapplicable coverage. Until the accepted inventory lands on platform main and the suite adopts it,
+  retain the overall T14 result as blocked even if individual checks pass.
 - **HQ, comms and Souls:** expose their supported-version behavior to the
   independent suite; do not weaken validators or authority checks to obtain a
-  pass. DRIFT-021 remains open until the controlled rule is accepted and the
-  conflicting component guidance is replaced. Owner Stage 0 signoff remains
+  pass. DRIFT-021 remains open until the suite adopts the accepted rule from
+  platform main and replaces the conflicting guidance. Owner Stage 0 signoff remains
   separate from implementation or CI success.
 
 ## Alternatives considered
 
-- **Infer N-1 from package releases.** Rejected in this proposal because package
+- **Infer N-1 from package releases.** Rejected because package
   versions and supported protocol majors describe different compatibility facts.
 - **Silently skip a missing previous major.** Rejected because missing evidence
   cannot establish first-major status or make required coverage disappear.
