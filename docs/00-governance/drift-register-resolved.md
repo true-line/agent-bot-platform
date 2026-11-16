@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-11
+Last-Reviewed: 2026-11-16
 ---
 
 # Resolved drift
@@ -51,3 +51,9 @@ Full records of the [drift register](drift-register.md) entries that are resolve
   - The **agent-bot charter** in `registry/repos.yaml`: Harbor is trusted for credential custody and issuance only, and must not own lifecycle or any control path to a host.
   - The [architecture overview](../03-architecture/overview.md) and [federation](../03-architecture/federation.md) pages: remote tiers hold no control authority. The overview's diagram already labels agent-bot "control plane" beside HQ's "local control plane", so the page disagrees with itself.
 - **Resolved 2026-11-11.** [Discussion #47](https://github.com/true-line/agent-bot-platform/discussions/47) was answered on the owner's behalf and [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) records it: Harbor decides for a linked machine, HQ enforces and alone executes, and an action that adds authority carries the owner's device presence signature. The same PR reworded R2, added the `control-v1` seam, changed the agent-bot charter and updated the overview, federation, vision, glossary, decision log, threat model and key boundaries. PDR-0023 stands, because control has its own seam and the observation uplink stays read-only. S6 stays frozen and is read with PDR-0047.
+
+## DRIFT-021 T14 previous-major and profile evidence
+
+- **Conflict.** R7/T14 require supported-major interoperability and semantic refusals. The conformance T14 stub required a protected profile while the overview allowed unenforced cooperative checks to pass; neither established the required semantic observations.
+- **Resolution proposed 2026-11-16; merge dependency.** [PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md) and its reviewed inventory are accepted on platform main. [soul-conformance PR #1](https://github.com/true-line/soul-conformance/pull/1), merged at `34a2375c106d734cb59c17cd6370020268672b62`, adopts the inventory, asserts mandatory semantic checks and replaces the T14 stub guidance. The overview correction in [soul-conformance PR #5](https://github.com/true-line/soul-conformance/pull/5) must merge **before this closeout**; it explicitly excludes T14 from unenforced-pass claims. Resolution becomes effective only when that dependency and this closeout merge; the correction is not claimed to be on main yet.
+- **Evidence and scope.** [Post-merge qualification](https://github.com/true-line/soul-conformance/actions/runs/43959463020) passes 16 implemented checks and 119 fixture verdicts. N-1 is explicitly inapplicable under the reviewed first-major inventory, with zero previous-major executions. The [roadmap](../10-program/roadmap.md#independent-t14-report-and-exit-proposal) retains the cohort/profile limits and records the separate owner Stage 0 confirmation mechanism.

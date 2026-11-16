@@ -53,11 +53,16 @@ release report is accepted.
 
 The [T14 report published on 2026-11-16](https://github.com/true-line/soul-conformance/blob/29847d194d0b227b52942e7d265c177a919930e2/reports/T14/2026-11-16-accepted-platform-main.json)
 passes for its declared v0.4.1 cooperative cohort against platform main
-`15006630fbdc8c0dd7f951b66c2b033304810fd9`. Its implementation is still under
-review in [soul-conformance PR #1](https://github.com/true-line/soul-conformance/pull/1).
-Publication and successful CI do not declare report acceptance or Stage 0 exit;
-the [roadmap](../10-program/roadmap.md#independent-t14-report-acceptance-pending)
-records the candidate boundaries and remaining owner signoff.
+`15006630fbdc8c0dd7f951b66c2b033304810fd9`. The implementation and report merged in
+[soul-conformance PR #1](https://github.com/true-line/soul-conformance/pull/1)
+at `34a2375c106d734cb59c17cd6370020268672b62`; its
+[post-merge qualification](https://github.com/true-line/soul-conformance/actions/runs/43959463020)
+passed against fresh platform main. The [CI report artifact](https://github.com/true-line/soul-conformance/actions/runs/43959463020/artifacts/14272554749)
+has ZIP SHA-256 `994ffb37d480e045a7169c9db619c4565f312ab58cb7c9e4c0f46bc718ce325f`.
+These are bounded T14 acceptance evidence. The
+[roadmap](../10-program/roadmap.md#independent-t14-report-and-exit-proposal)
+records separate owner Stage 0 confirmation through approval of the closeout PR;
+earlier merges did not grant that confirmation.
 
 ## Stage-exit docs gate
 
