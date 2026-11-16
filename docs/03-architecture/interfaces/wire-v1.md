@@ -2,35 +2,41 @@
 Status: Draft
 Doc-Type: interface
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-16
 Normative-Source: true-line/soul-contracts (wire/v1 frame schema + fixtures)
 ---
 
 # Protocol reference: wire/v1
 
-The inter-agent wire protocol: NDJSON outer frames carrying sealed
-envelopes, plus the mailbox semantics around them.
+The broker's outer routing frame carries destination, expiry, capability and
+optional sealing metadata. It is distinct from the local client's NDJSON
+request protocol.
 
-> **Normative source:** `true-line/soul-contracts` wire/v1 outer frame and
-> sealed envelope schemas (§6, Appendix A) with fixtures; existing
-> implementation in `true-line/agent-bot-comms` (`lib/wire.mjs`,
-> `canonical-json.mjs`, durable mailbox per agent-bot-comms ADR-0004).
+> **Normative source:** the released [wire/v1 frame schema](https://github.com/true-line/soul-contracts/blob/b96239cc47571237f7064ddbcbd0edec8e365c6b/schemas/wire/v1/wire-frame.schema.json)
+> and [fixtures](https://github.com/true-line/soul-contracts/tree/b96239cc47571237f7064ddbcbd0edec8e365c6b/fixtures).
+> [PDR-0024](../../04-decisions/PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md)
+> places this frame at broker delivery and relay boundaries. The production
+> [wire/v1 codec](https://github.com/true-line/agent-bot-comms/blob/972fcbed06c8ff79bf60bd9129f5da54e22f5772/lib/contracts/wire-v1.mjs)
+> validates that contract; `lib/wire.mjs` is the separate local client layer.
 
 ## Outer frame fields
 
 | Field | Purpose |
 |---|---|
-| destination Soul | routing target |
-| epoch hint | fencing/staleness signal |
-| message ID | dedup key |
-| expiry | stale frame refusal |
-| payload size | limit enforcement |
-| wake class | scheduling priority of the wake |
-| required capabilities | receiver must declare all; unknown → refuse |
-| sealed block | content, sealed; relays cannot read it |
+| `wire_version` | released major version; this schema requires 1 |
+| `destination_soul` | routing target |
+| `destination_epoch` | sender's last-known epoch, a routing hint; commits are fenced, not inbound delivery |
+| `message_id` | deduplication key |
+| `expires_at` | expiry timestamp checked with runtime context |
+| `payload_size` | declared payload size, bounded by the schema |
+| `wake_class` | declared wake category; acceptance does not grant lifecycle authority |
+| `required_capabilities` | capabilities the receiver must have negotiated |
+| `sealed` | optional sealing metadata; relayed content protection needs its reviewed cryptographic profile |
 
 Fixtures exist for: oversized frame, duplicate key, unknown required
-capability, stale expiry (Stage 0 contract baseline).
+capability and stale expiry. Schema validity and contextual expiry/capability
+enforcement are separate verdicts. The [T14 evidence](../../10-program/roadmap.md#stage-0-evidence-and-remaining-work)
+exercises production codecs; it does not qualify live transport or federation.
 
 ## Relay visibility
 
