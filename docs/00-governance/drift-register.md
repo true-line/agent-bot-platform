@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-12
+Last-Reviewed: 2026-11-16
 ---
 
 # Drift register
@@ -105,3 +105,8 @@ Known places where two sources of truth disagree. An agent that meets one of the
 - **Conflict.** true-line/agent-bot-hq-ui (the on-machine HQ interface) and true-line/agent-bot-harbor-ui (Harbor console designs, a remote view of one machine's settings in `daemon-ui/`, and MCP app resources in `mcp-apps/`) exist. Neither has an entry in `registry/repos.yaml`. [PDR-0002](../04-decisions/PDR-0002-repository-topology-and-admission.md) admits no repository without a charter, keeps the web console in agent-bot and says the planned agent-bot-ui is not created. agent-bot-harbor-ui's README still calls the product "Agent Command Center", not Harbor, and names agent-bot-ui as its destination.
 - **Decided 2026-11-11, open until the records change.** [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) keeps both repositories as design sources for agent-bot-hq and agent-bot.
 - **Resolution.** Both get charters in `registry/repos.yaml` before work lands there. agent-bot-harbor-ui names the product Harbor in its README and stops targeting agent-bot-ui.
+
+## DRIFT-021 T14 previous-major and profile evidence
+
+- **Open.** Approved [R7](../02-requirements/product-requirements.md#r7-contracts-first-n-and-n-1) requires the current and previous supported protocol majors; [T14](../07-verification/conformance-catalog.md) requires supported-version success and explicit refusal of unsupported semantics. The first-major case has no reviewed compatibility inventory establishing whether a previous supported major exists. Package releases v0.4.1 and v0.5.0 cannot substitute for protocol majors. The [soul-conformance T14 stub](https://github.com/true-line/soul-conformance/blob/d645818961371dab50c21833c3ca474bed6264d6/suites/T14-version-mismatch/README.md) says protected is required and cooperative may report unenforced, while its [suite overview](https://github.com/true-line/soul-conformance/blob/d645818961371dab50c21833c3ca474bed6264d6/suites/TESTS.md) allows unenforced to pass a weaker profile; neither establishes T14's required semantic observations.
+- **Resolution proposed, not accepted.** [PDR-0075](../04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md), [Discussion #75](https://github.com/true-line/agent-bot-platform/discussions/75) and [issue #74](https://github.com/true-line/agent-bot-platform/issues/74) propose an explicit supported-major inventory and asserted profile evidence. Components must read platform main, recording the checked SHA under PDR-0020; they cannot activate this proposal locally. Overall T14 acceptance and Stage 0 exit remain blocked pending owner acceptance, the reviewed inventory, replacement of the conflicting component guidance and passing independent evidence. [soul-conformance #2](https://github.com/true-line/soul-conformance/issues/2) tracks implementation. This entry does not resolve DRIFT-018 or weaken the separate T01, T02, T03 and T21 gates.
