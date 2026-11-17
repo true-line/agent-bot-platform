@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: strategy
 Owner: verification-lead
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-17
 Sources: S6 §13, §14; S7 §4
 ---
 
@@ -33,6 +33,8 @@ A stage exits only when every test gated at or before it passes on the exact sup
 | 2b Brokered adapters | Unknown effects reconcile without blind replay | T06 to T11, T17 to T19, T23, T25, T26 |
 | 3 Operator pilot | Pilot tasks meet functional and operational targets | T16, T22, T24, T27 to T30 |
 | 4 Portability and relay | Fencing, transfer, partition and cryptographic conformance | T12, T13, T15 |
+
+Stage 1 acceptance requires T04, T05 and T20 to demonstrate their required semantic observations under `managed-cooperative`; a blocked, skipped or reported-as-unenforced observation is not a pass. That evidence qualifies task-source authority, deduplication and proposal/finalization semantics only and makes no protected-host containment claim. Stage 2a's protected-label gate remains separate: T01 to T03 pass under `managed-protected`, while T21 is the negative honesty check run under `managed-cooperative` and passes only when receipts name cooperative and every protected claim is refused with `profile_insufficient`. Together T01 to T03 and T21 gate a protected claim. A later release claiming `managed-protected` still follows the exact-cohort cumulative gate above; this Stage 1 cooperative result is not protected evidence. This clarification does not resolve the `managed-*` naming conflict recorded in [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start).
 
 The full specification of each test is in the [conformance catalog](conformance-catalog.md); its requirement coverage is in the [traceability matrix](../02-requirements/traceability-matrix.md).
 
