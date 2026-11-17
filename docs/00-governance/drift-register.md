@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-16
+Last-Reviewed: 2026-11-17
 ---
 
 # Drift register

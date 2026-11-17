@@ -37,7 +37,7 @@ credential rotation/revocation hygiene and cost per accepted task.
 A release report contains:
 
 1. Stage-exit evidence table (above) with run dates and digests
-2. Per-host results, including the T02 key boundary on the declared macOS pilot host and independently on each additional supported host
+2. Per-host results, including T02 Secure Enclave signer custody on the declared macOS pilot host and independently on each additional supported host
 3. Adapter qualification manifests, signed, with eval dates (§9)
 4. Compatibility matrix snapshot (§12)
 5. Diagnostics bundle sample + redaction proof (§12)

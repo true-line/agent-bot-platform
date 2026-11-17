@@ -27,7 +27,9 @@ their declared cohorts. They cannot establish macOS host behavior.
 1. Qualify a declared macOS host in Stage 2a. Record its hardware and OS
    build, relevant dependency and adapter versions, definition revision,
    policy digest and observed profile. T01, T02 and T03 must pass under
-   protected enforcement. T21 must demonstrate cooperative labeling and
+   protected enforcement. For T02, exercise the HQ signer backed by the
+   Mac’s Secure Enclave on the declared physical host, verify a signed
+   operation and record the device-key boundary. T21 must demonstrate cooperative labeling and
    refusal of a protected claim on the cooperative configuration.
 2. Run the Stage 3 operator pilot on qualified protected macOS with real
    approved adapters, measured pilot targets and the usual stage sign-off.
