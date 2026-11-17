@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: plan
 Owner: product-owner
-Last-Reviewed: 2026-11-16
+Last-Reviewed: 2026-11-17
 Sources: S6 §13; S7 §2
 ---
 
@@ -15,7 +15,7 @@ Delivery runs in evidence-gated stages, each ending in an observable vertical sl
 | Stage | Planning range | Deliverable | Exit evidence | Recorded state |
 |---|---|---|---|---|
 | 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | Exit evidence complete on 2026-11-16; owner confirmation is recorded through approval of the Stage 0 closeout PR linked from [#66](https://github.com/true-line/agent-bot-platform/issues/66). See [evidence](#stage-0-evidence-and-remaining-work). |
-| 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Exit evidence produced on 2026-11-09; the owner confirms the exit. The agent-bot-souls entry point (agent-bot-hq plan §9 row 14, [agent-bot-souls#2](https://github.com/true-line/agent-bot-souls/pull/2)) runs a lead and a specialist on fake adapters against the real HQ, with agent-bot-comms's broker plugin serving the member socket (row 13b, [agent-bot-comms#307](https://github.com/true-line/agent-bot-comms/pull/307)). In its tests the owner offers a task on HQ's control socket ([agent-bot-hq#106](https://github.com/true-line/agent-bot-hq/pull/106)), the specialist's answer is recorded as a proposal, and the lead makes one final commitment. HQ admission and the task service are plan rows 12 and 13, with T04, T05 and T20 component tests. |
+| 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Independent T04, T05 and T20 conformance evidence passed on 2026-11-17 under `managed-cooperative`, with no protected-host claim ([soul-conformance PR #7](https://github.com/true-line/soul-conformance/pull/7)). Stage 1 remains open: the required `hello.soul` quickstart is still a placeholder and owner exit confirmation is pending in [#67](https://github.com/true-line/agent-bot-platform/issues/67). The component vertical slice is [agent-bot-souls PR #2](https://github.com/true-line/agent-bot-souls/pull/2), [agent-bot-hq PR #106](https://github.com/true-line/agent-bot-hq/pull/106), and [agent-bot-comms PR #307](https://github.com/true-line/agent-bot-comms/pull/307). |
 | 2a Member isolation | Weeks 6 to 7 | Caller binding on the Linux reference host, per-member principals, egress block | Hostile-member suite passes under the protected label | Not started |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
 | 3 Operator pilot | Weeks 10 to 12 | Minimal owner console and HQ CLI, enrollment, approvals, export and restore | Pilot targets met on the declared host | Not started |

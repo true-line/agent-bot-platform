@@ -21,9 +21,9 @@ What each conformance test must prove, grouped by the stage whose exit it gates.
 
 | Test | Stimulus | Required observation | Verifies | Implementation |
 |---|---|---|---|---|
-| T04 Source authority | Peer claims owner approval | Request remains peer data; no grant or directive is created. | R6 | not-started; component tests: agent-bot-hq tests/hq-tasks.test.mjs (peer offer stays peer data) |
-| T05 Duplicate message | Deliver an identical frame repeatedly | One committed task transition; stable prior receipt returned. | none | not-started; component tests: agent-bot-hq tests/hq-tasks.test.mjs (operation key returns the stored receipt) |
-| T20 Proposal only | A specialist posts a final answer directly to a task | It is recorded as a proposal; only the lead's commitment finalizes. | R3 | not-started; component tests: agent-bot-hq tests/hq-tasks.test.mjs (specialist proposals) |
+| T04 Source authority | Peer claims owner approval | Request remains peer data; no grant or directive is created. | R6 | passing; component tests: agent-bot-hq tests/hq-tasks.test.mjs (peer offer stays peer data) |
+| T05 Duplicate message | Deliver an identical frame repeatedly | One committed task transition; stable prior receipt returned. | none | passing; component tests: agent-bot-hq tests/hq-tasks.test.mjs (operation key returns the stored receipt) |
+| T20 Proposal only | A specialist posts a final answer directly to a task | It is recorded as a proposal; only the lead's commitment finalizes. | R3 | passing; component tests: agent-bot-hq tests/hq-tasks.test.mjs (specialist proposals) |
 
 ## Stage 2a
 

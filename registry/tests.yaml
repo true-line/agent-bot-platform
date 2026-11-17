@@ -7,7 +7,7 @@
 # maps it; the checker reports every gap.
 #
 # implementation: not-started | in-progress | passing | failing
-# (as last reported by soul-conformance; all 30 are stubs as of 2026-11-07).
+# (as last reported by merged soul-conformance evidence).
 #
 # component-tests (optional): tests in a component repository that already
 # exercise this observation. They are evidence for the stage, not a
@@ -54,7 +54,7 @@ tests:
   implemented-in: soul-conformance
   component-tests:
   - agent-bot-hq tests/hq-tasks.test.mjs (peer offer stays peer data)
-  implementation: not-started
+  implementation: passing
   status: Specified
 - id: T05
   title: Duplicate message
@@ -66,7 +66,7 @@ tests:
   trace-gap: Draft 0.4 Appendix D maps no requirement to this test; WP1 to assign.
   component-tests:
   - agent-bot-hq tests/hq-tasks.test.mjs (operation key returns the stored receipt)
-  implementation: not-started
+  implementation: passing
   status: Specified
 - id: T06
   title: Ambiguous effect
@@ -225,7 +225,7 @@ tests:
   implemented-in: soul-conformance
   component-tests:
   - agent-bot-hq tests/hq-tasks.test.mjs (specialist proposals)
-  implementation: not-started
+  implementation: passing
   status: Specified
 - id: T21
   title: Profile honesty
