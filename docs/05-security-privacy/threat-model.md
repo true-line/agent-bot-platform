@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: security
 Owner: security-reviewer
-Last-Reviewed: 2026-11-11
+Last-Reviewed: 2026-11-17
 Scope: Soul Agent Platform, draft 0.4 surface
 ---
 
@@ -36,7 +36,7 @@ honestly cannot, and which tests prove each control.
 
 | # | Threat | Interface | Control | Proven by |
 |---|---|---|---|---|
-| 1 | Prompt-injected member reads lead's files | member↔workspace | per-member principals, mediated views (protected only); declared cooperative on macOS | T21, R8 |
+| 1 | Prompt-injected member reads lead's files | member↔workspace | protected principals and mediated views on a qualified host, cooperative disclosure elsewhere | T21, R8 |
 | 2 | Member reaches provider directly | egress | brokered inference; allowlist + narrow API | §4, receipts |
 | 3 | Secret leaks into harness-readable files | Equip | references, never secrets; `hq audit secrets` scan | T02 |
 | 4 | Approval tampering | owner approvals | HQ-signed, digest-bound; edit invalidates | T24 |

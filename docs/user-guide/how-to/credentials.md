@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: how-to
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-17
 Audience: operators
 ---
 
@@ -57,7 +57,7 @@ verifies the key boundary; ask for the release report
 
 ## Profile warning
 
-On **cooperative** (macOS), harnesses share a trust domain: the broker
+On a **cooperative** host, harnesses share a trust domain: the broker
 still holds the keys, but a prompt-injected member can reach anything its
 harness can. Give the Soul only credentials you would give its
 least-trusted harness ([trust domains](../../03-architecture/trust-domains-and-profiles.md)).
@@ -67,5 +67,5 @@ least-trusted harness ([trust domains](../../03-architecture/trust-domains-and-p
 | Symptom | Cause | Fix |
 |---|---|---|
 | `credential_revoked` on a protected op | rotation/revocation landed | re-grant or restore credential |
-| Receipt shows direct provider route on cooperative | egress is cooperative in this profile | expected; move protected work to Linux |
+| Receipt shows direct provider route on cooperative | egress is cooperative in this profile | expected; move protected work to a qualified host |
 | Secret fingerprint found in a member home | a harness wrote it out | file it — this is a T02 violation |

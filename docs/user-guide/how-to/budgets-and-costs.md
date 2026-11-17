@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: how-to
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-17
 Audience: operators
 ---
 
@@ -68,4 +68,4 @@ tighten destinations per grant, use disclosure labels, or point at a
 |---|---|---|
 | `budget_exhausted` early in the month | maintenance share consumed by dreams | re-balance sub-allocations, or shrink dream share |
 | Cost attributed to "unknown" member | caller died mid-action | reconcile; receipts keep the runtime id |
-| Spend without receipts | cooperative egress on macOS | expected on cooperative; see profile warning |
+| Spend without receipts | cooperative egress on the host | expected on cooperative; see profile warning |

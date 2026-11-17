@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: report
 Owner: verification-lead
-Last-Reviewed: 2026-11-16
+Last-Reviewed: 2026-11-17
 Scope: T01–T30 conformance suite + release reports
 ---
 
@@ -18,7 +18,7 @@ evaluations (which are per-Soul, ATIF-based, §9–§10).
 |---|---|---|
 | 0 | T14 | version mismatch refusal (contract baseline gate) |
 | 1 | T04, T05, T20 | scoped proposals → one final commitment; dedup |
-| 2a | T01, T02, T03, T21 | hostile-member containment, key boundary, protected label honesty |
+| 2a | T01, T02, T03, T21 | macOS pilot host containment and key boundary, cooperative label honesty |
 | 2b | T05–T11, T17–T19, T23, T25, T26 | brokered adapters, budgets, reconciliation without blind replay |
 | 3 | T16, T22, T24, T27–T30 | package attack, pilot ops, approval digest binding, eval coverage |
 | 4 | T12, T13, T15 | partition, crypto conformance, transfer |
@@ -37,7 +37,7 @@ credential rotation/revocation hygiene and cost per accepted task.
 A release report contains:
 
 1. Stage-exit evidence table (above) with run dates and digests
-2. Per-host results: T02 key boundary on each supported host
+2. Per-host results, including T02 Secure Enclave signer custody on the declared macOS pilot host and independently on each additional supported host
 3. Adapter qualification manifests, signed, with eval dates (§9)
 4. Compatibility matrix snapshot (§12)
 5. Diagnostics bundle sample + redaction proof (§12)

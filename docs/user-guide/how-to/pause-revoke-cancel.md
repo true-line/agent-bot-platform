@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: how-to
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-17
 Audience: operators
 ---
 
@@ -31,7 +31,7 @@ hq grant revoke <soul> <grant-id>     # or rotate/revoke a credential
 ```
 
 Effective at the **next protected operation** (§4). In-flight cooperative
-work on macOS is *reported*, not stopped — that is what cooperative means
+work on any host is *reported*, not stopped — that is what cooperative means
 ([profiles](../../03-architecture/trust-domains-and-profiles.md#protected-vs-cooperative)).
 
 ## Cancel a task

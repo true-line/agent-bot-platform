@@ -17,7 +17,7 @@ How the platform proves it meets its requirements, from contract fixtures to the
 | Contract | Records validate against schemas; canonicalization is stable; N and N-1 both parse | soul-contracts | soul-contracts CI |
 | Component | A repository's behavior, including its share of a T-series test | each component | its own CI |
 | Conformance | The T-series tests, end to end across components | soul-conformance | soul-conformance CI and the reference hosts |
-| Adversarial | A hostile member cannot obtain authority (T01 to T03 and the hostile-member suite) | soul-conformance | the Linux reference host under the protected profile |
+| Adversarial | A hostile member cannot obtain authority (T01 to T03 and the hostile-member suite) | soul-conformance | the declared macOS pilot host under the protected profile |
 | Evaluation | A candidate revision beats its baseline on held-out tasks per eval cell | soul-conformance eval harness | dream runs and release candidates |
 | Pilot | Functional and operational targets with real adapters | verification-lead with the pilot cohort | the declared pilot hosts |
 
@@ -48,4 +48,4 @@ Every result names the definition revision, policy digest, dependency versions, 
 
 ## Environments
 
-The Linux reference host is the protected-profile environment from Stage 2a. macOS runs the cooperative profile until its protected profile qualifies in Stage 4. Stages 1 and 2 may use deterministic simulators for providers and services (S6 section 2); the pilot must use approved real adapters.
+Stage 2a qualifies protected macOS first. Linux and Windows qualify separately. Each result applies to its declared host and configuration. [Host priority](../04-decisions/PDR-0085-macos-first-protected-pilot.md) Stages 1 and 2 may use deterministic simulators for providers and services (S6 section 2); the pilot must use approved real adapters.
