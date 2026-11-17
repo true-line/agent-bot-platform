@@ -82,6 +82,6 @@ new definition revisions; the Soul ID and address never change
 
 ## Sequence references
 
-- Operator view: [quickstart admission steps](../user-guide/tutorials/quickstart.md#5-start-the-soul)
+- Operator view: [run the sample](../user-guide/tutorials/quickstart.md#run-the-sample)
 - HQ crash: [runbook](../09-operations/runbooks/hq-restart.md)
 - Harness hang/crash loop: [runbook](../09-operations/runbooks/harness-crash-loop.md)
