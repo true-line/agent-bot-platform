@@ -8,7 +8,7 @@ Sources: S6 §13; S7 §2
 
 # Roadmap
 
-Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md) sets the proposed host order.
+Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md) sets the host order.
 
 ## Stages
 

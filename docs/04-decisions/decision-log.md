@@ -30,6 +30,7 @@ Platform-level decisions the owner made in other records, before or outside the 
 | agent-bot-identity ADR-1183 | identity repository | Split agent-bot into daemon, identity, comms and soul-runtime repositories. | In force; duplicated in two other places (DRIFT-011) |
 | agent-bot-identity ADR-0274 | identity repository | The product is mechanism; add-ons and SOP packs carry policy. | In force; candidate product principle |
 | agent-comms ADR-0028 | comms repository, accepted 2026-10-11 | Federation policy for relays. | In force; constrains seam `wire-v1` |
+| PDR-0085 | [Pilot host decision](PDR-0085-macos-first-protected-pilot.md) | Protected macOS first for the operator pilot, Linux and Windows secondary. | Accepted 2026-11-17 |
 
 ## Open platform decisions
 
@@ -48,6 +49,5 @@ From whitepaper draft 0.4 section 16 (S6) and the repository plan's blocking dec
 | Definition naming | `SoulInfo.json` and `SoulLock.json` | Stage 3 |
 | Federation cryptographic profile | Reviewed endpoint sealing and enrollment profile | Stage 4 |
 | Installation authority placement | Owner-operated installation authority before partitioned takeover | Stage 4 |
-| First protected platform | Owner chose protected macOS first, with Linux and Windows secondary. [PDR-0085](PDR-0085-macos-first-protected-pilot.md) records the proposal | Stage 2a |
 
 Settled since this list was made: notes durability, by [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) on 2026-11-11.

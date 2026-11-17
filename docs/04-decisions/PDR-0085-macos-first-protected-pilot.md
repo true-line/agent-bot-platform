@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-17
 Date: 2026-11-17
+Accepted: 2026-11-17
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/85
 Affects-Repos: [agent-bot-platform, agent-bot-hq, agent-bot-machine, soul-conformance]
 Affects: [R8, scope, quality-bar, trust-model]
@@ -12,8 +13,9 @@ Affects: [R8, scope, quality-bar, trust-model]
 # PDR-0085 Qualify protected macOS first for the operator pilot
 
 The owner chose macOS for the first protected operator pilot on 2026-11-17.
-This proposal records that choice for review. The owner-approved record on
-platform main governs rollout. [Discussion #85](https://github.com/true-line/agent-bot-platform/discussions/85)
+The owner approved the policy on [PR #87](https://github.com/true-line/agent-bot-platform/pull/87#pullrequestreview-5945288923).
+This acceptance sets rollout order. Stage exit still requires the host evidence
+below. [Discussion #85](https://github.com/true-line/agent-bot-platform/discussions/85)
 
 ## Context
 
