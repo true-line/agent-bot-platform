@@ -39,7 +39,7 @@ the decision context. This acceptance does not declare T14 or Stage 0 complete.
   fail explicitly. [R8](../02-requirements/product-requirements.md#r8-honest-profiles)
   also requires actual guarantees to be reported honestly.
 - [DRIFT-021](../00-governance/drift-register.md#drift-021-t14-previous-major-and-profile-evidence)
-  records the component-stub conflict pending adoption of this decision.
+  records the component-stub conflict and its conditional resolution.
   [soul-conformance #2](https://github.com/true-line/soul-conformance/issues/2)
   tracks the executable suite; passing component checks do not replace its
   independent acceptance evidence.
@@ -102,9 +102,9 @@ The following rules govern T14 acceptance:
   retain the overall T14 result as blocked even if individual checks pass.
 - **HQ, comms and Souls:** expose their supported-version behavior to the
   independent suite; do not weaken validators or authority checks to obtain a
-  pass. DRIFT-021 remains open until the suite adopts the accepted rule from
-  platform main and replaces the conflicting guidance. Owner Stage 0 signoff remains
-  separate from implementation or CI success.
+  pass. [DRIFT-021 resolution](../00-governance/drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence)
+  records adoption and the remaining merge dependency for conflicting guidance.
+  Owner Stage 0 signoff remains separate from implementation or CI success.
 
 ## Alternatives considered
 
