@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-12
+Last-Reviewed: 2026-11-17
 Sources: S6 §4; S8; agent-bot-hq D4
 ---
 
@@ -34,7 +34,7 @@ records which repository owns each half.
 
 ## What "protected" buys
 
-Under the protected profile (Linux reference host), every protected
+Under a qualified protected profile, every protected
 operation is brokered *and* containment is enforced:
 
 - HQ-controlled launch of every agent runtime
@@ -49,11 +49,11 @@ member. How per-member principals and private state are provided under
 it, and whether a shared harness account can earn `protected`, are
 unspecified.
 
-Proven by the hostile-member suite: T01, T02, T03, T21 (Stage 2a exit).
+Stage 2a requires protected T01–T03 on the declared macOS pilot host plus the cooperative T21 refusal check.
 
 ## What "cooperative" honestly means
 
-On macOS today, agents **share a trust domain**. Every feature still
+Under the cooperative profile, agents **share a trust domain**. Every feature still
 works — tasks, receipts, brokered inference, budgets, recovery — but a
 prompt-injected specialist could read the lead's files or reach a
 provider directly. Cooperative is *reported*: every receipt and the
@@ -61,28 +61,26 @@ console say "cooperative" (R8, T21), and any protected claim is refused.
 
 ## Protected vs cooperative
 
-| | Protected (Linux) | Cooperative (macOS) |
+| | Qualified protected host | Cooperative host |
 |---|---|---|
 | Feature set | full | full |
 | Broker receipts | yes | yes |
 | Hostile-member containment | **assured** (enforced) | **not assured** |
 | Egress control | brokered | cooperative |
 | Label on receipts/console | `protected` | `cooperative` |
-| Planned protected candidate | shipped first | Stage 4; mechanism unspecified since PDR-0053 drops per-member accounts |
 
 ## Practical rules for operators
 
 1. Treat all agents on a cooperative host as **one trust domain**.
 2. Give the Soul only credentials you would give its **least-trusted
    harness**.
-3. Use a Linux host or VM for protected work; receipts confirm the
-   profile in force on every operation.
+3. Use a host qualified for protected work. Check the effective profile on each receipt.
 
 ## Why receipts must label the profile
 
 Attribution (S6 §7) records the adapter route and profile per operation. The
 "enforced vs reported" distinction is the difference between an audit
-trail and a story. Windows support is later (S6 §16); the profile table is
+trail and a story. The host qualification table is
 maintained in [support](../09-operations/support.md#host-support-matrix).
 
 ## Deep dives

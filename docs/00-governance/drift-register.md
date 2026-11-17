@@ -109,3 +109,8 @@ Known places where two sources of truth disagree. An agent that meets one of the
 ## DRIFT-021 T14 previous-major and profile evidence
 
 - **Resolution proposed 2026-11-16.** Effective only after the conformance overview correction merges before this closeout. [Full record and merge dependency](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
+
+## DRIFT-022 Pilot host order
+
+- **Open.** S6 and the [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md) place Linux isolation in Stage 2a and protected macOS after the pilot. The owner chose protected macOS first.
+- **Resolution.** Record the order in [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md), then align HQ, Machine and conformance plans and stage trackers. Keep the Linux evidence scoped to its host.

@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-12
+Last-Reviewed: 2026-11-17
 ---
 
 # Decision log
@@ -39,7 +39,7 @@ From whitepaper draft 0.4 section 16 (S6) and the repository plan's blocking dec
 |---|---|---|
 | Owner authentication | Installing host account over the access-controlled socket; remote through an owner-opened tunnel, or on a linked machine through `control-v1` with owner presence (PDR-0047) | Stage 1 |
 | Authoritative task state | Task revisions, deduplication and action records in HQ's store; comms is a mirror | Stage 1 |
-| Member isolation | Separate protected runtime principals with private state per member; Linux first | Stage 2a |
+| Member isolation | Protected runtime principals and private state on macOS, with account boundaries governed by PDR-0053 | Stage 2a |
 | Epoch semantics | Commit fence at the broker; routing hint in the frame; stale-epoch mail delivered | Stage 2b |
 | Budget shape | One ceiling with working and maintenance sub-allocations | Stage 2b |
 | Primitive rendering | Canonical primitives with per-adapter overrides; digests in `SoulLock.json` | Stage 3 |
@@ -48,6 +48,6 @@ From whitepaper draft 0.4 section 16 (S6) and the repository plan's blocking dec
 | Definition naming | `SoulInfo.json` and `SoulLock.json` | Stage 3 |
 | Federation cryptographic profile | Reviewed endpoint sealing and enrollment profile | Stage 4 |
 | Installation authority placement | Owner-operated installation authority before partitioned takeover | Stage 4 |
-| First protected platform | One Linux reference profile; macOS per-member accounts second | Stage 2a |
+| First protected platform | Owner chose protected macOS first, with Linux and Windows secondary. [PDR-0085](PDR-0085-macos-first-protected-pilot.md) records the proposal | Stage 2a |
 
 Settled since this list was made: notes durability, by [PDR-0048](PDR-0048-notes-live-in-dreams-inputs-held-in-memory-and-synced-in-batches.md) on 2026-11-11.

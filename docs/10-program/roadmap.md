@@ -8,7 +8,7 @@ Sources: S6 §13; S7 §2
 
 # Roadmap
 
-Each stage exits on evidence. S6’s calendar ranges are planning estimates.
+Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md) sets the proposed host order.
 
 ## Stages
 
@@ -16,10 +16,10 @@ Each stage exits on evidence. S6’s calendar ranges are planning estimates.
 |---|---|---|---|---|
 | 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | Exit evidence complete on 2026-11-16; owner confirmation is recorded through approval of the Stage 0 closeout PR linked from [#66](https://github.com/true-line/agent-bot-platform/issues/66). See [evidence](#stage-0-evidence-and-remaining-work). |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Exit evidence complete 2026-11-17; approval of [#67](https://github.com/true-line/agent-bot-platform/issues/67) confirms exit. T04/T05/T20 passed under `managed-cooperative` ([soul-conformance PR #7](https://github.com/true-line/soul-conformance/pull/7)). [PR #10](https://github.com/true-line/soul-conformance/pull/10) [post-merge CI](https://github.com/true-line/soul-conformance/actions/runs/44104254218) passed 31 tests and `hello.soul` against the pinned runtime and real HQ. Clean reports: [artifact 14336598815](https://github.com/true-line/soul-conformance/actions/runs/44104254218/artifacts/14336598815), ZIP SHA-256 `3449cc028f36a3653de16d1fd23346df65138d31bfe0fb1fb2bc0a1fa0baeeed`. Cooperative only; Stage 2a retains the protected-host gate. |
-| 2a Member isolation | Weeks 6 to 7 | Caller binding on the Linux reference host, per-member principals, egress block | Hostile-member suite passes under the protected label | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)); Linux protected-host evidence pending. |
+| 2a Member isolation | Weeks 6 to 7 | macOS caller binding, isolation, key custody and egress control | T01–T03 protected and T21 cooperative on macOS | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)); macOS qualification pending. |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
-| 3 Operator pilot | Weeks 10 to 12 | Minimal owner console and HQ CLI, enrollment, approvals, export and restore | Pilot targets met on the declared host | Not started |
-| 4 Portability and relay | After pilot gates | Coordinated moves, macOS protected profile, site then cloud routing | Fencing, transfer, partition and crypto conformance | Not started |
+| 3 Operator pilot | Weeks 10 to 12 | Minimal owner console and HQ CLI, enrollment, approvals, export and restore | Pilot targets met on qualified protected macOS | Not started |
+| 4 Portability and relay | After pilot gates | Coordinated moves, site then cloud routing | Fencing, transfer, partition and crypto conformance | Not started |
 
 ## Stage 0 evidence and remaining work
 

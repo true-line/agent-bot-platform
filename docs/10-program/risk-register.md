@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: plan
 Owner: product-owner
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-17
 Sources: S6 §16; S1 watch list
 ---
 
@@ -16,7 +16,7 @@ Product and program risks that could invalidate the platform's claims or plan. E
 | RISK-002 | HQ concentrates authority; one compromise exposes every Soul on the host | S6 section 16; S1 | Acceptable for one owner per machine | Machines shared by several owners need one key store per owner |
 | RISK-003 | The identity service concentrates key custody | S6 section 16 | Owner-operated service; hosts hold only short-lived device-bound tokens | Any requirement to cache long-lived keys on hosts |
 | RISK-004 | External services cannot be reconciled reliably after an ambiguous effect | S6 section 16 | Durable intent before send, idempotency keys, unknown outcome raised to the owner | A pilot service with no lookup or idempotency |
-| RISK-005 | The Linux protected profile does not match the macOS machines first users run | S6 section 16 | macOS runs cooperative and says so until its protected profile qualifies in Stage 4 | Pilot users who cannot run Linux |
+| RISK-005 | macOS cannot yet prove isolation on the pilot configuration | [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md) | Keep the pilot gated on macOS conformance and report each observed profile | Missing key-boundary, caller-binding or egress evidence |
 | RISK-006 | Coordination costs more than the value it delivers | S6 sections 15 and 16 | Measure cost per accepted task against single-harness baselines in the pilot | Pilot cost per accepted result above the baseline |
 | RISK-007 | Standalone mode is unenforced but becomes the main experience | S1 watch list | Standalone is a declared developer fallback | Store customers running Souls without HQ |
 | RISK-008 | Two daemons coexist during the strangler migration | S1 watch list | The agent-bot daemon keeps its launchd label until HQ takes supervision | Owner-console release timing forcing an early cutover |

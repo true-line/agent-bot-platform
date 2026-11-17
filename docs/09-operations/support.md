@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-12
+Last-Reviewed: 2026-11-17
 Scope: support model, hosts, escalation
 ---
 
@@ -14,9 +14,9 @@ What support owes operators and what operators owe support.
 
 | Host | Profile | Status |
 |---|---|---|
-| Linux reference host | **protected** | MVP target (§13) |
-| macOS | **cooperative** | MVP target; protected profile is Stage 4, mechanism unspecified since PDR-0053 drops per-member accounts |
-| Windows | — | later (§16) |
+| macOS | Protected pilot target | Stage 2a qualification pending. Use the observed profile until the declared macOS configuration passes. [Pilot host decision](../04-decisions/PDR-0085-macos-first-protected-pilot.md) |
+| Linux | Secondary | Keep cohort-specific evidence. Protected support requires separate Linux qualification. |
+| Windows | Secondary | Qualification and implementation are pending. |
 | Declared reference machine | — | latency targets (§14); [UNSPECIFIED] hardware spec for local models |
 
 Workflow differences: none in features; containment differs —
@@ -55,7 +55,7 @@ construction (§12).
 
 Support must state these up front, not on request:
 
-- Cooperative macOS containment is **reported, not enforced**
+- Cooperative hosts share a trust domain. Their receipts must disclose the effective profile.
 - Federation relay runtime **not authorized yet** (agent-bot-comms ADR-0028 accepted,
   runtime pending)
 - Unmanaged Souls: **observability at best**; no general context

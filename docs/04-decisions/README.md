@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: index
 Owner: product-owner
-Last-Reviewed: 2026-11-16
+Last-Reviewed: 2026-11-17
 ---
 
 # Decisions
@@ -27,6 +27,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md) | A Soul is managed when HQ starts it | Accepted 2026-11-12 |
 | [PDR-0062](PDR-0062-hq-notice-scope-and-legacy-consume-one.md) | HQ binds notice scope; the legacy alias consumes one | Accepted 2026-11-14 |
 | [PDR-0075](PDR-0075-t14-supported-major-inventory-and-profile-evidence.md) | T14 uses supported-major inventory and asserted profile evidence | Accepted 2026-11-16 |
+| [PDR-0085](PDR-0085-macos-first-protected-pilot.md) | Qualify protected macOS first for the operator pilot | Proposed |
 
 ## How a decision is made
 

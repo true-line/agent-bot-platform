@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: concept
 Owner: product-owner
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-17
 Sources: S6 §1, §2, §15
 ---
 
@@ -30,7 +30,7 @@ From S6 section 2:
 - Terminal chat and an ACP front door; an HQ administration CLI; a minimal owner console.
 - Brokered access to one model destination (remote or local) and one external service.
 - Durable tasks and action receipts, interruption and recovery.
-- Release profile: managed protected on the Linux reference host. The same build runs managed cooperative on macOS and says so.
+- The pilot targets protected macOS. Linux and Windows are secondary targets with separate host qualification. [Host priority](../04-decisions/PDR-0085-macos-first-protected-pilot.md)
 
 ## Out of scope for the MVP
 
