@@ -40,7 +40,7 @@ hq export history <soul>                           # the HQ-store side
 3. Enroll the Soul on the new host (owner-verified out-of-band challenge)
 4. Re-grant: authority is *not* in the export, by design
 5. Start: admission repeats, then life comes back
-   ([quickstart admission steps](../tutorials/quickstart.md#5-start-the-soul))
+   ([admission sequence](../../03-architecture/lifecycle.md#admission-one-sequence))
 
 The new host **validates, restores, rebuilds indexes, reconnects
 credentials, and reports gaps** — that is the clock-in flow, and one flow
