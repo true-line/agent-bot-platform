@@ -31,6 +31,21 @@ closed for the affected operation. HQ in an ordinary user account uses Machine
 even when the host has a Secure Enclave. Uncertain eligibility confers no
 permission to sign locally.
 
+## Establishing eligibility on macOS
+
+On a fresh installation, the installer records the administrator's explicit
+choice of standalone signing for the dedicated HQ account and their declaration
+that no custom Machine installation exists. HQ checks the supported Machine
+executable locations and their code signatures, installation state and evidence
+of prior pairing. A binary in an unexpected state or an inspection failure
+prevents local signing. The declaration accounts for custom locations beyond
+the installer's search. [Owner decision and justification](https://github.com/true-line/agent-bot-platform/discussions/93#discussioncomment-19759206).
+
+A subsequent Machine installation or pairing retires that authorization before
+Machine starts. HQ must enforce retirement even in a process that was already
+running when the administrator changed the installation. Stopping or removing
+Machine, or revoking its pairing, cannot revive the declaration.
+
 ## Scope and verification
 
 This exception covers only local Secure Enclave signing. It grants no local
