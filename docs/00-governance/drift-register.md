@@ -108,7 +108,7 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 
 ## DRIFT-021 T14 previous-major and profile evidence
 
-- **Resolution proposed 2026-11-16.** Requires the conformance overview correction to merge first. [Full record and merge dependency](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
+- **Resolved.** The conformance overview correction merged before the Stage 0 closeout. [Full record](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
 
 ## DRIFT-022 Pilot host order
 

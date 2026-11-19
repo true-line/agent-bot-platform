@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: index
 Owner: product-owner
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-18
 ---
 
 # Decisions
@@ -28,8 +28,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0062](PDR-0062-hq-notice-scope-and-legacy-consume-one.md) | HQ binds notice scope; the legacy alias consumes one | Accepted 2026-11-14 |
 | [PDR-0075](PDR-0075-t14-supported-major-inventory-and-profile-evidence.md) | T14 uses supported-major inventory and asserted profile evidence | Accepted 2026-11-16 |
 | [PDR-0085](PDR-0085-macos-first-protected-pilot.md) | Qualify protected macOS first for the operator pilot | Accepted 2026-11-17 |
-| [PDR-0091](PDR-0091-host-privileged-custody.md) | Administrative custody of privileged host keys and operations across all paths | Proposed record of owner clarification |
-| [PDR-0093](PDR-0093-standalone-hq-secure-enclave-signing.md) | Allow explicit standalone HQ Secure Enclave signing in its dedicated account when Machine is not installed | Owner approved exception; PR pending |
+| [PDR-0089](PDR-0089-owner-approval-for-the-first-hq-account-on-macos.md) | Owner approval for the first HQ account on macOS | Proposed |
 
 ## How a decision is made
 
@@ -37,6 +36,13 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 2. Open a discussion in [Decisions](https://github.com/true-line/agent-bot-platform/discussions/categories/decisions). Its number is the PDR number.
 3. Deliberate in the discussion; the owner marks the chosen answer.
 4. Record it as `PDR-NNNN-slug.md` from the PDR template, Proposed, then Accepted when the owner approves the PR.
+
+## Host custody decisions (2026-11-19)
+
+| PDR | Title | Status |
+|---|---|---|
+| [PDR-0091](PDR-0091-host-privileged-custody.md) | Administrative custody of privileged host keys and operations across all paths | Proposed record of owner clarification |
+| [PDR-0093](PDR-0093-standalone-hq-secure-enclave-signing.md) | Allow explicit standalone HQ Secure Enclave signing in its dedicated account when Machine is not installed | Owner approved exception; PR pending |
 
 ## Related pages
 
