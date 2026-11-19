@@ -14,7 +14,7 @@ Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-
 
 | Stage | Planning range | Deliverable | Exit evidence | Recorded state |
 |---|---|---|---|---|
-| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | Exit evidence complete on 2026-11-16; owner confirmation is recorded through approval of the Stage 0 closeout PR linked from [#66](https://github.com/true-line/agent-bot-platform/issues/66). See [evidence](#stage-0-evidence-and-remaining-work). |
+| 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | The owner confirmed exit by approving [closeout PR #79](https://github.com/true-line/agent-bot-platform/pull/79), which closed [#66](https://github.com/true-line/agent-bot-platform/issues/66). See [evidence](#stage-0-evidence-and-remaining-work). |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Exit evidence complete 2026-11-17; approval of [#67](https://github.com/true-line/agent-bot-platform/issues/67) confirms exit. T04/T05/T20 passed under `managed-cooperative` ([soul-conformance PR #7](https://github.com/true-line/soul-conformance/pull/7)). [PR #10](https://github.com/true-line/soul-conformance/pull/10) [post-merge CI](https://github.com/true-line/soul-conformance/actions/runs/44104254218) passed 31 tests and `hello.soul` against the pinned runtime and real HQ. Clean reports: [artifact 14336598815](https://github.com/true-line/soul-conformance/actions/runs/44104254218/artifacts/14336598815), ZIP SHA-256 `3449cc028f36a3653de16d1fd23346df65138d31bfe0fb1fb2bc0a1fa0baeeed`. Cooperative only; Stage 2a retains the protected-host gate. |
 | 2a Member isolation | Weeks 6 to 7 | macOS caller binding, isolation, key custody and egress control | T01–T03 protected and T21 cooperative on macOS | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)); macOS qualification pending. |
 | 2b Brokered adapters | Weeks 8 to 9 | Brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay | Not started |
@@ -25,8 +25,8 @@ Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-
 
 The 2026-11-13 baseline is platform `2b14c0719051d5a23859656c07e75fb028502200`.
 [The reconciliation issue](https://github.com/true-line/agent-bot-platform/issues/58)
-records the earlier audit; [platform #66](https://github.com/true-line/agent-bot-platform/issues/66)
-tracks the remaining Stage 0 gate. Migration row numbers refer to the
+records the earlier audit. [Platform #66](https://github.com/true-line/agent-bot-platform/issues/66)
+records the completed Stage 0 gate. Migration row numbers refer to the
 [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md#stage-0-contract-baseline-and-in-place-preparation-wp1).
 
 | Boundary | Recorded evidence | Remaining work |
@@ -74,9 +74,9 @@ protected-enforcement claim.
 `34a2375c106d734cb59c17cd6370020268672b62`. [Post-merge CI](https://github.com/true-line/soul-conformance/actions/runs/43959463020)
 passed 15 self-tests, 16 checks and 119 fixture verdicts against fresh platform
 main. The [catalog](../07-verification/conformance-catalog.md) records T14 passing.
-The [DRIFT-021 correction](../00-governance/drift-register.md#drift-021-t14-previous-major-and-profile-evidence) must merge first.
-Approval of this closeout PR records explicit owner confirmation of Stage 0
-exit; prior merges did not grant it.
+The [DRIFT-021 correction](../00-governance/drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence)
+merged before the owner approved [closeout PR #79](https://github.com/true-line/agent-bot-platform/pull/79),
+confirming Stage 0 exit for this cohort.
 
 Merged work is counted only where its implementation survives. In particular,
 [agent-bot-identity#1418](https://github.com/true-line/agent-bot-identity/pull/1418)

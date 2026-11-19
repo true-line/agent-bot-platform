@@ -108,7 +108,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-021 T14 previous-major and profile evidence
 
-- **Resolution proposed 2026-11-16.** Effective only after the conformance overview correction merges before this closeout. [Full record and merge dependency](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
+- **Resolved.** The conformance overview correction merged before the Stage 0 closeout. [Full record](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
 
 ## DRIFT-022 Pilot host order
 
