@@ -11,10 +11,10 @@ Affects: [daemon-machine-channel, trust-model]
 
 # PDR-0089 Owner approval for the first HQ account on macOS
 
-On a fresh Mac, the operator would transfer the first HQ provisioning plan
-from Machine to the local Approvals UI and return the owner's signed approval
-to Machine. This proposal awaits the owner's choice in
-[Discussion #89](https://github.com/true-line/agent-bot-platform/discussions/89).
+The product owner chose a one-time transfer for the first HQ setup on a fresh
+Mac. The operator takes Machine's saved plan to the local Approvals UI and
+returns its signed proof to Machine. The decision record awaits formal PR
+approval. [Owner choice](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19724884)
 
 ## Context
 
@@ -49,8 +49,7 @@ The proposed first-install flow has four steps.
 ## Consequences
 
 - Machine owns challenge issuance, proof verification and execution. Its
-  channel contract documents the first-install exchange if the owner accepts
-  this proposal.
+  channel contract must document the one-time first-install exchange.
 - Identity owns the local Approvals UI, digest calculation and owner-session
   signature. Its displayed steps must match the steps Machine applies. The
   standalone macOS approval app exercises this role for qualification. The
