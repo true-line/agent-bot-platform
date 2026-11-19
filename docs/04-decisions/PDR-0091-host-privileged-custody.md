@@ -23,8 +23,12 @@ account or the operator declines to create a dedicated HQ account.
 1. HQ owns the enrollment workflow and its application-level decisions.
    It requests each privileged operation over the authenticated, signed local
    Machine channel. Caller identity alone does not authorize the operation.
-   Machine checks the requested purpose and authority, performs only the
-   authorized operation, and returns only the permitted result. Raw private
+   Each request names a fixed, strongly typed operation. Machine checks its
+   expected fields, requested purpose and authority. Signing, encryption and
+   decryption with protected host keys run under the admin credentials. Machine
+   constructs or validates the operation-specific input and returns only the
+   permitted result. A paired caller cannot select an arbitrary key or use a
+   general sign, encrypt or decrypt interface. Raw private
    keys and unrestricted signing capability remain inside the admin boundary.
 2. For device enrollment and token proofs, HQ handles the identity-service
    HTTPS exchange. Machine and keyd can perform local signing offline.
