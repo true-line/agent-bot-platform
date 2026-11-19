@@ -46,6 +46,18 @@ Machine starts. HQ must enforce retirement even in a process that was already
 running when the administrator changed the installation. Stopping or removing
 Machine, or revoking its pairing, cannot revive the declaration.
 
+## Standalone signer executable
+
+The administrator installs the reviewed command-line helper in a protected
+location. Standalone HQ verifies the exact release executable and its existing
+Developer ID signature. The helper uses the Secure Enclave and keeps its
+device-bound key reference in the dedicated HQ account's private file Keychain
+under per-executable access control. These checks replace the app-specific
+application identifier and Keychain access group entitlements for this helper.
+Apple requires a profile-carrying bundle for those entitlements. The approved
+command-line design uses the existing signing identity.
+[Owner decision and justification](https://github.com/true-line/agent-bot-platform/discussions/93#discussioncomment-19759443).
+
 ## Scope and verification
 
 This exception covers only local Secure Enclave signing. It grants no local
