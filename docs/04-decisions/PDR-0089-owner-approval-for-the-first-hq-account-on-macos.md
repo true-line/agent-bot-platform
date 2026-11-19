@@ -28,12 +28,12 @@ retrieve plans over its signed channel.
 
 The proposed first-install flow has four steps.
 
-1. The prefix administrator pins the independently verified owner app's public
-   key. Machine presents a fresh challenge and its saved first-HQ plan for the
+1. The prefix administrator pins the independently verified public key of the signer
+   in the owner's session. Machine presents a fresh challenge and its saved first-HQ plan for the
    operator to transfer to the local Approvals UI.
 2. The UI recomputes the plan digest and shows the exact steps. The plan covers
    the first HQ account and, when explicitly included, the HQ service unit and
-   owner-only control socket directory. After confirmation, the owner app
+   owner-only control socket directory. After confirmation, the signer in the owner's session
    requests presence and signs the first-HQ provisioning action, binding it to
    this Machine, the plan ID and digest, the nonce and the expiry.
 3. The operator returns the public proof to Machine. Machine verifies it against
@@ -52,7 +52,10 @@ The proposed first-install flow has four steps.
   channel contract documents the first-install exchange if the owner accepts
   this proposal.
 - Identity owns the local Approvals UI, digest calculation and owner-session
-  signature. Its displayed steps must match the steps Machine applies.
+  signature. Its displayed steps must match the steps Machine applies. The
+  standalone macOS approval app exercises this role for qualification. The
+  [owner interface plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md#7-owner-interface-hqv1-for-geniusbar-and-the-hq-cli)
+  identifies GeniusBar and the HQ CLI as the product interfaces.
 - HQ uses the enrolled channel after setup. Verify the full sequence on a
   clean macOS installation, including cancellation and expiry with the plan
   and host unchanged, one authorized apply, pairing from the dedicated HQ
