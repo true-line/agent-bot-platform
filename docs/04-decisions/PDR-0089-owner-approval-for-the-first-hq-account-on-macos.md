@@ -51,8 +51,12 @@ The proposed first-install flow has four steps.
 - Machine owns challenge issuance, proof verification and execution. Its
   channel contract must document the one-time first-install exchange.
 - Identity owns the local Approvals UI, digest calculation and owner-session
-  signature. Its displayed steps must match the steps Machine applies. The
-  standalone macOS approval app exercises this role for qualification. The
+  signature. Its displayed steps must match the steps Machine applies.
+  The owner explicitly rejected wrapping owner presence in a macOS `.app`
+  bundle. This applies to product, pilot and qualification flows across the
+  platform, including installation instructions, CI and release artifacts.
+  An agent proposing to change this restriction must provide a justification
+  and obtain explicit owner approval before implementing it. The
   [owner interface plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md#7-owner-interface-hqv1-for-geniusbar-and-the-hq-cli)
   identifies GeniusBar and the HQ CLI as the product interfaces.
 - HQ uses the enrolled channel after setup. Verify the full sequence on a
