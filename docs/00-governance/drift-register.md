@@ -117,4 +117,4 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 
 ## DRIFT-023 Privileged host key custody
 
-- **Open.** HQ permits local signing. Close when all affected paths enforce [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md) and have qualifying evidence.
+- **Open.** HQ-local signing must satisfy [PDR-0093](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md). Close when all affected paths enforce [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md) and have qualifying evidence.

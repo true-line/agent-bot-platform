@@ -18,6 +18,8 @@ trusted executor and keyd perform those operations in the secure
 administrative account. This also applies when HQ runs in an ordinary
 account or the operator declines to create a dedicated HQ account.
 
+**Dated amendment.** [PDR-0093](PDR-0093-standalone-hq-secure-enclave-signing.md) records the narrowly approved standalone signing exception. This earlier record is preserved.
+
 ## Authority and execution
 
 1. HQ owns the enrollment workflow and its application-level decisions.

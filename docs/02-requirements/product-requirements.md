@@ -36,7 +36,7 @@ Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 5, 11.
 
 ### R2 Execution stays local
 
-HQ controls local lifecycle and requests protected host operations from Agent Machine, which authorizes and executes them in the secure administrative account. In a local-only deployment HQ also decides them. On a machine the owner has linked, Harbor decides and HQ enforces; an action that adds authority carries the owner's device presence signature, verified on the host. Relays deliver messages and presence; no remote tier obtains an execution channel.
+HQ controls local lifecycle and requests protected host operations from Agent Machine, which authorizes and executes them in the secure administrative account by default. PDR-0093 permits only standalone Secure Enclave signing under its stated conditions. In a local-only deployment HQ also decides them. On a machine the owner has linked, Harbor decides and HQ enforces; an action that adds authority carries the owner's device presence signature, verified on the host. Relays deliver messages and presence; no remote tier obtains an execution channel.
 
 Status: Approved. Source: S6 §2 (draft 0.4), reworded by PDR-0047 and clarified by PDR-0091. Specified in S6 §3, 4 (administration), 5, 6; PDR-0047.
 

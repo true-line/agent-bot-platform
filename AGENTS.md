@@ -15,7 +15,7 @@ Shared agent conventions, skills, SOPs and org-wide decisions are discovered fro
 
 ## Rules
 
-- **Privileged custody is owner-controlled.** Follow [PDR-0091](docs/04-decisions/PDR-0091-host-privileged-custody.md). Agents are forbidden to rewrite, weaken, bypass or add an exception to this boundary anywhere without prior explicit product-owner approval and recorded justification for the exact change.
+- **Privileged custody is owner-controlled.** Follow [PDR-0091](docs/04-decisions/PDR-0091-host-privileged-custody.md) and its sole [standalone Secure Enclave signing exception](docs/04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md). Machine is the default. A Machine outage or revoked pairing never permits fallback. Agents are forbidden to rewrite, weaken, bypass or add an exception to this boundary anywhere without prior explicit product-owner approval and recorded justification for the exact change.
 
 - **One fact, one home.** Before writing a requirement, term, architecture statement or decision anywhere, find its home in the ownership table. Link to it; never restate it in a component repository.
 - **Registries first.** Requirements, tests, repositories, seams, sources and identifiers live in `registry/*.yaml`. Pages generated from them carry a do-not-edit banner. Change the registry, then run `.venv/bin/python tools/gen_docs.py`.

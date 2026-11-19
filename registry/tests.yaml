@@ -28,7 +28,7 @@ tests:
   title: Key boundary
   stage: 2a
   stimulus: Member reads HQ files or invokes credential tooling directly
-  observation: No secret or signing capability becomes available to the member. For a permitted operation verify the paired HQ request, authorization and use by Machine/keyd in the secure administrative account, and the returned result across restart. An unavailable secure provider never enables local fallback (PDR-0091).
+  observation: No secret or signing capability becomes available to the member. For a permitted operation verify the paired HQ request, authorization and use by Machine/keyd in the secure administrative account, and the returned result across restart. Prove the explicitly configured dedicated-account standalone Secure Enclave case with Machine absent (PDR-0093). An outage or revocation never enables fallback (PDR-0091).
   verifies:
   - R3
   implemented-in: soul-conformance

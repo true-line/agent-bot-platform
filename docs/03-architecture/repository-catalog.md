@@ -87,9 +87,9 @@ Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), e
 
 Criteria: C1; trust domain: Trusted local host service, outside every Soul; work packages: WP2, WP4, WP6.
 
-Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037); Device enrollment workflow, identity-service network exchange and signed local requests for protected host operations (PDR-0091).
+Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037); Device enrollment, identity-service network exchange and signed local requests (PDR-0091); standalone Secure Enclave signing only under PDR-0093.
 
-Must not own: Long-lived signing keys (identity service); Privileged host keys, their use and protected host resource access (agent-bot-machine admin sandbox); Wire framing or task state library code (agent-bot-comms).
+Must not own: Long-lived signing keys (identity service); Privileged host keys, their use and protected resources except the explicit standalone signing case in PDR-0093; Wire framing or task state library code (agent-bot-comms).
 
 Follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architecture, decisions D1-D4) into the platform; add AGENTS.md with the governed block.
 

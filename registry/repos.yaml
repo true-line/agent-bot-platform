@@ -141,10 +141,10 @@ repos:
       - hq/v1 owner and member API, admission, grants, leases, epochs
       - Action ledger, task authority, budgets, reconciliation, approvals
       - Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037)
-      - Device enrollment workflow, identity-service network exchange and signed local requests for protected host operations (PDR-0091)
+      - Device enrollment, identity-service network exchange and signed local requests (PDR-0091); standalone Secure Enclave signing only under PDR-0093
     must-not-own:
       - Long-lived signing keys (identity service)
-      - Privileged host keys, their use and protected host resource access (agent-bot-machine admin sandbox)
+      - Privileged host keys, their use and protected resources except the explicit standalone signing case in PDR-0093
       - Wire framing or task state library code (agent-bot-comms)
     provides: [hq-v1, hq-plugin-contract, task-v1, observation-v1]
     consumes: [identity-service-api, catalog-signing, control-v1, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]

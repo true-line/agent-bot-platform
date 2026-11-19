@@ -8,7 +8,7 @@ Scope: key material and credential flow
 
 # Key boundaries
 
-HQ brokers credential references. Agent Machine authorizes privileged host operations and uses the protected resource under the secure administrative account. The identity service retains its own server-side keys. See [administrative custody and change control](../04-decisions/PDR-0091-host-privileged-custody.md).
+HQ brokers credential references. Agent Machine authorizes privileged host operations and uses the protected resource under the secure administrative account. The identity service retains its own server-side keys. See [administrative custody and change control](../04-decisions/PDR-0091-host-privileged-custody.md). The sole exception is [standalone Secure Enclave signing](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md).
 
 ## The boundary
 
