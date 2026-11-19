@@ -23,14 +23,7 @@ reported, never silently downgraded.
 
 ## Where host-side secrets live
 
-HQ and the admin sandbox are separate trust domains on the same host
-(agent-bot-hq D4). HQ (agent-bot-hq) holds the device key and
-short-lived credentials in memory only. The admin sandbox
-(agent-bot-machine) guards host-side credentials at rest and the signed
-policy HQ enforces, installs only signed catalog items, and verifies owner
-presence before a policy write. A compromised HQ process therefore cannot
-rewrite its own policy. The [repository catalog](repository-catalog.md)
-records which repository owns each half.
+HQ and the admin sandbox are separate trust domains. HQ requests privileged key and resource operations over the signed local channel. Machine enforces policy and performs those operations in the secure administrative account, including on cooperative hosts and hosts without a dedicated HQ account. See [administrative custody and change control](../04-decisions/PDR-0091-host-privileged-custody.md).
 
 ## What "protected" buys
 

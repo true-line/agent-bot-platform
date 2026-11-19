@@ -28,6 +28,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0062](PDR-0062-hq-notice-scope-and-legacy-consume-one.md) | HQ binds notice scope; the legacy alias consumes one | Accepted 2026-11-14 |
 | [PDR-0075](PDR-0075-t14-supported-major-inventory-and-profile-evidence.md) | T14 uses supported-major inventory and asserted profile evidence | Accepted 2026-11-16 |
 | [PDR-0085](PDR-0085-macos-first-protected-pilot.md) | Qualify protected macOS first for the operator pilot | Accepted 2026-11-17 |
+| [PDR-0091](PDR-0091-host-privileged-custody.md) | Administrative custody of privileged host keys and operations across all paths | Proposed record of owner clarification |
 
 ## How a decision is made
 

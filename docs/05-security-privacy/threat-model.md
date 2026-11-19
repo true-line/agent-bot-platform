@@ -25,7 +25,7 @@ honestly cannot, and which tests prove each control.
 
 | Asset | Location | Exposure if compromised |
 |---|---|---|
-| Provider keys, GitHub App key | HQ key store | full account access — hence T02 boundary |
+| Provider keys, GitHub App key | Identity service, or the Machine admin sandbox for credentials held on the host | full account access — hence T02 boundary |
 | Grants/authority DB | HQ | attacker gains standing authority |
 | Member state (homes) | package `home/<member>/` | memory poisoning, cross-member reads on cooperative |
 | `.soul` package | portable | tampering → hostile instructions on import |

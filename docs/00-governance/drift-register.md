@@ -114,3 +114,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Open.** S6 and the [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md) place Linux isolation in Stage 2a and protected macOS after the pilot. The owner chose protected macOS first.
 - **Resolution.** Record the order in [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md), then align HQ, Machine and conformance plans and stage trackers. Keep the Linux evidence scoped to its host.
+
+## DRIFT-023 Privileged host key custody
+
+- **Open.** The signer implementation and component qualification instructions permit HQ-local private-key use. The owner reaffirmed administrative custody on every path in [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md). Close when the component paths and test evidence enforce that boundary.

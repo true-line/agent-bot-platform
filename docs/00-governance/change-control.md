@@ -33,6 +33,8 @@ Every PDR declares `Affects-Repos` and `Affects` (seams, requirement IDs or `top
 5. **Fan out.** Each affected repository gets an issue that cites the PDR. Repository-local ADRs that implement it cite it too. A component never re-decides an accepted PDR locally.
 6. **Supersede, never rewrite.** A changed decision is a new PDR with `Supersedes`; the old one gains `Superseded-By` and keeps its text.
 
+The protected host custody boundary has explicit [owner change controls](../04-decisions/PDR-0091-host-privileged-custody.md#change-control). Apply them to code, tests, configuration and documentation in every affected repository.
+
 ## Changing a requirement, test or seam
 
 Requirements, tests, repository charters and seams change by PR to `registry/`. The PR runs the generator so the generated pages change with it. A change to an Approved requirement, to what a test must prove, or to a seam's provider is a decision and needs a PDR first.
