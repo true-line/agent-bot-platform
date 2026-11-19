@@ -7,7 +7,7 @@ Last-Reviewed: 2026-11-17
 
 # Drift register
 
-Known places where two sources of truth disagree. An agent that meets one of these does not pick a side: it follows the resolution path or raises a Decisions discussion. Entries are never deleted. A resolved entry keeps its heading here, and its full record, with what removed the conflict, moves to [resolved drift](drift-register-resolved.md). DRIFT-001 to DRIFT-015 were found by the 2026-11-07 survey.
+Follow each conflict’s resolution or raise a Decisions discussion. Retain every heading; move completed entries and evidence to [resolved drift](drift-register-resolved.md). The 2026-11-07 survey found DRIFT-001 through DRIFT-015.
 
 ## DRIFT-001 R9 has two wordings
 
@@ -108,7 +108,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-021 T14 previous-major and profile evidence
 
-- **Resolution proposed 2026-11-16.** Effective only after the conformance overview correction merges before this closeout. [Full record and merge dependency](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
+- **Resolution proposed 2026-11-16.** Requires the conformance overview correction to merge first. [Full record and merge dependency](drift-register-resolved.md#drift-021-t14-previous-major-and-profile-evidence).
 
 ## DRIFT-022 Pilot host order
 
@@ -117,4 +117,4 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 ## DRIFT-023 Privileged host key custody
 
-- **Open.** The signer implementation and component qualification instructions permit HQ-local private-key use. The owner reaffirmed administrative custody on every path in [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md). Close when the component paths and test evidence enforce that boundary.
+- **Open.** HQ permits local signing. Close when all affected paths enforce [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md) and have qualifying evidence.
