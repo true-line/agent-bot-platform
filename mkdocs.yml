@@ -86,7 +86,6 @@ nav:
       - 04-decisions/PDR-0062-hq-notice-scope-and-legacy-consume-one.md
       - 04-decisions/PDR-0075-t14-supported-major-inventory-and-profile-evidence.md
       - 04-decisions/PDR-0085-macos-first-protected-pilot.md
-      - 04-decisions/PDR-0089-owner-approval-for-the-first-hq-account-on-macos.md
       - 04-decisions/decision-log.md
       - 04-decisions/cross-repo-adr-index.md
       - Host custody decisions (2026-11-19):
