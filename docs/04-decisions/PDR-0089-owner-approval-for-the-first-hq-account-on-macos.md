@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-18
+Last-Reviewed: 2026-11-20
 Date: 2026-11-18
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/89
 Affects-Repos: [agent-bot-machine, agent-bot-identity, agent-bot-hq]
@@ -13,8 +13,8 @@ Affects: [daemon-machine-channel, trust-model]
 
 The product owner chose a one-time transfer for the first HQ setup on a fresh
 Mac. The operator takes Machine's saved plan to the local Approvals UI and
-returns its signed proof to Machine. The decision record awaits formal PR
-approval. [Owner choice](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19724884)
+returns its signed proof to Machine. The owner approved the original first-HQ
+transfer in [PR #90](https://github.com/true-line/agent-bot-platform/pull/90). [Owner choice](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19724884)
 
 ## Context
 
@@ -46,13 +46,35 @@ The proposed first-install flow has four steps.
    own flows. [Service installation decision](https://github.com/true-line/agent-bot-platform/discussions/49)
    · [Plan retrieval decision](https://github.com/true-line/agent-bot-platform/discussions/50)
 
+### Owner key for first enrollment
+
+On a Mac that has never been paired, the owner approved an unbundled signed
+command-line helper for first enrollment. The helper creates a non-exportable
+P-256 key in the Secure Enclave and keeps its device-bound reference in the
+owner’s login Keychain. Keychain access is restricted to that signed executable.
+Each owner approval requires fresh Touch ID or the login password for the
+specific action. The prefix administrator independently verifies and pins
+the public key in Machine.
+
+This decision grants no authority to replace an existing owner key, migrate
+an earlier provider, or re-pin a Machine. An existing pairing keeps its pin.
+Any change to these limits requires explicit product-owner approval and a
+recorded justification.
+
 ## Consequences
 
 - Machine owns challenge issuance, proof verification and execution. Its
   channel contract must document the one-time first-install exchange.
 - Identity owns the local Approvals UI, digest calculation and owner-session
-  signature. Its displayed steps must match the steps Machine applies. The
-  standalone macOS approval app exercises this role for qualification. The
+  signature. Its displayed steps must match the steps Machine applies.
+  An owner-presence `.app` may be used in internal tests, CI and private
+  pilots. Customer releases must exclude a standalone owner-presence `.app`
+  from their installers, downloads and installation instructions. If all the
+  apps ship together as one Product, that Product may include the app.
+  Verify the owner-proof flow using the packaging customers will receive.
+  Changes to this boundary require explicit product-owner approval and a
+  recorded justification. [Owner clarification](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19774904)
+  The
   [owner interface plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md#7-owner-interface-hqv1-for-geniusbar-and-the-hq-cli)
   identifies GeniusBar and the HQ CLI as the product interfaces.
 - HQ uses the enrolled channel after setup. Verify the full sequence on a
