@@ -17,6 +17,8 @@ The owner selected the process-isolation answer in [Discussion #52](https://gith
 
 A launched harness needs its Unix broker socket. A direct network connection lets it reach a provider outside the broker's policy and audit. The owner raised a second concern with per-account firewall rules. They would have to coexist with every other firewall managing the host.
 
+The [HQ migration plan, row 16c](https://github.com/true-line/agent-bot-hq/blob/a1e847cb36d7b0e825f810c8c3d4f16fdff6543d/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) still recommends a per-account firewall. [Machine #497](https://github.com/true-line/agent-bot-machine/pull/497) installed Linux IPv4 and IPv6 rules. [Platform #68](https://github.com/true-line/agent-bot-platform/issues/68) tracks macOS qualification.
+
 ## Decision
 
 1. On macOS, apply a sandbox profile to the launched harness process that denies direct IP networking and permits the Unix socket used for its broker. The owner-selected answer specifies the mechanism at the profile level. Selection of a supported launcher and verification on each supported OS version remain implementation work.

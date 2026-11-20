@@ -112,8 +112,7 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 
 ## DRIFT-022 Pilot host order
 
-- **Open.** S6 and the [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md) place Linux isolation in Stage 2a and protected macOS after the pilot. The owner chose protected macOS first.
-- **Resolution.** Record the order in [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md), then align HQ, Machine and conformance plans and stage trackers. Keep the Linux evidence scoped to its host.
+- **Open.** S6 and HQ scheduled protected Linux first. [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md) moved protected macOS ahead of the pilot. Align HQ, Machine and conformance plans and trackers. Each host needs its own evidence.
 
 ## DRIFT-023 Privileged host key custody
 
@@ -121,5 +120,4 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 
 ## DRIFT-024 Harness egress isolation
 
-- **Open.** The owner selected process isolation in [Discussion #52](https://github.com/true-line/agent-bot-platform/discussions/52). The [HQ migration plan, row 16c](https://github.com/true-line/agent-bot-hq/blob/a1e847cb36d7b0e825f810c8c3d4f16fdff6543d/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) still recommends a per-account firewall. [Machine #497](https://github.com/true-line/agent-bot-machine/pull/497) installed Linux IPv4 and IPv6 rules.
-- **Resolution.** Review [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md), align the component plans and implementations, and verify T03 through the normal launcher on each host. [Platform #68](https://github.com/true-line/agent-bot-platform/issues/68) tracks the first protected macOS qualification.
+- **Open.** HQ's plan and Machine's Linux firewall differ from [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md). Reconcile both and verify T03.
