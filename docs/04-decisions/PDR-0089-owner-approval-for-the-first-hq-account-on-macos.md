@@ -46,6 +46,21 @@ The proposed first-install flow has four steps.
    own flows. [Service installation decision](https://github.com/true-line/agent-bot-platform/discussions/49)
    · [Plan retrieval decision](https://github.com/true-line/agent-bot-platform/discussions/50)
 
+### Owner key for first enrollment
+
+On a Mac that has never been paired, the owner approved an unbundled signed
+command-line helper for first enrollment. The helper creates a non-exportable
+P-256 key in the Secure Enclave and keeps its device-bound reference in the
+owner’s login Keychain. Keychain access is restricted to that signed executable.
+Each owner approval requires fresh Touch ID or the login password for the
+specific action. The prefix administrator independently verifies and pins
+the public key in Machine.
+
+This decision grants no authority to replace an existing owner key, migrate
+an earlier provider, or re-pin a Machine. An existing pairing keeps its pin.
+Any change to these limits requires explicit product-owner approval and a
+recorded justification.
+
 ## Consequences
 
 - Machine owns challenge issuance, proof verification and execution. Its
