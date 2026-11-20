@@ -112,9 +112,12 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 
 ## DRIFT-022 Pilot host order
 
-- **Open.** S6 and the [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md) place Linux isolation in Stage 2a and protected macOS after the pilot. The owner chose protected macOS first.
-- **Resolution.** Record the order in [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md), then align HQ, Machine and conformance plans and stage trackers. Keep the Linux evidence scoped to its host.
+- **Open.** S6 and HQ scheduled protected Linux first. [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md) moved protected macOS ahead of the pilot. Align HQ, Machine and conformance plans and trackers. Each host needs its own evidence.
 
 ## DRIFT-023 Privileged host key custody
 
 - **Open.** HQ-local signing must satisfy [PDR-0093](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md). Close when all affected paths enforce [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md) and have qualifying evidence.
+
+## DRIFT-024 Harness egress isolation
+
+- **Open.** HQ's plan and Machine's Linux firewall differ from [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md). Reconcile both and verify T03.
