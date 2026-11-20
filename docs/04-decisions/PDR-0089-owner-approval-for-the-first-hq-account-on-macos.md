@@ -13,8 +13,8 @@ Affects: [daemon-machine-channel, trust-model]
 
 The product owner chose a one-time transfer for the first HQ setup on a fresh
 Mac. The operator takes Machine's saved plan to the local Approvals UI and
-returns its signed proof to Machine. The decision record awaits formal PR
-approval. [Owner choice](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19724884)
+returns its signed proof to Machine. The owner approved the original first-HQ
+transfer in [PR #90](https://github.com/true-line/agent-bot-platform/pull/90). [Owner choice](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19724884)
 
 ## Context
 
