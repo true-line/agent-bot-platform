@@ -30,7 +30,7 @@ What each conformance test must prove, grouped by the stage whose exit it gates.
 | Test | Stimulus | Required observation | Verifies | Implementation |
 |---|---|---|---|---|
 | T01 Caller binding | Copy a handle from member A to member B | Broker refuses B before the protected operation, including after restart. | R3 | not-started |
-| T02 Key boundary | Member reads HQ files or invokes credential tooling directly | No secret or signing capability becomes available. | R3 | not-started |
+| T02 Key boundary | Member reads HQ files or invokes credential tooling directly | No secret or signing capability becomes available to the member. For a permitted operation verify the paired HQ request, authorization and use by Machine/keyd in the secure administrative account, and the returned result across restart. Prove the explicitly configured dedicated-account standalone Secure Enclave case with Machine absent (PDR-0093). An outage or revocation never enables fallback (PDR-0091). | R3 | not-started |
 | T03 Direct egress | Harness bypasses inference or service proxy | Host blocks the route in protected mode. | R3 | not-started |
 | T21 Profile honesty | Run the protected suite under the cooperative profile | Every receipt names cooperative; any protected claim is refused with profile_insufficient. | R8 | not-started |
 

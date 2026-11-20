@@ -8,35 +8,11 @@ Scope: key material and credential flow
 
 # Key boundaries
 
-One rule with no exceptions: **credentials live in HQ and travel as
-references — never as secrets.**
+HQ brokers credential references. Agent Machine authorizes privileged host operations and uses the protected resource under the secure administrative account. The identity service retains its own server-side keys. See [administrative custody and change control](../04-decisions/PDR-0091-host-privileged-custody.md). The sole exception is [standalone Secure Enclave signing](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md).
 
 ## The boundary
 
-- HQ owns the key store (§4); `Equip` returns **references** (§5)
-- Credentials **never enter the package** (§11) — not in `opt/`, not in
-  templates, not in transfer records (§11: no secrets or reusable grants)
-- The broker mediates credential *use*: inference, service calls,
-  messages/wake, lifecycle all produce receipts with the adapter route
-  (§4, §7)
-- A shared GitHub App can serve several Souls because **the broker keeps
-  scope and attribution separate**; apps held by HQ's broker, never by a
-  harness (identity paper, direction 3)
-
-## Exceptions and how they are labeled
-
-| Exception | Risk | Mitigation |
-|---|---|---|
-| Short-lived-token route (§4) | token exists inside a harness for its TTL | labeled in **every receipt**; prefer brokered route |
-| Harness sign-ins (per machine) | harness-level sessions outside the broker | "portable" does not remove them (§11); audit as host requirements |
-
-## Key lifecycle
-
-- **Add:** `hq credential add <id>` (proposed verb) → HQ store
-- **Rotate:** re-equips at next lease renewal (§5, §15 release prereq)
-- **Revoke:** effective at next protected operation (§4)
-- **Verification:** T02 on your host + `hq audit secrets` fingerprint
-  scan ([credentials how-to](../user-guide/how-to/credentials.md))
+Equip returns references. Packages, templates and transfer records must exclude secrets and reusable grants. A short-lived result can be returned only as permitted for the operation. Cooperative labeling and harness sign-ins confer no exception to administrative custody. Addition, rotation and revocation of protected host credentials use the same boundary.
 
 ## Relay and enrollment keys
 

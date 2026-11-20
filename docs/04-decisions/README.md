@@ -37,6 +37,13 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 3. Deliberate in the discussion; the owner marks the chosen answer.
 4. Record it as `PDR-NNNN-slug.md` from the PDR template, Proposed, then Accepted when the owner approves the PR.
 
+## Host custody decisions (2026-11-19)
+
+| PDR | Title | Status |
+|---|---|---|
+| [PDR-0091](PDR-0091-host-privileged-custody.md) | Administrative custody of privileged host keys and operations across all paths | Proposed record of owner clarification |
+| [PDR-0093](PDR-0093-standalone-hq-secure-enclave-signing.md) | Allow explicit standalone HQ Secure Enclave signing in its dedicated account when Machine is not installed | Owner approved exception; PR pending |
+
 ## Related pages
 
 - [Decision log](decision-log.md): decisions made before this repository existed, and the open decisions the whitepaper already names.

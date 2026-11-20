@@ -87,9 +87,9 @@ Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), e
 
 Criteria: C1; trust domain: Trusted local host service, outside every Soul; work packages: WP2, WP4, WP6.
 
-Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037); Device key and short-lived credentials held in memory.
+Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037); Device enrollment, identity-service network exchange and signed local requests (PDR-0091); standalone Secure Enclave signing only under PDR-0093.
 
-Must not own: Long-lived signing keys (identity service); Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox); Wire framing or task state library code (agent-bot-comms).
+Must not own: The identity service’s long-lived server signing keys; Privileged host keys, their use and protected resources except the explicit standalone signing case in PDR-0093; Wire framing or task state library code (agent-bot-comms).
 
 Follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architecture, decisions D1-D4) into the platform; add AGENTS.md with the governed block.
 
@@ -97,7 +97,7 @@ Follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architec
 
 Criteria: C1; trust domain: Host admin account sandbox (brew admin, never root).
 
-Owns: Self-tapped Homebrew formula, machine bootstrap, catalog installs; Host-side credentials and signed policy in the admin sandbox (agent-bot-hq D4); Owner-presence verification of Secure Enclave signatures (agent-bot-hq D4); The signed local channel endpoint and signed receipts.
+Owns: Self-tapped Homebrew formula, machine bootstrap, catalog installs; Privileged host key custody and use in the admin sandbox by default (PDR-0091), subject to the standalone signing exception in PDR-0093; Protected host resource access and signed policy in the admin sandbox (agent-bot-hq D4, PDR-0091); Owner-presence verification of Secure Enclave signatures (agent-bot-hq D4); The signed local channel endpoint and signed receipts.
 
 Must not own: HQ authority (S7 made it HQ; agent-bot-hq D1 moved HQ to agent-bot-hq, see DRIFT-002).
 

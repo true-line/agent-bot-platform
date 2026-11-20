@@ -89,6 +89,9 @@ nav:
       - 04-decisions/PDR-0089-owner-approval-for-the-first-hq-account-on-macos.md
       - 04-decisions/decision-log.md
       - 04-decisions/cross-repo-adr-index.md
+      - Host custody decisions (2026-11-19):
+          - 04-decisions/PDR-0091-host-privileged-custody.md
+          - 04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md
   - Security and privacy:
       - 05-security-privacy/README.md
       - 05-security-privacy/threat-model.md

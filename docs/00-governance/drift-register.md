@@ -7,7 +7,7 @@ Last-Reviewed: 2026-11-17
 
 # Drift register
 
-Known places where two sources of truth disagree. An agent that meets one of these does not pick a side: it follows the resolution path or raises a Decisions discussion. Entries are never deleted. A resolved entry keeps its heading here, and its full record, with what removed the conflict, moves to [resolved drift](drift-register-resolved.md). DRIFT-001 to DRIFT-015 were found by the 2026-11-07 survey.
+Follow each conflict’s resolution or raise a Decisions discussion. Retain every heading; move completed entries and evidence to [resolved drift](drift-register-resolved.md). The 2026-11-07 survey found DRIFT-001 through DRIFT-015.
 
 ## DRIFT-001 R9 has two wordings
 
@@ -114,3 +114,7 @@ Known places where two sources of truth disagree. An agent that meets one of the
 
 - **Open.** S6 and the [HQ migration plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md) place Linux isolation in Stage 2a and protected macOS after the pilot. The owner chose protected macOS first.
 - **Resolution.** Record the order in [PDR-0085](../04-decisions/PDR-0085-macos-first-protected-pilot.md), then align HQ, Machine and conformance plans and stage trackers. Keep the Linux evidence scoped to its host.
+
+## DRIFT-023 Privileged host key custody
+
+- **Open.** HQ-local signing must satisfy [PDR-0093](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md). Close when all affected paths enforce [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md) and have qualifying evidence.

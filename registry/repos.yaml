@@ -141,10 +141,10 @@ repos:
       - hq/v1 owner and member API, admission, grants, leases, epochs
       - Action ledger, task authority, budgets, reconciliation, approvals
       - Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037)
-      - Device key and short-lived credentials held in memory
+      - Device enrollment, identity-service network exchange and signed local requests (PDR-0091); standalone Secure Enclave signing only under PDR-0093
     must-not-own:
-      - Long-lived signing keys (identity service)
-      - Host-side credentials at rest and policy writes (agent-bot-machine admin sandbox)
+      - The identity service’s long-lived server signing keys
+      - Privileged host keys, their use and protected resources except the explicit standalone signing case in PDR-0093
       - Wire framing or task state library code (agent-bot-comms)
     provides: [hq-v1, hq-plugin-contract, task-v1, observation-v1]
     consumes: [identity-service-api, catalog-signing, control-v1, daemon-machine-channel, wire-v1, soul-package-format, harness-adapter, error-registry]
@@ -162,7 +162,8 @@ repos:
     purpose: The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ.
     owns:
       - Self-tapped Homebrew formula, machine bootstrap, catalog installs
-      - Host-side credentials and signed policy in the admin sandbox (agent-bot-hq D4)
+      - Privileged host key custody and use in the admin sandbox by default (PDR-0091), subject to the standalone signing exception in PDR-0093
+      - Protected host resource access and signed policy in the admin sandbox (agent-bot-hq D4, PDR-0091)
       - Owner-presence verification of Secure Enclave signatures (agent-bot-hq D4)
       - The signed local channel endpoint and signed receipts
     must-not-own:

@@ -11,7 +11,7 @@ Audience: operators
 Add, rotate, revoke, and — most importantly — verify that secrets never
 reach harness-readable files.
 
-**Model (specified, §5, §11, T02):** HQ holds keys. `Equip` returns
+**Model (specified, §5, §11, T02):** HQ requests protected operations from Machine over the paired local channel. `Equip` returns
 *references*, never secrets. Credentials never travel in the `.soul`
 package. Rotation and revocation are release prerequisites (§15).
 Under brokered inference the provider key never reaches a harness; the
@@ -23,7 +23,7 @@ short-lived-token route is the exception and is labeled in every receipt (§4).
 hq credential add <id>
 ```
 
-HQ prompts for the secret; it lands in the HQ key store, keyed by `<id>`.
+Host credential provisioning must use the secure administrative account. HQ receives the credential reference.
 The Soul's grants reference the id — the package carries references only.
 
 ## Rotate
@@ -58,7 +58,7 @@ verifies the key boundary; ask for the release report
 ## Profile warning
 
 On a **cooperative** host, harnesses share a trust domain: the broker
-still holds the keys, but a prompt-injected member can reach anything its
+still requests privileged operations from Machine, but a prompt-injected member can reach anything its
 harness can. Give the Soul only credentials you would give its
 least-trusted harness ([trust domains](../../03-architecture/trust-domains-and-profiles.md)).
 
