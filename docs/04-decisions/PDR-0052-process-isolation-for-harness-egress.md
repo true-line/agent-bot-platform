@@ -29,7 +29,9 @@ The [HQ migration plan, row 16c](https://github.com/true-line/agent-bot-hq/blob/
 
 ## Consequences
 
-Machine and HQ must agree on how a provisioned harness account, its launch policy and its assigned broker endpoint fit together. Each implementation must identify which processes it actually confines. Existing installations with per-account firewall rules need a separate migration that preserves isolation during transition. [DRIFT-024](../00-governance/drift-register.md#drift-024-harness-egress-isolation)
+The owner assigned runtime launch to HQ in row 16b. Machine installs the rule once through owner-reviewed provisioning. HQ uses that rule to start the adapter as the harness account selected at admission. Machine and keyd stay out of the runtime process tree. On macOS, the production launch still needs to apply the profile before the adapter runs and qualify the resulting kernel identity, both socket assignments and stop behavior. [HQ launch decision](https://github.com/true-line/agent-bot-hq/blob/adf3de1ef1f819712d54bfd53aff382c408684da/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) · [Darwin provisioning work](https://github.com/true-line/agent-bot-machine/issues/585)
+
+Each implementation must identify which processes it actually confines. Existing installations with per-account firewall rules need a separate migration that preserves isolation during transition. [DRIFT-024](../00-governance/drift-register.md#drift-024-harness-egress-isolation)
 
 ## Alternatives considered
 
