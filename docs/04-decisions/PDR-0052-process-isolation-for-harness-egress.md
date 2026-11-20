@@ -5,7 +5,7 @@ Owner: product-owner
 Last-Reviewed: 2026-11-20
 Date: 2026-11-12
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/52
-Affects-Repos: [agent-bot-machine, agent-bot-hq, soul-conformance]
+Affects-Repos: [agent-bot-machine, agent-bot-hq, agent-bot-souls, soul-conformance]
 Affects: [R3, trust-model]
 ---
 
@@ -15,15 +15,17 @@ The owner selected the process-isolation answer in [Discussion #52](https://gith
 
 ## Context
 
+Before the broker can identify a member's runtime, the SDK presents its launch token to Souls on the member socket and obtains its runtime binding. It then authenticates to the broker. Souls owns the token, its lifetime and its revocation. [Member bootstrap contract](https://github.com/true-line/agent-bot-hq/blob/main/docs/hq-member-bootstrap-client.md)
+
 A launched harness needs its Unix broker socket. A direct network connection lets it reach a provider outside the broker's policy and audit. The owner raised a second concern with per-account firewall rules. They would have to coexist with every other firewall managing the host.
 
 The [HQ migration plan, row 16c](https://github.com/true-line/agent-bot-hq/blob/a1e847cb36d7b0e825f810c8c3d4f16fdff6543d/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) still recommends a per-account firewall. [Machine #497](https://github.com/true-line/agent-bot-machine/pull/497) installed Linux IPv4 and IPv6 rules. [Platform #68](https://github.com/true-line/agent-bot-platform/issues/68) tracks macOS qualification.
 
 ## Decision
 
-1. On macOS, apply a sandbox profile to the launched harness process that denies direct IP networking and permits the Unix socket used for its broker. The owner-selected answer specifies the mechanism at the profile level. Selection of a supported launcher and verification on each supported OS version remain implementation work.
+1. On macOS, the launched harness may connect to two exact Unix socket paths from its launch assignment. One is its assigned broker. The other is the Souls member socket for that individual launch. Deny other socket destinations, including another launch's member socket in the same directory. Deny direct IP connections and carry network requests through the broker. Expanding these permissions requires explicit product-owner approval and recorded justification. Selection of a supported launcher and verification on each supported OS version remain implementation work. [Owner decision on the Souls socket](https://github.com/true-line/agent-bot-platform/discussions/52#discussioncomment-19773186)
 2. On Linux, launch the harness in an empty network namespace. The selected design uses a Machine-installed, root-owned launcher restricted to provisioned accounts. It enters the namespace and permanently drops privileges to the selected account before running the harness. The authorization covers that launcher only.
-3. Verify T03 through normal harness launch. A direct request to a reachable provider or service must fail, and the same operation through the broker must reach the service. The macOS pilot needs that evidence on its declared host and configuration. [Conformance catalog](../07-verification/conformance-catalog.md)
+3. Verify T03 through normal harness launch. A direct request to a reachable provider or service must fail, and the same operation through the broker must reach the service. On the declared macOS host, verify member authentication and broker binding through the assigned sockets and verify refusal on a different launch's socket. [Conformance catalog](../07-verification/conformance-catalog.md)
 
 ## Consequences
 
