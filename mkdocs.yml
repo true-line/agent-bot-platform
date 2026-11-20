@@ -93,6 +93,7 @@ nav:
       - Host custody decisions (2026-11-19):
           - 04-decisions/PDR-0091-host-privileged-custody.md
           - 04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md
+      - 04-decisions/PDR-0098-owner-approval-for-harness-accounts-on-macos.md
   - Security and privacy:
       - 05-security-privacy/README.md
       - 05-security-privacy/threat-model.md
