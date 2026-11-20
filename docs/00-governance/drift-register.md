@@ -118,3 +118,8 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 ## DRIFT-023 Privileged host key custody
 
 - **Open.** HQ-local signing must satisfy [PDR-0093](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md). Close when all affected paths enforce [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md) and have qualifying evidence.
+
+## DRIFT-024 Harness egress isolation
+
+- **Open.** The owner selected process isolation in [Discussion #52](https://github.com/true-line/agent-bot-platform/discussions/52). The [HQ migration plan, row 16c](https://github.com/true-line/agent-bot-hq/blob/a1e847cb36d7b0e825f810c8c3d4f16fdff6543d/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) still recommends a per-account firewall. [Machine #497](https://github.com/true-line/agent-bot-machine/pull/497) installed Linux IPv4 and IPv6 rules.
+- **Resolution.** Review [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md), align the component plans and implementations, and verify T03 through the normal launcher on each host. [Platform #68](https://github.com/true-line/agent-bot-platform/issues/68) tracks the first protected macOS qualification.
