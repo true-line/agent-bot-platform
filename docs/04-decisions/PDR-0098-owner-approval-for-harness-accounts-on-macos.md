@@ -17,8 +17,9 @@ account provisioning operation. [Decision discussion](https://github.com/true-li
 
 Machine plans the exact accounts, private groups and homes, together with
 any broker directories needed for those accounts. The owner sees which
-resources already exist, which Machine proposes to create, and their intended
-ownership and permissions. HQ transports the plan and proof over its paired
+resources already exist, which Machine proposes to create, and the reviewed
+numeric user and group IDs. If a managed harness home needs its permissions
+repaired, the plan shows its current mode and the proposed private mode (0700). HQ transports the plan and proof over its paired
 channel. The owner approves the displayed plan with the existing owner key.
 
 Machine verifies the live pairing, the purpose of the proof and the exact
