@@ -2,7 +2,7 @@
 Status: Proposed
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-18
+Last-Reviewed: 2026-11-20
 Date: 2026-11-18
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/89
 Affects-Repos: [agent-bot-machine, agent-bot-identity, agent-bot-hq]
@@ -67,11 +67,14 @@ recorded justification.
   channel contract must document the one-time first-install exchange.
 - Identity owns the local Approvals UI, digest calculation and owner-session
   signature. Its displayed steps must match the steps Machine applies.
-  The owner explicitly rejected wrapping owner presence in a macOS `.app`
-  bundle. This applies to product, pilot and qualification flows across the
-  platform, including installation instructions, CI and release artifacts.
-  An agent proposing to change this restriction must provide a justification
-  and obtain explicit owner approval before implementing it. The
+  An owner-presence `.app` may be used in internal tests, CI and private
+  pilots. Customer releases must exclude a standalone owner-presence `.app`
+  from their installers, downloads and installation instructions. If all the
+  apps ship together as one Product, that Product may include the app.
+  Verify the owner-proof flow using the packaging customers will receive.
+  Changes to this boundary require explicit product-owner approval and a
+  recorded justification. [Owner clarification](https://github.com/true-line/agent-bot-platform/discussions/89#discussioncomment-19774904)
+  The
   [owner interface plan](https://github.com/true-line/agent-bot-hq/blob/main/docs/daemon-plugin-split.md#7-owner-interface-hqv1-for-geniusbar-and-the-hq-cli)
   identifies GeniusBar and the HQ CLI as the product interfaces.
 - HQ uses the enrolled channel after setup. Verify the full sequence on a
