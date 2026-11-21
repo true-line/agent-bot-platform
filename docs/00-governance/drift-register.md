@@ -94,7 +94,12 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 ## DRIFT-018 Profile values say "managed" for Souls HQ does not start
 
 - **Open.** PDR-0055 defines a managed Soul as one HQ starts. soul-contracts' enforcement profile values `managed-protected` and `managed-cooperative` are reported for Souls started from the command line, and agent-bot-hq has no plan row for starting a Soul.
-- **Resolution.** Not decided. The values stay as released until soul-contracts changes them or HQ starts Souls.
+- **Resolution.** HQ must start the Soul through the Soul runner before any
+  report claims a managed profile. A direct IDE, CLI or web session remains
+  unmanaged, even when Harbor policy or local hooks constrain it. The existing
+  `managed-protected` and `managed-cooperative` values may describe only
+  HQ-started sessions. Keep this drift open until HQ start provenance, contract
+  claim rules and conformance checks are implemented and verified.
 
 ## DRIFT-019 Control authority when a machine links to Harbor
 
