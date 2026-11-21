@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: product-implementer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-20
 ---
 
 # HQ CLI reference
@@ -30,7 +30,7 @@ Last-Reviewed: 2026-11-05
 | Command | Purpose | Status |
 |---|---|---|
 | `hq grant add / revoke / list` | standing authority | proposed (record is Appendix A) |
-| `hq credential add / rotate / revoke / audit secrets` | key store + boundary scan | proposed |
+| `hq credential add / rotate / revoke / audit secrets` | protected credential operations by reference and a boundary scan | proposed |
 | `hq budget set <soul> --ceiling --working --maintenance` | spend ceilings | proposed (§8 model) |
 
 ## Tasks, receipts, revisions
