@@ -1,8 +1,8 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
-Last-Reviewed: 2026-11-20
+Last-Reviewed: 2026-11-21
 Date: 2026-11-12
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/52
 Affects-Repos: [agent-bot-machine, agent-bot-hq, agent-bot-souls, soul-conformance]
@@ -11,7 +11,7 @@ Affects: [R3, trust-model]
 
 # PDR-0052 Isolate network access at harness launch
 
-The owner selected the process-isolation answer in [Discussion #52](https://github.com/true-line/agent-bot-platform/discussions/52). This proposed record reconciles that answer with Stage 2a. [PDR-0085](PDR-0085-macos-first-protected-pilot.md) sets macOS first.
+The owner selected the process-isolation answer in [Discussion #52](https://github.com/true-line/agent-bot-platform/discussions/52). This accepted record reconciles that answer with Stage 2a. [PDR-0085](PDR-0085-macos-first-protected-pilot.md) sets macOS first.
 
 ## Context
 
@@ -27,7 +27,7 @@ The [HQ migration plan, row 16c](https://github.com/true-line/agent-bot-hq/blob/
 2. On Linux, launch the harness in an empty network namespace. The selected design uses a Machine-installed, root-owned launcher restricted to provisioned accounts. It enters the namespace and permanently drops privileges to the selected account before running the harness. The authorization covers that launcher only.
 3. Verify T03 through normal harness launch. A direct request to a reachable provider or service must fail, and the same operation through the broker must reach the service. On the declared macOS host, verify member authentication and broker binding through the assigned sockets and verify refusal on a different launch's socket. [Conformance catalog](../07-verification/conformance-catalog.md)
 
-## Stage 2a managed split for owner review
+## Stage 2a managed account and broker assignment
 
 The owner clarified that a managed Soul is started by HQ through Soul runner. Each
 installed Soul gets one separate untrusted runner OS account; existing
@@ -54,11 +54,12 @@ reviewed UID, group, mode, kernel peer identity, token lifetime, restart and
 retirement checks. Existing direct broker clients retain the two-path
 assignment in Decision 1.
 
-This proposal changes the vendor client's assigned broker destination and
-adds one exact sidecar listener bind. Decision 1 requires explicit owner
-approval and recorded justification before those permissions are installed.
-The justification is that stock vendor ACP cannot speak the HQ broker
-protocol while the owner requires HQ-hosted Comms and a separate runner UID.
+This assignment changes the vendor client's assigned broker destination and
+adds one exact sidecar listener bind. The owner explicitly approved this
+PDR-0052 permission change on 2026-11-21 with the [recorded justification](https://github.com/true-line/agent-bot-platform/pull/111#issuecomment-7069182793):
+stock vendor ACP cannot speak the HQ broker protocol while managed Souls
+require HQ-hosted Comms and a separate runner UID. This approval grants no
+third outbound path and does not authorize an installed production launcher.
 The [fixture proof](https://github.com/true-line/soul-adapters/issues/4#issuecomment-7069138758)
 and [Machine sidecar profile](https://github.com/true-line/agent-bot-machine/pull/638)
 show socket feasibility, but use a shared test UID and do not qualify
