@@ -23,9 +23,10 @@ which primitive classes it can render (§10 adapter manifest).
    ([soul-adapters](../../papers/repository-plan-2026-10-24.md#3-plan-by-repository), WP3)
 2. **Render plugin** implementing the render-plugin interface
    ([render plugins how-to](render-plugins.md))
-3. **Qualification attestation** signed by the designated workflow after it
-   verifies the designated host’s signed test evidence. The manifest references
-   the attestation for the measured inputs and profile.
+3. **Qualification record** for the declared profile and renderable primitive
+   classes. For a protected claim, the manifest references the attestation
+   signed by the designated workflow after it verifies the designated host’s
+   test evidence.
 4. **Evaluation evidence**: records naming revision, harness, model,
    provider, date (§9) — a harness upgrade marks the cell *unevaluated*
    (§10)
@@ -36,8 +37,9 @@ A **protected** qualification requires the adapter to honor: HQ-controlled
 launch, per-member principals, protected connection binding, caller-bound
 handles, and **state redirection** (member state under the member's home,
 not the harness's default location). Prove it with the hostile-member
-suite on the declared Mac. T01, T02 and T03 run under protected enforcement.
-T21 checks cooperative labeling and refusal of required protected operations.
+suite on the declared host. For the physical macOS pilot, T01, T02 and T03
+run under protected enforcement. T21 checks that cooperative receipts name
+the profile and that a protected claim is refused with `profile_insufficient`.
 
 If your adapter can only run cooperatively, **qualify it cooperative only**.
 Any protected claim is refused unless proven — and every receipt says
@@ -66,6 +68,7 @@ offline verification](../../04-decisions/PDR-0102-protected-adapter-qualificatio
 - [ ] Render plugin deterministic; renders to per-adapter digest in
       `SoulLock.json` (§10)
 - [ ] Hostile-member suite green (if claiming protected)
-- [ ] Manifest references the signed qualification attestation and declares the profile and renderable primitive classes
+- [ ] Manifest declares the qualified profile and renderable primitive classes
+- [ ] A protected claim references the signed qualification attestation
 - [ ] Evaluation cells recorded for every role on the target harness
 - [ ] Compatibility matrix updated in the same PR
