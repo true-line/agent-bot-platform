@@ -47,6 +47,17 @@ native harness digests, executable, ordered arguments, code inputs, host,
 enforcement profile, suite revision and results. The adapter manifest references
 the signed attestation. Build provenance alone cannot authorize a protected launch.
 
+The fixed purpose, canonical report bytes, host and owner signature envelopes,
+and offline verification sequence live in the [qualification signature
+contract draft](https://github.com/true-line/soul-contracts/pull/49).
+Machine may ask keyd to sign only after the one-use attempt has an immutable
+completed-run record and Machine has independently observed the actual
+HQ-started Soul process, runner, account identities and enforcement profile.
+An HQ launch receipt or a `started` attempt alone cannot establish those facts.
+The report signer must be explicitly designated for that host in owner policy;
+device enrollment does not designate it. A release workflow must verify the
+host signatures before issuing its separate qualification attestation.
+
 ## Offline verification and local approval
 
 Machine ships with an initial signed policy covering trust and revocation. HQ
@@ -54,6 +65,13 @@ may deliver a newer signed revision. Machine verifies it locally, rejects a
 rollback to an older revision and enforces expiry. Only the owner authorizes
 changes to trusted identities. HQ can withhold an update. It cannot extend
 expiry, add a signer or override a revocation. Machine needs no internet access.
+
+The initial owner-signed policy and owner public root must ship together in a
+reviewed Machine release. Policy updates must preserve the greatest accepted
+revision across restart. The signed policy pins the release workflow identity,
+source and trust root and the designated physical host keys. Offline release
+verification also requires an authenticated signing-time proof; a claimed
+workflow name or a certificate without a verified trust chain is insufficient.
 
 Refuse a protected launch when qualification has expired, revocation information
 is stale, the evidence or signer is unknown or revoked, the installed inputs
