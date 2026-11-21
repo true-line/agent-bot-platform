@@ -25,6 +25,15 @@ administrator account. HQ cannot request signatures over arbitrary input.
 The physical Mac gate requires T01, T02 and T03 under protected enforcement
 and T21 under cooperative enforcement. [macOS pilot decision](PDR-0085-macos-first-protected-pilot.md).
 
+To collect evidence before an adapter's first certification, the owner may
+approve a single qualification run on a designated test Mac. The approval
+identifies the exact candidate adapter and test plan and is consumed once.
+The independent runner exercises the real controls with disposable member
+state and a test provider. A protected result requires observed enforcement.
+The run produces evidence for review. Its approval grants no authority for
+ordinary HQ work, a reusable launch rule or release certification.
+[Owner decision on first qualification](https://github.com/true-line/agent-bot-platform/discussions/102#discussioncomment-19798697).
+
 One designated release workflow in `true-line/soul-adapters` may certify a
 qualification after verifying the host-signed passing results. The owner pins
 the release source, workflow identity and authorized evidence signers in signed
