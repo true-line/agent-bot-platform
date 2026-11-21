@@ -36,7 +36,7 @@ per-harness credential accounts remain distinct. Independently started IDE,
 CLI, and web agents are unmanaged. [Runner account decision](https://github.com/true-line/agent-bot-machine/issues/630#issuecomment-7068469234)
 
 For a stock vendor client that cannot speak the HQ-hosted Comms protocol,
-the proposed macOS assignment uses two separately confined processes:
+the approved macOS assignment requires two separately confined processes:
 
 - The vendor client runs as that Soul installation's runner UID. Its only
   outbound Unix paths are its per-start Souls member socket and one assigned
@@ -69,7 +69,7 @@ remains open.
 
 ## Consequences
 
-The owner assigned runtime launch to HQ in row 16b. Under that decision, Machine must install the rule through owner-reviewed provisioning. HQ must use the rule to start the adapter as the harness account selected at admission. Machine and keyd stay out of the runtime process tree. The [macOS socket policy fixture](https://github.com/true-line/agent-bot-machine/pull/583) verified both assigned sockets and refusal of sibling sockets and direct IP traffic. T03 still requires the production HQ launcher to apply the profile before starting the adapter and demonstrate the kernel identity, socket assignments and stop behavior. [HQ launch decision](https://github.com/true-line/agent-bot-hq/blob/adf3de1ef1f819712d54bfd53aff382c408684da/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) · [Darwin provisioning work](https://github.com/true-line/agent-bot-machine/issues/585)
+The owner assigned runtime launch to HQ in row 16b. Machine must install the fixed rules through owner-reviewed provisioning. For a direct broker client, HQ starts the adapter as the harness credential account selected at admission. For a managed stock vendor client, HQ starts Soul runner under that installation's distinct untrusted runner account and a separately confined broker sidecar under the assigned harness credential account. Machine and keyd stay out of the runtime process tree. The [macOS socket policy fixture](https://github.com/true-line/agent-bot-machine/pull/583) verified both assigned sockets and refusal of sibling sockets and direct IP traffic. T03 still requires the production HQ launcher to apply the exact profile to each process before starting the adapter and demonstrate both kernel identities, socket assignments, token custody and stop behavior. [HQ launch decision](https://github.com/true-line/agent-bot-hq/blob/adf3de1ef1f819712d54bfd53aff382c408684da/docs/daemon-plugin-split.md#stage-2a-member-isolation-wp2) · [Darwin provisioning work](https://github.com/true-line/agent-bot-machine/issues/585)
 
 Each implementation must identify which processes it actually confines. Existing installations with per-account firewall rules need a separate migration that preserves isolation during transition. [DRIFT-024](../00-governance/drift-register.md#drift-024-harness-egress-isolation)
 
