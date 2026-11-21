@@ -22,8 +22,9 @@ dedicated account or an ordinary user account. The same custody rules apply
 to setup, normal operation, migration and recovery. HQ uses its channel key
 to authenticate fixed requests to Machine. Machine authorizes each request.
 Machine/keyd in the secure administrative account performs protected signing,
-encryption and decryption. For device enrollment and token proofs, HQ handles
-HTTPS and Machine uses the protected device signing key. A stopped or
+encryption and decryption. HQ handles HTTPS. Machine/keyd signs the device
+assertion with the device key and uses a separate, short-lived session key
+for proof of possession of the access token. A stopped or
 unreachable Machine, or a revoked pairing, cuts off those operations. See
 [privileged host custody](../../04-decisions/PDR-0091-host-privileged-custody.md).
 
