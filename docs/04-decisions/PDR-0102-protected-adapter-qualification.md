@@ -29,9 +29,9 @@ To collect evidence before an adapter's first certification, the owner may
 approve a single qualification run on a designated test Mac. The approval
 identifies the exact candidate adapter and test plan and is consumed once.
 The independent runner exercises the real controls with disposable member
-state and a test provider. It records which controls were in force and submits
-the results for review. Ordinary HQ work and reusable launch grants still
-require the certified adapter and a separately approved launch-rule installation.
+state and a test provider. A protected result requires observed enforcement.
+The run produces evidence for review. Its approval grants no authority for
+ordinary HQ work, a reusable launch rule or release certification.
 [Owner decision on first qualification](https://github.com/true-line/agent-bot-platform/discussions/102#discussioncomment-19798697).
 
 One designated release workflow in `true-line/soul-adapters` may certify a
