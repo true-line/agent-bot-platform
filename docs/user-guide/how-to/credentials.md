@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: how-to
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-20
 Audience: operators
 ---
 
@@ -17,13 +17,32 @@ package. Rotation and revocation are release prerequisites (§15).
 Under brokered inference the provider key never reaches a harness; the
 short-lived-token route is the exception and is labeled in every receipt (§4).
 
+Machine is the default on every platform and profile, whether HQ runs in a
+dedicated account or an ordinary user account. The same custody rules apply
+to setup, normal operation, migration and recovery. HQ uses its channel key
+to authenticate fixed requests to Machine. Machine authorizes each request.
+Machine/keyd in the secure administrative account performs protected signing,
+encryption and decryption. HQ handles HTTPS. Machine/keyd signs the device
+assertion with the device key and uses a separate, short-lived session key
+for proof of possession of the access token. A stopped or
+unreachable Machine, or a revoked pairing, cuts off those operations. See
+[privileged host custody](../../04-decisions/PDR-0091-host-privileged-custody.md).
+
+Only explicitly configured standalone HQ in its dedicated account on a Mac
+without Machine installed may use a local Secure Enclave device signer. That
+exception covers signing alone. Machine-backed HQ never switches to standalone
+signing on failure. See [standalone eligibility](../../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md).
+
 ## Add a credential
+
+Provision provider keys and GitHub App private keys in Machine’s secure
+administrative account. Give HQ the credential ID. The HQ credential and
+audit commands in this guide are [proposed CLI forms](../reference/cli.md).
 
 ```bash
 hq credential add <id>
 ```
 
-Host credential provisioning must use the secure administrative account. HQ receives the credential reference.
 The Soul's grants reference the id — the package carries references only.
 
 ## Rotate
@@ -33,7 +52,8 @@ hq credential rotate <id>
 ```
 
 Rotation re-equips at the **next lease renewal** — in-flight protected
-operations continue under the old lease; new ones pick up the new secret.
+operations continue under the old lease. New leases refer to the rotated
+credential.
 
 ## Revoke
 
@@ -59,8 +79,8 @@ verifies the key boundary; ask for the release report
 
 On a **cooperative** host, harnesses share a trust domain: the broker
 still requests privileged operations from Machine, but a prompt-injected member can reach anything its
-harness can. Give the Soul only credentials you would give its
-least-trusted harness ([trust domains](../../03-architecture/trust-domains-and-profiles.md)).
+harness can. Grant the Soul only operations you would authorize its
+least-trusted harness to perform ([trust domains](../../03-architecture/trust-domains-and-profiles.md)).
 
 ## Troubleshooting
 

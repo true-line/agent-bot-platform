@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: tutorial
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-20
 Audience: operators
 ---
 
@@ -17,8 +17,8 @@ T16, T22, T24, T27–T30.
 
 - Completed the [quickstart](quickstart.md)
 - A repository you can afford to have an agent write to
-- Provider key + a GitHub App (private key goes to **HQ**, never the
-  package — §11)
+- A provider key and a GitHub App private key provisioned in Machine’s
+  secure administrative account
 - For this protected pilot, use a qualified macOS host and confirm the
   protected profile on its receipts
   ([why](../../03-architecture/trust-domains-and-profiles.md#protected-vs-cooperative))
@@ -55,7 +55,9 @@ hq grant add pilot-soul --resource "repo/acme/widget" --action write \
 Grants carry action and resource selectors, destinations, and data
 restrictions (Appendix A). Narrow now; widen later with evidence.
 
-## 4. Add credentials to HQ
+## 4. Reference the credentials from HQ
+
+The proposed Stage 3 commands take credential IDs.
 
 ```bash
 hq credential add github-acme

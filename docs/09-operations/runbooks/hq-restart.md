@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: runbook
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-20
 Verified-Against: S6 §5, §7, §12 (partly specified)
 ---
 
@@ -47,7 +47,7 @@ hq doctor     # report leases, intents, unknown actions needing reconciliation
 | After restart you see | Meaning | Action |
 |---|---|---|
 | Souls re-admit, leases renew | healthy | verify receipts flowing |
-| Souls refuse admission | key store / authority DB damaged | restore from backup, then [backup/restore](../../user-guide/how-to/backup-restore-transfer.md) |
+| Souls refuse admission | Machine unavailable or HQ authority DB damaged | check Machine and pairing. If HQ records are damaged, follow [backup/restore](../../user-guide/how-to/backup-restore-transfer.md) |
 | Duplicate external effects reported | dedup records lost | ledger reconstruction needed — escalate, this should be impossible if §12 persistence holds |
 | Outbox entries stuck | broker host not up | check broker binding; re-deliver per wake class |
 
@@ -61,6 +61,7 @@ hq doctor     # report leases, intents, unknown actions needing reconciliation
 
 Authority database loss is the one unrecoverable-without-backup case:
 restore per [backup/restore](../../user-guide/how-to/backup-restore-transfer.md) —
-secrets and reusable grants excluded from export, so they are re-added
-manually. Attach `hq diag bundle` to the incident
+reconnect HQ’s credential references to the credentials Machine still holds.
+Provision any missing protected credentials in the secure administrative account
+and issue fresh grants. Attach `hq diag bundle` to the incident
 ([diagnostics](../../user-guide/how-to/diagnostics.md)).

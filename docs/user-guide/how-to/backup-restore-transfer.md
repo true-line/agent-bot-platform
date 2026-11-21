@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: how-to
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-20
 Audience: operators
 ---
 
@@ -19,7 +19,8 @@ Move a Soul to another machine, or recover it after loss. Specified (§11,
 | `cache/` | package | rebuilt, not copied |
 | `host/` | package | recreated at restore |
 | `tmp/` | package | dropped |
-| Credentials, grants, nonces, task ledger, dedup records, receipts | **HQ store** | protected, authenticated export only — **secrets and reusable grants excluded** (§11, §15) |
+| Provider credentials and GitHub App private keys | Machine’s secure administrative account | excluded from exports. Provision on the target host |
+| Credential references, grants, nonces, task ledger, dedup records, receipts | **HQ store** | protected, authenticated export only — **secrets and reusable grants excluded** (§11, §15) |
 
 **Copying the directory never transfers authority.** Restore is admission
 first, then life (§11).
@@ -64,5 +65,5 @@ without network (§11, Stage 4).
 | Symptom | Cause | Fix |
 |---|---|---|
 | Import refuses with traversal error | package tampered or badly built | rebuild from source template; investigate origin |
-| Restore works, no credentials | secrets excluded from export by design | re-add via `hq credential add` |
+| Restore works, no credentials | secrets excluded from export by design | provision secrets in the target Machine’s secure administrative account and reconnect their [references](credentials.md) in HQ |
 | History import rejects | export/soul mismatch | match export to Soul ID + epoch |
