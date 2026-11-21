@@ -41,9 +41,9 @@ Only a Soul that HQ starts is managed
 | 2b | Connect live broker delivery to `wire/v1` and mirror authoritative HQ task records through `task/v1`, then broker inference and service effects. | End-to-end routed frame, task receipt and recovery evidence on the exact released cohort. Codec fixtures alone do not satisfy this row. |
 | 4 | Route cross-machine messages from HQ through Harbor and qualified relays; preserve the separate `control-v1` authority boundary. | Federation, partition and transfer tests on that route, including refusal of remote control over relay traffic. |
 
-As of 2026-11-21, comms main contains the HQ plugin packaging
-([PR #323](https://github.com/true-line/agent-bot-comms/pull/323)), while the
-latest published comms tag, `v0.5.5`, predates it. Live `wire/v1` delivery
+The published comms [v0.5.6 release](https://github.com/true-line/agent-bot-comms/releases/tag/v0.5.6) includes the HQ plugin packaging
+([PR #323](https://github.com/true-line/agent-bot-comms/pull/323)). A matching
+HQ release, installation, and physical run remain Stage 2a evidence gates. Live `wire/v1` delivery
 remains tracked in [comms #300](https://github.com/true-line/agent-bot-comms/issues/300).
 Neither a green plugin fixture nor an older standalone-broker release is a
 Stage 2a physical result. [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start)
