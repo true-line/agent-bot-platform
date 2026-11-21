@@ -7,7 +7,8 @@ Last-Reviewed: 2026-11-17
 
 # Drift register
 
-Follow each conflict’s resolution or raise a Decisions discussion. Retain every heading; move completed entries and evidence to [resolved drift](drift-register-resolved.md). The 2026-11-07 survey found DRIFT-001 through DRIFT-015.
+Follow each resolution or raise a Decisions discussion. Retain every heading;
+move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-001 R9 has two wordings
 
@@ -93,8 +94,12 @@ Follow each conflict’s resolution or raise a Decisions discussion. Retain ever
 
 ## DRIFT-018 Profile values say "managed" for Souls HQ does not start
 
-- **Open.** PDR-0055 defines a managed Soul as one HQ starts. soul-contracts' enforcement profile values `managed-protected` and `managed-cooperative` are reported for Souls started from the command line, and agent-bot-hq has no plan row for starting a Soul.
-- **Resolution.** Not decided. The values stay as released until soul-contracts changes them or HQ starts Souls.
+- **Open.** PDR-0055 requires HQ to start managed Souls, but CLI-started
+  Souls report `managed-protected` or `managed-cooperative` and HQ lacks a
+  Soul start plan.
+- **Resolution.** Only HQ-started Souls may report a managed profile. Direct
+  IDE, CLI and web sessions remain unmanaged. Open until the Soul runner,
+  contract claim rules and conformance checks enforce this.
 
 ## DRIFT-019 Control authority when a machine links to Harbor
 
