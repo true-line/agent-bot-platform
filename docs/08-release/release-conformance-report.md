@@ -60,7 +60,7 @@ at `34a2375c106d734cb59c17cd6370020268672b62`; its
 passed against fresh platform main. The [CI report artifact](https://github.com/true-line/soul-conformance/actions/runs/43959463020/artifacts/14272554749)
 has ZIP SHA-256 `994ffb37d480e045a7169c9db619c4565f312ab58cb7c9e4c0f46bc718ce325f`.
 These are bounded T14 acceptance evidence. The
-[roadmap](../10-program/roadmap.md#independent-t14-report-and-exit-proposal)
+[roadmap](../10-program/stage-0-evidence.md#independent-t14-report-and-exit-proposal)
 records separate owner Stage 0 confirmation through approval of the closeout PR;
 earlier merges did not grant that confirmation.
 

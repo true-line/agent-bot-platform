@@ -12,4 +12,5 @@ Planning and tracking across all repositories: stages, work packages and risks. 
 | Page | Contents |
 |---|---|
 | [Roadmap](roadmap.md) | Stages 0 to 4 with exit evidence and current state; WP1 to WP7 with owners and repositories |
+| [Stage 0 evidence](stage-0-evidence.md) | Contract, pilot and independent T14 evidence behind the recorded Stage 0 exit |
 | [Risk register](risk-register.md) | Product and program risks with defaults and triggers |

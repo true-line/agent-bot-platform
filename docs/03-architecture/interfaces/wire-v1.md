@@ -35,7 +35,7 @@ request protocol.
 
 Fixtures exist for: oversized frame, duplicate key, unknown required
 capability and stale expiry. Schema validity and contextual expiry/capability
-enforcement are separate verdicts. The [T14 evidence](../../10-program/roadmap.md#stage-0-evidence-and-remaining-work)
+enforcement are separate verdicts. The [T14 evidence](../../10-program/stage-0-evidence.md#stage-0-evidence-and-remaining-work)
 exercises production codecs; it does not qualify live transport or federation.
 
 ## Relay visibility

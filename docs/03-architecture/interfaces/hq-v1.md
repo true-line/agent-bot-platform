@@ -17,7 +17,7 @@ shapes from the broader planned operation surface.
 > Platform authority follows [authority and ownership](../../00-governance/authority-and-ownership.md);
 > a schema does not override an approved requirement. The bounded T14 report
 > tests the v0.4.1 cohort; the notice pilot uses v0.5.0 on HQ/MCP. Their
-> distinct evidence is recorded in the [roadmap](../../10-program/roadmap.md#stage-0-evidence-and-remaining-work).
+> distinct evidence is recorded in the [roadmap](../../10-program/stage-0-evidence.md#stage-0-evidence-and-remaining-work).
 
 ## Operations
 
