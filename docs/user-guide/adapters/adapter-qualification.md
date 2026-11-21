@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: how-to
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-05
+Last-Reviewed: 2026-11-21
 Audience: adapter-developers
 ---
 
@@ -23,8 +23,10 @@ which primitive classes it can render (§10 adapter manifest).
    ([soul-adapters](../../papers/repository-plan-2026-10-24.md#3-plan-by-repository), WP3)
 2. **Render plugin** implementing the render-plugin interface
    ([render plugins how-to](render-plugins.md))
-3. **Signed qualification manifest**: version, qualified profile(s),
-   renderable primitive classes
+3. **Qualification record** for the declared profile and renderable primitive
+   classes. For a protected claim, the manifest references the attestation
+   signed by the designated workflow after it verifies the designated host’s
+   test evidence.
 4. **Evaluation evidence**: records naming revision, harness, model,
    provider, date (§9) — a harness upgrade marks the cell *unevaluated*
    (§10)
@@ -35,7 +37,9 @@ A **protected** qualification requires the adapter to honor: HQ-controlled
 launch, per-member principals, protected connection binding, caller-bound
 handles, and **state redirection** (member state under the member's home,
 not the harness's default location). Prove it with the hostile-member
-suite under the protected label (T01, T02, T03, T21; Stage 2a exit).
+suite on the declared host. For the physical macOS pilot, T01, T02 and T03
+run under protected enforcement. T21 checks that cooperative receipts name
+the profile and that a protected claim is refused with `profile_insufficient`.
 
 If your adapter can only run cooperatively, **qualify it cooperative only**.
 Any protected claim is refused unless proven — and every receipt says
@@ -51,10 +55,12 @@ Operators see this via `hq adapters list` (proposed shape — see
 
 ## After a harness upgrade
 
-Your previously qualified pairing becomes **unevaluated**: it warns and
-keeps running; it does not block until a guardrail violation disables the
-route (§9, §10). Re-render and re-evaluate to restore the green cell
-(T27).
+A changed harness digest invalidates the old qualification for protected
+launches. Obtain qualification for the exact new inputs and review the new
+launch rule before using it. A cooperative launch requires an explicit choice.
+The separate evaluation cell becomes *unevaluated* after the upgrade. Re-render
+and re-evaluate to restore the green cell (T27). [Qualification authority and
+offline verification](../../04-decisions/PDR-0102-protected-adapter-qualification.md).
 
 ## Checklist
 
@@ -62,6 +68,7 @@ route (§9, §10). Re-render and re-evaluate to restore the green cell
 - [ ] Render plugin deterministic; renders to per-adapter digest in
       `SoulLock.json` (§10)
 - [ ] Hostile-member suite green (if claiming protected)
-- [ ] Qualification manifest signed; profile + primitive classes declared
+- [ ] Manifest declares the qualified profile and renderable primitive classes
+- [ ] A protected claim references the signed qualification attestation
 - [ ] Evaluation cells recorded for every role on the target harness
 - [ ] Compatibility matrix updated in the same PR
