@@ -30,6 +30,10 @@ approve a single qualification run on a designated test Mac. The approval
 identifies the exact candidate adapter and test plan and is consumed once.
 The independent runner exercises the real controls with disposable member
 state and a test provider. A protected result requires observed enforcement.
+When a report claims a managed profile, HQ must have started the Soul through
+the Soul runner. A direct vendor, IDE or web session remains unmanaged even if
+Harbor policy or local hooks constrain it
+([PDR-0055](PDR-0055-a-soul-is-managed-when-hq-starts-it.md)).
 The run produces evidence for review. Its approval grants no authority for
 ordinary HQ work, a reusable launch rule or release certification.
 [Owner decision on first qualification](https://github.com/true-line/agent-bot-platform/discussions/102#discussioncomment-19798697).
@@ -57,7 +61,19 @@ have changed, or the required Machine pairing is unavailable. Cooperative
 execution requires an explicit choice. The operator still approves each exact
 local launch-rule installation.
 
-## Open policy value
+## Revocation-information freshness
 
-The maximum permitted age of revocation information remains open. This
-decision grants no provisional interval and qualifies no adapter or installation.
+The owner selected a maximum age of one hour (3,600 seconds) for revocation
+information in the Stage 2a working session on 2026-11-21. The owner-signed
+policy binds the timestamp of the revocation snapshot to its exact set.
+At every protected launch, Machine rejects a missing or future-dated snapshot
+and refuses when its age exceeds 3,600 seconds. A snapshot exactly 3,600
+seconds old is still current. This check is independent of policy expiry and
+qualification expiry. Reissuing a policy without a newly authenticated
+revocation snapshot does not refresh the snapshot timestamp. HQ cannot reset
+that timestamp, increase the limit or override a revocation. Machine checks
+freshness offline.
+
+This value does not qualify an adapter or installation. The owner-signed
+policy, authenticated reports, release attestation, measured installed inputs
+and protected-host results remain separate prerequisites.
