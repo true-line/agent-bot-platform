@@ -51,7 +51,8 @@ hq credential rotate <id>
 ```
 
 Rotation re-equips at the **next lease renewal** — in-flight protected
-operations continue under the old lease; new ones pick up the new secret.
+operations continue under the old lease. New leases refer to the rotated
+credential.
 
 ## Revoke
 
@@ -77,8 +78,8 @@ verifies the key boundary; ask for the release report
 
 On a **cooperative** host, harnesses share a trust domain: the broker
 still requests privileged operations from Machine, but a prompt-injected member can reach anything its
-harness can. Give the Soul only credentials you would give its
-least-trusted harness ([trust domains](../../03-architecture/trust-domains-and-profiles.md)).
+harness can. Grant the Soul only operations you would authorize its
+least-trusted harness to perform ([trust domains](../../03-architecture/trust-domains-and-profiles.md)).
 
 ## Troubleshooting
 
