@@ -4,6 +4,7 @@ Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-21
 Date: 2026-11-12
+Accepted: 2026-11-21
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/52
 Affects-Repos: [agent-bot-machine, agent-bot-hq, agent-bot-souls, soul-conformance]
 Affects: [R3, trust-model]
