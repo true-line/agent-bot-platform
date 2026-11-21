@@ -17,6 +17,12 @@ The owner approved the policy on [PR #87](https://github.com/true-line/agent-bot
 This acceptance sets rollout order. Stage exit still requires the host evidence
 below. [Discussion #85](https://github.com/true-line/agent-bot-platform/discussions/85)
 
+**Custody clarification (2026-11-19).** For the paired Mac in T02, HQ requests
+the signature over its paired channel. Machine authorizes the request and
+keyd uses the device key under the administrator's account. Read “HQ signer”
+in the original decision below in light of the [host custody decision](PDR-0091-host-privileged-custody.md).
+The owner recorded a separate [exception for explicitly configured standalone HQ](PDR-0093-standalone-hq-secure-enclave-signing.md).
+
 ## Context
 
 S6 put protected Linux first and protected macOS in Stage 4. That order
