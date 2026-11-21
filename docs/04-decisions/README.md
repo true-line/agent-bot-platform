@@ -31,6 +31,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0085](PDR-0085-macos-first-protected-pilot.md) | Qualify protected macOS first for the operator pilot | Accepted 2026-11-17 |
 | [PDR-0089](PDR-0089-owner-approval-for-the-first-hq-account-on-macos.md) | Owner approval for the first HQ account on macOS | Proposed |
 | [PDR-0098](PDR-0098-owner-approval-for-harness-accounts-on-macos.md) | Owner approval to provision macOS harness accounts | Proposed |
+| [PDR-0102](PDR-0102-protected-adapter-qualification.md) | Verify protected adapter qualification offline | Proposed record of approved direction |
 
 ## How a decision is made
 
