@@ -32,7 +32,7 @@ tests:
   verifies:
   - R3
   implemented-in: soul-conformance
-  implementation: not-started
+  implementation: in-progress
   status: Specified
 - id: T03
   title: Direct egress
@@ -235,7 +235,7 @@ tests:
   verifies:
   - R8
   implemented-in: soul-conformance
-  implementation: not-started
+  implementation: in-progress
   status: Specified
 - id: T22
   title: Self-activation
