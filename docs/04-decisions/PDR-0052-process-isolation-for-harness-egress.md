@@ -1,9 +1,10 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Last-Reviewed: 2026-11-21
 Date: 2026-11-12
+Accepted: 2026-11-21
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/52
 Affects-Repos: [agent-bot-machine, agent-bot-hq, agent-bot-souls, soul-conformance]
 Affects: [R3, trust-model]
@@ -11,7 +12,7 @@ Affects: [R3, trust-model]
 
 # PDR-0052 Isolate network access at harness launch
 
-The owner selected process isolation in [Discussion #52](https://github.com/true-line/agent-bot-platform/discussions/52). Main and its [relay amendment](https://github.com/true-line/agent-bot-platform/pull/111#issuecomment-7069182793) remain accepted. This [proposed change](https://github.com/true-line/agent-bot-platform/issues/113) needs separate owner approval. [PDR-0085](PDR-0085-macos-first-protected-pilot.md) sets macOS first.
+The owner selected process isolation in [Discussion #52](https://github.com/true-line/agent-bot-platform/discussions/52), approved the [relay assignment](https://github.com/true-line/agent-bot-platform/pull/111#issuecomment-7069182793), and approved this [per-installation bridge credential amendment](https://github.com/true-line/agent-bot-platform/pull/114#issuecomment-7069861743) on 2026-11-21. [PDR-0085](PDR-0085-macos-first-protected-pilot.md) sets macOS first.
 
 ## Context
 
@@ -23,7 +24,7 @@ The SDK obtains its runtime binding from Souls over the member socket, then auth
 2. On Linux, launch the harness in an empty network namespace. The selected design uses a Machine-installed, root-owned launcher restricted to provisioned accounts. It enters the namespace and permanently drops privileges to the selected account before running the harness. The authorization covers that launcher only.
 3. Verify T03 through normal harness launch. A direct request to a reachable provider or service must fail, and the same operation through the broker must reach the service. On the declared macOS host, verify member authentication and broker binding through the assigned sockets and verify refusal on a different launch's socket. [Conformance catalog](../07-verification/conformance-catalog.md)
 
-## Proposed Stage 2a bridge credential amendment
+## Stage 2a bridge credential assignment
 
 HQ starts managed Souls through Soul runner. Each installation has a separate
 untrusted runner account; existing per-harness credential accounts remain.
@@ -74,8 +75,10 @@ covered C, not B or its broker delegation. In a [same-C probe](https://github.co
 another C process read a `0600` token and unlinked a live `0660` listener.
 Network sandboxing cannot stop same-UID file operations, so C cannot hold
 protected broad sidecar authority. [Distinct-R fixture evidence](https://github.com/true-line/soul-adapters/issues/4#issuecomment-7069253198)
-does not prove production B custody or physical T03. Owner approval and
-recorded justification are required for this exact change.
+does not prove production B custody or physical T03. The owner approved
+this exact B assignment on 2026-11-21 because shared C permits same-UID
+token access and listener removal. That approval does not enable a protected
+launcher or satisfy T03.
 
 Migration is fail closed. Existing C direct broker clients and the accepted
 two-path rule remain unchanged. C/R sidecar fixtures may provide cooperative
