@@ -46,7 +46,10 @@ The published comms [v0.5.6 release](https://github.com/true-line/agent-bot-comm
 HQ release, installation, and physical run remain Stage 2a evidence gates. Live `wire/v1` delivery
 remains tracked in [comms #300](https://github.com/true-line/agent-bot-comms/issues/300).
 Neither a green plugin fixture nor an older standalone-broker release is a
-Stage 2a physical result. [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start)
+Stage 2a physical result. The controlled test Soul uses the
+[owner-approved frozen definition and launch-input rule](../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement);
+its claimed `SoulLock` digest alone cannot qualify the started revision.
+[DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start)
 tracks released profile values that still say `managed` for externally started
 Souls; do not infer managed status from that label alone.
 

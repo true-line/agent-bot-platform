@@ -38,7 +38,9 @@ their declared cohorts. They cannot establish macOS host behavior.
    protected enforcement. For T02, exercise the HQ signer backed by the
    Mac’s Secure Enclave on the declared physical host, verify a signed
    operation and record the device-key boundary. T21 must demonstrate cooperative labeling and
-   refusal of a protected claim on the cooperative configuration.
+   refusal of a protected claim on the cooperative configuration. The
+   controlled qualification Soul's actual frozen definition revision and
+   launch inputs follow the [Stage 2a measurement rule](PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement).
 2. Run the Stage 3 operator pilot on qualified protected macOS with real
    approved adapters, measured pilot targets and the usual stage sign-off.
    Report cooperative for configurations providing only cooperative guarantees.
