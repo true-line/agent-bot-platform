@@ -24,20 +24,20 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-004 Wire and task contracts exist twice
 
-- **Open.** agent-comms ships NDJSON wire v1 (`lib/wire.mjs`) and a task state table (its `tasks.md` doc) that do not reference soul-contracts. S6 sections 6 and 7 specify `wire/v1` and `task/v1` with nine HQ-authoritative states and comms as a mirror.
-- **Resolution.** [PDR-0024](../04-decisions/PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md): the schemas are in soul-contracts `wire/v1` and `task/v1`. agent-comms mirrors HQ's `task/v1` records through a codec, frames routed messages in `wire/v1` at its broker layer, and runs every fixture of both against them. Its v0.5.5 task workflow and local client protocol stay, documented as outside the seams. Resolved when that agent-comms PR merges.
+- **Open.** agent-comms' NDJSON wire and task table diverge from the soul-contracts `wire/v1` and nine-state, HQ-authoritative `task/v1` seams (S6 §§6–7).
+- **Resolution.** [PDR-0024](../04-decisions/PDR-0024-comms-mirrors-task-v1-and-frames-wire-v1.md): comms mirrors HQ tasks and frames routed messages against both contract fixture sets. Its local protocol and v0.5.5 workflow remain outside those seams until the adoption PR merges.
 
 ## DRIFT-005 Two products called headquarters
 
-- **Open.** agent-watchtower calls itself "agent coordination headquarters" with its own control plane and approvals (agent-watchtower ADR-0012). S6 defines HQ as the single local authority; S7 scopes the watcher to observability.
-- **Decided 2026-11-07, open until the repository changes.** The owner made agent-watchtower a standalone security product on top of the platform (PDR-0002). It consumes `hq-v1` read-only and holds no control authority.
-- **Resolution.** agent-watchtower drops the "headquarters" claim, its own control plane and its approvals, superseding agent-watchtower ADR-0012.
+- **Open.** agent-watchtower ADR-0012 claims a second headquarters and approvals; S6 gives HQ sole local authority and S7 gives the watcher observability.
+- **Decided 2026-11-07.** [PDR-0002](../04-decisions/PDR-0002-repository-topology-and-admission.md) keeps watchtower a separate read-only security product.
+- **Resolution.** Watchtower removes its control claims and supersedes its ADR.
 
 ## DRIFT-006 GeniusBar or DudlesBar
 
-- **Open.** S6, S7 and these docs say GeniusBar. The geniusbar repository renamed the product DudlesBar (geniusbar ADR-0417).
-- **Decided 2026-11-07, name still open.** GeniusBar is the code name; DudlesBar is not adopted. A product name is chosen before any public release, because "Genius Bar" is an Apple service name (RISK-010).
-- **Resolution.** The owner picks the product name; the glossary records it with GeniusBar as the former code name, and the geniusbar repository supersedes geniusbar ADR-0417.
+- **Open.** S6/S7 use GeniusBar; geniusbar ADR-0417 says DudlesBar.
+- **Decided 2026-11-07.** GeniusBar remains a code name; DudlesBar is not adopted. A public name is required before release (RISK-010).
+- **Resolution.** The owner selects the name; the glossary and geniusbar ADR follow.
 
 ## DRIFT-007 Two Soul package layouts
 
@@ -51,13 +51,13 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-009 "Soul" and "principal" mean different things
 
-- **Open.** S6 section 3 defines a Soul as a persistent multi-member agent and a principal as a human or organization; the platform [glossary](../glossary.md) carries those definitions since soul-contracts moved its glossary there ([soul-contracts#26](https://github.com/true-line/soul-contracts/pull/26)). agent-comms ADR-0003 defines a soul as one agent conversation (`agent_<uuid>`) and a principal as a human or transport account; agent-bot's README uses the agent-comms meaning. Since PDR-0053 the glossary defines a Soul as a package, not an agent.
-- **Resolution.** The platform [glossary](../glossary.md) is the single home after PDR-0001; agent-comms records the older meaning as superseded.
+- **Open.** S6, agent-comms ADR-0003 and agent-bot README use incompatible Soul/principal meanings. [PDR-0053](../04-decisions/PDR-0053-soul-life-and-agent-replace-member.md) and the [glossary](../glossary.md) define Soul as a package.
+- **Resolution.** Components adopt the glossary; comms marks its older meaning superseded.
 
 ## DRIFT-010 Short labels collide
 
-- **Open.** S6 labels its external references `R1` to `R8`, beside its requirements R1 to R12. agent-bot-daemon's plan labels its decisions `D1` to `D4` and its risks `R1` to `R10`, colliding with the north star's decisions (S1 D1 to S1 D4) and with the requirements.
-- **Resolution.** Platform side resolved by [identifiers](identifiers.md) (X-series, qualified labels, RISK-series). agent-bot-daemon renames its risks when its plan moves here.
+- **Open.** S6 reference R1–R8 and daemon risk R1–R10 collide with requirements; daemon decision labels collide with S1 decisions.
+- **Resolution.** [Identifiers](identifiers.md) use X, qualified D and RISK labels; daemon renames its risks.
 
 ## DRIFT-011 The split decisions are recorded three times
 
@@ -66,9 +66,9 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-012 The identity service has two addresses
 
-- **Open.** S6 and the architecture name `agents.true-line.ai`. agent-bot's README and code comments, agent-bot-daemon's plan and agent-bot-identity's server-mode documentation and tests also use `agent-bot-gold.vercel.app`.
-- **Decided 2026-11-07, open until the repositories change.** The owner made `agents.true-line.ai` the canonical address. `agent-bot-gold.vercel.app` is a deployment alias: it keeps serving existing clients, and agent-bot already treats it as a legacy host. Documents name only the canonical address.
-- **Resolution.** agent-bot records the alias, and agent-bot, agent-bot-daemon and agent-bot-identity replace it in their documents. Their adoption issues carry the item: true-line/agent-bot#154, true-line/agent-bot-daemon#79 and qwts/agent-bot-identity#1378.
+- **Open.** Agent Bot, daemon and identity docs name `agent-bot-gold.vercel.app` while S6 uses `agents.true-line.ai`.
+- **Decided 2026-11-07.** The latter is canonical; the former remains a deployment alias.
+- **Resolution.** Components document the alias and canonical host in true-line/agent-bot#154, true-line/agent-bot-daemon#79 and qwts/agent-bot-identity#1378.
 
 ## DRIFT-013 Planned repository names do not exist
 
@@ -107,9 +107,9 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-020 Two UI repositories have no charter
 
-- **Conflict.** true-line/agent-bot-hq-ui (the on-machine HQ interface) and true-line/agent-bot-harbor-ui (Harbor console designs, a remote view of one machine's settings in `daemon-ui/`, and MCP app resources in `mcp-apps/`) exist. Neither has an entry in `registry/repos.yaml`. [PDR-0002](../04-decisions/PDR-0002-repository-topology-and-admission.md) admits no repository without a charter, keeps the web console in agent-bot and says the planned agent-bot-ui is not created. agent-bot-harbor-ui's README still calls the product "Agent Command Center", not Harbor, and names agent-bot-ui as its destination.
-- **Decided 2026-11-11, open until the records change.** [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) keeps both repositories as design sources for agent-bot-hq and agent-bot.
-- **Resolution.** Both get charters in `registry/repos.yaml` before work lands there. agent-bot-harbor-ui names the product Harbor in its README and stops targeting agent-bot-ui.
+- **Conflict.** agent-bot-hq-ui and agent-bot-harbor-ui exist without `registry/repos.yaml` charters, contrary to [PDR-0002](../04-decisions/PDR-0002-repository-topology-and-admission.md). Harbor UI still names an old product and destination.
+- **Decided 2026-11-11.** [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md) keeps both as HQ/Harbor design sources.
+- **Resolution.** Add charters before implementation; Harbor UI uses Harbor and drops the agent-bot-ui destination.
 
 ## DRIFT-021 T14 previous-major and profile evidence
 
@@ -129,15 +129,20 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-025 Stage 2a snapshot custody
 
-- **Conflict.** The owner rejected a root snapshot helper and selected secure
-  Machine admin custody for the frozen Stage 2a snapshots and one-use claims.
-  The existing root-owned measurement text, soul-contracts snapshot
-  `owner_uid: 0` schema and vectors, Machine snapshot/reservation producers
-  and v3 verifier, and HQ's expected reservation state still reflect the
-  prior rule. [PDR-0121](../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
-  records the successor direction. Privileged admin/root direct networking
-  is also forbidden by the owner's clarification.
-- **Resolution.** Version the contract, change the Machine and HQ producers
-  and verifiers together, prove local byte custody and network denial on
-  the designated host, and keep protected launch and T01–T03/T21 credit
-  closed until matching installed releases and evidence exist.
+- **Conflict.** The owner rejected a root helper and selected Machine-admin
+  custody for Agent Bot managed inputs, frozen snapshots and spent claims.
+  Current root-owned text, Contracts UID-0 records and Machine/HQ drafts
+  disagree. [PDR-0121](../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
+  records the proposed successor.
+- **Resolution.** Version Contracts and Machine/HQ together; require
+  matching installed bytes and physical T01–T03/T21 evidence before use.
+
+## DRIFT-026 Machine admin network providers
+
+- **Conflict.** Machine admin providers/downloads and keyd GitHub requests
+  perform direct network I/O despite
+  [PDR-0091](../04-decisions/PDR-0091-host-privileged-custody.md)
+  and the owner's longstanding HQ-mediated boundary.
+- **Resolution.** HQ performs network exchange over authenticated local
+  requests; Machine admin/root paths and children are denied direct IPv4,
+  IPv6 and DNS. Refuse unavailable routes and prove denial on the host.

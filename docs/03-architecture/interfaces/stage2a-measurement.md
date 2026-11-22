@@ -19,18 +19,12 @@ protected qualification gate. The owner has rejected a root helper, so the
 current nonroot Machine draft cannot satisfy that gate by adding one.
 
 
-The product owner approved this qualification-only byte rule in the Stage 2a
-working session on 2026-11-21. It permits one owner-approved attempt on the
-designated Mac with the existing `soul-conformance` `hello.soul` lineage. It
-does not authorize ordinary HQ work, a reusable protected launch, or a general
-Stage 3 `.soul` import verifier. The exact owner-approved attempt names the
-candidate, suite and template revisions, installed plan, frozen file inventory,
-and expected measurements. A changed path, byte, mode or launch input needs a
-new plan and one-use approval.
-The approval covers one exact suite plan. Each actual Soul start in that plan,
-including the cooperative T21 replay or a restart, needs its own distinct
-durably spent Machine reservation; a protected reservation cannot be replayed
-for a cooperative start.
+The owner approved this qualification-only rule on 2026-11-21 for one exact
+`hello.soul` suite plan on the designated Mac. The plan names candidate,
+suite, template, installation, inventory and expected measurements. Changed
+inputs require a new plan and approval. Each actual start, including T21 or
+a restart, spends a distinct Machine reservation; profiles cannot replay
+one another. This grants no ordinary HQ work or Stage 3 import authority.
 
 Machine independently measures a closed, frozen `Contents/` definition and
 reconstructible tree. It includes `SoulInfo.json`, `SoulLock.json`, every file
@@ -56,7 +50,7 @@ writable `workspaces/scratch/check.mjs` to frozen
 checker. `answer.txt` remains writable evidence; record the seeded
 issue/answer and final answer as test input and outcome.
 
-Machine separately measures the root-owned host projection (including exact
+Until PDR-0121 is accepted, Machine separately measures the root-owned host projection (including exact
 `adapters.json` and `installation.json` values), runner, Machine, HQ, broker,
 adapter, native harness and test-provider binaries/configuration, sandbox
 policy, all executable code inputs, and the selected command and ordered
@@ -123,39 +117,25 @@ and writable `Contents/host` layout must be changed before positive launch.
 
 ## Proposed Machine-admin snapshot custody
 
-Machine copies approved source and code through no-follow directory
-descriptors into a private staging tree owned by its secure administrative
-account A. The authenticated installation and exact owner-approved plan
-pin A; neither HQ nor an incoming record selects it. A is distinct from HQ,
-runner R, bridge B and credential account C. If the chosen host cannot
-provide those protected-profile account distinctions, that profile refuses.
-Machine verifies one-link regular files and protected ancestors, hashes the
-bytes actually opened, syncs every staged file and directory, then atomically
-publishes a read-only A-owned snapshot and syncs its parent. Only the
-assigned R receives the read and traversal access needed for that start;
-HQ, R, B, C and sibling installations have no write, rename, delete or ACL
-grant on the snapshot, its ancestors or the A-owned one-use claim. A and root
-remain trusted to manage those files. Machine launches only the snapshot,
-retaining or reopening descriptors and comparing identities and hashes
-immediately before exec. The sandbox denies runner writes to source and host
-projection from the first instruction. An unguarded path check followed by
-a later open is insufficient. Machine must also prove that the running
-process selected those exact executable and code inputs; changed identity
-or late unreviewed load stops the run. The current Souls reader's
-runner-owned package and writable `Contents/host` layout must be changed
-before positive launch.
+Under PDR-0121, A owns the frozen staging/snapshots, spent claims, Agent Bot
+managed host projection and enumerated runtime inputs. The authenticated
+installation and owner plan pin A, distinct from HQ, R, B and C; a host
+without the protected-profile accounts refuses. OS images retain OS
+custody and are pinned by build/signing requirements. Machine uses the
+same no-follow inventory, hashing, durable publication and one-use rules;
+only assigned R can read its frozen inputs, and no untrusted account can
+write them. A and root remain trusted to change them, requiring a fresh
+exact plan. Machine authorizes the start; HQ initiates the reviewed fixed
+R/B launcher. That launch boundary checks pinned descriptors and bytes
+immediately before exec; Machine independently observes the actual child
+and selected code closure before finalization. The R/B transition is a
+separate unproven gate, not an authorization for a new root helper.
 
-Agent Bot processes executing with secure-admin or root privileges, across
-profiles and paths, have no direct network access. The installed host
-confinement must demonstrably deny direct IPv4, IPv6 and DNS/provider
-traffic while allowing only reviewed local IPC. HQ carries network exchange
-in its unprivileged account through authenticated, purpose-limited Machine
-requests. Machine durably spends each exact one-use claim under A before
-returning a reservation; failure, uncertainty or suspected rollback keeps
-the start refused. No root helper is installed or invoked for snapshot or
-claim mechanics at installation or runtime. The existing root-owned host
-projection and installed executable source requirements remain separate
-from the A-owned frozen copies.
+PDR-0091 already forbids direct network from Agent Bot secure-admin/root
+processes across profiles and paths. The installed confinement must prove
+IPv4, IPv6 and DNS/provider denial with only reviewed local IPC. HQ carries
+network exchange; current Machine admin download providers must migrate
+or refuse. No root helper is installed for snapshot or claim mechanics.
 
 Both measurements, snapshot identity and exact installed-plan digest must
 match through the Machine-signed one-use pre-Hello reservation, authenticated

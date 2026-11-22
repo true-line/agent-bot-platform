@@ -18,8 +18,8 @@ evidence of how the exact package and harness behaved on the declared host.
 
 **Proposed dated successor (2026-11-22):**
 [PDR-0121](PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
-would change only frozen Stage 2a snapshot and one-use claim custody to the
-secure Machine admin account. It takes effect only after acceptance and
+would change Agent Bot managed launch inputs, frozen Stage 2a snapshots and
+one-use claims to secure Machine admin custody. It takes effect after acceptance and
 matching released contracts and implementations. The original direction
 below remains the current gate and is preserved.
 

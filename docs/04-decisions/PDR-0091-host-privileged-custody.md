@@ -20,13 +20,14 @@ account or the operator declines to create a dedicated HQ account.
 
 **Dated amendment.** [PDR-0093](PDR-0093-standalone-hq-secure-enclave-signing.md) records the narrowly approved standalone signing exception. This earlier record is preserved.
 
-**Proposed privileged-network clarification (2026-11-22).**
+**Existing network boundary reaffirmed (2026-11-22).** Agent Bot processes
+under secure-admin or root privileges have no direct network access, in any
+profile or entry point. HQ performs network exchange and sends fixed,
+authenticated local requests to Machine. This was the purpose of the
+HQ–Machine link from the start, not a new permission or exception.
 [PDR-0121](PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
-would require all Agent Bot secure-admin/root processes, across profiles
-and paths, to have no direct network access. HQ carries network exchange
-through the authenticated local channel. This record's admin signing and
-key-custody rule remains in force; the new confinement requirement awaits
-acceptance and verified installation.
+records the independent snapshot-custody proposal; [DRIFT-026](../00-governance/drift-register.md#drift-026-machine-admin-network-providers)
+tracks current Machine download-provider violations of this boundary.
 
 ## Authority and execution
 
@@ -40,8 +41,9 @@ acceptance and verified installation.
    permitted result. A paired caller cannot select an arbitrary key or use a
    general sign, encrypt or decrypt interface. Raw private
    keys and unrestricted signing capability remain inside the admin boundary.
-2. For device enrollment and token proofs, HQ handles the identity-service
-   HTTPS exchange. Machine and keyd can perform local signing offline.
+2. HQ handles all network exchange, including device enrollment, token
+   proofs and package retrieval. Machine and keyd sign and authorize
+   locally, without direct network access.
    Signature verification uses public data. Signing a message to establish
    the caller on the paired channel gives that caller no authority to sign
    as the enrolled device.
