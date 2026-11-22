@@ -5,7 +5,7 @@ Owner: product-owner
 Date: 2026-11-21
 Last-Reviewed: 2026-11-21
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/102
-Affects-Repos: [agent-bot-platform, agent-bot-machine, agent-bot-hq, soul-adapters, soul-contracts, soul-conformance]
+Affects-Repos: [agent-bot-platform, agent-bot-machine, agent-bot-hq, agent-bot-souls, agent-bot-comms, soul-adapters, soul-contracts, soul-conformance]
 Affects: [R8, trust-model]
 ---
 
@@ -57,6 +57,24 @@ An HQ launch receipt or a `started` attempt alone cannot establish those facts.
 The report signer must be explicitly designated for that host in owner policy;
 device enrollment does not designate it. A release workflow must verify the
 host signatures before issuing its separate qualification attestation.
+
+## Controlled Stage 2a Soul measurement
+
+The product owner approved the exact
+[qualification-only byte and custody rule](../03-architecture/interfaces/stage2a-measurement.md)
+for one controlled `hello.soul` lineage on the designated Mac in the Stage 2a
+working session on 2026-11-21. Machine measures the complete closed
+`SoulInfo.json`, `SoulLock.json`, `primitives/**` and `opt/**` inventory,
+separately measures root-owned host and executable launch inputs, and refuses
+any unreviewed byte or path. A SoulLock digest is only a claimed revision;
+the owner-approved one-use plan must map that claim to Machine's actual frozen
+measurement. Each physical Soul start, including T21 or a restart, spends a
+distinct reservation. The rule binds both measurements, snapshot identity and
+plan through signed reservation, post-Hello finalization, immutable completed
+run and signed host report. Writable Life stays outside the frozen source.
+This decision does not approve an ordinary protected launch, reusable rule,
+release artifact, M2 host change or physical test result. The exact limits,
+canonical bytes, refusal tests and implementation gates are in the linked rule.
 
 ## Offline verification and local approval
 
