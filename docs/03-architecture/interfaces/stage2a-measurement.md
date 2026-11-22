@@ -28,9 +28,12 @@ for a cooperative start.
 Machine independently measures a closed, frozen `Contents/` definition and
 reconstructible tree. It includes `SoulInfo.json`, `SoulLock.json`, every file
 and directory under `primitives/` (Definition), and every file and directory
-under `opt/` (Reconstructible). For the current `hello.soul` template this is
-four files: SoulInfo, SoulLock, `primitives/quickstart-task.json`, and
-`opt/quickstart-adapter.mjs`. The measured inventory must exactly equal the
+under `opt/` (Reconstructible), including the `Contents/` directory record.
+For the `hello.soul` template after `soul-conformance` PR #38 (merged at
+`8e82f47781e583e4b09352cbfef5ca3bfefe45aa`), this is five files:
+SoulInfo, SoulLock, `primitives/quickstart-task.json`,
+`opt/quickstart-adapter.mjs`, and `opt/quickstart-check.mjs`, plus their
+directory records. The measured inventory must exactly equal the
 owner-approved inventory. Unknown top-level paths or extra files in the
 frozen source refuse. No file may be omitted by a wildcard. This is an exact
 installation and launch byte closure; it does not establish the semantic
@@ -40,11 +43,11 @@ Life (`workspaces/`, `home/`, `memorial/`, `dreams/`, `comms/`), Rebuilt
 (`cache/`), Recreated (`host/`) and Dropped (`tmp/`) state lives in separate
 runner-owned writable paths, outside the frozen source. It cannot supply
 unreviewed executable, module, configuration, policy or checker bytes for the
-qualified run. The current template executes `workspaces/scratch/check.mjs`
-from writable Life. Before a protected qualification, move that checker into
-the frozen `opt/` closure or an independently measured root-owned launch-input
-projection and invoke it from there. `answer.txt` remains writable evidence;
-record the seeded issue/answer and final answer as test input and outcome.
+qualified run. `soul-conformance` PR #38 moved the template checker from
+writable `workspaces/scratch/check.mjs` to frozen
+`opt/quickstart-check.mjs`. The selected invocation must use that measured
+checker. `answer.txt` remains writable evidence; record the seeded
+issue/answer and final answer as test input and outcome.
 
 Machine separately measures the root-owned host projection (including exact
 `adapters.json` and `installation.json` values), runner, Machine, HQ, broker,
