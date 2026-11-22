@@ -48,8 +48,10 @@ enforcement profile, suite revision and results. The adapter manifest references
 the signed attestation. Build provenance alone cannot authorize a protected launch.
 
 The fixed purpose, canonical report bytes, host and owner signature envelopes,
-and offline verification sequence live in the [qualification signature
-contract draft](https://github.com/true-line/soul-contracts/pull/49).
+and offline verification sequence are in the [qualification signature
+contract draft](https://github.com/true-line/soul-contracts/pull/49). The
+[measured Stage 2a v3 contract draft](https://github.com/true-line/soul-contracts/pull/60)
+adds the separate frozen `.soul` digest and per-start Machine evidence refs.
 Machine may ask keyd to sign only after the one-use attempt has an immutable
 completed-run record and Machine has independently observed the actual
 HQ-started Soul process, runner, account identities and enforcement profile.
