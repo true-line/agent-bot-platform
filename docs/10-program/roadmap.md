@@ -49,6 +49,21 @@ Neither a green plugin fixture nor an older standalone-broker release is a
 Stage 2a physical result. The controlled test Soul uses the
 [owner-approved frozen definition and launch-input rule](../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement);
 its claimed `SoulLock` digest alone cannot qualify the started revision.
+Source seams for the local protected path are tracked in
+[HQ #239](https://github.com/true-line/agent-bot-hq/pull/239) and
+[HQ #240](https://github.com/true-line/agent-bot-hq/pull/240),
+[comms #330](https://github.com/true-line/agent-bot-comms/pull/330), and
+[Souls #42](https://github.com/true-line/agent-bot-souls/pull/42) and
+[#43](https://github.com/true-line/agent-bot-souls/pull/43).
+The measured report and offline verifier drafts are
+[contracts #60](https://github.com/true-line/soul-contracts/pull/60) and
+[Machine #654](https://github.com/true-line/agent-bot-machine/pull/654);
+[Machine #656](https://github.com/true-line/agent-bot-machine/pull/656)
+addresses the Darwin process observer separately. These source slices do not
+provide the signed frozen `.soul` release, authenticated one-use completion,
+secure-admin v3 host signing, released adapter cohort or physical T01–T03/T21
+results. The [Stage 2a gate](https://github.com/true-line/agent-bot-platform/issues/68)
+remains at 0 of 4 physical tests.
 [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start)
 tracks released profile values that still say `managed` for externally started
 Souls; do not infer managed status from that label alone.
