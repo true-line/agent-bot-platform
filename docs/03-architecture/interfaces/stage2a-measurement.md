@@ -62,6 +62,16 @@ show the exact selected Node, HQ and comms code closure; counting the whole
 release archive is not proof that the selected closure is complete or within
 the limit below.
 
+`launch_input_records` is one canonical object containing the sorted external
+file-record array, exact host projection values, the selected command and full
+ordered `execve` argument array including `argv[0]`, static environment and
+configuration selections, macOS build and selected-image signing requirements,
+sandbox-policy digest, and named Machine, HQ, Souls, B bridge, HQ-hosted comms
+broker, adapter, harness and test-provider digests. A changed argument or
+selected configuration changes the launch-input measurement even when every
+file record is unchanged. Secret broker authority is not an environment value
+in this object.
+
 Each frozen directory and regular file has one canonical record: root-relative
 ASCII path, `kind` (`directory` or `regular`), four-digit octal POSIX permission
 mode, and for a file unsigned byte size and lowercase SHA-256 of its exact
@@ -72,9 +82,9 @@ symlinks, hard links, devices, sockets, writable ancestors and ACL allow
 entries refuse. Machine computes
 `sha256:` plus lowercase hex of
 `SHA256(ASCII("agent-bot/stage2a-definition-opt-closure/v1") || 0x00 ||
-JCS(definition_records))`. The separately canonicalized launch-input records
-use the distinct prefix `agent-bot/stage2a-launch-inputs/v1` with the same
-NUL and JCS rule. Owner, group, device, inode and timestamps are custody
+JCS(definition_records))`. The canonical `launch_input_records` object uses
+the distinct prefix `agent-bot/stage2a-launch-inputs/v1` with the same NUL and
+JCS rule. Owner, group, device, inode and timestamps are custody
 checks, not portable digest members.
 
 This constrained path permits at most 512 frozen entries, 256 MiB per regular
