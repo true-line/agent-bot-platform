@@ -20,6 +20,14 @@ account or the operator declines to create a dedicated HQ account.
 
 **Dated amendment.** [PDR-0093](PDR-0093-standalone-hq-secure-enclave-signing.md) records the narrowly approved standalone signing exception. This earlier record is preserved.
 
+**Proposed privileged-network clarification (2026-11-22).**
+[PDR-0121](PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
+would require all Agent Bot secure-admin/root processes, across profiles
+and paths, to have no direct network access. HQ carries network exchange
+through the authenticated local channel. This record's admin signing and
+key-custody rule remains in force; the new confinement requirement awaits
+acceptance and verified installation.
+
 ## Authority and execution
 
 1. HQ owns the enrollment workflow and its application-level decisions.

@@ -3,13 +3,20 @@ Status: Draft
 Doc-Type: interface
 Owner: product-owner
 Last-Reviewed: 2026-11-21
-Normative-Source: PDR-0102
+Normative-Source: PDR-0102, PDR-0121
 ---
 
 # Controlled Stage 2a Soul measurement
 
 This exact byte and custody rule implements the
-[qualification decision](../../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement).
+[qualification decision](../../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement)
+as amended for frozen-copy custody by
+[PDR-0121](../../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md).
+The A-owned successor below takes effect only after PDR-0121 is accepted
+and the matching contract and implementations are released. Until then the
+current root-owned staging and snapshot rule stated below remains the
+protected qualification gate. The owner has rejected a root helper, so the
+current nonroot Machine draft cannot satisfy that gate by adding one.
 
 
 The product owner approved this qualification-only byte rule in the Stage 2a
@@ -99,6 +106,8 @@ one-use owner-approved plan maps `(soul_id, claimed_definition_digest,
 definition_measurement)`; Machine and HQ refuse a matching self-claim without
 that accepted mapping or if authenticated Hello disagrees.
 
+## Current snapshot custody pending successor acceptance
+
 Machine copies approved source and code through no-follow directory
 descriptors into a private root-owned staging tree. It verifies one-link
 regular files and protected ancestors, hashes the bytes actually opened,
@@ -111,6 +120,42 @@ later open is insufficient. Machine must also prove that the running process
 selected those exact executable and code inputs; changed identity or late
 unreviewed load stops the run. The current Souls reader's runner-owned package
 and writable `Contents/host` layout must be changed before positive launch.
+
+## Proposed Machine-admin snapshot custody
+
+Machine copies approved source and code through no-follow directory
+descriptors into a private staging tree owned by its secure administrative
+account A. The authenticated installation and exact owner-approved plan
+pin A; neither HQ nor an incoming record selects it. A is distinct from HQ,
+runner R, bridge B and credential account C. If the chosen host cannot
+provide those protected-profile account distinctions, that profile refuses.
+Machine verifies one-link regular files and protected ancestors, hashes the
+bytes actually opened, syncs every staged file and directory, then atomically
+publishes a read-only A-owned snapshot and syncs its parent. Only the
+assigned R receives the read and traversal access needed for that start;
+HQ, R, B, C and sibling installations have no write, rename, delete or ACL
+grant on the snapshot, its ancestors or the A-owned one-use claim. A and root
+remain trusted to manage those files. Machine launches only the snapshot,
+retaining or reopening descriptors and comparing identities and hashes
+immediately before exec. The sandbox denies runner writes to source and host
+projection from the first instruction. An unguarded path check followed by
+a later open is insufficient. Machine must also prove that the running
+process selected those exact executable and code inputs; changed identity
+or late unreviewed load stops the run. The current Souls reader's
+runner-owned package and writable `Contents/host` layout must be changed
+before positive launch.
+
+Agent Bot processes executing with secure-admin or root privileges, across
+profiles and paths, have no direct network access. The installed host
+confinement must demonstrably deny direct IPv4, IPv6 and DNS/provider
+traffic while allowing only reviewed local IPC. HQ carries network exchange
+in its unprivileged account through authenticated, purpose-limited Machine
+requests. Machine durably spends each exact one-use claim under A before
+returning a reservation; failure, uncertainty or suspected rollback keeps
+the start refused. No root helper is installed or invoked for snapshot or
+claim mechanics at installation or runtime. The existing root-owned host
+projection and installed executable source requirements remain separate
+from the A-owned frozen copies.
 
 Both measurements, snapshot identity and exact installed-plan digest must
 match through the Machine-signed one-use pre-Hello reservation, authenticated

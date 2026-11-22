@@ -126,3 +126,18 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 ## DRIFT-024 Harness egress isolation
 
 - **Open.** HQ's plan and Machine's Linux firewall differ from [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md). Reconcile both and verify T03.
+
+## DRIFT-025 Stage 2a snapshot custody
+
+- **Conflict.** The owner rejected a root snapshot helper and selected secure
+  Machine admin custody for the frozen Stage 2a snapshots and one-use claims.
+  The existing root-owned measurement text, soul-contracts snapshot
+  `owner_uid: 0` schema and vectors, Machine snapshot/reservation producers
+  and v3 verifier, and HQ's expected reservation state still reflect the
+  prior rule. [PDR-0121](../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
+  records the successor direction. Privileged admin/root direct networking
+  is also forbidden by the owner's clarification.
+- **Resolution.** Version the contract, change the Machine and HQ producers
+  and verifiers together, prove local byte custody and network denial on
+  the designated host, and keep protected launch and T01–T03/T21 credit
+  closed until matching installed releases and evidence exist.
