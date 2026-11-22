@@ -69,6 +69,7 @@ nav:
           - 03-architecture/interfaces/task-state-machine.md
           - 03-architecture/interfaces/error-registry.md
           - 03-architecture/interfaces/package-format.md
+          - 03-architecture/interfaces/stage2a-measurement.md
   - Decisions:
       - 04-decisions/README.md
       - 04-decisions/PDR-0001-platform-repository-is-the-product-source-of-truth.md
