@@ -34,12 +34,15 @@ inputs for this path. The owner rejected a new root helper. This is
 ## Decision
 
 1. The reviewed Machine installation identifies one secure administrator
-   account A. Machine stages and publishes the exact approved Definition and
-   launch-input snapshots, and durably spends each one-use start claim, under
-   A. The owner-approved plan and authenticated installation pin A's account
-   identity and numerical UID. HQ and incoming signed records cannot choose
-   A. No root helper is installed or invoked for snapshot or claim mechanics
-   at installation, before launch or during a start.
+   account A. During that install only, root may create fresh private staging
+   nodes, copy the exact approved Definition and launch inputs through
+   no-follow descriptors, transfer only those new nodes to A, and hand their
+   pinned identities to A. A, running under its own effective UID, independently
+   remeasures and seals the final snapshots. A durably spends each one-use
+   start claim. The owner-approved plan and authenticated installation pin A's
+   account identity and numerical UID. HQ and incoming signed records cannot
+   choose A. No root helper is installed or invoked for a launch or claim;
+   root never performs the final snapshot publication.
 2. A must be distinct from HQ, runner R, bridge B and credential account C.
    The owner may choose a single-account machine, but a host unable to
    provide the separate accounts required by a protected profile refuses
@@ -50,12 +53,18 @@ inputs for this path. The owner rejected a new root helper. This is
    policy inputs are also A-owned and measured separately from the frozen
    Soul Definition. OS images retain OS custody and are bound by the
    recorded macOS build and signing requirements.
-   Machine copies through no-follow descriptors, validates the approved
-   inventory and each file's owner, group, mode, link count, ACL, identity
-   and hash, syncs staged files and directories, and atomically publishes
-   the read-only snapshot. R receives only the read and traversal access
-   needed for its own start. HQ, R, B, C and sibling installations cannot
-   write, replace, rename or delete inputs, snapshots or claims. Machine
+   Root's install handoff is limited to freshly created private A-owned
+   staging nodes; an existing or foreign-owned node cannot be adopted.
+   A reopens the staging tree through no-follow descriptors, checks the full
+   approved inventory and each file's owner, group, mode, link count, ACL,
+   identity and hash, exclusively renames it into the final installation
+   name, seals it read-only, syncs, and rechecks the published identity and
+   bytes. An uncertain seal refuses. Root may independently observe the
+   final tree before applying the fixed rule and policy. A's seal process
+   has no direct IPv4 or IPv6 network access. R receives only read and
+   traversal access needed for its own start. HQ, R, B, C and sibling
+   installations cannot write, replace, rename or delete inputs, snapshots
+   or claims. Machine
    checks exact descriptors and bytes before authorization. HQ initiates
    the fixed reviewed R/B launcher using Machine's signed one-use binding;
    the launcher rechecks the pinned identities and bytes immediately before

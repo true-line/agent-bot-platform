@@ -117,14 +117,23 @@ and writable `Contents/host` layout must be changed before positive launch.
 
 ## Proposed Machine-admin snapshot custody
 
-Under PDR-0121, A owns the frozen staging/snapshots, spent claims, Agent Bot
-managed host projection and enumerated runtime inputs. The authenticated
-installation and owner plan pin A, distinct from HQ, R, B and C; a host
-without the protected-profile accounts refuses. OS images retain OS
-custody and are pinned by build/signing requirements. Machine uses the
-same no-follow inventory, hashing, durable publication and one-use rules;
-only assigned R can read its frozen inputs, and no untrusted account can
-write them. A and root remain trusted to change them, requiring a fresh
+Under PDR-0121, A owns the frozen snapshots, spent claims, Agent Bot
+managed host projection and enumerated runtime inputs. During the reviewed
+installation only, root creates fresh private staging nodes, copies approved
+bytes through no-follow descriptors, transfers only those new nodes to A,
+and hands their pinned identities to A. A runs the finalizer under its own
+effective UID in a no-direct-network sandbox. A independently reopens and
+remeasures the complete approved inventory, exclusively renames each staged
+tree into its installation name, seals it read-only, syncs and rechecks the
+published identity and bytes. Root may independently observe the final tree
+before applying the fixed rule and policy; it does not publish the final
+snapshot. A failed or uncertain seal refuses without a root fallback.
+The authenticated installation and owner plan pin A, distinct from HQ, R, B
+and C; a host without the protected-profile accounts refuses. OS images
+retain OS custody and are pinned by build/signing requirements. Machine
+preserves the no-follow inventory, hashing, durable publication and one-use
+rules. Only assigned R can read its frozen inputs, and no untrusted account
+can write them. A and root remain trusted to change them, requiring a fresh
 exact plan. Machine authorizes the start; HQ initiates the reviewed fixed
 R/B launcher. That launch boundary checks pinned descriptors and bytes
 immediately before exec; Machine independently observes the actual child
