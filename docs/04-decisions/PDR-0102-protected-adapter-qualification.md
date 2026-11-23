@@ -16,6 +16,13 @@ build identifies what was produced. Qualification also requires independent
 evidence of how the exact package and harness behaved on the declared host.
 [Owner decision](https://github.com/true-line/agent-bot-platform/discussions/102#discussioncomment-19798348).
 
+**Proposed dated successor (2026-11-22):**
+[PDR-0121](PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md)
+would change Agent Bot managed launch inputs, frozen Stage 2a snapshots and
+one-use claims to secure Machine admin custody. It takes effect after acceptance and
+matching released contracts and implementations. The original direction
+below remains the current gate and is preserved.
+
 ## Evidence and certification
 
 Only a designated qualification host may sign test evidence. Ordinary device

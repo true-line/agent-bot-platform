@@ -3,27 +3,28 @@ Status: Draft
 Doc-Type: interface
 Owner: product-owner
 Last-Reviewed: 2026-11-21
-Normative-Source: PDR-0102
+Normative-Source: PDR-0102, PDR-0121
 ---
 
 # Controlled Stage 2a Soul measurement
 
 This exact byte and custody rule implements the
-[qualification decision](../../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement).
+[qualification decision](../../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement)
+as amended for frozen-copy custody by
+[PDR-0121](../../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md).
+The owner accepted the A-owned successor in PDR-0121. It takes effect only
+when matching contract and implementations are released. Until then the
+current root-owned staging and snapshot rule below remains the protected
+qualification gate. The owner rejected a root helper; the current nonroot
+Machine draft cannot satisfy that gate by adding one.
 
 
-The product owner approved this qualification-only byte rule in the Stage 2a
-working session on 2026-11-21. It permits one owner-approved attempt on the
-designated Mac with the existing `soul-conformance` `hello.soul` lineage. It
-does not authorize ordinary HQ work, a reusable protected launch, or a general
-Stage 3 `.soul` import verifier. The exact owner-approved attempt names the
-candidate, suite and template revisions, installed plan, frozen file inventory,
-and expected measurements. A changed path, byte, mode or launch input needs a
-new plan and one-use approval.
-The approval covers one exact suite plan. Each actual Soul start in that plan,
-including the cooperative T21 replay or a restart, needs its own distinct
-durably spent Machine reservation; a protected reservation cannot be replayed
-for a cooperative start.
+The owner approved this qualification-only rule on 2026-11-21 for one exact
+`hello.soul` suite plan on the designated Mac. The plan names candidate,
+suite, template, installation, inventory and expected measurements. Changed
+inputs require a new plan and approval. Each actual start, including T21 or
+a restart, spends a distinct Machine reservation; profiles cannot replay
+one another. This grants no ordinary HQ work or Stage 3 import authority.
 
 Machine independently measures a closed, frozen `Contents/` definition and
 reconstructible tree. It includes `SoulInfo.json`, `SoulLock.json`, every file
@@ -49,7 +50,7 @@ writable `workspaces/scratch/check.mjs` to frozen
 checker. `answer.txt` remains writable evidence; record the seeded
 issue/answer and final answer as test input and outcome.
 
-Machine separately measures the root-owned host projection (including exact
+Until PDR-0121 is accepted, Machine separately measures the root-owned host projection (including exact
 `adapters.json` and `installation.json` values), runner, Machine, HQ, broker,
 adapter, native harness and test-provider binaries/configuration, sandbox
 policy, all executable code inputs, and the selected command and ordered
@@ -99,6 +100,8 @@ one-use owner-approved plan maps `(soul_id, claimed_definition_digest,
 definition_measurement)`; Machine and HQ refuse a matching self-claim without
 that accepted mapping or if authenticated Hello disagrees.
 
+## Current snapshot custody pending successor acceptance
+
 Machine copies approved source and code through no-follow directory
 descriptors into a private root-owned staging tree. It verifies one-link
 regular files and protected ancestors, hashes the bytes actually opened,
@@ -111,6 +114,29 @@ later open is insufficient. Machine must also prove that the running process
 selected those exact executable and code inputs; changed identity or late
 unreviewed load stops the run. The current Souls reader's runner-owned package
 and writable `Contents/host` layout must be changed before positive launch.
+
+## Accepted Machine-admin custody pending release
+
+Under PDR-0121, A owns frozen snapshots, spent claims, host projection and
+enumerated runtime inputs. During the reviewed install, root may copy only
+into fresh private staging nodes transferred with pinned identities to A.
+A's fixed child, under A's effective UID with direct network denied,
+reopens no-follow descriptors, remeasures the full approved inventory,
+exclusively renames, seals read-only, syncs and rechecks final bytes and
+identity. Root observes the final tree before installing the rule and
+policy; it cannot publish it. An uncertain seal refuses. The plan pins A
+distinct from HQ, R, B and C; missing protected accounts refuse. OS images
+retain OS custody and build/signing pins. Only R reads its frozen inputs;
+HQ, R, B, C and siblings cannot write. A and root remain trusted, so changes
+require fresh approval. Machine authorizes one-use starts; HQ invokes fixed
+R/B launchers, which recheck bytes before exec. Machine observes the child
+and selected code closure before finalization. R/B transition remains an
+unproven gate; no new root helper is authorized.
+
+PDR-0091 forbids direct network from secure-admin/root processes. Installed
+confinement must deny IPv4, IPv6 and DNS/provider traffic, allowing only
+reviewed local IPC. HQ carries network exchange; current Machine admin
+download providers migrate or refuse. No root snapshot/claim helper is installed.
 
 Both measurements, snapshot identity and exact installed-plan digest must
 match through the Machine-signed one-use pre-Hello reservation, authenticated
