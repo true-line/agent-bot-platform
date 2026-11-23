@@ -117,34 +117,26 @@ and writable `Contents/host` layout must be changed before positive launch.
 
 ## Proposed Machine-admin snapshot custody
 
-Under PDR-0121, A owns the frozen snapshots, spent claims, Agent Bot
-managed host projection and enumerated runtime inputs. During the reviewed
-installation only, root creates fresh private staging nodes, copies approved
-bytes through no-follow descriptors, transfers only those new nodes to A,
-and hands their pinned identities to A. A runs the finalizer under its own
-effective UID in a no-direct-network sandbox. A independently reopens and
-remeasures the complete approved inventory, exclusively renames each staged
-tree into its installation name, seals it read-only, syncs and rechecks the
-published identity and bytes. Root may independently observe the final tree
-before applying the fixed rule and policy; it does not publish the final
-snapshot. A failed or uncertain seal refuses without a root fallback.
-The authenticated installation and owner plan pin A, distinct from HQ, R, B
-and C; a host without the protected-profile accounts refuses. OS images
-retain OS custody and are pinned by build/signing requirements. Machine
-preserves the no-follow inventory, hashing, durable publication and one-use
-rules. Only assigned R can read its frozen inputs, and no untrusted account
-can write them. A and root remain trusted to change them, requiring a fresh
-exact plan. Machine authorizes the start; HQ initiates the reviewed fixed
-R/B launcher. That launch boundary checks pinned descriptors and bytes
-immediately before exec; Machine independently observes the actual child
-and selected code closure before finalization. The R/B transition is a
-separate unproven gate, not an authorization for a new root helper.
+Under PDR-0121, A owns frozen snapshots, spent claims, host projection and
+enumerated runtime inputs. During the reviewed install, root may copy only
+into fresh private staging nodes transferred with pinned identities to A.
+A's fixed child, under A's effective UID with direct network denied,
+reopens no-follow descriptors, remeasures the full approved inventory,
+exclusively renames, seals read-only, syncs and rechecks final bytes and
+identity. Root observes the final tree before installing the rule and
+policy; it cannot publish it. An uncertain seal refuses. The plan pins A
+distinct from HQ, R, B and C; missing protected accounts refuse. OS images
+retain OS custody and build/signing pins. Only R reads its frozen inputs;
+HQ, R, B, C and siblings cannot write. A and root remain trusted, so changes
+require fresh approval. Machine authorizes one-use starts; HQ invokes fixed
+R/B launchers, which recheck bytes before exec. Machine observes the child
+and selected code closure before finalization. R/B transition remains an
+unproven gate; no new root helper is authorized.
 
-PDR-0091 already forbids direct network from Agent Bot secure-admin/root
-processes across profiles and paths. The installed confinement must prove
-IPv4, IPv6 and DNS/provider denial with only reviewed local IPC. HQ carries
-network exchange; current Machine admin download providers must migrate
-or refuse. No root helper is installed for snapshot or claim mechanics.
+PDR-0091 forbids direct network from secure-admin/root processes. Installed
+confinement must deny IPv4, IPv6 and DNS/provider traffic, allowing only
+reviewed local IPC. HQ carries network exchange; current Machine admin
+download providers migrate or refuse. No root snapshot/claim helper is installed.
 
 Both measurements, snapshot identity and exact installed-plan digest must
 match through the Machine-signed one-use pre-Hello reservation, authenticated
