@@ -50,7 +50,9 @@ writable `workspaces/scratch/check.mjs` to frozen
 checker. `answer.txt` remains writable evidence; record the seeded
 issue/answer and final answer as test input and outcome.
 
-Until PDR-0121 is accepted, Machine separately measures the root-owned host projection (including exact
+Until the accepted successor is released with matching Contracts, Machine, HQ
+and Souls implementations, Machine separately measures the root-owned host
+projection (including exact
 `adapters.json` and `installation.json` values), runner, Machine, HQ, broker,
 adapter, native harness and test-provider binaries/configuration, sandbox
 policy, all executable code inputs, and the selected command and ordered
