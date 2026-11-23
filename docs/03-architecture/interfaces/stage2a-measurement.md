@@ -12,11 +12,11 @@ This exact byte and custody rule implements the
 [qualification decision](../../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement)
 as amended for frozen-copy custody by
 [PDR-0121](../../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md).
-The A-owned successor below takes effect only after PDR-0121 is accepted
-and the matching contract and implementations are released. Until then the
-current root-owned staging and snapshot rule stated below remains the
-protected qualification gate. The owner has rejected a root helper, so the
-current nonroot Machine draft cannot satisfy that gate by adding one.
+The owner accepted the A-owned successor in PDR-0121. It takes effect only
+when matching contract and implementations are released. Until then the
+current root-owned staging and snapshot rule below remains the protected
+qualification gate. The owner rejected a root helper; the current nonroot
+Machine draft cannot satisfy that gate by adding one.
 
 
 The owner approved this qualification-only rule on 2026-11-21 for one exact
@@ -115,7 +115,7 @@ selected those exact executable and code inputs; changed identity or late
 unreviewed load stops the run. The current Souls reader's runner-owned package
 and writable `Contents/host` layout must be changed before positive launch.
 
-## Proposed Machine-admin snapshot custody
+## Accepted Machine-admin custody pending release
 
 Under PDR-0121, A owns frozen snapshots, spent claims, host projection and
 enumerated runtime inputs. During the reviewed install, root may copy only

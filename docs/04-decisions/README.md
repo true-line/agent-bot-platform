@@ -32,7 +32,7 @@ Platform decision records (PDRs) are the decisions that bind more than one repos
 | [PDR-0089](PDR-0089-owner-approval-for-the-first-hq-account-on-macos.md) | Owner approval for the first HQ account on macOS | Proposed |
 | [PDR-0098](PDR-0098-owner-approval-for-harness-accounts-on-macos.md) | Owner approval to provision macOS harness accounts | Proposed |
 | [PDR-0102](PDR-0102-protected-adapter-qualification.md) | Verify protected adapter qualification offline | Proposed record of approved direction |
-| [PDR-0121](PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md) | Keep Stage 2a snapshots in Machine admin custody | Proposed; owner direction recorded, successor integration pending |
+| [PDR-0121](PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md) | Keep Stage 2a snapshots in Machine admin custody | Accepted 2026-11-22; successor integration pending |
 
 ## How a decision is made
 

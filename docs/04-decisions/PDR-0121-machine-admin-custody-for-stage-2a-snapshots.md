@@ -1,8 +1,9 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Date: 2026-11-22
+Accepted: 2026-11-22
 Last-Reviewed: 2026-11-22
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/121
 Amends: PDR-0102
