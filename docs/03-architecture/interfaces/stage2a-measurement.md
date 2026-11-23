@@ -102,7 +102,7 @@ one-use owner-approved plan maps `(soul_id, claimed_definition_digest,
 definition_measurement)`; Machine and HQ refuse a matching self-claim without
 that accepted mapping or if authenticated Hello disagrees.
 
-## Current snapshot custody pending successor acceptance
+## Current snapshot custody pending successor release
 
 Machine copies approved source and code through no-follow directory
 descriptors into a private root-owned staging tree. It verifies one-link
