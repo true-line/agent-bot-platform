@@ -146,3 +146,17 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 - **Resolution.** HQ performs network exchange over authenticated local
   requests; Machine admin/root paths and children are denied direct IPv4,
   IPv6 and DNS. Refuse unavailable routes and prove denial on the host.
+
+## DRIFT-027 Cooperative report requires protected finalization
+
+- **Conflict.** Contracts v0.10.0 [cooperative reservation](https://github.com/true-line/soul-contracts/blob/v0.10.0/schemas/machine/v3/soul-cooperative-reservation-payload.schema.json)
+  binds `machine/v3` and an HQ broker. Its [adapter v3 report](https://github.com/true-line/soul-contracts/blob/v0.10.0/schemas/adapter/v3/qualification-host-report.schema.json)
+  and [positive T21 fixture](https://github.com/true-line/soul-contracts/blob/v0.10.0/fixtures/positive/qualification-host-report.measurement-v3-cooperative-synthetic.json)
+  require `machine/v2` and `finalization` for T21. That protected receipt
+  cannot prove cooperative execution under
+  [PDR-0102](../04-decisions/PDR-0102-protected-adapter-qualification.md).
+- **Resolution.** Version the report and fixtures for distinct protected and
+  cooperative inputs and one-use receipts; align Machine, HQ, the adapter
+  release verifier and conformance. Keep T21 signing, release qualification
+  and protected launch closed until the signed producer, offline verifier
+  and physical result match.
