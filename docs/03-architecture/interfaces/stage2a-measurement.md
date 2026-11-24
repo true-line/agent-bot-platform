@@ -2,22 +2,17 @@
 Status: Draft
 Doc-Type: interface
 Owner: product-owner
-Last-Reviewed: 2026-11-21
-Normative-Source: PDR-0102, PDR-0121
+Last-Reviewed: 2026-11-24
+Normative-Source: PDR-0102, PDR-0121, PDR-0124
 ---
 
 # Controlled Stage 2a Soul measurement
 
-This exact byte and custody rule implements the
+This rule implements the
 [qualification decision](../../04-decisions/PDR-0102-protected-adapter-qualification.md#controlled-stage-2a-soul-measurement)
-as amended for frozen-copy custody by
-[PDR-0121](../../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md).
-The owner accepted the A-owned successor in PDR-0121. It takes effect only
-when matching contract and implementations are released. Until then the
-current root-owned staging and snapshot rule below remains the protected
-qualification gate. The owner rejected a root helper; the current nonroot
-Machine draft cannot satisfy that gate by adding one.
-
+and [A-owned custody successor](../../04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md).
+The successor requires matching released contracts and implementations. Until
+then, root-owned staging remains the gate; a root helper is not authorized.
 
 The owner approved this qualification-only rule on 2026-11-21 for one exact
 `hello.soul` suite plan on the designated Mac. The plan names candidate,
@@ -26,19 +21,14 @@ inputs require a new plan and approval. Each actual start, including T21 or
 a restart, spends a distinct Machine reservation; profiles cannot replay
 one another. This grants no ordinary HQ work or Stage 3 import authority.
 
-Machine independently measures a closed, frozen `Contents/` definition and
-reconstructible tree. It includes `SoulInfo.json`, `SoulLock.json`, every file
-and directory under `primitives/` (Definition), and every file and directory
-under `opt/` (Reconstructible), including the `Contents/` directory record.
-For the `hello.soul` template after `soul-conformance` PR #38 (merged at
-`8e82f47781e583e4b09352cbfef5ca3bfefe45aa`), this is five files:
-SoulInfo, SoulLock, `primitives/quickstart-task.json`,
-`opt/quickstart-adapter.mjs`, and `opt/quickstart-check.mjs`, plus their
-directory records. The measured inventory must exactly equal the
-owner-approved inventory. Unknown top-level paths or extra files in the
-frozen source refuse. No file may be omitted by a wildcard. This is an exact
-installation and launch byte closure; it does not establish the semantic
-validity or portability of a package.
+Machine measures frozen `Contents/`: its directory record, `SoulInfo.json`,
+`SoulLock.json`, and every file and directory under `primitives/` (Definition)
+and `opt/` (Reconstructible). After `soul-conformance` PR #38
+(`8e82f47781e583e4b09352cbfef5ca3bfefe45aa`), `hello.soul` has five
+files: SoulInfo, SoulLock, `primitives/quickstart-task.json`,
+`opt/quickstart-adapter.mjs`, and `opt/quickstart-check.mjs`, plus directory
+records. Inventory must equal the approved inventory; extra paths and wildcard
+omissions refuse. Byte closure does not establish package validity or portability.
 
 Life (`workspaces/`, `home/`, `memorial/`, `dreams/`, `comms/`), Rebuilt
 (`cache/`), Recreated (`host/`) and Dropped (`tmp/`) state lives in separate
@@ -101,6 +91,16 @@ accepted revision, not a measurement of its own containing file. The exact
 one-use owner-approved plan maps `(soul_id, claimed_definition_digest,
 definition_measurement)`; Machine and HQ refuse a matching self-claim without
 that accepted mapping or if authenticated Hello disagrees.
+
+## Exact stock Claude external file successor
+
+[PDR-0124](../../04-decisions/PDR-0124-exact-stock-claude-external-input-limit.md)
+defines one qualification-only 384 MiB exception for the exact installed
+`runtime/bin/claude` tuple. It requires matching released Contracts, Machine
+and Souls implementations, complete installed inventory and an owner-reviewed
+plan. Until then, the current 256 MiB gate refuses the CLI. Frozen and
+external count and aggregate bounds remain unchanged; the exception grants
+no protected test result.
 
 ## Current snapshot custody pending successor release
 
