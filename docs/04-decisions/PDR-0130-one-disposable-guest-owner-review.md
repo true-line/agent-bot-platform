@@ -1,8 +1,9 @@
 ---
-Status: Proposed
+Status: Accepted
 Doc-Type: decision
 Owner: product-owner
 Date: 2026-11-23
+Accepted: 2026-11-23
 Last-Reviewed: 2026-11-23
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/130
 Amends: PDR-0091
@@ -12,18 +13,15 @@ Affects: [daemon-machine-channel, trust-model, R8]
 
 # PDR-0130 Review one disposable Stage 2a guest plan from the owner Mac
 
-The owner directed the Stage 2a lead to complete the qualification work in
-the current session: “We are over the deadline and I am the owner follow
-whatever the leader says and help the team get this completed.” The lead
-limited that delegation to source preparation for the exact guest-key
-exception and kept host installation and qualification closed.
-[Discussion #130](https://github.com/true-line/agent-bot-platform/discussions/130)
-records this narrowly proposed exception to
-[PDR-0091](PDR-0091-host-privileged-custody.md). It permits source preparation
-and review only. The discussion and this Proposed record do not authorize a
-helper installation, guest account apply, reusable launch, or physical test
-credit. Record the owner's final choice in the discussion before accepting
-this PDR or enabling the path.
+The owner delegated Stage 2a completion to the lead in the active session and
+answered “Yes” to the exact proposal in
+[Discussion #130](https://github.com/true-line/agent-bot-platform/discussions/130).
+The lead recorded that approval as source authority for this one guest-key
+review design. This narrow exception to
+[PDR-0091](PDR-0091-host-privileged-custody.md) permits source preparation
+and review. It does not authorize helper installation, guest account apply,
+reusable launch, or physical test credit. The ordinary same-host owner
+commands remain pinned to the local Machine key.
 
 ## Exact scope
 
@@ -75,9 +73,11 @@ The fixed signed permit bytes, VM evidence semantics and negative fixtures
 belong in `soul-contracts` before a positive product path is enabled. Machine
 and Identity must verify each other's exact bytes, reject foreign keys,
 changed plans, expired or replayed permits, and keep the ordinary local-pin
-refusal. A source PR may be prepared behind a disabled command while this
-record is Proposed. Enabling and installing the helper on M2, applying R,
-launching a Soul and certifying a release each require their own exact review.
+refusal. Source may be prepared behind a disabled command. Current Tart name,
+config hash and ECID data do not establish an authenticated running VM/key
+binding, so Machine must refuse a positive permit until that evidence exists.
+Enabling and installing the helper on M2, applying R, launching a Soul and
+certifying a release each require their own exact review.
 The disposable VM result cannot satisfy the physical Mac T01/T02/T03/T21
 gate. Protected launch and Stage 2a acceptance remain closed until their
 release, measured-input, signature and physical evidence verifies.
