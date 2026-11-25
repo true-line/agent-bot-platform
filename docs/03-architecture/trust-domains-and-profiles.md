@@ -42,7 +42,7 @@ member. How per-member principals and private state are provided under
 it, and whether a shared harness account can earn `protected`, are
 unspecified.
 
-Protected qualification requires T01–T03 on the declared macOS pilot host plus the cooperative T21 refusal check. The [roadmap](../10-program/roadmap.md#stages) tracks this evidence across Stage 2a and the delayed Agent Comms stage.
+Protected qualification requires T01–T03 on the declared macOS pilot host plus the cooperative T21 refusal check. The [roadmap](../10-program/roadmap.md#stages) assigns all four tests to Stage 2a and tracks installed Agent Comms verification under Delayed.
 
 ## What "cooperative" honestly means
 

@@ -16,7 +16,7 @@ Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-
 |---|---|---|---|---|
 | 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | The owner confirmed exit by approving [closeout PR #79](https://github.com/true-line/agent-bot-platform/pull/79), which closed [#66](https://github.com/true-line/agent-bot-platform/issues/66). See [evidence](#stage-0-evidence-and-remaining-work). |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Exit evidence complete 2026-11-17; approval of [#67](https://github.com/true-line/agent-bot-platform/issues/67) confirms exit. T04/T05/T20 passed under `managed-cooperative` ([soul-conformance PR #7](https://github.com/true-line/soul-conformance/pull/7)). [PR #10](https://github.com/true-line/soul-conformance/pull/10) [post-merge CI](https://github.com/true-line/soul-conformance/actions/runs/44104254218) passed 31 tests and `hello.soul` against the pinned runtime and real HQ. Clean reports: [artifact 14336598815](https://github.com/true-line/soul-conformance/actions/runs/44104254218/artifacts/14336598815), ZIP SHA-256 `3449cc028f36a3653de16d1fd23346df65138d31bfe0fb1fb2bc0a1fa0baeeed`. The result qualifies the cooperative profile. Protected qualification requires additional physical evidence. |
-| 2a Member isolation | Weeks 6 to 7 | HQ-controlled local launch and account isolation, Machine signing custody, host egress enforcement and cooperative refusal | On the declared Mac, verify T02 custody and no fallback, T03 direct egress denial, and the host-side cooperative refusal and profile evidence for T21. Check linked-host outage policy for already admitted work. | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)) |
+| 2a Member isolation | Weeks 6 to 7 | HQ-controlled local launch and account isolation, Machine signing custody, host egress enforcement and cooperative refusal | On the declared Mac, pass T01 caller binding, T02 key custody and no fallback, and T03 direct egress denial under protected enforcement. Pass T21 under cooperative enforcement. | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)) |
 | 2b Brokered adapters | Weeks 8 to 9 | HQ-hosted comms routes live `wire/v1` and mirrors HQ's `task/v1`; brokered inference and service adapter, budgets, recovery, reconciliation | Unknown effects reconcile without blind replay through the live HQ broker | Not started |
 | 3 Operator pilot | Weeks 10 to 12 | Minimal owner console and HQ CLI, enrollment, approvals, export and restore | Pilot targets met on qualified protected macOS | Not started |
 | 4 Portability and relay | After pilot gates | HQ routes cross-machine agent traffic through Agent-Bot Harbor and the site/cloud relay path; coordinated moves | Fencing, transfer, partition and crypto conformance on the routed path | Not started |
@@ -25,14 +25,15 @@ Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-
 
 [Agent Comms verification #133](https://github.com/true-line/agent-bot-platform/issues/133)
 is delayed. Its sequence and target are pending. The stage verifies the HQ-hosted
-broker on the designated Mac, including T01, the brokered turn paired with T03,
-the full cooperative T21 replay, local-only provider operation, and broker
-continuity during a Harbor outage.
+broker on the designated Mac. Its checks cover the installed broker bind,
+caller binding through Agent Comms, a brokered turn, cooperative broker
+receipts, local-only provider operation, and broker continuity during a
+Harbor outage.
 
-Protected qualification requires T01–T03 and T21 on the declared Mac, with
-evidence from Stage 2a and the delayed Agent Comms stage. Record the integrated
-HQ-started protected run and cooperative replay against the same reviewed
-installed cohort. Any protected launch requires the assigned bridge bind, a current signed policy
+Stage 2a owns all four conformance tests, T01–T03 and T21. The separate
+Agent Comms checks use the actual installed broker and the reviewed cohort.
+Protected claims require the approved physical qualification evidence on
+the declared Mac. Any protected launch requires the assigned bridge bind, a current signed policy
 and authenticated revocation data no more than one hour old. Missing or stale
 data or a failed bind refuses launch. The outage observation uses already
 admitted work. See [PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md),
@@ -55,7 +56,7 @@ Only a Soul that HQ starts is managed
 
 | Stage | Comms work that must land | Evidence before exit |
 |---|---|---|
-| Delayed | Install matching HQ and Agent Comms builds. Bind each HQ-started agent to its assigned broker connection under the Machine-provisioned account layout. | Complete a local fixture-provider operation without a Harbor account. During a Harbor outage on a linked host, show already admitted work needing no new credential continues under the last signed policy, only reduce actions are accepted, and no runtime R2 or Harbor request is needed. Complete T01 copied-handle refusal before the operation and after HQ restart. Match the authenticated brokered turn to T03 host egress evidence and complete the cooperative T21 replay on the reviewed cohort. [Delayed stage #133](https://github.com/true-line/agent-bot-platform/issues/133) |
+| Delayed | Install matching HQ and Agent Comms builds. Bind each HQ-started agent to its assigned broker connection under the Machine-provisioned account layout. | Complete a local fixture-provider operation without a Harbor account. During a Harbor outage on a linked host, show already admitted work needing no new credential continues under the last signed policy, only reduce actions are accepted, and no runtime R2 or Harbor request is needed. Verify copied-handle refusal through the installed Agent Comms broker before the operation and after HQ restart. Match the authenticated brokered turn to host egress evidence. Verify cooperative broker receipts and protected-claim refusal. [Delayed stage #133](https://github.com/true-line/agent-bot-platform/issues/133) |
 | 2b | Connect live broker delivery to `wire/v1` and mirror authoritative HQ task records through `task/v1`, then broker inference and service effects. | End-to-end routed frame, task receipt and recovery evidence on the exact released cohort. Codec fixtures alone do not satisfy this row. |
 | 4 | Route cross-machine messages from HQ through Harbor and qualified relays; preserve the separate `control-v1` authority boundary. | Federation, partition and transfer tests on that route, including refusal of remote control over relay traffic. |
 
@@ -81,7 +82,7 @@ provide the signed frozen `.soul` release, authenticated one-use completion,
 secure-admin v3 host signing, released adapter cohort or physical T01–T03/T21
 results. The [Stage 2a tracker](https://github.com/true-line/agent-bot-platform/issues/68)
 and [delayed Agent Comms tracker](https://github.com/true-line/agent-bot-platform/issues/133)
-record progress on the combined physical gate.
+record conformance and Agent Comms integration evidence respectively.
 [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start)
 tracks released profile values that still say `managed` for externally started
 Souls; do not infer managed status from that label alone.

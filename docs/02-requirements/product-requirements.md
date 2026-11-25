@@ -15,12 +15,12 @@ The twelve product requirements every component must uphold, and the quality-att
 |---|---|---|---|---|
 | R1 | Stable identity | accuracy, security | T15, T16 | 3 |
 | R2 | Execution stays local | security | T12, T24 | 3 (T24), 4 (T12) |
-| R3 | Authority outside the model | security | T01, T02, T03, T20 | 1 (T20), 2a (T02, T03), Delayed (T01) |
+| R3 | Authority outside the model | security | T01, T02, T03, T20 | 1 (T20), 2a |
 | R4 | Owner assigns roles; evaluations advise | intelligence, privacy, security | T22 | 3 |
 | R5 | One ceiling, sub-allocations | security, operability | T11, T26 | 2b |
 | R6 | External material is data | security, intelligence | T04, T10, T19 | 1 (T04), 2b |
 | R7 | Contracts first; N and N-1 | extensibility | T14 | 0 |
-| R8 | Honest profiles | security, accuracy | T21 | 2a (host evidence), Delayed (T21) |
+| R8 | Honest profiles | security, accuracy | T21 | 2a |
 | R9 | Uplinks optional | reliability | T13, T25 | 2b (T25), 4 (T13) |
 | R10 | Vendor-neutral contracts | extensibility | none; Schema review in WP1; no vendor token in any fixture | 0 |
 | R11 | One harness to the user | operability | none; Pilot rubric: tasks completed through terminal chat and ACP only | 3 |

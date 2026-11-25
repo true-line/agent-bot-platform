@@ -17,12 +17,12 @@ Which conformance tests prove each requirement, at which stage, and which tests 
 |---|---|---|---|
 | R1 Stable identity | T15, T16 | 3, 4 |  |
 | R2 Execution stays local | T12, T24 | 3, 4 |  |
-| R3 Authority outside the model | T01, T02, T03, T20 | 1, 2a, Delayed |  |
+| R3 Authority outside the model | T01, T02, T03, T20 | 1, 2a |  |
 | R4 Owner assigns roles; evaluations advise | T22 | 3 |  |
 | R5 One ceiling, sub-allocations | T11, T26 | 2b |  |
 | R6 External material is data | T04, T10, T19 | 1, 2b |  |
 | R7 Contracts first; N and N-1 | T14 | 0 |  |
-| R8 Honest profiles | T21 | Delayed |  |
+| R8 Honest profiles | T21 | 2a |  |
 | R9 Uplinks optional | T13, T25 | 2b, 4 |  |
 | R10 Vendor-neutral contracts | none | none | Schema review in WP1; no vendor token in any fixture |
 | R11 One harness to the user | none | none | Pilot rubric: tasks completed through terminal chat and ACP only |

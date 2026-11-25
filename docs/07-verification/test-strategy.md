@@ -29,17 +29,17 @@ A stage exits when its required evidence and that of preceding stages pass on th
 |---|---|---|
 | 0 Contract baseline | Shared fixtures validate in both runtime and broker | T14 |
 | 1 Local vertical slice | One task completes with scoped proposals and one final commitment | T04, T05, T20 |
-| 2a Member isolation | Machine signing custody, host egress denial and host-side cooperative profile and refusal evidence | T02, T03, host evidence for T21 |
+| 2a Member isolation | Caller binding, Machine signing custody and host egress denial under protected enforcement, plus cooperative profile honesty | T01, T02, T03, T21 |
 | 2b Brokered adapters | Unknown effects reconcile without blind replay | T06 to T11, T17 to T19, T23, T25, T26 |
 | 3 Operator pilot | Pilot tasks meet functional and operational targets on qualified hosts | T16, T22, T24, T27 to T30 |
 | 4 Portability and relay | Fencing, transfer, partition and cryptographic conformance | T12, T13, T15 |
 
 Stage 1 acceptance requires T04, T05 and T20 to demonstrate their required semantic observations under `managed-cooperative`; a blocked, skipped or reported-as-unenforced observation is not a pass. That evidence qualifies task-source authority, deduplication and proposal/finalization semantics only and makes no protected-host containment claim. Protected qualification requires T01 to T03 under the protected profile on the designated Mac. T21 uses the cooperative profile and passes when every receipt names cooperative and protected claims are refused with `profile_insufficient`. A protected release claim requires the exact-cohort cumulative result. This clarification does not resolve the `managed-*` naming conflict recorded in [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start).
 
-**Delayed — Agent Comms verification.** The broker bind, T01 caller binding,
-the brokered turn paired with T03, and the full T21 replay are tracked in the
-[delayed stage](../10-program/roadmap.md#delayed-stage). Roadmap placement is
-pending. Stage 2a tracks the corresponding host evidence.
+**Delayed — Agent Comms verification.** The installed broker bind, caller
+binding through Agent Comms, brokered turn, and cooperative broker receipts are
+tracked in the [delayed stage](../10-program/roadmap.md#delayed-stage). Roadmap
+placement is pending. Stage 2a retains T01–T03 and T21.
 
 The full specification of each test is in the [conformance catalog](conformance-catalog.md); its requirement coverage is in the [traceability matrix](../02-requirements/traceability-matrix.md).
 
