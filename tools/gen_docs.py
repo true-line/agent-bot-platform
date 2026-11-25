@@ -151,7 +151,7 @@ def impl(t):
 
 
 def conformance_catalog(tests):
-    order = ["0", "1", "2a", "2b", "2c", "3", "4"]
+    order = ["0", "1", "2a", "2b", "3", "4", "Delayed"]
     out = [front("Proposed", "verification-lead", "registry/tests.yaml")]
     out.append("# Conformance catalog\n")
     out.append(
@@ -164,7 +164,8 @@ def conformance_catalog(tests):
         group = [t for t in tests if t["stage"] == stage]
         if not group:
             continue
-        out.append(f"## Stage {stage}\n")
+        heading = "Delayed stage" if stage == "Delayed" else f"Stage {stage}"
+        out.append(f"## {heading}\n")
         out.append("| Test | Stimulus | Required observation | Verifies | Implementation |")
         out.append("|---|---|---|---|---|")
         for t in group:

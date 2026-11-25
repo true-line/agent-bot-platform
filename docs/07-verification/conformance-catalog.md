@@ -49,13 +49,6 @@ What each conformance test must prove, grouped by the stage whose exit it gates.
 | T25 Message expiry | A queued message passes its expiry while the Soul is unavailable | message_expired is emitted to the sender; the frame is not treated as new work later. | R9 | not-started |
 | T26 Budget exhaustion | A sub-allocation reaches zero during a task | In-flight reservation settles; new protected spend refuses with budget_exhausted; the other sub-allocation is untouched. | R5 | not-started |
 
-## Stage 2c
-
-| Test | Stimulus | Required observation | Verifies | Implementation |
-|---|---|---|---|---|
-| T01 Caller binding | Copy a handle from member A to member B | Broker refuses B before the protected operation, including after restart. | R3 | not-started |
-| T21 Profile honesty | Run the protected suite under the cooperative profile | Every receipt names cooperative; any protected claim is refused with profile_insufficient. | R8 | in-progress |
-
 ## Stage 3
 
 | Test | Stimulus | Required observation | Verifies | Implementation |
@@ -75,3 +68,10 @@ What each conformance test must prove, grouped by the stage whose exit it gates.
 | T12 Split planes | Relay sends a lifecycle-looking message | No start, stop, or exec reaches the control socket. | R2 | not-started |
 | T13 Partition | Disconnect relay for one hour | Local traffic continues; queued work drains with deduplicated transitions. | R9 | not-started |
 | T15 Transfer | Restore settled and open tasks on destination | History survives; old runtime authority is unusable; new leases are issued. | R1 | not-started |
+
+## Delayed stage
+
+| Test | Stimulus | Required observation | Verifies | Implementation |
+|---|---|---|---|---|
+| T01 Caller binding | Copy a handle from member A to member B | Broker refuses B before the protected operation, including after restart. | R3 | not-started |
+| T21 Profile honesty | Run the protected suite under the cooperative profile | Every receipt names cooperative; any protected claim is refused with profile_insufficient. | R8 | in-progress |

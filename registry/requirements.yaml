@@ -58,7 +58,7 @@ requirements:
   - T02
   - T03
   - T20
-  first-gate: 1 (T20), 2a (T02, T03), 2c (T01)
+  first-gate: 1 (T20), 2a (T02, T03), Delayed (T01)
   pillars:
   - security
 - id: R4
@@ -126,7 +126,7 @@ requirements:
   specified-in: S6 §4, 7 (receipts), 8
   verified-by:
   - T21
-  first-gate: 2a (host evidence), 2c (T21)
+  first-gate: 2a (host evidence), Delayed (T21)
   pillars:
   - security
   - accuracy
