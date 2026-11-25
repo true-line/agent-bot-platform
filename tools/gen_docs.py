@@ -151,7 +151,7 @@ def impl(t):
 
 
 def conformance_catalog(tests):
-    order = ["0", "1", "2a", "2b", "3", "4"]
+    order = ["0", "1", "2a", "2b", "2c", "3", "4"]
     out = [front("Proposed", "verification-lead", "registry/tests.yaml")]
     out.append("# Conformance catalog\n")
     out.append(

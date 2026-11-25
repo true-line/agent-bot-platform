@@ -16,7 +16,7 @@
 tests:
 - id: T01
   title: Caller binding
-  stage: 2a
+  stage: 2c
   stimulus: Copy a handle from member A to member B
   observation: Broker refuses B before the protected operation, including after restart.
   verifies:
@@ -229,7 +229,7 @@ tests:
   status: Specified
 - id: T21
   title: Profile honesty
-  stage: 2a
+  stage: 2c
   stimulus: Run the protected suite under the cooperative profile
   observation: Every receipt names cooperative; any protected claim is refused with profile_insufficient.
   verifies:

@@ -42,7 +42,7 @@ member. How per-member principals and private state are provided under
 it, and whether a shared harness account can earn `protected`, are
 unspecified.
 
-Stage 2a requires protected T01–T03 on the declared macOS pilot host plus the cooperative T21 refusal check.
+Protected qualification requires T01–T03 on the declared macOS pilot host plus the cooperative T21 refusal check. The [roadmap](../10-program/roadmap.md#stages) tracks this evidence across Stage 2a and Stage 2c.
 
 ## What "cooperative" honestly means
 
