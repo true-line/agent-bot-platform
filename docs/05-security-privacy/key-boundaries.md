@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: security
 Owner: security-reviewer
-Last-Reviewed: 2026-11-11
+Last-Reviewed: 2026-11-26
 Scope: key material and credential flow
 ---
 
@@ -24,7 +24,7 @@ sealed outer frames ([federation](../03-architecture/federation.md)).
 
 The admin catalog is **signed on admin publish**; the installer accepts
 catalog items only, runs as brew admin, never root (architecture,
-[components diagram](../03-architecture/overview.md#components-today)).
+[components diagram](../03-architecture/overview.md#components-and-trust-boundaries)).
 
 ## Control signing
 

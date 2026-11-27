@@ -23,7 +23,7 @@ The twelve product requirements every component must uphold, and the quality-att
 | R8 | Honest profiles | security, accuracy | T21 | 2a |
 | R9 | Uplinks optional | reliability | T13, T25 | 2b (T25), 4 (T13) |
 | R10 | Vendor-neutral contracts | extensibility | none; Schema review in WP1; no vendor token in any fixture | 0 |
-| R11 | One harness to the user | operability | none; Pilot rubric: tasks completed through terminal chat and ACP only | 3 |
+| R11 | One harness to the user | operability | none; Pilot rubric: complete a task in one terminal conversation without selecting a harness or managing sessions | 3 |
 | R12 | Vendored and pinned, declared exceptions | portability, security | T16; clean-host activation reports missing toolchains | 3 |
 
 ## Statements
@@ -90,9 +90,9 @@ Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §12, 13 (pilot co
 
 ### R11 One harness to the user
 
-A Soul looks like one harness to its user: terminal chat and an ACP agent server in front; the members behind them are invisible except through the audit trail.
+A user works with one Soul through terminal chat. The Soul manages its harnesses and sessions, and the audit trail identifies the harness responsible for each action.
 
-Status: Approved. Source: S6 §2 (draft 0.4). Specified in S6 §3, 8.
+Status: Proposed. Source: S6 §2 (draft 0.4), revised rubric proposed in PDR-0135. Specified in S6 §3, 8.
 
 ### R12 Vendored and pinned, declared exceptions
 

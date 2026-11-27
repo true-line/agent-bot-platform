@@ -106,7 +106,7 @@ comes from settled receipts (§15).
 
 ## What you just did
 
-A real task ran under scoped grants with brokered inference, one ceiling,
+The harness used its configured provider under scoped grants, one ceiling,
 digest-bound approvals, and full receipts. Next steps: set up
 [dream runs and evaluations](../how-to/dreams-and-evals.md), learn
 [rollback](../how-to/rollback.md), and rehearse

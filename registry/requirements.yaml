@@ -158,13 +158,13 @@ requirements:
   - extensibility
 - id: R11
   title: One harness to the user
-  statement: 'A Soul looks like one harness to its user: terminal chat and an ACP agent server in front;
-    the members behind them are invisible except through the audit trail.'
-  status: Approved
-  source: S6 §2 (draft 0.4)
+  statement: A user works with one Soul through terminal chat. The Soul manages its harnesses and sessions,
+    and the audit trail identifies the harness responsible for each action.
+  status: Proposed
+  source: S6 §2 (draft 0.4), revised rubric proposed in PDR-0135
   specified-in: S6 §3, 8
   verified-by: []
-  verified-by-other: 'Pilot rubric: tasks completed through terminal chat and ACP only'
+  verified-by-other: 'Pilot rubric: complete a task in one terminal conversation without selecting a harness or managing sessions'
   first-gate: '3'
   pillars:
   - operability

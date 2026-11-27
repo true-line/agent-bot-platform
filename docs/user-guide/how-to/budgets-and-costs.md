@@ -54,8 +54,8 @@ own access policy; receipts carry a request digest instead (§7).
 
 ## What leaves the machine (and how to restrict it)
 
-Specified (§4, §6, §10): remote model — task context the broker sends,
-after checking destination against task data restrictions; relay — **outer
+Specified (§4, §6, §10): remote model — task context sent by the harness to its provider,
+subject to the task’s destination and disclosure restrictions; relay — **outer
 frame only** (destination, epoch hint, message ID, expiry, size, wake
 class), content sealed, timing/size observable; eval exports apply the
 same disclosure restrictions as the original task. To restrict further:

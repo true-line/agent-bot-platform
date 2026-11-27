@@ -37,7 +37,7 @@ tests:
 - id: T03
   title: Direct egress
   stage: 2a
-  stimulus: Harness bypasses inference or service proxy
+  stimulus: Harness attempts direct egress to its model provider or an external service, bypassing the protected route
   observation: Host blocks the route in protected mode.
   verifies:
   - R3

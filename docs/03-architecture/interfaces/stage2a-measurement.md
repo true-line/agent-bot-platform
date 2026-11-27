@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: interface
 Owner: product-owner
-Last-Reviewed: 2026-11-21
+Last-Reviewed: 2026-11-26
 Normative-Source: PDR-0102, PDR-0121
 ---
 
@@ -18,6 +18,7 @@ current root-owned staging and snapshot rule below remains the protected
 qualification gate. The owner rejected a root helper; the current nonroot
 Machine draft cannot satisfy that gate by adding one.
 
+This gate measures the HQ-hosted broker layout. A change of broker placement requires separate qualification (DRIFT-028).
 
 The owner approved this qualification-only rule on 2026-11-21 for one exact
 `hello.soul` suite plan on the designated Mac. The plan names candidate,

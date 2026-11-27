@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: reference
 Owner: protocol-maintainer
-Last-Reviewed: 2026-11-12
+Last-Reviewed: 2026-11-26
 Sources: S6; S1; S5; S8
 ---
 
@@ -29,7 +29,7 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 | **Life** | A Soul running over time. It captures memories, experiences and new abilities. Its captured state is stored in the package and moves with the Soul | PDR-0053 |
 | **Lead** | The Life's brain: the one harness that orchestrates, routes work and finalizes decisions | PDR-0053 |
 | **Agent** | What runs in a harness inside a Life: a motor function, talent or trait of the Life. Not the equivalent of a person; the Life is. One Life has several | PDR-0053 |
-| **Harness** | The program an agent runs in. One credential and one OS account per harness credential | PDR-0053 |
+| **Harness** | The program an agent runs in. Each harness owns its model-provider integration. One OS account per harness credential | PDR-0053, PDR-0135 |
 | **Specialist** | An agent that returns proposals and evidence to the lead | S6 §3 |
 | **Enrollment** | One-time registration of a Soul, node or relay with an owner-confirmed challenge; lasts until revoked | S6 §3 |
 | **Admission (clock-in)** | Per-start verification of a Soul and its runtimes by local HQ | S6 §3 |
@@ -38,9 +38,9 @@ Two terms are in conflict and stay marked until the owner decides: **Soul** and 
 
 | Term | Definition | Where |
 |---|---|---|
-| **HQ** | The machine's headquarters: trusted supervisor + broker; the enforcement point outside the agent shell's trust domain | S6 §3, §4 |
+| **HQ** | Local control plane for admission, grants and managed lifecycle. The Soul runtime executes outside its service account | PDR-0055, PDR-0135 |
 | **Harbor** | The hosted service at `agents.true-line.ai`: the owner's identity service and its web console, from the agent-bot repository. Full name Agent Bot Harbor. Distinct from HQ, which runs on the machine. For a machine the owner has linked, Harbor decides policy and lifecycle and HQ enforces; Harbor never executes on a host | Owner decision 2026-11-10; PDR-0047 |
-| **Protected** | Routed through the broker with a receipt: inference, service calls, task commits, messages/wake, credential use, lifecycle | S6 §4, §6, §7 |
+| **Protected** | Routed through the broker with a receipt: protected provider access, service calls, task commits, messages/wake, credential use, lifecycle | S6 §4, §6, §7 |
 | **Cooperative** | Inside an agent's own trust domain: workspace edits, local shell, harness-internal tools — reported, not enforced | S6 §4 |
 | **Managed machine** | Enrolled with the owner's identity service; two-way connection | S8 |
 | **Unmanaged machine** | Agent runs with only MCP/limited tooling, no enrolled local server | S8 |

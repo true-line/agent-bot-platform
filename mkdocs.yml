@@ -97,6 +97,8 @@ nav:
       - 04-decisions/PDR-0098-owner-approval-for-harness-accounts-on-macos.md
       - 04-decisions/PDR-0102-protected-adapter-qualification.md
       - 04-decisions/PDR-0121-machine-admin-custody-for-stage-2a-snapshots.md
+      - 04-decisions/PDR-0130-one-disposable-guest-owner-review.md
+      - 04-decisions/PDR-0135-independent-soul-runtime.md
   - Security and privacy:
       - 05-security-privacy/README.md
       - 05-security-privacy/threat-model.md
