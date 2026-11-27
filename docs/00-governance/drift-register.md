@@ -2,13 +2,12 @@
 Status: Proposed
 Doc-Type: governance
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-26
 ---
 
 # Drift register
 
-Follow each resolution or raise a Decisions discussion. Retain every heading;
-move completed entries to [resolved drift](drift-register-resolved.md).
+Retain headings. Move closed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-001 R9 has two wordings
 
@@ -56,7 +55,7 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-010 Short labels collide
 
-- **Open.** S6 reference R1–R8 and daemon risk R1–R10 collide with requirements; daemon decision labels collide with S1 decisions.
+- **Open.** S6 reference R1–R8 and daemon risks R1–R10 collide with requirements. Daemon and S1 decision labels overlap.
 - **Resolution.** [Identifiers](identifiers.md) use X, qualified D and RISK labels; daemon renames its risks.
 
 ## DRIFT-011 The split decisions are recorded three times
@@ -125,7 +124,7 @@ move completed entries to [resolved drift](drift-register-resolved.md).
 
 ## DRIFT-024 Harness egress isolation
 
-- **Open.** HQ's plan and Machine's Linux firewall differ from [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md). Reconcile both and verify T03.
+- **Open.** HQ and Machine's Linux firewall diverge from [PDR-0052](../04-decisions/PDR-0052-process-isolation-for-harness-egress.md). Reconcile both and verify T03.
 
 ## DRIFT-025 Stage 2a snapshot custody
 
@@ -160,3 +159,7 @@ move completed entries to [resolved drift](drift-register-resolved.md).
   release verifier and conformance. Keep T21 signing, release qualification
   and protected launch closed until the signed producer, offline verifier
   and physical result match.
+
+## DRIFT-028 Soul traffic and the HQ service account
+
+- **Open.** HQ relays Comms to Harbor. Reconcile protected broker scope across PDR-0135, PDR-0037, PDR-0052 and PDR-0102.

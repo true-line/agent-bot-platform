@@ -15,7 +15,7 @@ stays. Specified unless marked otherwise.
 
 | Route | What leaves | Restriction | Where specified |
 |---|---|---|---|
-| Remote model | task context the broker sends | destination checked against task **data restrictions** | §4, §9 |
+| Remote model | task context the harness sends to its configured provider | destination checked against task **data restrictions** | §4, §9 |
 | Relay | **outer frame only**: destination, epoch hint, message ID, expiry, size, wake class; content sealed | timing/size observable | §6 |
 | Evaluation exports | eval data | same disclosure restrictions as the original task | §10 |
 | Trace export | spans | **content excluded** | §12 |

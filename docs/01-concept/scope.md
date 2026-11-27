@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: concept
 Owner: product-owner
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-26
 Sources: S6 §1, §2, §15
 ---
 
@@ -24,22 +24,23 @@ The initial customer hypothesis is an operator who already uses more than one ag
 
 ## In scope for the MVP
 
-From S6 section 2:
+The pilot follows S6 section 2 with the interface scope recorded in [PDR-0135](../04-decisions/PDR-0135-independent-soul-runtime.md).
 
 - One owner on one supported host; one Soul with two harness roles (lead and specialist).
-- Terminal chat and an ACP front door; an HQ administration CLI; a minimal owner console.
-- Brokered access to one model destination (remote or local) and one external service.
+- One terminal conversation with the Soul, an HQ administration CLI and a minimal owner console.
+- A harness uses its own provider for model calls. The pilot exercises one approved model destination and one external service.
 - Durable tasks and action receipts, interruption and recovery.
 - The pilot targets protected macOS. Linux and Windows are secondary targets with separate host qualification. [Host priority](../04-decisions/PDR-0085-macos-first-protected-pilot.md)
 
 ## Out of scope for the MVP
 
+- IDE and agent-development-environment integration through ACP is exploratory after the MVP. Harness adapters may use ACP internally.
 - Cross-owner tenancy, public federation, a marketplace, exposed specialist endpoints.
 - Unattended cross-machine migration and concurrent active replicas of a Soul.
 - Nested Soul execution and self-accepting policy changes.
 - Any promise that arbitrary harnesses work under strong enforcement; adapters qualify one at a time.
 
-A standalone mode may exist for development, but it cannot satisfy the protected release criteria by changing its label (R8).
+A user can start Souls independently of HQ and Harbor. An HQ-managed launch starts the same runtime outside HQ. The protected pilot requires evidence for its declared host and profile (R8).
 
 ## The release test
 
