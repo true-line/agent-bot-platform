@@ -5,7 +5,7 @@ Owner: product-owner
 Last-Reviewed: 2026-11-26
 Date: 2026-11-26
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/135
-Affects-Repos: [agent-bot-platform, agent-bot-hq, agent-bot-souls, agent-bot-comms, agent-bot-machine, soul-adapters, soul-conformance]
+Affects-Repos: [agent-bot-platform, agent-bot, agent-bot-hq, agent-bot-souls, agent-bot-comms, agent-bot-machine, soul-adapters, soul-conformance]
 Affects: [R11, hq-plugin-contract, hq-v1, wire-v1, acp-front-door, trust-model, scope]
 ---
 
