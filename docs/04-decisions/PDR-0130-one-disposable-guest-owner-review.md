@@ -4,7 +4,7 @@ Doc-Type: decision
 Owner: product-owner
 Date: 2026-11-23
 Accepted: 2026-11-23
-Last-Reviewed: 2026-11-23
+Last-Reviewed: 2026-11-26
 Discussion: https://github.com/true-line/agent-bot-platform/discussions/130
 Amends: PDR-0091
 Affects-Repos: [agent-bot-platform, agent-bot-machine, agent-bot-identity, soul-contracts]
@@ -81,3 +81,14 @@ certifying a release each require their own exact review.
 The disposable VM result cannot satisfy the physical Mac T01/T02/T03/T21
 gate. Protected launch and Stage 2a acceptance remain closed until their
 release, measured-input, signature and physical evidence verifies.
+
+## Recorded outcome
+
+On November 24, 2026, Machine superseded the named plan without applying it.
+The replacement, `plan-20261124T201315Z-5f72`, had the same digest and a
+new plan ID. It received separate owner presence and paired HQ approval.
+Machine applied the replacement and the account readback confirmed the runner
+at UID/GID 310. This decision records source preparation for the original
+plan only. The tracker records zero physical test passes at that checkpoint.
+[Plan replacement](https://github.com/true-line/agent-bot-platform/issues/68#issuecomment-7143294856)
+and [application receipt and readback](https://github.com/true-line/agent-bot-platform/issues/68#issuecomment-7143490544).
