@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: index
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-26
 ---
 
 # Soul Agent Platform
@@ -39,8 +39,8 @@ The single source of truth for the Soul Agent Platform: its requirements, archit
 
 ## Five things worth knowing first
 
-1. **The Soul is the unit.** One stable Soul ID; members, installations, runtimes, sessions and revisions are attributed separately ([glossary](glossary.md)).
-2. **HQ is the enforcement point.** A trusted supervisor admits runtimes, and a broker mediates protected operations outside the agent shell's trust domain ([trust domains](03-architecture/trust-domains-and-profiles.md)).
+1. **The Soul is the unit.** Its runtime manages the harnesses and sessions behind one conversation. It can run independently of HQ and Harbor. [Architecture](03-architecture/overview.md)
+2. **HQ is the local control plane.** It can start a Soul in a separate execution domain and check requests for protected operations. [Trust domains](03-architecture/trust-domains-and-profiles.md)
 3. **Credentials never enter the package.** Machine guards privileged host keys in the administrative account. `Equip` returns credential references ([credentials](user-guide/how-to/credentials.md)).
 4. **The two profiles are not equivalent.** macOS is the first *protected* pilot target. Until a host qualifies, cooperative configurations report their limits on receipts ([profiles](03-architecture/trust-domains-and-profiles.md#protected-vs-cooperative)).
 5. **Everything is receipted.** A protected action produces a receipt with task, caller, destination and settled cost; an effect whose outcome is lost is reconciled, never blindly replayed ([lifecycle](03-architecture/lifecycle.md)).

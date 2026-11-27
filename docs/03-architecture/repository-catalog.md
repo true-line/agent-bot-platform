@@ -26,13 +26,13 @@ Every repository that builds, specifies, verifies or operates the platform, with
 | true-line/soul-contracts | Contracts and verification | skeleton | Keep | Versioned machine-readable contracts every component builds against. |
 | true-line/soul-conformance | Contracts and verification | skeleton | Keep | Executable proof that implementations meet the platform's T-series specifications. |
 | true-line/agent-bot | Host and remote services | active | Keep | Harbor, the owner's hosted identity service, web console and control plane for linked machines at agents.true-line.ai. |
-| true-line/agent-bot-hq | Host and remote services | planning | Keep | HQ, the one local authority that admits Souls, enforces grants and hosts the broker. |
-| true-line/agent-bot-machine | Host and remote services | active | Keep | The host's admin sandbox that installs catalog items and guards host-side credentials and signed policy for HQ. |
+| true-line/agent-bot-hq | Host and remote services | planning | Keep | Local control plane, Comms relay to Harbor and gateway to Machine. |
+| true-line/agent-bot-machine | Host and remote services | active | Keep | Homebrew admin daemon for catalog installs, privileged host keys, signed policy and protected resources. |
 | qwts/managed-machine-config | Host and remote services | active | Keep | Private fleet state, app catalog inputs and host isolation profiles consumed by agent-bot-machine. |
 | qwts/agent-machine-configurations | Host and remote services | removed | Archive | No content; created 2026-10-30 with no commits. No longer on GitHub as of 2026-11-07. |
 | true-line/agent-bot-comms | Host and remote services | active | Keep | One wire for every tier, with durable mailbox, deduplication and relay mode. |
 | true-line/agent-bot-identity | Inside the Soul | active | Keep and split | The agent's identity toolset, giving each harness its own GitHub App identity and failing closed. |
-| true-line/agent-bot-souls | Inside the Soul | active | Designate a new role | Home of the Soul runtime, the entry point that supervises members and runs the recovery ladder. |
+| true-line/agent-bot-souls | Inside the Soul | active | Designate a new role | Independent Soul meta-harness with optional HQ start. |
 | true-line/soul-package | Inside the Soul | skeleton | Keep | The .soul format library, covering manifest, digests, import validation, deterministic render and transfer. |
 | true-line/soul-adapters | Inside the Soul | skeleton | Keep | Per-harness ACP adapters, render plugins and signed qualification manifests. |
 | true-line/geniusbar | Owner products (proprietary, on top of the platform) | active | Keep | The owner's macOS menubar for enrolling Souls, viewing tasks and approving actions. |
@@ -85,11 +85,11 @@ Follow-up: Take over the scope of agent-github-identity (archived 2026-11-07), e
 
 ### agent-bot-hq
 
-Criteria: C1; trust domain: Trusted local host service, outside every Soul; work packages: WP2, WP4, WP6.
+Criteria: C1; trust domain: Dedicated local service account, isolated from agent accounts and ordinary users’ private data; work packages: WP2, WP4, WP6.
 
-Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; Plugin host for identity, comms and soul-runtime plugins; HQ CLI as the agent-bot-hq executable; installed agent-bot-* packages are its plugins (PDR-0037); Device enrollment, identity-service network exchange and signed local requests (PDR-0091); standalone Secure Enclave signing only under PDR-0093.
+Owns: hq/v1 owner and member API, admission, grants, leases, epochs; Action ledger, task authority, budgets, reconciliation, approvals; HQ CLI and registration of component control interfaces, including managed start through the Soul runner (PDR-0037, PDR-0135); Device enrollment, identity-service network exchange and signed local requests (PDR-0091); standalone Secure Enclave signing only under PDR-0093.
 
-Must not own: The identity service’s long-lived server signing keys; Privileged host keys, their use and protected resources except the explicit standalone signing case in PDR-0093; Wire framing or task state library code (agent-bot-comms).
+Must not own: Agent execution, inference, agent network management or comms restrictions; The identity service’s long-lived server signing keys; Privileged host keys, their use and protected resources except the explicit standalone signing case in PDR-0093; Wire framing or task state library code (agent-bot-comms).
 
 Follow-up: Move platform-level sections of docs/daemon-plugin-split.md (architecture, decisions D1-D4) into the platform; add AGENTS.md with the governed block.
 
@@ -115,9 +115,9 @@ Follow-up: Transfer to true-line alongside agent-bot-machine.
 
 ### agent-bot-comms
 
-Criteria: C1, C2; trust domain: Broker mode runs inside HQ's trust domain; client mode inside the Soul (untrusted for authority); relay mode untrusted for content; work packages: WP4.
+Criteria: C1, C2; trust domain: Soul-side client. HQ relays through Harbor. Relays see outer frames only (DRIFT-028).; work packages: WP4.
 
-Owns: Wire framing, sealing profile, mailbox, outbox, deduplication store interface; Task state machine library (decides nothing about authority); Relay mode, A2A and MCP gateways; The agent-bot-comms executable; its broker mode is a daemon plugin (PDR-0037).
+Owns: Wire framing, sealing profile, mailbox, outbox, deduplication store interface; Task state machine library (decides nothing about authority); Relay mode, A2A and MCP gateways; The agent-bot-comms executable, broker and message delivery (PDR-0024, PDR-0135).
 
 Must not own: Authority decisions or keys (HQ); authoritative task state (HQ's store).
 
@@ -139,7 +139,7 @@ Follow-up: Retire docs/identity-contract.md in favor of the platform glossary.
 
 Criteria: C2; trust domain: Inside the Soul; untrusted for authority; work packages: WP3, WP5.
 
-Owns: The agent-bot-souls executable (run / chat, reached as agent-bot souls through the agent-bot shim, PDR-0037), ACP server and client; Member supervision, cooperative scheduling, recovery ladder; Typed notes, dream runs and candidate staging.
+Owns: The agent-bot-souls executable and terminal chat, with per-harness adapters; Harness supervision, package policies, session configuration, scheduling and recovery; Typed notes, dream runs and candidate staging.
 
 Must not own: Keys or grant decisions.
 

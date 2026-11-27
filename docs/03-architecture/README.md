@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: index
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-07
+Last-Reviewed: 2026-11-26
 ---
 
 # Architecture
@@ -11,7 +11,7 @@ How the platform is divided into trust domains, repositories and contracts. The 
 
 | Page | Contents |
 |---|---|
-| [Overview](overview.md) | Two planes, components on one machine, dependency direction, the enforcement point |
+| [Overview](overview.md) | Independent Soul execution, account boundaries, optional Harbor control and component integration |
 | [Repository catalog](repository-catalog.md) | Every repository with its charter, admission criteria and decided disposition |
 | [Seams](seams.md) | Every contract between repositories, its provider, consumers, home and status |
 | [Trust domains and profiles](trust-domains-and-profiles.md) | Protected and cooperative profiles; where host-side secrets live |

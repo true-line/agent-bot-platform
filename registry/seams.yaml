@@ -55,12 +55,12 @@ seams:
   - id: wire-v1
     name: Broker and relay frame (outer frame plus sealed envelope)
     provider: agent-bot-comms
-    consumers: [agent-bot-hq, agent-bot-souls, soul-conformance]
+    consumers: [agent-bot-hq, agent-bot, agent-bot-souls, soul-conformance]
     contract-home: soul-contracts schemas/wire/v1
     contract-status: partial
     requirements: [R2, R7, R9]
     drift: [DRIFT-004]
-    note: PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
+    note: PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. For cross-machine delivery HQ relays sealed frames to Harbor, which routes them to the destination HQ (PDR-0135).
 
   - id: identity-service-api
     name: Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1)
@@ -91,7 +91,7 @@ seams:
     consumers: [agent-bot-identity, agent-bot-comms, agent-bot-souls]
     contract-home: agent-bot-hq docs/daemon-plugin-split.md section 4
     contract-status: plan
-    note: PDR-0027. HQ identity authority is built into agent-bot-hq, not a plugin; agent-bot-identity's plugin registers member surfaces only.
+    note: PDR-0027 keeps identity authority in HQ. Souls registers its HQ-facing launch interface and runs in a separate execution domain (PDR-0135).
 
   - id: soul-package-format
     name: .soul layout, data classes, manifest digests, import validation
@@ -111,12 +111,12 @@ seams:
     requirements: [R10]
 
   - id: acp-front-door
-    name: The Soul's terminal chat and ACP agent server; ACP client to members
+    name: ACP between Souls and harness adapters, with IDE-facing integration deferred beyond the MVP
     provider: agent-bot-souls
     consumers: [soul-adapters]
     contract-home: X1 (Agent Client Protocol v1)
     contract-status: external
-    requirements: [R11]
+    note: Harness adapters may use ACP internally. The R11 pilot uses terminal chat. A future IDE-facing ACP server is exploratory (PDR-0135).
 
   - id: harness-adapter
     name: Per-harness adapter package and signed qualification manifest
