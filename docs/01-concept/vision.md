@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: concept
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-11
+Last-Reviewed: 2026-11-26
 Sources: S1
 ---
 
@@ -11,14 +11,12 @@ Sources: S1
 The north star, condensed. Full text with tables and decision logs:
 [north star source](../papers/agent-bot-north-star.md).
 
-## One network, five tiers
+## One Soul across harnesses
 
-You attach to one cloud node and reach every agent through it. The same
-pattern repeats at each tier. **The Soul is the smallest unit the network
-addresses.**
+The user works with one persistent Soul, which manages the harnesses, sessions and policies behind the conversation. Start it directly, start it through local HQ, or link a host to Harbor for fleet control. [Component boundaries](../03-architecture/overview.md)
 
 - Messaging and presence run **up** from the Soul to hubs.
-- Supervision runs **down** only, from the machine manager to harnesses.
+- Supervision runs **down** only, from HQ to a managed Soul, and from the Soul to its harnesses.
 - Remote tiers never execute on a host. Harbor decides for a machine the owner has linked, and HQ enforces
   ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)).
 

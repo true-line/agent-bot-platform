@@ -14,8 +14,7 @@ reach harness-readable files.
 **Model (specified, §5, §11, T02):** HQ requests protected operations from Machine over the paired local channel. `Equip` returns
 *references*, never secrets. Credentials never travel in the `.soul`
 package. Rotation and revocation are release prerequisites (§15).
-Under brokered inference the provider key never reaches a harness; the
-short-lived-token route is the exception and is labeled in every receipt (§4).
+Each harness owns its provider integration. For protected calls, long-lived provider keys stay outside the harness. Receipts identify any permitted short-lived-token route (§4).
 
 Machine is the default on every platform and profile, whether HQ runs in a
 dedicated account or an ordinary user account. The same custody rules apply

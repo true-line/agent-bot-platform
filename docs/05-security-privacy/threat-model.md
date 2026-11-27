@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: security
 Owner: security-reviewer
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-26
 Scope: Soul Agent Platform, draft 0.4 surface
 ---
 
@@ -15,7 +15,8 @@ honestly cannot, and which tests prove each control.
 
 | Domain | Members | Boundary |
 |---|---|---|
-| HQ | managed-machine daemon, key store, authority DB, broker | outside the agent shell — the enforcement point (§4) |
+| HQ | local control daemon, authority database | authenticates API callers and authorizes managed lifecycle and grant operations |
+| Machine | admin daemon, privileged keys and protected resources | independently verifies signed operations from HQ under PDR-0091 and PDR-0093 |
 | Soul shell | entry point, agent-bot-comms client, notes | routes and coordinates; **never holds keys or enforces grants** |
 | Member (runtime) | one harness instance | protected profile: isolated principal + private state; cooperative profile: shares one domain with its peers |
 | Relays and remote Souls | relays, remote Souls | outer frames only; no launch/wake/owner/credential authority (agent-bot-comms ADR-0028) |
@@ -37,7 +38,7 @@ honestly cannot, and which tests prove each control.
 | # | Threat | Interface | Control | Proven by |
 |---|---|---|---|---|
 | 1 | Prompt-injected member reads lead's files | member↔workspace | protected principals and mediated views on a qualified host, cooperative disclosure elsewhere | T21, R8 |
-| 2 | Member reaches provider directly | egress | brokered inference; allowlist + narrow API | §4, receipts |
+| 2 | Harness bypasses the approved provider route | egress | host confinement and destination checks on the protected path | T03, receipts |
 | 3 | Secret leaks into harness-readable files | Equip | references, never secrets; `hq audit secrets` scan | T02 |
 | 4 | Approval tampering | owner approvals | HQ-signed, digest-bound; edit invalidates | T24 |
 | 5 | Malicious/compromised package | import | manifest digests, traversal/symlink/expansion checks, cycles refused | T16 (§11) |

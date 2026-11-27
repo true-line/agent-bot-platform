@@ -2,115 +2,54 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-11
-Sources: S3; S1; S6
+Last-Reviewed: 2026-11-26
+Sources: PDR-0037; PDR-0047; PDR-0055; PDR-0091; PDR-0093; PDR-0135
 ---
 
 # Architecture
 
-One network of agents in **five tiers**: you attach to one cloud node and
-reach every agent through it. The same pattern repeats at each tier, and
-the **Soul is the smallest unit the network addresses**.
+A user can run a Soul directly, ask local HQ to start it, or use Harbor to manage several linked hosts. In all three cases the same Souls runtime owns the harnesses and sessions. The diagram shows the intended component boundaries. The [roadmap](../10-program/roadmap.md) tracks implementation and qualification.
 
-Full narrative: [architecture source](../papers/soul-agent-system-architecture.md) ·
-Vision: [north star source](../papers/agent-bot-north-star.md)
-
-Diagram provenance: the Mermaid graph in the components section is the
-current source (`assets/architecture.mmd`); `assets/architecture.drawio`
-embeds the same graph, and [this PNG](assets/architecture.png) is its
-rendered export. `assets/architecture-superseded-privileged-machine.mmd` is
-the earlier privileged-machine sketch, kept for provenance (DRIFT-014).
-The diagram uses short labels: agent-daemon is agent-bot-hq,
-agent-machine is agent-bot-machine, agent-soul is the Soul runtime
-(agent-bot-souls) and agent-identity is the in-Soul identity CLI.
-
-## Two planes
-
-- **Messaging and presence** run *up* — from the Soul to site and cloud
-  hubs (relays see outer frames only).
-- **Supervision** runs *down* only — from the machine manager (HQ) to
-  harnesses. Relays and remote Souls hold **no control authority**: no
-  launch, no cold-wake, no owner or credential authority.
-- **Decision and execution are separate.** HQ alone is a complete
-  deployment. On a machine the owner has linked, Harbor decides policy and
-  lifecycle and HQ enforces; only HQ executes, and an action that adds
-  authority carries the owner's device presence signature
-  ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)).
-
-## Components today
+## Components and trust boundaries
 
 ```mermaid
 flowchart TB
-  subgraph Remote["agent-bot: control plane (agents.true-line.ai)"]
-    ID["Identity service<br/>App keys, enrollment, minting,<br/>catalog signing key"]
-    WEB["Web console"]
-    CAT["Admin catalog<br/>approved apps + configs<br/>(signed on admin publish)"]
-  end
-
-  subgraph Machine["Machine"]
-    USER["Owner (terminal)"]
-    AGENT["Agents (terminal)"]
-    CLI["agent-bot-cli<br/>thin client / shim"]
-    subgraph Daemon["agent-daemon (HQ, local control plane)"]
-      HQ["HQ: supervision, grants, enforcement"]
-      AI["agent-identity"]
-      AS["agent-soul"]
-      AC["agent-bot-comms"]
-      NOTE["Extensions can run independently,<br/>but normally run inside agent-daemon"]
-    end
-    subgraph Exec["agent-machine (secure executor, runs as brew admin, never root)"]
-      INST["Installer<br/>catalog items only"]
-    end
-    Soul["Soul<br/>lead + specialists + sessions"]
-  end
-
-  USER --> CLI
-  AGENT --> CLI
-  CLI -- "local socket" --> Daemon
-  Daemon -- "signed local channel" --> Exec
-  AI <-- "enroll + mint" --> ID
-  WEB --- ID
-  CAT -- "signed catalog" --> Daemon
-  HQ -- "supervises" --> Soul
-  AS -- "packages, sessions" --> Soul
-  AC <-- "messages" --> Soul
-  style NOTE fill:#fff8c4,stroke:#c9b200,stroke-dasharray: 4 3
+  Harbor["Harbor · optional cloud service<br/>Fleet control and message routing"]
+  Client["Owner or agent client<br/>Standard or service account"]
+  HQ["HQ · dedicated service account<br/>Admission, grants and lifecycle"]
+  Machine["Machine · Homebrew admin<br/>Catalog, keys and protected resources"]
+  Souls["Souls · separate runtime<br/>Harnesses, sessions and recovery<br/>Each harness owns its model provider"]
+  Comms["Agent Bot Comms<br/>Message delivery"]
+  Remote["Other linked machine<br/>HQ relay → Comms → recipient agent"]
+  Harbor <-->|"Cross-machine messages"| HQ
+  HQ <-->|"Relay remote messages"| Comms
+  Harbor <-->|"Route to destination host"| Remote
+  Harbor -. "Signed control when linked" .-> HQ
+  Client -->|"Authenticated local API"| HQ
+  Client -->|"Standalone start and chat"| Souls
+  HQ -->|"Start via Soul runner"| Souls
+  HQ <-->|"Signed requests and receipts"| Machine
+  Souls <-->|"Agent messages"| Comms
+  classDef control fill:#e9f2fc,stroke:#416891,color:#182d43
+  classDef runtime fill:#e5f6ef,stroke:#32765b,color:#183b30
+  classDef admin fill:#fff1dc,stroke:#986627,color:#4b3519
+  class Harbor,HQ control
+  class Souls,Comms runtime
+  class Machine admin
 ```
 
-## Repositories and dependency direction
+[Mermaid source](assets/architecture.mmd) · [Editable draw.io diagram](assets/architecture.drawio) · [PNG](assets/architecture.png)
 
-Repositories follow **trust-domain and contract boundaries**, not
-features, and dependencies point only toward contract repositories. HQ is
-implemented in agent-bot-hq (PDR-0002); the host admin sandbox is
-agent-bot-machine.
+**Souls** is the meta-harness. A user opens one terminal conversation. The runtime selects and supervises harnesses, applies the Soul's policies, manages sessions and configuration, and recovers interrupted work. In a direct launch, HQ and Harbor are optional. In a managed launch, HQ starts the runner in the Soul's execution domain. Each harness owns its model-provider integration and makes model calls using its native client. Souls manages the harness session. Agent Bot Comms handles message delivery. [Soul lifecycle](lifecycle.md)
 
-```
-soul-contracts ← soul-package ← agent-bot-comms ← agent-bot-hq (HQ)
-                                    ↑
-agent-bot-souls (Soul runtime: contracts, package, comms client, adapters)
-agent-bot-identity (contracts; identity-service API)
-soul-adapters (contracts, package only)
-geniusbar (HQ client only)
-soul-conformance (contracts at build time, binaries at test time)
-```
+**HQ** is the local control-plane daemon in a dedicated service account. Clients in standard and other service accounts can request operations through its authenticated local API. Agents cannot access HQ's code or private state directly, and HQ cannot access ordinary users' private account data. HQ checks admission, grants and lifecycle requests. When Comms addresses an agent on another linked machine, local HQ relays the sealed message to Harbor. Harbor routes it to the destination HQ, where Comms delivers it to the agent. The solid message path and dotted signed-control path carry different records. Starting a Soul gives HQ no role in hosting its agents, managing their networking, restricting their communications or providing inference. [Cross-machine messaging](federation.md) · [Trust domains](trust-domains-and-profiles.md)
 
-The [repository catalog](repository-catalog.md) is the authoritative list
-of repositories, their charters and dispositions; [seams](seams.md) lists
-every contract between them with its home and status.
+**Machine** runs as the Homebrew administrator. It manages approved installations, privileged host keys and protected resources. HQ performs the network exchange required for Machine operations and sends fixed, authenticated requests over the signed local channel. Machine verifies each request and returns a signed receipt. See the [custody boundary](../04-decisions/PDR-0091-host-privileged-custody.md) and its [standalone signing exception](../04-decisions/PDR-0093-standalone-hq-secure-enclave-signing.md).
 
-## The enforcement point
+**Harbor** is the optional cloud control plane. For machines the owner links, Harbor signs policy and lifecycle requests. HQ validates them on the host. An increase in authority requires the owner's device signature. Local-only operation is supported. [Harbor control](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)
 
-A trusted supervisor admits runtimes; a broker mediates protected
-operations **outside the agent shell's trust domain** — that pair is HQ.
-agent-bot-comms routes and coordinates but **never holds keys or enforces
-grants** (S1 D4). Where harness and agent shell share a
-trust domain, access enforcement must come from the host — or the Soul
-runs unenforced and *says so*.
+## How components plug into HQ
 
-## Implementation path
+Each component ships its own executable. A package can register its HQ-facing commands and lifecycle operations through `hq-plugin-contract`. For Souls, the integration is the ability to request a start and track its lifecycle across the boundary. The [repository catalog](repository-catalog.md) identifies each component owner and the [seam catalog](seams.md) identifies each contract.
 
-Strangler-style migration: nothing new before soul-contracts ships
-fixtures; the agent-bot daemon keeps working at every step; its HQ half is
-retired only when both implementations pass the same soul-conformance run.
-Stages 0 to 4 carry exit evidence; the [roadmap](../10-program/roadmap.md)
-tracks them.
+The Stage 2a qualification plan still describes an HQ-hosted communications broker. Its evidence is specific to that layout. The scope of that broker is tracked in [DRIFT-028](../00-governance/drift-register.md#drift-028-soul-traffic-and-the-hq-service-account).

@@ -8,6 +8,8 @@ Audience: adapter-developers
 
 # How to: qualify an adapter
 
+Each harness owns its model provider. Its adapter connects the harness to Souls for sessions and lifecycle.
+
 Take a harness adapter from code to a signed qualification manifest that
 operators can trust per profile.
 

@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-26
 Sources: S6 §4; S8; agent-bot-hq D4
 ---
 
@@ -15,9 +15,10 @@ one you got.
 ## The core rule
 
 **Access is enforced by the host**, because harness and agent shell may
-share a trust domain. HQ is the enforcement point: a trusted supervisor
-admits runtimes; a broker mediates protected operations outside the
-agent shell's trust domain. If containment cannot be guaranteed, the Soul
+share a trust domain. HQ admits a managed Soul through its runner. Host containment and the broker
+for protected effects operate outside the agent shell's trust domain. Agent
+networking and communications policy are outside HQ's control. The existing
+protected broker layout requires [reconciliation](../00-governance/drift-register.md#drift-028-soul-traffic-and-the-hq-service-account). If containment cannot be guaranteed, the Soul
 **runs unenforced and says so** — unenforceable profiles are refused or
 reported, never silently downgraded.
 
@@ -30,7 +31,7 @@ HQ and the admin sandbox are separate trust domains. HQ requests privileged key 
 Under a qualified protected profile, every protected
 operation is brokered *and* containment is enforced:
 
-- HQ-controlled launch of every agent runtime
+- HQ-authorized Soul start and supervised harness launch in separate runtime accounts
 - per-member principals
 - protected connection binding
 - caller-bound handles
@@ -47,7 +48,7 @@ Stage 2a requires protected T01–T03 on the declared macOS pilot host plus the 
 ## What "cooperative" honestly means
 
 Under the cooperative profile, agents **share a trust domain**. Every feature still
-works — tasks, receipts, brokered inference, budgets, recovery — but a
+works — tasks, receipts, model calls through each harness’s provider, budgets, recovery — but a
 prompt-injected specialist could read the lead's files or reach a
 provider directly. Cooperative is *reported*: every receipt and the
 console say "cooperative" (R8, T21), and any protected claim is refused.

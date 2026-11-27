@@ -1,35 +1,23 @@
 flowchart TB
-  subgraph Remote["agent-bot: control plane (agents.true-line.ai)"]
-    ID["Identity service<br/>App keys, enrollment, minting,<br/>catalog signing key"]
-    WEB["Web console"]
-    CAT["Admin catalog<br/>approved apps + configs<br/>(signed on admin publish)"]
-  end
-
-  subgraph Machine["Machine"]
-    USER["Owner (terminal)"]
-    AGENT["Agents (terminal)"]
-    CLI["agent-bot-cli<br/>thin client / shim"]
-    subgraph Daemon["agent-daemon (HQ, local control plane)"]
-      HQ["HQ: supervision, grants, enforcement"]
-      AI["agent-identity"]
-      AS["agent-soul"]
-      AC["agent-bot-comms"]
-      NOTE["Extensions can run independently,<br/>but normally run inside agent-daemon"]
-    end
-    subgraph Exec["agent-machine (secure executor, runs as brew admin, never root)"]
-      INST["Installer<br/>catalog items only"]
-    end
-    Soul["Soul<br/>lead + specialists + sessions"]
-  end
-
-  USER --> CLI
-  AGENT --> CLI
-  CLI -- "local socket" --> Daemon
-  Daemon -- "signed local channel" --> Exec
-  AI <-- "enroll + mint" --> ID
-  WEB --- ID
-  CAT -- "signed catalog" --> Daemon
-  HQ -- "supervises" --> Soul
-  AS -- "packages, sessions" --> Soul
-  AC <-- "messages" --> Soul
-  style NOTE fill:#fff8c4,stroke:#c9b200,stroke-dasharray: 4 3
+  Harbor["Harbor · optional cloud service<br/>Fleet control and message routing"]
+  Client["Owner or agent client<br/>Standard or service account"]
+  HQ["HQ · dedicated service account<br/>Admission, grants and lifecycle"]
+  Machine["Machine · Homebrew admin<br/>Catalog, keys and protected resources"]
+  Souls["Souls · separate runtime<br/>Harnesses, sessions and recovery<br/>Each harness owns its model provider"]
+  Comms["Agent Bot Comms<br/>Message delivery"]
+  Remote["Other linked machine<br/>HQ relay → Comms → recipient agent"]
+  Harbor <-->|"Cross-machine messages"| HQ
+  HQ <-->|"Relay remote messages"| Comms
+  Harbor <-->|"Route to destination host"| Remote
+  Harbor -. "Signed control when linked" .-> HQ
+  Client -->|"Authenticated local API"| HQ
+  Client -->|"Standalone start and chat"| Souls
+  HQ -->|"Start via Soul runner"| Souls
+  HQ <-->|"Signed requests and receipts"| Machine
+  Souls <-->|"Agent messages"| Comms
+  classDef control fill:#e9f2fc,stroke:#416891,color:#182d43
+  classDef runtime fill:#e5f6ef,stroke:#32765b,color:#183b30
+  classDef admin fill:#fff1dc,stroke:#986627,color:#4b3519
+  class Harbor,HQ control
+  class Souls,Comms runtime
+  class Machine admin

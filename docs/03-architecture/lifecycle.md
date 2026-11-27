@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: explanation
 Owner: platform-maintainer
-Last-Reviewed: 2026-11-12
+Last-Reviewed: 2026-11-26
 Sources: S6 §5, §9; S1; Oct 29 vocabulary
 ---
 
@@ -13,8 +13,7 @@ how it recovers.
 
 ## Admission: one sequence
 
-Start, first clock-in on a new machine, daily report-in, and migration
-are **one flow** (the clock-in flow):
+A direct launch runs the Soul independently. When HQ starts the Soul through its runner, HQ handles admission and the Soul supervises its own harnesses and sessions. Managed start, first clock-in, daily report-in and migration use this sequence.
 
 ```
 Hello → Admit → Equip → Brief → Ready → Lease

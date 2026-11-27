@@ -2,6 +2,8 @@
 
 The product source of truth for the Soul Agent Platform: what the product must do, how its repositories fit together, what was decided, and how a release is proven. Component repositories implement; this repository specifies and decides.
 
+Start with the [component diagram](docs/03-architecture/overview.md) for standalone Souls, local HQ and Machine, and optional Harbor fleet control. The [MVP scope](docs/01-concept/scope.md) describes the terminal-first pilot.
+
 ## What lives here
 
 | Path | Contents | SDLC / STLC phase |

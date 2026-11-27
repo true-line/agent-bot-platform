@@ -17,14 +17,14 @@ The interfaces between repositories and where each contract lives. A seam is the
 | `task-v1` Task commitment request, task record and nine-state machine | agent-bot-hq | agent-bot-comms, agent-bot-souls, soul-conformance | soul-contracts schemas/task/v1 | partial |
 | `observation-v1` HQ observation uplink (session presence, binding visibility, lifecycle events) | agent-bot-hq | agent-bot | soul-contracts schemas/observation/v1 | none |
 | `control-v1` Harbor control of a linked machine (signed policy bundle, relayed owner request, key rotation and revocation) | agent-bot | agent-bot-hq, agent-bot-machine | soul-contracts schemas/control/v1 | none |
-| `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-bot-comms | agent-bot-hq, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | partial |
+| `wire-v1` Broker and relay frame (outer frame plus sealed envelope) | agent-bot-comms | agent-bot-hq, agent-bot, agent-bot-souls, soul-conformance | soul-contracts schemas/wire/v1 | partial |
 | `identity-service-api` Enrollment, device-bound DPoP token minting, issuance records (agent-bot-sig-v1) | agent-bot | agent-bot-hq, agent-bot-identity | agent-bot docs/api.md | repo-local |
 | `catalog-signing` Signed admin catalog of approved apps and configurations | agent-bot | agent-bot-hq, agent-bot-machine | agent-bot | repo-local |
 | `daemon-machine-channel` Signed local channel from HQ to the secure executor, with signed receipts | agent-bot-machine | agent-bot-hq, managed-machine-config | agent-bot-machine | repo-local |
 | `hq-plugin-contract` Manifest, registration, host services and lifecycle for HQ plugins | agent-bot-hq | agent-bot-identity, agent-bot-comms, agent-bot-souls | agent-bot-hq docs/daemon-plugin-split.md section 4 | plan |
 | `soul-package-format` .soul layout, data classes, manifest digests, import validation | soul-package | agent-bot-hq, agent-bot-souls, soul-conformance | soul-package spec/LAYOUT.md | repo-local |
 | `render-plugin-api` Deterministic render of canonical primitives into each adapter's native configuration | soul-package | soul-adapters, agent-bot-souls | soul-package spec/RENDER-PLUGIN.md | repo-local |
-| `acp-front-door` The Soul's terminal chat and ACP agent server; ACP client to members | agent-bot-souls | soul-adapters | X1 (Agent Client Protocol v1) | external |
+| `acp-front-door` ACP between Souls and harness adapters, with IDE-facing integration deferred beyond the MVP | agent-bot-souls | soul-adapters | X1 (Agent Client Protocol v1) | external |
 | `harness-adapter` Per-harness adapter package and signed qualification manifest | soul-adapters | agent-bot-souls, agent-bot-hq | soul-adapters docs/QUALIFICATION.md | repo-local |
 | `error-registry` Typed error codes with description and retryable flag | soul-contracts | agent-bot-hq, agent-bot-comms, agent-bot-souls, soul-conformance | soul-contracts errors/registry.json | partial |
 | `fixtures` Shared positive and negative fixtures and canonicalization vectors | soul-contracts | soul-conformance, agent-bot-comms, agent-bot-identity | soul-contracts fixtures/ | partial |
@@ -40,12 +40,12 @@ The interfaces between repositories and where each contract lives. A seam is the
 - `task-v1`: requirements R3, R5; drift DRIFT-004; PDR-0024. agent-bot-comms validates and mirrors HQ's task/v1 records unchanged; its v0.5.5 peer-offer task workflow is outside this seam.
 - `observation-v1`: requirements R1, R2, R9; PDR-0023. HQ stays authoritative; agent-bot keeps an observational projection only, with no control or execution path.
 - `control-v1`: requirements R2, R9; PDR-0047. Harbor decides and HQ enforces; a record that adds authority carries the owner's device presence signature. Separate from observation-v1, which stays read-only. No implementation before the contract and its negative fixtures exist.
-- `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. No change to wire/v1 or sealed-inner-v1.
+- `wire-v1`: requirements R2, R7, R9; drift DRIFT-004; PDR-0024. agent-bot-comms wraps each routed message in a wire/v1 frame at its broker delivery and relay layer; its local client request protocol (lib/wire.mjs) is below this seam. For cross-machine delivery HQ relays sealed frames to Harbor, which routes them to the destination HQ (PDR-0135).
 - `identity-service-api`: requirements R3, R9; Credential issuance record is listed in S6 Appendix A but has no schema yet.
-- `hq-plugin-contract`: PDR-0027. HQ identity authority is built into agent-bot-hq, not a plugin; agent-bot-identity's plugin registers member surfaces only.
+- `hq-plugin-contract`: PDR-0027 keeps identity authority in HQ. Souls registers its HQ-facing launch interface and runs in a separate execution domain (PDR-0135).
 - `soul-package-format`: requirements R1, R12; drift DRIFT-007
 - `render-plugin-api`: requirements R10
-- `acp-front-door`: requirements R11
+- `acp-front-door`: Harness adapters may use ACP internally. The R11 pilot uses terminal chat. A future IDE-facing ACP server is exploratory (PDR-0135).
 - `harness-adapter`: requirements R8, R10
 - `error-registry`: 24 codes exist with empty descriptions and retryable null.
 - `fixtures`: requirements R7
