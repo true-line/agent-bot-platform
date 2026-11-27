@@ -2,7 +2,7 @@
 Status: Draft
 Doc-Type: strategy
 Owner: verification-lead
-Last-Reviewed: 2026-11-17
+Last-Reviewed: 2026-11-26
 Sources: S6 §13, §14; S7 §4
 ---
 
@@ -29,12 +29,23 @@ A stage exits only when every test gated at or before it passes on the exact sup
 |---|---|---|
 | 0 Contract baseline | Shared fixtures validate in both runtime and broker | T14 |
 | 1 Local vertical slice | One task completes with scoped proposals and one final commitment | T04, T05, T20 |
-| 2a Member isolation | Hostile-member suite passes under the protected label | T01, T02, T03, T21 |
+| 2a Member isolation | Caller binding, Machine signing custody and host egress denial on the designated Mac under protected enforcement, plus cooperative profile honesty | T01, T02, T03, T21 |
 | 2b Brokered adapters | Unknown effects reconcile without blind replay | T06 to T11, T17 to T19, T23, T25, T26 |
 | 3 Operator pilot | Pilot tasks meet functional and operational targets | T16, T22, T24, T27 to T30 |
 | 4 Portability and relay | Fencing, transfer, partition and cryptographic conformance | T12, T13, T15 |
 
 Stage 1 acceptance requires T04, T05 and T20 to demonstrate their required semantic observations under `managed-cooperative`; a blocked, skipped or reported-as-unenforced observation is not a pass. That evidence qualifies task-source authority, deduplication and proposal/finalization semantics only and makes no protected-host containment claim. Stage 2a's protected-label gate remains separate: T01 to T03 pass under `managed-protected`, while T21 is the negative honesty check run under `managed-cooperative` and passes only when receipts name cooperative and every protected claim is refused with `profile_insufficient`. Together T01 to T03 and T21 gate a protected claim. A later release claiming `managed-protected` still follows the exact-cohort cumulative gate above; this Stage 1 cooperative result is not protected evidence. This clarification does not resolve the `managed-*` naming conflict recorded in [DRIFT-018](../00-governance/drift-register.md#drift-018-profile-values-say-managed-for-souls-hq-does-not-start).
+
+The [delayed Agent Comms run](../10-program/roadmap.md#delayed-stage) supplies
+integration evidence for Stage 2a on the exact installed cohort. For T01,
+present another agent’s copied handle to the broker and verify refusal before
+the protected operation. Repeat after HQ restart. For T21, replay the protected
+suite under the cooperative profile, verify every receipt names cooperative
+and verify each protected claim is refused with `profile_insufficient`.
+Link those results from [#133](https://github.com/true-line/agent-bot-platform/issues/133)
+to [#68](https://github.com/true-line/agent-bot-platform/issues/68).
+Scheduling an observation under #133 keeps its Stage 2a test open until the
+designated Mac supplies that observation.
 
 The full specification of each test is in the [conformance catalog](conformance-catalog.md); its requirement coverage is in the [traceability matrix](../02-requirements/traceability-matrix.md).
 
