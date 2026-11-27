@@ -16,10 +16,25 @@ Stages exit on evidence. S6 estimates the dates. [PDR-0085](../04-decisions/PDR-
 |---|---|---|---|---|
 | 0 Contract baseline | Weeks 1 to 2 | Glossary, schemas, fixtures, threat model, compatibility inventory, traceability | Shared fixtures validate in runtime and broker (T14) | The owner confirmed exit by approving [closeout PR #79](https://github.com/true-line/agent-bot-platform/pull/79), which closed [#66](https://github.com/true-line/agent-bot-platform/issues/66). See [evidence](#stage-0-evidence-and-remaining-work). |
 | 1 Local vertical slice | Weeks 3 to 5 | One Soul, two members, local admission, task ledger, fake adapters | One task completes with scoped proposals and one final commitment | Exit evidence complete 2026-11-17; approval of [#67](https://github.com/true-line/agent-bot-platform/issues/67) confirms exit. T04/T05/T20 passed under `managed-cooperative` ([soul-conformance PR #7](https://github.com/true-line/soul-conformance/pull/7)). [PR #10](https://github.com/true-line/soul-conformance/pull/10) [post-merge CI](https://github.com/true-line/soul-conformance/actions/runs/44104254218) passed 31 tests and `hello.soul` against the pinned runtime and real HQ. Clean reports: [artifact 14336598815](https://github.com/true-line/soul-conformance/actions/runs/44104254218/artifacts/14336598815), ZIP SHA-256 `3449cc028f36a3653de16d1fd23346df65138d31bfe0fb1fb2bc0a1fa0baeeed`. Cooperative only; Stage 2a retains the protected-host gate. |
-| 2a Member isolation | Weeks 6 to 7 | HQ starts the separate Soul runner. Qualify macOS caller binding, isolation, key custody and host egress controls on the measured path. | In local-only mode (no Harbor account), an HQ-started Soul completes a local-fixture-provider operation on the qualified path. Separately, with Harbor unavailable on a linked host, existing work that needs no new credential continues under the last signed policy, only reduce actions are accepted, and no runtime R2/Harbor request is needed; do not count a new protected launch as outage evidence. Any protected launch still requires a current signed policy and authenticated revocation snapshot no more than one hour old; missing or stale revocation data fails closed ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md), [PDR-0102](../04-decisions/PDR-0102-protected-adapter-qualification.md)). On the declared Mac, the HQ-started run passes T01–T03 protected and T21 cooperative on the exact approved broker path. | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)); HQ Soul-start and macOS qualification pending. |
+| 2a Member isolation | Weeks 6 to 7 | HQ starts a separate Soul runner. Qualify macOS caller binding, account isolation, Machine signing custody and host egress controls. | On the designated Mac and exact installed cohort, pass T01–T03 under protected enforcement and T21 under cooperative enforcement. The [delayed integration run](#delayed-stage) supplies the outstanding broker observations. | In progress ([#68](https://github.com/true-line/agent-bot-platform/issues/68)), 0 of 4 physical tests passed. |
 | 2b Brokered adapters | Weeks 8 to 9 | Comms routes live `wire/v1` and mirrors HQ's `task/v1`. Harnesses use their own model providers. The service adapter handles external service calls. | Unknown effects reconcile without blind replay through the measured adapter and broker path | Not started |
 | 3 Operator pilot | Weeks 10 to 12 | One Soul conversation in terminal chat (R11), owner console and HQ CLI, enrollment, approvals, export and restore | Pilot targets met on qualified protected macOS | Not started |
 | 4 Portability and relay | After pilot gates | Local HQ relays Comms messages to Harbor for routing to other linked hosts; coordinated moves | Fencing, transfer, partition and crypto conformance on the routed path | Not started |
+
+## Delayed stage
+
+[Agent Comms verification #133](https://github.com/true-line/agent-bot-platform/issues/133)
+tracks the installed integration run. Its roadmap placement and target date are
+pending. The current measurement rule covers the HQ-hosted broker. The protected
+broker placement and endpoint for a successor remain open in
+[DRIFT-028](../00-governance/drift-register.md#drift-028-soul-traffic-and-the-hq-service-account).
+A changed path requires its own reviewed contract and physical qualification.
+
+Record host isolation and custody observations in [Stage 2a #68](https://github.com/true-line/agent-bot-platform/issues/68).
+Link the delayed broker evidence back to the corresponding tests on the same
+installed cohort. Each test stays open until all its required observations
+are present. The [test strategy](../07-verification/test-strategy.md#entry-and-exit-by-stage)
+identifies the evidence required for T01 and T21.
 
 ## Communications delivery dependencies
 
@@ -37,13 +52,19 @@ Only a Soul that HQ starts is managed
 
 | Stage | Comms work that must land | Evidence before exit |
 |---|---|---|
-| 2a | Release matching builds for the approved configuration. Start the Soul from HQ and bind each agent to its assigned broker connection under the Machine-provisioned account layout. | In local-only mode, the HQ-started local Soul and measured broker complete a local-fixture-provider operation. Separately, with Harbor unavailable on a linked host, existing work needing no new credential continues under the last signed policy, only reduce actions are accepted, and no runtime R2/Harbor request is needed; a new protected launch is not outage evidence. Any protected launch requires a current signed policy and authenticated revocation data no more than one hour old; missing or stale data fails closed ([PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md), [PDR-0102](../04-decisions/PDR-0102-protected-adapter-qualification.md)). Physical T01 refuses a copied handle before the operation and after HQ restart. The same HQ-started run supplies T02–T03 and the cooperative T21 replay; direct vendor or IDE trials are supporting evidence only. |
+| Delayed | Install the matching HQ, Machine, Souls, Agent Comms and adapter builds on the designated Mac. Bind each HQ-started agent to its assigned connection. | Complete a local fixture-provider turn without a Harbor account. Pair the authenticated brokered turn with host egress-denial evidence. Collect T01 caller-binding and T21 cooperative replay evidence. During a linked-host Harbor outage, verify already admitted work needing no new credential continues under the last signed policy, only reduce actions are accepted, and no runtime R2 or Harbor request is needed. |
 | 2b | Connect live broker delivery to `wire/v1` and mirror authoritative HQ task records through `task/v1`, then verify receipts for harness provider use and service effects. | End-to-end routed frame, task receipt and recovery evidence on the exact released cohort. Codec fixtures alone do not satisfy this row. |
 | 4 | Route a Comms message through the sending HQ, Harbor and the receiving HQ to the destination agent. Preserve the separate `control-v1` authority boundary. | Federation, partition and transfer tests on that route, including refusal of remote control over relay traffic. |
 
+A protected start requires the assigned bridge bind, a current signed policy
+and authenticated revocation data at most one hour old. A failed bind or
+missing or stale data refuses launch. The outage check uses already admitted work.
+[PDR-0047](../04-decisions/PDR-0047-harbor-is-the-control-plane-of-a-linked-machine.md)
+and [PDR-0102](../04-decisions/PDR-0102-protected-adapter-qualification.md).
+
 The published comms [v0.5.6 release](https://github.com/true-line/agent-bot-comms/releases/tag/v0.5.6) includes the HQ plugin packaging
 ([PR #323](https://github.com/true-line/agent-bot-comms/pull/323)). A matching
-HQ release, installation, and physical run remain Stage 2a evidence gates. Live `wire/v1` delivery
+HQ release, installation and physical integration run supply the delayed broker evidence. Live `wire/v1` delivery
 remains tracked in [comms #300](https://github.com/true-line/agent-bot-comms/issues/300).
 Neither a green plugin fixture nor an older standalone-broker release is a
 Stage 2a physical result. The controlled test Soul uses the
